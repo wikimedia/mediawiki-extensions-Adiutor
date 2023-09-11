@@ -8,12 +8,11 @@
 
 namespace MediaWiki\Extension\Adiutor;
 
+use MediaWiki\Content\Content;
+use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\PageUpdater;
+use MediaWiki\Revision\CommentStoreComment;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\WikiPage;
-use MediaWiki\Slot\SlotRecord;
-use MediaWiki\Title\Title;
-use MediaWiki\Content\ContentHandlerFactory;
-use MediaWiki\Permissions\PermissionManager;
 use User;
 
 class Adiutor
@@ -21,11 +20,13 @@ class Adiutor
     public static function onExtensionLoad()
     {
         $pageContent = [
-            'Adiutor-CSD.json' => '{"key": "value1"}',
-            'Adiutor-PMR.json' => '{"key": "value2"}',
-            'Adiutor-AIV.json' => '{"key": "value3"}',
+            'Adiutor-CSD.json' => '1',
+            'Adiutor-PMR.json' => '2',
+            'Adiutor-AIV.json' => '3',
         ];
-        $user = User::newFromId(0); 
+        $user = User::newFromId(0);
+        $services = MediaWikiServices::getInstance();
+        $titleFactory = $services->getTitleFactory();
         foreach ($pageContent as $pageTitle => $content) {
             $pageUpdater = MediaWikiServices::getInstance()
                 ->getWikiPageFactory()
@@ -36,6 +37,7 @@ class Adiutor
                 CommentStoreComment::newUnsavedComment( '' ),
                 EDIT_INTERNAL | EDIT_MINOR | EDIT_AUTOSUMMARY
             );
+            $saveStatus = $pageUpdater->getStatus();
         }
     }
 }
