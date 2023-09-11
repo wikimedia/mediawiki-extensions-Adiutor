@@ -1,6 +1,4 @@
-var mwConfig = mw.config.get(["skin", "wgAction", "wgArticleId", "wgPageName", "wgNamespaceNumber", "wgTitle", "wgUserGroups", "wgUserName", "wgUserEditCount", "wgUserRegistration", "wgCanonicalNamespace"]);
 var api = new mw.Api();
-var wikiId = mw.config.get('wgWikiID');
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 var sectionLink, sectionPath, sectionNumber, mentorResponse;
 api.get({
@@ -129,7 +127,7 @@ api.get({
 		function addResponse(sectionNumber) {
 			api.postWithToken('csrf', {
 				action: 'edit',
-				title: mwConfig.wgPageName,
+				title: mw.config.get('wgPageName'),
 				section: sectionNumber,
 				appendtext: "\n" + ":" + mentorResponse + ' ~~~~',
 				summary: apiPostSummary,

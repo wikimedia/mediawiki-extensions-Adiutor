@@ -5,7 +5,7 @@
     "sectionTitle": "Page move request for [[$1]]",
     "appendText": true,
     "prependText": false,
-    "sectionID": false,
+    "sectionId": false,
     "contentPattern": "Move [[$1]] to [[$2]]\n\nRationale: $3 ~~~~",
     "apiPostSummary": "Page move request created for [[$1|$1]]."
 }

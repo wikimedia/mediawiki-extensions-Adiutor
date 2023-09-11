@@ -38,7 +38,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Gadget-Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});
@@ -51,13 +51,13 @@ fetchApiData(function(jsonData) {
 	var uncategorizedTemplate = jsonData.uncategorizedTemplate;
 	var apiPostSummary = jsonData.apiPostSummary;
 
-	function PageTaggingDialog(config) {
-		PageTaggingDialog.super.call(this, config);
+	function pageTaggingDialog(config) {
+		pageTaggingDialog.super.call(this, config);
 	}
-	OO.inheritClass(PageTaggingDialog, OO.ui.ProcessDialog);
-	PageTaggingDialog.static.name = 'PageTaggingDialog';
-	PageTaggingDialog.static.title = new OO.ui.deferMsg('tag-module-title');
-	PageTaggingDialog.static.actions = [{
+	OO.inheritClass(pageTaggingDialog, OO.ui.ProcessDialog);
+	pageTaggingDialog.static.name = 'pageTaggingDialog';
+	pageTaggingDialog.static.title = new OO.ui.deferMsg('tag-module-title');
+	pageTaggingDialog.static.actions = [{
 		action: 'save',
 		label: new OO.ui.deferMsg('add-tag'),
 		flags: ['primary', 'progressive']
@@ -65,8 +65,8 @@ fetchApiData(function(jsonData) {
 		label: new OO.ui.deferMsg('cancel'),
 		flags: 'safe'
 	}];
-	PageTaggingDialog.prototype.initialize = function() {
-		PageTaggingDialog.super.prototype.initialize.apply(this, arguments);
+	pageTaggingDialog.prototype.initialize = function() {
+		pageTaggingDialog.super.prototype.initialize.apply(this, arguments);
 		var headerTitle = new OO.ui.MessageWidget({
 			type: 'notice',
 			inline: true,
@@ -206,7 +206,7 @@ fetchApiData(function(jsonData) {
 		});
 		this.$body.append(this.content.$element);
 	};
-	PageTaggingDialog.prototype.getActionProcess = function(action) {
+	pageTaggingDialog.prototype.getActionProcess = function(action) {
 		var dialog = this;
 		if(action) {
 			return new OO.ui.Process(function() {
@@ -255,11 +255,11 @@ fetchApiData(function(jsonData) {
 				}
 			});
 		}
-		return PageTaggingDialog.super.prototype.getActionProcess.call(this, action);
+		return pageTaggingDialog.super.prototype.getActionProcess.call(this, action);
 	};
 	var windowManager = new OO.ui.WindowManager();
 	$(document.body).append(windowManager.$element);
-	var dialog = new PageTaggingDialog({
+	var dialog = new pageTaggingDialog({
 		size: 'large',
 	});
 	windowManager.addWindows([dialog]);

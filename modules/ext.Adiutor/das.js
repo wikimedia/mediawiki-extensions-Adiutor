@@ -104,7 +104,7 @@ function SectionTwoLayout(name, config) {
 	api.get({
 		action: 'query',
 		prop: 'revisions',
-		titles: 'MediaWiki:Gadget-Adiutor-DAS.json',
+		titles: 'MediaWiki:Adiutor-DAS.json',
 		rvprop: 'content',
 		formatversion: 2
 	}).then(data => {
@@ -401,7 +401,7 @@ administratorToolsLayoutCsd.prototype.setupOutlineItem = function() {
 							api.get({
 								action: 'query',
 								prop: 'revisions',
-								titles: 'MediaWiki:Gadget-Adiutor-CSD.json',
+								titles: 'MediaWiki:Adiutor-CSD.json',
 								rvprop: 'content',
 								formatversion: 2
 							}).done(function(data) {
@@ -928,7 +928,7 @@ administratorToolsLayoutCsd.prototype.setupOutlineItem = function() {
 							api.get({
 								action: 'query',
 								prop: 'revisions',
-								titles: 'MediaWiki:Gadget-Adiutor-CSD.json',
+								titles: 'MediaWiki:Adiutor-CSD.json',
 								rvprop: 'content',
 								formatversion: 2
 							}).done(function(data) {

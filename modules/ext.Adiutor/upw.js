@@ -1,7 +1,6 @@
-var mwConfig = mw.config.get(["wgNamespaceNumber", "wgTitle", "wgUserGroups"]);
 var api = new mw.Api();
-var wikiId = mw.config.get('wgWikiID');
-var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-'+wikiId));
+var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
+var mwConfig = mw.config.get(["wgNamespaceNumber", "wgTitle", "wgUserGroups"]);
 // based on http://en.wikipedia.org/wiki/User:Fran Rogers/dimorphism.js
 // and on http://en.wikipedia.org/wiki/User:Splarka/sysopdectector.js
 // source: https://en.wikipedia.org/wiki/User:PleaseStand/userinfo.js
@@ -303,7 +302,7 @@ function formatRelativeDateDifference(oldDate) {
 }
 
 function loadAdiutorScript(scriptName) {
-	mw.loader.load(mw.util.getUrl('MediaWiki:Gadget-Adiutor-' + scriptName + '.js', {
+	mw.loader.load(mw.util.getUrl('MediaWiki:Adiutor-' + scriptName + '.js', {
 		action: 'raw'
 	}) + '&ctype=text/javascript', 'text/javascript');
 }

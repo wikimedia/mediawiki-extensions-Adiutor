@@ -1,7 +1,6 @@
-var mwConfig = mw.config.get(["skin", "wgAction", "wgArticleId", "wgPageName", "wgNamespaceNumber", "wgTitle", "wgUserGroups", "wgUserName", "wgUserEditCount", "wgUserRegistration", "wgRelevantUserName", "wgCanonicalNamespace"]);
 var api = new mw.Api();
-var wikiId = mw.config.get('wgWikiID');
-var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-'+wikiId));
+var mwConfig = mw.config.get(["wgArticleId", "wgPageName"]);
+var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 var newArticleToWorkOnIt = {
 	"id": mwConfig.wgArticleId,
 	"name": mwConfig.wgPageName
@@ -28,7 +27,7 @@ $.ajax({
 		var infoButton = new OO.ui.ButtonWidget({
 			icon: 'info'
 		});
-		var AboutArticleActionButtons = new OO.ui.ButtonGroupWidget({
+		var aboutArticleActionButtons = new OO.ui.ButtonGroupWidget({
 			items: [
 				new OO.ui.ButtonWidget(Object.assign({}, addButtonInfo)),
 				infoButton
@@ -60,16 +59,16 @@ $.ajax({
 				text = text.replace(/{\|[^}]+}\|/g, '');
 				var words = text.match(/\b\w+\b/g);
 				var wordCount = words ? words.length : 0;
-				// Define the ArticleInfoDialog class
-				function ArticleInfoDialog(config) {
-					ArticleInfoDialog.super.call(this, config);
+				// Define the articleInfoDialog class
+				function articleInfoDialog(config) {
+					articleInfoDialog.super.call(this, config);
 				}
-				// Inherit ArticleInfoDialog from OO.ui.ProcessDialog
-				OO.inheritClass(ArticleInfoDialog, OO.ui.ProcessDialog);
-				ArticleInfoDialog.static.title = mw.config.get('wgPageName');
-				ArticleInfoDialog.static.name = 'ArticleInfoDialog';
+				// Inherit articleInfoDialog from OO.ui.ProcessDialog
+				OO.inheritClass(articleInfoDialog, OO.ui.ProcessDialog);
+				articleInfoDialog.static.title = mw.config.get('wgPageName');
+				articleInfoDialog.static.name = 'articleInfoDialog';
 				// Define the actions for the dialog
-				ArticleInfoDialog.static.actions = [{
+				articleInfoDialog.static.actions = [{
 					action: 'continue',
 					modes: 'edit',
 					label: new OO.ui.deferMsg('okay'),
@@ -90,8 +89,8 @@ $.ajax({
 					flags: ['safe', 'back']
 				}];
 				// Initialize the dialog with its elements
-				ArticleInfoDialog.prototype.initialize = function () {
-					ArticleInfoDialog.super.prototype.initialize.apply(this, arguments);
+				articleInfoDialog.prototype.initialize = function () {
+					articleInfoDialog.super.prototype.initialize.apply(this, arguments);
 					// Create elements to display information
 					var authorMessage = mw.msg('page-more-info-tip-author');
 					var authorMessageWithStrong = authorMessage.replace(/\$1/g, '<strong><a href="/wiki/Kullanıcı:' + response.author + '">' + response.author + '</a></strong>');
@@ -119,25 +118,25 @@ $.ajax({
 					this.$body.append(articleCreator.$element, articleDate.$element, wordCountLabel.$element);
 				};
 				// Set up the dialog's initial state
-				ArticleInfoDialog.prototype.getSetupProcess = function (data) {
-					return ArticleInfoDialog.super.prototype.getSetupProcess.call(this, data).next(function () {
+				articleInfoDialog.prototype.getSetupProcess = function (data) {
+					return articleInfoDialog.super.prototype.getSetupProcess.call(this, data).next(function () {
 						this.actions.setMode('edit');
 					}, this);
 				};
 				// Handle actions performed in the dialog
-				ArticleInfoDialog.prototype.getActionProcess = function (action) {
+				articleInfoDialog.prototype.getActionProcess = function (action) {
 					if (action === 'continue') {
 						var dialog = this;
 						return new OO.ui.Process(function () {
 							dialog.close();
 						});
 					}
-					return ArticleInfoDialog.super.prototype.getActionProcess.call(this, action);
+					return articleInfoDialog.super.prototype.getActionProcess.call(this, action);
 				};
 				// Create a window manager and open the dialog
 				var windowManager = new OO.ui.WindowManager();
 				$(document.body).append(windowManager.$element);
-				var dialog = new ArticleInfoDialog({
+				var dialog = new articleInfoDialog({
 					size: 'medium'
 				});
 				windowManager.addWindows([dialog]);
@@ -153,7 +152,7 @@ $.ajax({
 			.replace(/\$5/g, response.editors)
 			.replace(/\$6/g, '<strong>' + response.pageviews + '</strong>')
 			.replace(/\$7/g, response.pageviews_offset);
-		var AboutArticleContent = $('<div>').html(translatedText).append(AboutArticleActionButtons.$element);
+		var AboutArticleContent = $('<div>').html(translatedText).append(aboutArticleActionButtons.$element);
 		var AboutArticle = new OO.ui.MessageWidget({
 			type: 'notice',
 			icon: 'article',
@@ -161,7 +160,7 @@ $.ajax({
 			label: new OO.ui.HtmlSnippet(AboutArticleContent),
 			classes: ['adiutor-aricle-detail-box']
 		});
-		AboutArticleActionButtons.items[0].on('click', function () {
+		aboutArticleActionButtons.items[0].on('click', function () {
 			if (isAlreadyAdded) {
 				var indexToRemove = adiutorUserOptions.myWorks.findIndex(function (article) {
 					return article.id === newArticleToWorkOnIt.id;
@@ -176,8 +175,8 @@ $.ajax({
 				icon: isAlreadyAdded ? 'flag' : 'unFlag', // Reverse the icon based on isAlreadyAdded
 				label: isAlreadyAdded ? mw.msg('pin-to-works') : mw.msg('unpin-from-works') // Reverse the label based on isAlreadyAdded
 			};
-			AboutArticleActionButtons.items[0].setIcon(addButtonInfo.icon);
-			AboutArticleActionButtons.items[0].setLabel(addButtonInfo.label);
+			aboutArticleActionButtons.items[0].setIcon(addButtonInfo.icon);
+			aboutArticleActionButtons.items[0].setLabel(addButtonInfo.label);
 			console.log(adiutorUserOptions);
 			updateOptions(adiutorUserOptions);
 		});

@@ -34,7 +34,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Gadget-Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});
@@ -46,7 +46,7 @@ fetchApiData(function(jsonData) {
 	var addNewSection = jsonData.addNewSection;
 	var appendText = jsonData.appendText;
 	var prependText = jsonData.prependText;
-	var sectionID = jsonData.sectionID;
+	var sectionId = jsonData.sectionId;
 	var contentPattern = jsonData.contentPattern;
 	var apiPostSummary = jsonData.apiPostSummary;
 	var sectionTitle = jsonData.sectionTitle;
@@ -166,8 +166,8 @@ fetchApiData(function(jsonData) {
 					apiParams.sectiontitle = replaceParameter(sectionTitle, '1', sectionTitle);
 					apiParams.text = preparedContent;
 				} else {
-					if(sectionID) {
-						apiParams.section = sectionID;
+					if(sectionId) {
+						apiParams.section = sectionId;
 					}
 					apiParams[appendText ? 'appendtext' : prependText ? 'prependtext' : 'text'] = preparedContent + '\n';
 				}

@@ -33,7 +33,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Gadget-Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});
@@ -51,13 +51,13 @@ fetchApiData(function(jsonData) {
 	var prodNotificationTemplate = jsonData.prodNotificationTemplate;
 	var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
 
-	function ProposedDeletionDialog(config) {
-		ProposedDeletionDialog.super.call(this, config);
+	function proposedDeletionDialog(config) {
+		proposedDeletionDialog.super.call(this, config);
 	}
-	OO.inheritClass(ProposedDeletionDialog, OO.ui.ProcessDialog);
-	ProposedDeletionDialog.static.name = 'ProposedDeletionDialog';
-	ProposedDeletionDialog.static.title = new OO.ui.deferMsg('rpp-module-title');
-	ProposedDeletionDialog.static.actions = [{
+	OO.inheritClass(proposedDeletionDialog, OO.ui.ProcessDialog);
+	proposedDeletionDialog.static.name = 'proposedDeletionDialog';
+	proposedDeletionDialog.static.title = new OO.ui.deferMsg('rpp-module-title');
+	proposedDeletionDialog.static.actions = [{
 		action: 'save',
 		label: new OO.ui.deferMsg('propose'),
 		flags: ['primary', 'progressive']
@@ -65,8 +65,8 @@ fetchApiData(function(jsonData) {
 		label: new OO.ui.deferMsg('cancel'),
 		flags: 'safe'
 	}];
-	ProposedDeletionDialog.prototype.initialize = function() {
-		ProposedDeletionDialog.super.prototype.initialize.apply(this, arguments);
+	proposedDeletionDialog.prototype.initialize = function() {
+		proposedDeletionDialog.super.prototype.initialize.apply(this, arguments);
 		var headerTitle = new OO.ui.MessageWidget({
 			type: 'notice',
 			inline: true,
@@ -80,10 +80,10 @@ fetchApiData(function(jsonData) {
 			"margin-left": "30px",
 			"margin-bottom": "20px",
 		});
-		ProposeOptions = new OO.ui.FieldsetLayout({
+		proposeOptions = new OO.ui.FieldsetLayout({
 			label: new OO.ui.deferMsg('prd-deletion-type')
 		});
-		ProposeOptions.addItems([
+		proposeOptions.addItems([
 			new OO.ui.FieldLayout(new OO.ui.CheckboxInputWidget({
 				selected: false,
 				value: 'standardPropose'
@@ -127,32 +127,32 @@ fetchApiData(function(jsonData) {
 			padded: true,
 			expanded: false
 		});
-		this.content.$element.append(headerTitle.$element, headerTitleDescription.$element, ProposeOptions.$element);
+		this.content.$element.append(headerTitle.$element, headerTitleDescription.$element, proposeOptions.$element);
 		this.$body.append(this.content.$element);
 	};
-	ProposedDeletionDialog.prototype.getActionProcess = function(action) {
+	proposedDeletionDialog.prototype.getActionProcess = function(action) {
 		var dialog = this;
 		if(action) {
 			return new OO.ui.Process(function() {
 				var date = new Date();
 				var Months = localMonthsNames;
-				var PRDText;
-				var PRDoptions = [];
-				ProposeOptions.items.forEach(function(Option) {
+				var prdText;
+				var prdOptions = [];
+				proposeOptions.items.forEach(function(Option) {
 					if(Option.fieldWidget.selected) {
-						PRDoptions.push({
+						prdOptions.push({
 							value: Option.fieldWidget.value,
 							selected: Option.fieldWidget.selected
 						});
 					}
 					if(Option.fieldWidget.value === true) {
-						PRDoptions.push({
+						prdOptions.push({
 							value: Option.fieldWidget.value,
 							data: Option.fieldWidget.data
 						});
 					}
 				});
-				PRDoptions.forEach(function(Option) {
+				prdOptions.forEach(function(Option) {
 					if(Option.value === "standardPropose") {
 						var placeholders = {
 							$1: pageTitle,
@@ -163,10 +163,10 @@ fetchApiData(function(jsonData) {
 							$6: mwConfig.wgUserName,
 						};
 						var preparedContent = replacePlaceholders(standardProposeTemplate, placeholders);
-						PRDText = preparedContent;
+						prdText = preparedContent;
 					}
 					if(Option.value === "LivingPersonPropose") {
-						PRDText = livingPersonProposeTemplate;
+						prdText = livingPersonProposeTemplate;
 					}
 					if(Option.data === "informCreator") {
 						getCreator().then(function(data) {
@@ -178,26 +178,26 @@ fetchApiData(function(jsonData) {
 						});
 					}
 				});
-				putPRDTemplate(PRDText);
+				putPRDTemplate(prdText);
 				logRequest(rationaleInput.value, adiutorUserOptions);
 				dialog.close({
 					action: action
 				});
 			});
 		}
-		return ProposedDeletionDialog.super.prototype.getActionProcess.call(this, action);
+		return proposedDeletionDialog.super.prototype.getActionProcess.call(this, action);
 	};
 	var windowManager = new OO.ui.WindowManager();
 	$(document.body).append(windowManager.$element);
-	var dialog = new ProposedDeletionDialog();
+	var dialog = new proposedDeletionDialog();
 	windowManager.addWindows([dialog]);
 	windowManager.openWindow(dialog);
 
-	function putPRDTemplate(PRDText) {
+	function putPRDTemplate(prdText) {
 		api.postWithToken('csrf', {
 			action: 'edit',
 			title: mwConfig.wgPageName,
-			prependtext: PRDText + "\n",
+			prependtext: prdText + "\n",
 			summary: replaceParameter(apiPostSummary, '1', pageTitle),
 			tags: 'Adiutor',
 			format: 'json'

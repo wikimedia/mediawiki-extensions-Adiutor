@@ -38,7 +38,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Gadget-Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});

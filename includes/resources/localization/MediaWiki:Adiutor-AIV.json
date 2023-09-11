@@ -19,7 +19,7 @@
     "noticeBoardTitle": "Wikipedia:Administrator intervention against vandalism",
     "addNewSection": false,
     "sectionTitle": "[[User:$1|$1]]",
-    "sectionID": false,
+    "sectionId": false,
     "appendText": true,
     "prependText": false,
     "spiNoticeBoard": "Wikipedia:Sockpuppet investigations",

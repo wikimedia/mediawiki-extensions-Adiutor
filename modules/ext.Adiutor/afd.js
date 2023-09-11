@@ -1,12 +1,9 @@
-var mwConfig = mw.config.get(["skin", "wgAction", "wgArticleId", "wgPageName", "wgNamespaceNumber", "wgTitle", "wgUserGroups", "wgUserName", "wgUserEditCount", "wgUserRegistration", "wgCanonicalNamespace"]);
 var api = new mw.Api();
-var wikiId = mw.config.get('wgWikiID');
+var mwConfig = mw.config.get(["wgArticleId", "wgPageName", "wgUserName"]);
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
-var NominatedPreviously;
+var nominatedPreviously;
 var nextNominationNumber = 0;
-
 function fetchApiData(callback) {
-	var api = new mw.Api();
 	api.get({
 		action: "query",
 		prop: "revisions",
@@ -37,7 +34,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Gadget-Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});
@@ -46,13 +43,13 @@ fetchApiData(function(jsonData) {
 	}
 	var afdNotificationTemplate = jsonData.afdNotificationTemplate;
 	var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
-	function ArticleForDeletionDialog(config) {
-		ArticleForDeletionDialog.super.call(this, config);
+	function articleForDeletionDialog(config) {
+		articleForDeletionDialog.super.call(this, config);
 	}
-	OO.inheritClass(ArticleForDeletionDialog, OO.ui.ProcessDialog);
-	ArticleForDeletionDialog.static.name = 'ArticleForDeletionDialog';
-	ArticleForDeletionDialog.static.title = new OO.ui.deferMsg('afd-module-title');
-	ArticleForDeletionDialog.static.actions = [{
+	OO.inheritClass(articleForDeletionDialog, OO.ui.ProcessDialog);
+	articleForDeletionDialog.static.name = 'articleForDeletionDialog';
+	articleForDeletionDialog.static.title = new OO.ui.deferMsg('afd-module-title');
+	articleForDeletionDialog.static.actions = [{
 		action: 'save',
 		label: new OO.ui.deferMsg('continue'),
 		flags: ['primary', 'progressive']
@@ -60,8 +57,8 @@ fetchApiData(function(jsonData) {
 		label: new OO.ui.deferMsg('cancel'),
 		flags: 'safe'
 	}];
-	ArticleForDeletionDialog.prototype.initialize = function() {
-		ArticleForDeletionDialog.super.prototype.initialize.apply(this, arguments);
+	articleForDeletionDialog.prototype.initialize = function() {
+		articleForDeletionDialog.super.prototype.initialize.apply(this, arguments);
 		var headerTitle = new OO.ui.MessageWidget({
 			type: 'notice',
 			inline: true,
@@ -74,8 +71,8 @@ fetchApiData(function(jsonData) {
 			'margin-top': '20px',
 			'margin-bottom': '20px'
 		});
-		AfDOptions = new OO.ui.FieldsetLayout({});
-		AfDOptions.addItems([
+		afdOptions = new OO.ui.FieldsetLayout({});
+		afdOptions.addItems([
 			rationaleField = new OO.ui.FieldLayout(rationaleInput = new OO.ui.MultilineTextInputWidget({
 				placeholder: new OO.ui.deferMsg('afd-rationale-placeholder'),
 				indicator: 'required',
@@ -99,16 +96,16 @@ fetchApiData(function(jsonData) {
 			expanded: false,
 			isDraggable: true
 		});
-		this.content.$element.append(headerTitle.$element, headerTitleDescription.$element, AfDOptions.$element);
+		this.content.$element.append(headerTitle.$element, headerTitleDescription.$element, afdOptions.$element);
 		this.$body.append(this.content.$element);
 	};
-	ArticleForDeletionDialog.prototype.getActionProcess = function(action) {
+	articleForDeletionDialog.prototype.getActionProcess = function(action) {
 		var dialog = this;
 		if(action) {
 			return new OO.ui.Process(function() {
-				var AFDTempalte;
+				var afdTempalte;
 				var ActionOptions = [];
-				AfDOptions.items.forEach(function(Option) {
+				afdOptions.items.forEach(function(Option) {
 					if(Option.fieldWidget.selected) {
 						ActionOptions.push({
 							value: Option.fieldWidget.value,
@@ -138,9 +135,9 @@ fetchApiData(function(jsonData) {
 					if(data.query.pages["-1"]) {
 						var nomCount = 0;
 						console.log(nomCount);
-						NominatedPreviously = false;
-						AFDTempalte = '{{sas|yardım=hayır}}';
-						putAfDTemplate(AFDTempalte, nextNominationNumber);
+						nominatedPreviously = false;
+						afdTempalte = '{{sas|yardım=hayır}}';
+						putAfDTemplate(afdTempalte, nextNominationNumber);
 					} else {
 						Rec(2);
 					}
@@ -154,12 +151,12 @@ fetchApiData(function(jsonData) {
 							nextNominationNumber = nomCount++;
 							console.log(nextNominationNumber);
 							if(nextNominationNumber > 1) {
-								AFDTempalte = afdTemplate;
+								afdTempalte = afdTemplate;
 							} else {
-								AFDTempalte = afdTemplate;
+								afdTempalte = afdTemplate;
 							}
-							console.log(AFDTempalte);
-							putAfDTemplate(AFDTempalte, nextNominationNumber);
+							console.log(afdTempalte);
+							putAfDTemplate(afdTempalte, nextNominationNumber);
 						}
 					});
 				}
@@ -169,11 +166,11 @@ fetchApiData(function(jsonData) {
 				showProgress();
 			});
 		}
-		return ArticleForDeletionDialog.super.prototype.getActionProcess.call(this, action);
+		return articleForDeletionDialog.super.prototype.getActionProcess.call(this, action);
 	};
 	var windowManager = new OO.ui.WindowManager();
 	$(document.body).append(windowManager.$element);
-	var dialog = new ArticleForDeletionDialog({
+	var dialog = new articleForDeletionDialog({
 		size: 'large',
 		classes: ['afd-helper-window'],
 		isDraggable: true
@@ -197,7 +194,7 @@ fetchApiData(function(jsonData) {
 		}
 	}
 	
-	function putAfDTemplate(AFDTempalte, nextNominationNumber) {
+	function putAfDTemplate(afdTempalte, nextNominationNumber) {
 		var nominatedPageTitle;
 		if(nextNominationNumber > 1) {
 			var placeholders = {
@@ -211,7 +208,7 @@ fetchApiData(function(jsonData) {
 		api.postWithToken('csrf', {
 			action: 'edit',
 			title: mwConfig.wgPageName,
-			prependtext: AFDTempalte + "\n",
+			prependtext: afdTempalte + "\n",
 			summary: apiPostSummary,
 			tags: 'Adiutor',
 			format: 'json'

@@ -32,7 +32,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Gadget-Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});
@@ -44,20 +44,20 @@ fetchApiData(function(jsonData) {
 	var addNewSection = jsonData.addNewSection;
 	var appendText = jsonData.appendText;
 	var prependText = jsonData.prependText;
-	var sectionID = jsonData.sectionID;
+	var sectionId = jsonData.sectionId;
 	var contentPattern = jsonData.contentPattern;
 	var apiPostSummary = jsonData.apiPostSummary;
 	var sectionTitle = jsonData.sectionTitle;
 	var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
 	console.log(jsonData);
 
-	function PageMoveRequestDialog(config) {
-		PageMoveRequestDialog.super.call(this, config);
+	function pageMoveRequestDialog(config) {
+		pageMoveRequestDialog.super.call(this, config);
 	}
-	OO.inheritClass(PageMoveRequestDialog, OO.ui.ProcessDialog);
-	PageMoveRequestDialog.static.name = 'PageMoveRequestDialog';
-	PageMoveRequestDialog.static.title = new OO.ui.deferMsg('pmr-module-title');
-	PageMoveRequestDialog.static.actions = [{
+	OO.inheritClass(pageMoveRequestDialog, OO.ui.ProcessDialog);
+	pageMoveRequestDialog.static.name = 'pageMoveRequestDialog';
+	pageMoveRequestDialog.static.title = new OO.ui.deferMsg('pmr-module-title');
+	pageMoveRequestDialog.static.actions = [{
 		action: 'save',
 		label: new OO.ui.deferMsg('create'),
 		flags: ['primary', 'progressive']
@@ -65,8 +65,8 @@ fetchApiData(function(jsonData) {
 		label: new OO.ui.deferMsg('cancel'),
 		flags: 'safe'
 	}];
-	PageMoveRequestDialog.prototype.initialize = function() {
-		PageMoveRequestDialog.super.prototype.initialize.apply(this, arguments);
+	pageMoveRequestDialog.prototype.initialize = function() {
+		pageMoveRequestDialog.super.prototype.initialize.apply(this, arguments);
 		var headerTitle = new OO.ui.MessageWidget({
 			type: 'notice',
 			inline: true,
@@ -105,7 +105,7 @@ fetchApiData(function(jsonData) {
 		this.content.$element.append(headerTitle.$element, headerTitleDescription.$element, requestRationale.$element, rationaleInput.$element);
 		this.$body.append(this.content.$element);
 	};
-	PageMoveRequestDialog.prototype.getActionProcess = function(action) {
+	pageMoveRequestDialog.prototype.getActionProcess = function(action) {
 		var dialog = this;
 		if(action) {
 			return new OO.ui.Process(function() {
@@ -127,8 +127,8 @@ fetchApiData(function(jsonData) {
 					apiParams.sectiontitle = replaceParameter(sectionTitle, '1', pageTitle);
 					apiParams.text = preparedContent;
 				} else {
-					if(sectionID) {
-						apiParams.section = sectionID;
+					if(sectionId) {
+						apiParams.section = sectionId;
 					}
 					apiParams[appendText ? 'appendtext' : prependText ? 'prependtext' : 'text'] = preparedContent + '\n';
 				}
@@ -140,11 +140,11 @@ fetchApiData(function(jsonData) {
 				});
 			});
 		}
-		return PageMoveRequestDialog.super.prototype.getActionProcess.call(this, action);
+		return pageMoveRequestDialog.super.prototype.getActionProcess.call(this, action);
 	};
 	var windowManager = new OO.ui.WindowManager();
 	$(document.body).append(windowManager.$element);
-	var dialog = new PageMoveRequestDialog();
+	var dialog = new pageMoveRequestDialog();
 	windowManager.addWindows([dialog]);
 	windowManager.openWindow(dialog);
 

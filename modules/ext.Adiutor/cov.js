@@ -137,7 +137,7 @@ $.get("https://copyvios.toolforge.org/api.json?", {
 		if(action === 'continue') {
 			return new OO.ui.Process(function() {
 				dialog.close();
-				mw.loader.load(mw.util.getUrl('MediaWiki:Gadget-Adiutor-CSD.js', {
+				mw.loader.load(mw.util.getUrl('MediaWiki:Adiutor-CSD.js', {
 					action: 'raw'
 				}) + '&ctype=text/javascript', 'text/javascript');
 			});

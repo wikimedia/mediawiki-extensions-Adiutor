@@ -35,7 +35,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Gadget-Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});
@@ -49,19 +49,19 @@ fetchApiData(function(jsonData) {
 	var addNewSection = jsonData.addNewSection;
 	var appendText = jsonData.appendText;
 	var prependText = jsonData.prependText;
-	var sectionID = jsonData.sectionID;
+	var sectionId = jsonData.sectionId;
 	var contentPattern = jsonData.contentPattern;
 	var apiPostSummary = jsonData.apiPostSummary;
 	var sectionTitle = jsonData.sectionTitle;
 	var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
 
-	function PageProtectionDialog(config) {
-		PageProtectionDialog.super.call(this, config);
+	function pageProtectionDialog(config) {
+		pageProtectionDialog.super.call(this, config);
 	}
-	OO.inheritClass(PageProtectionDialog, OO.ui.ProcessDialog);
-	PageProtectionDialog.static.name = 'PageProtectionDialog';
-	PageProtectionDialog.static.title = new OO.ui.deferMsg('rpp-module-title');
-	PageProtectionDialog.static.actions = [{
+	OO.inheritClass(pageProtectionDialog, OO.ui.ProcessDialog);
+	pageProtectionDialog.static.name = 'pageProtectionDialog';
+	pageProtectionDialog.static.title = new OO.ui.deferMsg('rpp-module-title');
+	pageProtectionDialog.static.actions = [{
 		action: 'save',
 		label: new OO.ui.deferMsg('create-request'),
 		flags: ['primary', 'progressive']
@@ -69,8 +69,8 @@ fetchApiData(function(jsonData) {
 		label: new OO.ui.deferMsg('cancel'),
 		flags: 'safe'
 	}];
-	PageProtectionDialog.prototype.initialize = function() {
-		PageProtectionDialog.super.prototype.initialize.apply(this, arguments);
+	pageProtectionDialog.prototype.initialize = function() {
+		pageProtectionDialog.super.prototype.initialize.apply(this, arguments);
 		var headerTitle = new OO.ui.MessageWidget({
 			type: 'notice',
 			inline: true,
@@ -84,11 +84,11 @@ fetchApiData(function(jsonData) {
 			"margin-left": "30px",
 			"margin-bottom": "20px",
 		});
-		TypeOfAction = new OO.ui.FieldsetLayout({
+		typeOfAction = new OO.ui.FieldsetLayout({
 			label: new OO.ui.deferMsg('protection-type')
 		});
-		TypeOfAction.addItems([
-			DurationOfProtection = new OO.ui.DropdownWidget({
+		typeOfAction.addItems([
+			durationOfProtection = new OO.ui.DropdownWidget({
 				menu: {
 					items: protectionDurations.map(function(duration) {
 						return new OO.ui.MenuOptionWidget({
@@ -99,7 +99,7 @@ fetchApiData(function(jsonData) {
 				},
 				label: mw.message('choose-duration').text(),
 			}),
-			TypeOfProtection = new OO.ui.DropdownWidget({
+			typeOfProtection = new OO.ui.DropdownWidget({
 				menu: {
 					items: protectionTypes.map(function(type) {
 						return new OO.ui.MenuOptionWidget({
@@ -127,20 +127,20 @@ fetchApiData(function(jsonData) {
 				InputFilled = true;
 			}
 		});
-		TypeOfProtection.getMenu().on('choose', function(menuOption) {
+		typeOfProtection.getMenu().on('choose', function(menuOption) {
 			protectionType = menuOption.getData();
 		});
-		DurationOfProtection.getMenu().on('choose', function(duration) {
+		durationOfProtection.getMenu().on('choose', function(duration) {
 			protectionDuration = duration.getData();
 		});
 		this.content = new OO.ui.PanelLayout({
 			padded: true,
 			expanded: false
 		});
-		this.content.$element.append(headerTitle.$element, headerTitleDescription.$element, TypeOfAction.$element);
+		this.content.$element.append(headerTitle.$element, headerTitleDescription.$element, typeOfAction.$element);
 		this.$body.append(this.content.$element);
 	};
-	PageProtectionDialog.prototype.getActionProcess = function(action) {
+	pageProtectionDialog.prototype.getActionProcess = function(action) {
 		var dialog = this;
 		if(action) {
 			return new OO.ui.Process(function() {
@@ -166,11 +166,11 @@ fetchApiData(function(jsonData) {
 						window.location = '/wiki/' + noticeBoardLink;
 					});
 				} else {
-					if(sectionID) {
+					if(sectionId) {
 						apiParams = {
 							action: 'edit',
 							title: noticeBoardTitle,
-							section: sectionID,
+							section: sectionId,
 							summary: replaceParameter(apiPostSummary, '1', pageTitle),
 							tags: 'Adiutor',
 							format: 'json'
@@ -206,11 +206,11 @@ fetchApiData(function(jsonData) {
 				});
 			});
 		}
-		return PageProtectionDialog.super.prototype.getActionProcess.call(this, action);
+		return pageProtectionDialog.super.prototype.getActionProcess.call(this, action);
 	};
 	var windowManager = new OO.ui.WindowManager();
 	$(document.body).append(windowManager.$element);
-	var dialog = new PageProtectionDialog();
+	var dialog = new pageProtectionDialog();
 	windowManager.addWindows([dialog]);
 	windowManager.openWindow(dialog);
 

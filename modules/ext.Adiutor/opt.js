@@ -1,16 +1,15 @@
 var api = new mw.Api();
-var wikiId = mw.config.get('wgWikiID');
-var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-'+wikiId));
+var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 if(!adiutorUserOptions.hasOwnProperty('myCustomSummaries')) {
 	adiutorUserOptions.myCustomSummaries = [];
 }
-function AdiutorOptionsDialog(config) {
-	AdiutorOptionsDialog.super.call(this, config);
+function adiutorOptionsDialog(config) {
+	adiutorOptionsDialog.super.call(this, config);
 }
-OO.inheritClass(AdiutorOptionsDialog, OO.ui.ProcessDialog);
-AdiutorOptionsDialog.static.name = 'AdiutorOptionsDialog';
-AdiutorOptionsDialog.static.title = new OO.ui.deferMsg('opt-module-title');
-AdiutorOptionsDialog.static.actions = [{
+OO.inheritClass(adiutorOptionsDialog, OO.ui.ProcessDialog);
+adiutorOptionsDialog.static.name = 'adiutorOptionsDialog';
+adiutorOptionsDialog.static.title = new OO.ui.deferMsg('opt-module-title');
+adiutorOptionsDialog.static.actions = [{
 	action: 'save',
 	label: new OO.ui.deferMsg('update'),
 	flags: ['primary', 'progressive']
@@ -18,16 +17,16 @@ AdiutorOptionsDialog.static.actions = [{
 	label: new OO.ui.deferMsg('cancel'),
 	flags: 'safe'
 }];
-AdiutorOptionsDialog.prototype.initialize = function() {
-	AdiutorOptionsDialog.super.prototype.initialize.apply(this, arguments);
+adiutorOptionsDialog.prototype.initialize = function() {
+	adiutorOptionsDialog.super.prototype.initialize.apply(this, arguments);
 	this.content = new OO.ui.PanelLayout({
 		padded: true,
 		expanded: false
 	});
-	AdiutorSettings = new OO.ui.FieldsetLayout({
+	adiutorSettings = new OO.ui.FieldsetLayout({
 		label: new OO.ui.deferMsg('options')
 	});
-	AdiutorSettings.addItems([
+	adiutorSettings.addItems([
 		csdSendMessageToCreator = new OO.ui.FieldLayout(new OO.ui.CheckboxInputWidget({
 			selected: adiutorUserOptions.speedyDeletion.csdSendMessageToCreator
 		}), {
@@ -132,10 +131,10 @@ AdiutorOptionsDialog.prototype.initialize = function() {
 			help: new OO.ui.deferMsg('frequently-used-edit-summaries-help'),
 		}),
 	]);
-	this.content.$element.append(AdiutorSettings.$element);
+	this.content.$element.append(adiutorSettings.$element);
 	this.$body.append(this.content.$element);
 };
-AdiutorOptionsDialog.prototype.getActionProcess = function(action) {
+adiutorOptionsDialog.prototype.getActionProcess = function(action) {
 	var dialog = this;
 	if(action) {
 		return new OO.ui.Process(function() {
@@ -182,11 +181,11 @@ AdiutorOptionsDialog.prototype.getActionProcess = function(action) {
 			});
 		});
 	}
-	return AdiutorOptionsDialog.super.prototype.getActionProcess.call(this, action);
+	return adiutorOptionsDialog.super.prototype.getActionProcess.call(this, action);
 };
 var windowManager = new OO.ui.WindowManager();
 $(document.body).append(windowManager.$element);
-var dialog = new AdiutorOptionsDialog();
+var dialog = new adiutorOptionsDialog();
 windowManager.addWindows([dialog]);
 windowManager.openWindow(dialog);
 // Define functions below as needed

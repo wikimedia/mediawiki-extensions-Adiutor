@@ -5,7 +5,7 @@
     "sectionTitle": "Revision deletion request for [[$1]]",
     "appendText": false,
     "prependText": false,
-    "sectionID": false,
+    "sectionId": false,
     "contentPattern": "*'''Revision:''' [[Special:Diff/$1]]\n*'''Rationale:''' $2\n*'''Comment:''' $3 ~~~~\n*'''Outcome:'''",
     "apiPostSummary": "Created a revision deletion request for [[$1]] page."
 }

@@ -1,6 +1,4 @@
 var api = new mw.Api();
-var mwConfig = mw.config.get(["skin", "wgAction", "wgArticleId", "wgPageName", "wgNamespaceNumber", "wgTitle", "wgUserGroups", "wgUserName", "wgUserEditCount", "wgUserRegistration", "wgCanonicalNamespace"]);
-var wikiId = mw.config.get('wgWikiID');
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 var batchDeletionList = [];
 var selectedOptions;

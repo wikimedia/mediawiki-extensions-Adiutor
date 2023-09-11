@@ -1,6 +1,7 @@
-var mwConfig = mw.config.get(["wgAction", "wgPageName", "wgTitle", "wgUserName"]);
+
 var api = new mw.Api();
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
+var mwConfig = mw.config.get([ "wgPageName", "wgUserName"]);
 var duration;
 var reason;
 var blockReason;
@@ -41,7 +42,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Gadget-Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});
@@ -57,18 +58,18 @@ fetchApiData(function(jsonData) {
 	var apiPostSummary = jsonData.apiPostSummary;
 	var userToBlock = window.adiutorUserToBlock;
 	var headlineElement = window.headlineElement;
-	var sectionID = window.sectionID;
+	var sectionId = window.sectionId;
 	if(!userToBlock) {
 		userToBlock = getFormattedPageName();
 	}
 
-	function UserBlockDialog(config) {
-		UserBlockDialog.super.call(this, config);
+	function userBlockDialog(config) {
+		userBlockDialog.super.call(this, config);
 	}
-	OO.inheritClass(UserBlockDialog, OO.ui.ProcessDialog);
-	UserBlockDialog.static.title = mw.msg('user-blocking') + ' ' + '('+userToBlock+')',
-		UserBlockDialog.static.name = 'UserBlockDialog';
-	UserBlockDialog.static.actions = [{
+	OO.inheritClass(userBlockDialog, OO.ui.ProcessDialog);
+	userBlockDialog.static.title = mw.msg('user-blocking') + ' ' + '('+userToBlock+')',
+		userBlockDialog.static.name = 'userBlockDialog';
+	userBlockDialog.static.actions = [{
 		action: 'continue',
 		modes: 'edit',
 		label: new OO.ui.deferMsg('block'),
@@ -87,8 +88,8 @@ fetchApiData(function(jsonData) {
 		label: new OO.ui.deferMsg('back'),
 		flags: 'safe'
 	}];
-	UserBlockDialog.prototype.initialize = function() {
-		UserBlockDialog.super.prototype.initialize.apply(this, arguments);
+	userBlockDialog.prototype.initialize = function() {
+		userBlockDialog.super.prototype.initialize.apply(this, arguments);
 		this.userBlockPanel = new OO.ui.PanelLayout({
 			padded: true,
 			expanded: false
@@ -200,58 +201,32 @@ fetchApiData(function(jsonData) {
 		preventEditOwnTalkPageValue = preventEditOwnTalkPageCheckbox.isSelected();
 		this.$body.append(this.userBlockStackLayout.$element);
 	};
-	UserBlockDialog.prototype.getSetupProcess = function(data) {
-		return UserBlockDialog.super.prototype.getSetupProcess.call(this, data).next(function() {
+	userBlockDialog.prototype.getSetupProcess = function(data) {
+		return userBlockDialog.super.prototype.getSetupProcess.call(this, data).next(function() {
 			this.actions.setMode('edit');
 		}, this);
 	};
-	UserBlockDialog.prototype.getActionProcess = function(action) {
+	userBlockDialog.prototype.getActionProcess = function(action) {
 		if(action === 'about') {
 			window.open('https://meta.wikimedia.org/wiki/Adiutor', '_blank');
 		} else if(action === 'continue') {
-			var BlockingDialog = this;
+			var blockingDialog = this;
 			return new OO.ui.Process(function() {
-				function CheckDurationAndRationaleMessageDialog(config) {
-					CheckDurationAndRationaleMessageDialog.super.call(this, config);
+				function checkDurationAndRationaleMessageDialog(config) {
+					checkDurationAndRationaleMessageDialog.super.call(this, config);
 				}
 				if(userToBlock.includes(mwConfig.wgUserName)) {
 					mw.notify(mw.message('you-can-not-block-yourself').text(), {
 						title: mw.msg('operation-completed'),
 						type: 'error'
 					});
-					BlockingDialog.close();
+					blockingDialog.close();
 				} else {
 					if(!duration || !blockReason) {
-						OO.inheritClass(CheckDurationAndRationaleMessageDialog, OO.ui.MessageDialog);
-						CheckDurationAndRationaleMessageDialog.static.name = 'myCheckDurationAndRationaleMessageDialog';
-						CheckDurationAndRationaleMessageDialog.static.actions = [{
-							action: 'okay',
-							label: mw.message('okay').text(),
-							flags: 'primary'
-						}, ];
-						CheckDurationAndRationaleMessageDialog.prototype.initialize = function() {
-							CheckDurationAndRationaleMessageDialog.super.prototype.initialize.apply(this, arguments);
-							this.content = new OO.ui.PanelLayout({
-								padded: true
-							});
-							this.content.$element.append(mw.message('please-select-block-duration-reason').text());
-							this.$body.append(this.content.$element);
-						};
-						CheckDurationAndRationaleMessageDialog.prototype.getBodyHeight = function() {
-							return 100;
-						};
-						CheckDurationAndRationaleMessageDialog.prototype.getActionProcess = function(action) {
-							var WarningDialog = this;
-							if(action === 'okay') {
-								WarningDialog.close();
-							}
-							return CheckDurationAndRationaleMessageDialog.super.prototype.getActionProcess.call(this, action);
-						};
-						var windowManager = new OO.ui.WindowManager();
-						$(document.body).append(windowManager.$element);
-						var WarningDialog = new CheckDurationAndRationaleMessageDialog();
-						windowManager.addWindows([WarningDialog]);
-						windowManager.openWindow(WarningDialog);
+						mw.notify(mw.msg('please-select-block-duration-reason'), {
+							title: mw.msg('operation-failed'),
+							type: 'error'
+						});
 						return;
 					} else {
 						var allowusertalkValue = !preventEditOwnTalkPageValue;
@@ -272,11 +247,11 @@ fetchApiData(function(jsonData) {
 								title: mw.msg('operation-completed'),
 								type: 'success'
 							});
-							if(sectionID) {
+							if(sectionId) {
 								api.postWithToken('csrf', {
 									action: 'edit',
 									title: noticeBoardTitle,
-									section: sectionID,
+									section: sectionId,
 									text: '',
 									summary: apiPostSummary,
 									tags: 'Adiutor',
@@ -294,23 +269,23 @@ fetchApiData(function(jsonData) {
 							});
 						});
 						console.log(userToBlock);
-						BlockingDialog.close();
+						blockingDialog.close();
 					}
 				}
 			});
 		}
-		return UserBlockDialog.super.prototype.getActionProcess.call(this, action);
+		return userBlockDialog.super.prototype.getActionProcess.call(this, action);
 	};
-	UserBlockDialog.prototype.getBodyHeight = function() {
+	userBlockDialog.prototype.getBodyHeight = function() {
 		return this.userBlockPanel.$element.outerHeight(true);
 	};
 	var windowManager = new OO.ui.WindowManager();
 	$(document.body).append(windowManager.$element);
-	var BlockingDialog = new UserBlockDialog({
+	var blockingDialog = new userBlockDialog({
 		size: 'medium'
 	});
-	windowManager.addWindows([BlockingDialog]);
-	windowManager.openWindow(BlockingDialog);
+	windowManager.addWindows([blockingDialog]);
+	windowManager.openWindow(blockingDialog);
 
 	function getFormattedPageName() {
 		var cleanedPageName = mwConfig.wgPageName.replace(/_/g, " ").replace(userPagePrefix, '').replace(specialContibutions, '').replace(userTalkPagePrefix, '');

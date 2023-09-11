@@ -5,7 +5,8 @@ var defaultMenuItems = [];
 var noticeBoards = {
 	csdCategory: "Hızlı_silinmeye_aday_sayfalar",
 	userBlockRequestNoticeBoard: "Kullanıcı_engelleme_talepleri",
-	afdNoticeBoard: "Silinmeye_aday_sayfalar"
+	afdNoticeBoard: "Silinmeye_aday_sayfalar",
+	mainPage: "Main_Page"
 };
 switch(mwConfig.wgNamespaceNumber) {
 	case -1:
@@ -84,20 +85,20 @@ switch(mwConfig.wgNamespaceNumber) {
 								var headlineText = headlineElement.text();
 								var dateRegex = /\d{2}-\d{2}-\d{4}/;
 								window.adiutorUserToBlock = headlineText.replace(dateRegex, '').trim();
-								var sectionID = new URL(sectionElement.find('.mw-editsection a').attr('href')).searchParams.get('section');
-								window.sectionID = sectionID;
+								var sectionId = new URL(sectionElement.find('.mw-editsection a').attr('href')).searchParams.get('section');
+								window.sectionId = sectionId;
 								window.headlineElement = headlineElement;
 								loadAdiutorScript('ext.Adiutor.ubm');
 							});
 							blockedAlready.on('click', () => {
 								var sectionElement = $(this).closest('.ext-discussiontools-init-section');
 								var headlineElement = sectionElement.find('.mw-headline');
-								var sectionID = new URL(sectionElement.find('.mw-editsection a').attr('href')).searchParams.get('section');
-								window.sectionID = sectionID;
+								var sectionId = new URL(sectionElement.find('.mw-editsection a').attr('href')).searchParams.get('section');
+								window.sectionId = sectionId;
 								api.postWithToken('csrf', {
 									action: 'edit',
 									title: mwConfig.wgPageName,
-									section: sectionID,
+									section: sectionId,
 									text: '',
 									summary: mw.msg('blocked-user-removed-from-the-noticeboad'),
 									tags: 'Adiutor',
@@ -273,7 +274,7 @@ switch(mwConfig.wgNamespaceNumber) {
 				loadAdiutorScript(selectedOption);
 			}
 		});
-		if(!mwConfig.wgPageName.includes('Anasayfa')) {
+		if(!mwConfig.wgPageName.includes(noticeBoards.mainPage)) {
 			//Call the packages to be pre-loaded here
 			if(mwConfig.wgNamespaceNumber === 2) {
 				loadAdiutorScript('ext.Adiutor.upw');

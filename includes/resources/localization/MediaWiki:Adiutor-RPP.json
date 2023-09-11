@@ -29,7 +29,7 @@
     "sectionTitle": "Protection request for [[$1|$1]] page",
     "appendText": true,
     "prependText": false,
-    "sectionID": 1,
+    "sectionId": 1,
     "contentPattern": "Protection Type: $2 $3 Protection Rationale: $4 ~~~~ Comment: Decision:",
     "apiPostSummary": "Protection requested for [[$1|$1]]"
 }

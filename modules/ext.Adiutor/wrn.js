@@ -1,7 +1,7 @@
 var api = new mw.Api();
 var mwConfig = mw.config.get(["wgPageName", "wgNamespaceNumber"]);
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
-var RequestRationale, warningData;
+var requestRationale, warningData;
 function fetchApiData(callback) {
 	var api = new mw.Api();
 	api.get({
@@ -34,7 +34,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Gadget-Adiutor-WRN.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-WRN.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});
@@ -72,7 +72,7 @@ fetchApiData(function(jsonData) {
 			label: new OO.ui.deferMsg('wrn-dialog-description')
 		});
 		headerTitle.$element.css('margin-top', '20px');
-		var RationaleSelector = new OO.ui.DropdownWidget({
+		var rationaleSelector = new OO.ui.DropdownWidget({
 			menu: {
 				items: userWarnings.map(function(warning) {
 					return new OO.ui.MenuOptionWidget({
@@ -83,11 +83,11 @@ fetchApiData(function(jsonData) {
 			},
 			label: new OO.ui.deferMsg('warning-type'),
 		});
-		RationaleSelector.getMenu().on('choose', function(menuOption) {
+		rationaleSelector.getMenu().on('choose', function(menuOption) {
 			warningData = menuOption.getData();
 			console.log(warningData);
 		});
-		RationaleSelector.$element.css('margin-top', '20px');
+		rationaleSelector.$element.css('margin-top', '20px');
 		relatedPageField = new OO.ui.FieldLayout(relatedPage = new OO.ui.TextInputWidget({
 			value: '',
 			required: true
@@ -115,7 +115,7 @@ fetchApiData(function(jsonData) {
 			'margin-top': '20px',
 			'margin-bottom': '20px'
 		});
-		this.content.$element.append(headerTitle.$element, RationaleSelector.$element, relatedPageField.$element, warningLevel.$element);
+		this.content.$element.append(headerTitle.$element, rationaleSelector.$element, relatedPageField.$element, warningLevel.$element);
 		this.$body.append(this.content.$element);
 	};
 	UserWarningDialog.prototype.getActionProcess = function(action) {
