@@ -7,7 +7,7 @@
  */
 
 namespace MediaWiki\Extension\Adiutor;
-
+use MediaWiki\Content\TextContent;
 use MediaWiki\Content\Content;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageUpdater;
@@ -32,7 +32,7 @@ class Adiutor
                 ->getWikiPageFactory()
                 ->newFromTitle( $titleFactory::newFromText($pageTitle) )
                 ->newPageUpdater( $user );
-            $pageUpdater->setContent( SlotRecord::MAIN, $content );
+            $pageUpdater->setContent( SlotRecord::MAIN, new TextContent($content) );
             $pageUpdater->saveRevision(
                 CommentStoreComment::newUnsavedComment( '' ),
                 EDIT_INTERNAL | EDIT_MINOR | EDIT_AUTOSUMMARY
