@@ -1,0 +1,35 @@
+{
+    "//": "You can utilize the parameters within this file, which include: $1 page name, $2 protection duration, $3 protection type, and $4 protection rationale",
+    "protectionDurations": [
+        {
+            "value": "temporary",
+            "data": "Temporary",
+            "label": "Temporary"
+        },
+        {
+            "value": "indefinite",
+            "data": "Indefinite",
+            "label": "Indefinite"
+        }
+    ],
+    "protectionTypes": [
+        {
+            "value": "semi-protection",
+            "data": "Semi-protection",
+            "label": "Semi-protection"
+        },
+        {
+            "value": "full-protection",
+            "data": "Full protection",
+            "label": "Full protection"
+        }
+    ],
+    "noticeBoardTitle": "Wikipedia:Requests for page protection",
+    "addNewSection": false,
+    "sectionTitle": "Protection request for [[$1|$1]] page",
+    "appendText": true,
+    "prependText": false,
+    "sectionID": 1,
+    "contentPattern": "Protection Type: $2 $3 Protection Rationale: $4 ~~~~ Comment: Decision:",
+    "apiPostSummary": "Protection requested for [[$1|$1]]"
+}

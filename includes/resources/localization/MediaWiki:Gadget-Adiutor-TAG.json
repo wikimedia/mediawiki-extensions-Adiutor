@@ -1,0 +1,335 @@
+{
+    "tagList": [
+        {
+            "label": "Cleanup and maintenance tags",
+            "tags": [
+                {
+                    "tag": "Edit",
+                    "description": "Article needs editing",
+                    "items": [
+                        {
+                            "name": "cleanup",
+                            "parameter": "reason",
+                            "type": "input",
+                            "label": "Reason for cleanup:",
+                            "required": false
+                        }
+                    ]
+                },
+                {
+                    "tag": "Rewrite",
+                    "description": "Article needs to be rewritten to comply with Wikipedia's style guidelines"
+                },
+                {
+                    "tag": "External link",
+                    "description": "Some external links used in the article do not comply with policies"
+                },
+                {
+                    "tag": "Red link cleanup",
+                    "description": "Red links used in the article do not comply with Wikipedia guidelines"
+                },
+                {
+                    "tag": "Copy-paste",
+                    "description": "Article may have been copied from another source that potentially violates copyright policy",
+                    "items": [
+                        {
+                            "name": "copypaste",
+                            "parameter": "url",
+                            "type": "input",
+                            "label": "Source URL:"
+                        }
+                    ]
+                },
+                {
+                    "tag": "Cleanup-spam",
+                    "description": "Article contains promotional materials and other advertising links",
+                    "items": [
+                        {
+                            "type": "hidden",
+                            "name": "cleanupspam1",
+                            "parameter": "1",
+                            "value": "Article"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "General content issues",
+            "tags": [
+                {
+                    "tag": "Notability",
+                    "description": "Subject of the article may not be notable",
+                    "items": [
+                        {
+                            "name": "notability",
+                            "parameter": "1",
+                            "type": "select",
+                            "items": [
+                                {
+                                    "label": "Notability: subject does not meet the following criteria",
+                                    "value": "none",
+                                    "type": "checkbox"
+                                },
+                                {
+                                    "label": "Notability|biography: notability for biography articles",
+                                    "value": "biography",
+                                    "type": "checkbox"
+                                },
+                                {
+                                    "label": "Notability|book: notability for book articles",
+                                    "value": "book",
+                                    "type": "checkbox"
+                                },
+                                {
+                                    "label": "Notability|company: notability for company articles",
+                                    "value": "company",
+                                    "type": "checkbox"
+                                },
+                                {
+                                    "label": "Notability|music: notability for music articles",
+                                    "value": "Music",
+                                    "type": "checkbox"
+                                },
+                                {
+                                    "label": "Notability|internet: notability for internet articles",
+                                    "value": "internet",
+                                    "type": "checkbox"
+                                },
+                                {
+                                    "label": "Notability|film: notability for film articles",
+                                    "value": "Movie",
+                                    "type": "checkbox"
+                                },
+                                {
+                                    "label": "Notability|theatre: notability for theatre articles",
+                                    "value": "theatre",
+                                    "type": "checkbox"
+                                },
+                                {
+                                    "label": "Notability|school: notability for school articles",
+                                    "value": "school",
+                                    "type": "checkbox"
+                                },
+                                {
+                                    "label": "Notability|television: notability for television articles",
+                                    "value": "television",
+                                    "type": "checkbox"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "tag": "Excessive quotes",
+                    "description": "Article contains too many or overly long quotes for encyclopedic content"
+                },
+                {
+                    "tag": "Too many images",
+                    "description": "Article contains an excessive number of visuals or files and needs cleanup"
+                },
+                {
+                    "tag": "Essay-like",
+                    "description": "Article is written like a personal opinion or essay"
+                },
+                {
+                    "tag": "Prose",
+                    "description": "Article is in list format, but readability may improve with prose"
+                },
+                {
+                    "tag": "Guide-like",
+                    "description": "Article is written like a handbook or guidebook"
+                },
+                {
+                    "tag": "Metric",
+                    "description": "Article uses non-SI units that most readers may not understand"
+                },
+                {
+                    "tag": "Advert",
+                    "description": "Article is written like an advertisement"
+                },
+                {
+                    "tag": "Technical",
+                    "description": "Article is too technical for most readers to understand"
+                },
+                {
+                    "tag": "Tone",
+                    "description": "Article's tone does not adhere to the formal and serious tone expected in an encyclopedia"
+                },
+                {
+                    "tag": "Spelling",
+                    "description": "Article contains spelling and punctuation errors or language issues"
+                },
+                {
+                    "tag": "Confusing",
+                    "description": "Article contains content that is confusing to readers or has unclear expressions"
+                },
+                {
+                    "tag": "Fiction",
+                    "description": "Article's style and content do not clearly distinguish between fact and fiction"
+                },
+                {
+                    "tag": "Incomplete",
+                    "description": "Article is incomplete in a specific area",
+                    "items": [
+                        {
+                            "name": "MissingTopic",
+                            "parameter": "1",
+                            "type": "input",
+                            "label": "Missing topic:",
+                            "help": "Specify the missing topic. Required."
+                        }
+                    ]
+                },
+                {
+                    "tag": "Expert",
+                    "description": "Article requires input from experts to improve",
+                    "items": [
+                        {
+                            "name": "expertNeeded",
+                            "parameter": "wikiproject",
+                            "type": "input",
+                            "label": "Relevant WikiProject:",
+                            "help": "Optionally enter the name of a WikiProject. Do not include the 'WikiProject' prefix."
+                        },
+                        {
+                            "name": "expertNeededReason",
+                            "parameter": "reason",
+                            "type": "input",
+                            "label": "Reason:",
+                            "help": "A brief explanation of the issue that requires expert input. A reason or discussion link is required."
+                        },
+                        {
+                            "name": "expertNeededTalk",
+                            "parameter": "discussion",
+                            "type": "input",
+                            "label": "Discussion:",
+                            "help": "The section name on the discussion page of the article where the issue is being discussed. Do not enter a link, just the section name. A reason or discussion link is required."
+                        }
+                    ]
+                },
+                {
+                    "tag": "Undue",
+                    "description": "Article gives undue weight to various opinions, events, or controversies"
+                },
+                {
+                    "tag": "Prediction",
+                    "description": "Article makes predictions about future events that may not have happened yet"
+                },
+                {
+                    "tag": "Current",
+                    "description": "Article is about a current event"
+                },
+                {
+                    "tag": "Current person",
+                    "description": "This person is associated with a current event"
+                },
+                {
+                    "tag": "Update",
+                    "description": "Article needs to be updated for accuracy and reliability"
+                },
+                {
+                    "tag": "Hoax",
+                    "description": "Article may be entirely fraudulent"
+                },
+                {
+                    "tag": "Globalize",
+                    "description": "Article does not reflect a global perspective on the subject",
+                    "items": [
+                        {
+                            "name": "globalizeRegion",
+                            "parameter": "1",
+                            "type": "input",
+                            "label": "Region reflected in bias"
+                        }
+                    ]
+                },
+                {
+                    "tag": "Autobiography",
+                    "description": "Article is an autobiography or has been extensively edited by someone closely connected to the subject"
+                },
+                {
+                    "tag": "POV",
+                    "description": "This article may be biased"
+                },
+                {
+                    "tag": "Controversial",
+                    "description": "Article is currently the subject of ongoing controversies"
+                },
+                {
+                    "tag": "Paid",
+                    "description": "Article may have been created or edited for payment, such as conflicts of interest"
+                },
+                {
+                    "tag": "De-localize",
+                    "description": "Information in the article has been viewed from the perspective of a specific region"
+                },
+                {
+                    "tag": "Primary sources",
+                    "description": "Article lacks reliable sources from reputable publications"
+                },
+                {
+                    "tag": "Additional sources",
+                    "description": "Article needs additional sources for verification"
+                },
+                {
+                    "tag": "Unsourced",
+                    "description": "Article lacks any references or sources"
+                },
+                {
+                    "tag": "Original research",
+                    "description": "Article contains original research, unverifiable claims, or editorial opinions"
+                },
+                {
+                    "tag": "Self-published",
+                    "description": "Article contains inappropriate references to self-published sources"
+                },
+                {
+                    "tag": "Single source",
+                    "description": "Article relies entirely or predominantly on a single source"
+                },
+                {
+                    "tag": "Third-party sources",
+                    "description": "Article relies too much on third-party sources closely associated with the subject"
+                }
+            ]
+        },
+        {
+            "label": "Specific content issues",
+            "tags": [
+                {
+                    "tag": "Merge",
+                    "description": "Article closely resembles another article and should be merged"
+                },
+                {
+                    "tag": "History merge",
+                    "description": "The histories of this article and another article need to be merged",
+                    "items": [
+                        {
+                            "name": "histmergeOriginalPage",
+                            "parameter": "1",
+                            "type": "input",
+                            "label": "Other page:",
+                            "help": "Name of the page that needs to be merged (required)."
+                        },
+                        {
+                            "name": "histmergeReason",
+                            "parameter": "reason",
+                            "type": "input",
+                            "label": "Reason:",
+                            "help": "A brief explanation of why the merger of histories is necessary."
+                        }
+                    ]
+                },
+                {
+                    "tag": "Work",
+                    "description": "There is ongoing work on this page"
+                }
+            ]
+        }
+    ],
+    "useMultipleIssuesTemplate": true,
+    "multipleIssuesTemplate": "Multiple issues",
+    "uncategorizedTemplate": "Uncategorized",
+    "apiPostSummary": "Page has been tagged"
+}

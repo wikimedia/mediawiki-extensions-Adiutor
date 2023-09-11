@@ -7,43 +7,8 @@
  */
 /* <nowiki> */
 var api = new mw.Api();
+var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 var mwConfig = mw.config.get(["skin", "wgPageName", "wgNamespaceNumber", "wgUserName", "wgUserGroups", "wgCanonicalSpecialPageName"]);
-var adiutorUserOptions = {
-	"myWorks": [],
-	"myCustomSummaries": [],
-	"speedyDeletion": {
-		"csdSendMessageToCreator": true,
-		"csdLogNominatedPages": true,
-		"csdLogPageName": "HS günlüğü",
-	},
-	"articlesForDeletion": {
-		"afdSendMessageToCreator": true,
-		"afdLogNominatedPages": true,
-		"afdLogPageName": "SAS günlüğü",
-		"afdNominateOpinionsLog": true,
-		"afdOpinionLogPageName": "SAS görüş günlüğü"
-	},
-	"proposedDeletion": {
-		"prdSendMessageToCreator": true,
-		"prdLogNominatedPages": true,
-		"prdLogPageName": "BS günlüğü"
-	},
-	"status": {
-		"showMyStatus": true,
-		"myStatus": "active"
-	},
-	"stats": {
-		"csdRequests": 0,
-		"afdRequests": 0,
-		"prodRequests": 0,
-		"blockRequests": 0,
-		"userWarnings": 0,
-		"pageTags": 0,
-	},
-	"inlinePageInfo": true,
-	"showEditSummaries": true,
-	"adiutorVersion": "v1.2.6"
-};
 var defaultMenuItems = [];
 var noticeBoards = {
 	csdCategory: "Hızlı_silinmeye_aday_sayfalar",
@@ -130,7 +95,7 @@ switch(mwConfig.wgNamespaceNumber) {
 								var sectionID = new URL(sectionElement.find('.mw-editsection a').attr('href')).searchParams.get('section');
 								window.sectionID = sectionID;
 								window.headlineElement = headlineElement;
-								loadAdiutorScript('UBM');
+								loadAdiutorScript('ext.Adiutor.ubm');
 							});
 							blockedAlready.on('click', () => {
 								var sectionElement = $(this).closest('.ext-discussiontools-init-section');
@@ -497,7 +462,7 @@ function checkMentor(UserId) {
 	}).done(function(data) {
 		if(data.parse.wikitext['*'].includes(UserId) && mwConfig.wgPageName.includes(mwConfig.wgUserName)) {
 			// Load the Adiutor CMR script using the loadAdiutorScript function
-			loadAdiutorScript('CMR');
+			loadAdiutorScript('ext.Adiutor.cmr');
 		}
 	});
 }

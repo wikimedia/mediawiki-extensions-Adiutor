@@ -1,41 +1,6 @@
 var api = new mw.Api();
+var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 var mwConfig = mw.config.get(["wgArticleId", "wgPageName", "wgNamespaceNumber", "wgUserName"]);
-var adiutorUserOptions = {
-	"myWorks": [],
-	"myCustomSummaries": [],
-	"speedyDeletion": {
-		"csdSendMessageToCreator": true,
-		"csdLogNominatedPages": true,
-		"csdLogPageName": "HS günlüğü",
-	},
-	"articlesForDeletion": {
-		"afdSendMessageToCreator": true,
-		"afdLogNominatedPages": true,
-		"afdLogPageName": "SAS günlüğü",
-		"afdNominateOpinionsLog": true,
-		"afdOpinionLogPageName": "SAS görüş günlüğü"
-	},
-	"proposedDeletion": {
-		"prdSendMessageToCreator": true,
-		"prdLogNominatedPages": true,
-		"prdLogPageName": "BS günlüğü"
-	},
-	"status": {
-		"showMyStatus": true,
-		"myStatus": "active"
-	},
-	"stats": {
-		"csdRequests": 0,
-		"afdRequests": 0,
-		"prodRequests": 0,
-		"blockRequests": 0,
-		"userWarnings": 0,
-		"pageTags": 0,
-	},
-	"inlinePageInfo": true,
-	"showEditSummaries": true,
-	"adiutorVersion": "v1.2.6"
-};
 var casdReason, csdSummary, notificationMessage, articleAuthor;
 var csdOptions = [];
 var casdReasons = [];
@@ -43,7 +8,6 @@ var saltCsdSummary = '';
 var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
 
 function fetchApiData(callback) {
-	var api = new mw.Api();
 	api.get({
 		action: "query",
 		prop: "revisions",

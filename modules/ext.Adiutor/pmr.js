@@ -1,6 +1,6 @@
 var api = new mw.Api();
+
 function fetchApiData(callback) {
-	var api = new mw.Api();
 	api.get({
 		action: "query",
 		prop: "revisions",
@@ -28,6 +28,7 @@ function fetchApiData(callback) {
 		// You may choose to stop code execution here
 	});
 }
+
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
@@ -132,7 +133,7 @@ fetchApiData(function(jsonData) {
 					apiParams[appendText ? 'appendtext' : prependText ? 'prependtext' : 'text'] = preparedContent + '\n';
 				}
 				api.postWithToken('csrf', apiParams).done(function() {
-					window.location = '/wiki/' + noticeBoardLink;
+					window.location = '/' + noticeBoardLink;
 				});
 				dialog.close({
 					action: action
