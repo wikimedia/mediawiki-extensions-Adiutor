@@ -70,6 +70,9 @@
 		},
 		"ext.Adiutor.pmr": {
 			"scripts": "ext.Adiutor/pmr.js"
+		},
+		"ext.Adiutor.del": {
+			"scripts": "ext.Adiutor/del.js"
 		}
 	},
 	"manifest_version": 2
