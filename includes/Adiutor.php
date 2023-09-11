@@ -30,7 +30,7 @@ class Adiutor
         foreach ($pageContent as $pageTitle => $content) {
             $pageUpdater = MediaWikiServices::getInstance()
                 ->getWikiPageFactory()
-                ->newFromTitle( $pageTitle )
+                ->newFromTitle( $titleFactory::newFromText($pageTitle) )
                 ->newPageUpdater( $user );
             $pageUpdater->setContent( SlotRecord::MAIN, $content );
             $pageUpdater->saveRevision(
