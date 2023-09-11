@@ -479,7 +479,7 @@ if(adiutorUserOptions.showEditSummaries === true) {
 }
 
 function loadAdiutorScript(scriptName) {
-	mw.loader.using(scriptName);
+	mw.loader.load(scriptName);
 }
 
 function checkMentor(UserId) {

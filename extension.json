@@ -26,6 +26,12 @@
     "SpecialPages": {
         "CandidatesForSpeedyDeletion": "MediaWiki\\Extension\\Adiutor\\Csd"
     },
+    "EntryPoint": {
+        "Adiutor": "includes/Adiutor.php"
+    },
+	"ExtensionFunctions": [
+		"AdiutorExtension::onExtensionLoad"
+	],
     "Hooks": {
         "BeforePageDisplay": [
             "MediaWiki\\Extension\\Adiutor\\Hooks::onBeforePageDisplay"

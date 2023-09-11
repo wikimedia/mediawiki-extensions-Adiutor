@@ -7,6 +7,10 @@
 
 namespace MediaWiki\Extension\Adiutor;
 
+use MediaWiki\MediaWikiServices;
+use Title;
+use WikiPage;
+
 class Hooks implements \MediaWiki\Hook\BeforePageDisplayHook
 {
     /**
