@@ -1,12 +1,3 @@
-/*
- * Adiutor: Adiutor enables versatile editing options and modules to assist a variety of user actions to enhance the Wikipedia editing experience.
- * Author: Vikipolimer
- * Learn more at: https://meta.wikimedia.org/wiki/Adiutor
- * Licensing and Attribution: Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
- * Module: Copyright checker
- * Earwig's Copyvio Detector (https://copyvios.toolforge.org/) api used in MediaWiki:Gadget-Adiutor-COV.js
- */
-/* <nowiki> */
 var api = new mw.Api();
 var mwConfig = mw.config.get(["wgPageName"]);
 var wgContentLanguage = mw.config.get('wgContentLanguage');
@@ -166,4 +157,3 @@ $.get("https://copyvios.toolforge.org/api.json?", {
 	windowManager.addWindows([dialog]);
 	windowManager.openWindow(dialog);
 });
-/* </nowiki> */

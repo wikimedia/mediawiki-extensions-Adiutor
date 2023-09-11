@@ -1,12 +1,3 @@
-/*
- * Adiutor: Adiutor enables versatile editing options and modules to assist a variety of user actions to enhance the Wikipedia editing experience.
- * Author: Vikipolimer
- * Learn more at: https://meta.wikimedia.org/wiki/Adiutor
- * Licensing and Attribution: Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
- * Module: Canned mentor responses
- */
-/* <nowiki> */
-// Get essential configuration from MediaWiki
 var mwConfig = mw.config.get(["skin", "wgAction", "wgArticleId", "wgPageName", "wgNamespaceNumber", "wgTitle", "wgUserGroups", "wgUserName", "wgUserEditCount", "wgUserRegistration", "wgCanonicalNamespace"]);
 var api = new mw.Api();
 var wikiId = mw.config.get('wgWikiID');
@@ -154,4 +145,3 @@ api.get({
 function clearURLfromOrigin(sectionPart) {
 	return decodeURIComponent(sectionPart.replace('https//:' + mw.config.get("wgServerName") + '/w/index.php?title=', ''));
 }
-/* </nowiki> */

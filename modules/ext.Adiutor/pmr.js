@@ -164,4 +164,3 @@ fetchApiData(function(jsonData) {
 		}
 	}
 });
-/* </nowiki> */

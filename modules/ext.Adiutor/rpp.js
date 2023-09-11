@@ -1,12 +1,3 @@
-/*
- * Adiutor: Adiutor enables versatile editing options and modules to assist a variety of user actions to enhance the Wikipedia editing experience.
- * Author: Vikipolimer
- * Learn more at: https://meta.wikimedia.org/wiki/Adiutor
- * Licensing and Attribution: Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
- * Module: Requests for page protection
- */
-/* <nowiki> */
-// Get essential configuration from MediaWiki
 var api = new mw.Api();
 var apiParams = {};
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
@@ -239,4 +230,3 @@ fetchApiData(function(jsonData) {
 		}
 	}
 });
-/* </nowiki> */
