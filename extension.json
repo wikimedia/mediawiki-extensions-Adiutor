@@ -1,79 +1,79 @@
 {
-    "name": "Adiutor",
-    "author": "Vikipolimer",
-    "url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
-    "descriptionmsg": "Adiutor-desc",
-    "license-name": "GPL-2.0-or-later",
-    "type": "other",
-    "config": {
-        "AdiutorEnable": {
-            "description": "Enable the adiutor features",
-            "value": true
-        }
-    },
-    "MessagesDirs": {
-        "Adiutor": [
-            "i18n",
-            "i18n/en"
-        ]
-    },
-    "ExtensionMessagesFiles": {
-        "AdiutorAlias": "Adiutor.i18n.alias.php"
-    },
-    "AutoloadNamespaces": {
-        "MediaWiki\\Extension\\Adiutor\\": "includes/"
-    },
-    "SpecialPages": {
-        "CandidatesForSpeedyDeletion": "MediaWiki\\Extension\\Adiutor\\Csd"
-    },
-    "EntryPoint": {
-        "Adiutor": "includes/Adiutor.php"
-    },
+	"name": "Adiutor",
+	"author": "Vikipolimer",
+	"url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
+	"descriptionmsg": "Adiutor-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"config": {
+		"AdiutorEnable": {
+			"description": "Enable the adiutor features",
+			"value": true
+		}
+	},
+	"MessagesDirs": {
+		"Adiutor": [
+			"i18n",
+			"i18n/en"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"AdiutorAlias": "Adiutor.i18n.alias.php"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\Adiutor\\": "includes/"
+	},
+	"SpecialPages": {
+		"CandidatesForSpeedyDeletion": "MediaWiki\\Extension\\Adiutor\\Csd"
+	},
+	"EntryPoint": {
+		"Adiutor": "includes/Adiutor.php"
+	},
 	"ExtensionFunctions": [
 		"AdiutorExtension::onExtensionLoad"
 	],
-    "Hooks": {
-        "BeforePageDisplay": [
-            "MediaWiki\\Extension\\Adiutor\\Hooks::onBeforePageDisplay"
-        ]
-    },
-    "ResourceFileModulePaths": {
-        "localBasePath": "modules/"
-    },
-    "ResourceModules": {
-        "ext.Adiutor": {
-            "dependencies": [
-                "mediawiki.util",
-                "mediawiki.user",
-                "mediawiki.Title",
-                "mediawiki.api",
-                "oojs-ui-core",
-                "oojs-ui-windows",
-                "oojs-ui-widgets",
-                "oojs-ui.styles.icons-interactions",
-                "oojs-ui.styles.icons-movement",
-                "oojs-ui.styles.icons-content",
-                "oojs-ui.styles.icons-moderation",
-                "oojs-ui-toolbars",
-                "oojs-ui.styles.icons-editing-core",
-                "oojs-ui.styles.icons-layout",
-                "oojs-ui.styles.icons-user",
-                "oojs-ui.styles.icons-media",
-                "oojs-ui.styles.icons-editing-advanced"
-            ],
-            "styles": [
-                "ext.Adiutor/styles.css"
-            ],
-            "scripts": [
-                "ext.Adiutor/index.js"
-            ]
-        },
-        "ext.Adiutor.csd": {
-            "scripts": "ext.Adiutor/csd.js"
-        },
-        "ext.Adiutor.pmr": {
-            "scripts": "ext.Adiutor/pmr.js"
-        }
-    },
-    "manifest_version": 2
+	"Hooks": {
+		"BeforePageDisplay": [
+			"MediaWiki\\Extension\\Adiutor\\Hooks::onBeforePageDisplay"
+		]
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules/"
+	},
+	"ResourceModules": {
+		"ext.Adiutor": {
+			"dependencies": [
+				"mediawiki.util",
+				"mediawiki.user",
+				"mediawiki.Title",
+				"mediawiki.api",
+				"oojs-ui-core",
+				"oojs-ui-windows",
+				"oojs-ui-widgets",
+				"oojs-ui.styles.icons-interactions",
+				"oojs-ui.styles.icons-movement",
+				"oojs-ui.styles.icons-content",
+				"oojs-ui.styles.icons-moderation",
+				"oojs-ui-toolbars",
+				"oojs-ui.styles.icons-editing-core",
+				"oojs-ui.styles.icons-layout",
+				"oojs-ui.styles.icons-user",
+				"oojs-ui.styles.icons-media",
+				"oojs-ui.styles.icons-editing-advanced"
+			],
+			"styles": [
+				"ext.Adiutor/styles.css"
+			],
+			"scripts": [
+				"ext.Adiutor/index.js"
+			]
+		},
+		"ext.Adiutor.csd": {
+			"scripts": "ext.Adiutor/csd.js"
+		},
+		"ext.Adiutor.pmr": {
+			"scripts": "ext.Adiutor/pmr.js"
+		}
+	},
+	"manifest_version": 2
 }
