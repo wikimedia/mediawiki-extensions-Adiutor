@@ -6,38 +6,34 @@
  * @ingroup Extensions
  */
 
-namespace MediaWiki\Extension\Adiutor;
+ namespace MediaWiki\Extension\Adiutor;
 
-use MediaWiki\MediaWikiServices;
-use Title;
-use WikiPage;
-
-class Adiutor
-{
-    /**
-     * Initialize the extension.
-     */
-    public static function onExtensionLoad()
-    {
-        // Define an associative array where the keys are page titles and the values are the default content
-        $pageContent = [
-            'Adiutor-CSD.json' => '{"key": "value1"}',
-            'Adiutor-PMR.json' => '{"key": "value2"}',
-            'Adiutor-AIV.json' => '{"key": "value3"}',
-            // Add other pages with their respective content
-        ];
-
-        $services = MediaWikiServices::getInstance();
-
-        foreach ($pageContent as $pageTitle => $content) {
-            // Check if the page already exists
-            $title = Title::newFromText($pageTitle);
-            if (!$title->exists()) {
-                $page = WikiPage::factory($title);
-                $page->doEdit($content, 'Initial content', EDIT_NEW);
-            }
-        }
-
-        error_log('AdiutorExtension.php executed');
-    }
-}
+ use MediaWiki\MediaWikiServices;
+ use Title;
+ 
+ class Adiutor
+ {
+     public static function onExtensionLoad()
+     {
+         $pageContent = [
+             'Adiutor-CSD.json' => '{"key": "value1"}',
+             'Adiutor-PMR.json' => '{"key": "value2"}',
+             'Adiutor-AIV.json' => '{"key": "value3"}',
+         ];
+ 
+         $services = MediaWikiServices::getInstance();
+ 
+         foreach ($pageContent as $pageTitle => $content) {
+             $title = Title::newFromText($pageTitle);
+             if (!$title->exists()) {
+                 $user = $services->getUserFactory()->newAnonymous();
+                 $updater = $services->getRevisionStore()->newPageUpdater($title, $user);
+                 $updater->setContent(ContentHandler::makeContent($content, $title));
+                 $summary = 'Initial content';
+                 $updater->setEditSummary($summary);
+                 $updater->saveRevision();
+                 $services->getMainWANObjectCache()->delete($title->getPrefixedDBKey());
+             }
+         }
+     }
+ }
