@@ -1,9 +1,4 @@
-/* 
- * Adiutor: A gadget to assist various user actions
- * Author: Vikipolimer
- * Licencing and attribution: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
- */
- .adiutor-user-dashboard-container {
+.adiutor-user-dashboard-container {
 	padding: 65px;
 	background-image: url(https://upload.wikimedia.org/wikipedia/commons/a/ac/Illustration_of_Reading_Wikipedia_in_the_Classroom_%28blue%29_03.png);
 	background-repeat: no-repeat;

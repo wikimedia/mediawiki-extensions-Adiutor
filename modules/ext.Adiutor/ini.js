@@ -46,7 +46,7 @@ var adiutorUserOptionsDefault = {
 	"showEditSummaries": true,
 	"adiutorVersion": "v1.0.0"
 };
-// Get user options related to the Adiutor gadget
+// Get user options related to the Adiutor
 var adiutorUserOptions = JSON.parse(mw.user.options.get(adiutorUserOptions));
 // Check if user options are not present or empty
 if(!adiutorUserOptions || Object.keys(adiutorUserOptions).length === 0) {
