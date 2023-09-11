@@ -12,7 +12,7 @@ use MediaWiki\MediaWikiServices;
 use Title;
 use WikiPage;
 
-class AdiutorExtension
+class Adiutor
 {
     /**
      * Initialize the extension.

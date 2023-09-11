@@ -26,11 +26,8 @@
 	"SpecialPages": {
 		"CandidatesForSpeedyDeletion": "MediaWiki\\Extension\\Adiutor\\Csd"
 	},
-	"EntryPoint": {
-		"Adiutor": "includes/Adiutor.php"
-	},
 	"ExtensionFunctions": [
-		"AdiutorExtension::onExtensionLoad"
+		"MediaWiki\\Extension\\Adiutor\\Adiutor::onExtensionLoad"
 	],
 	"Hooks": {
 		"BeforePageDisplay": [
