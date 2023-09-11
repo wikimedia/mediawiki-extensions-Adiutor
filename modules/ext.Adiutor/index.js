@@ -479,8 +479,14 @@ if(adiutorUserOptions.showEditSummaries === true) {
 }
 
 function loadAdiutorScript(scriptName) {
-	mw.loader.load(scriptName);
-}
+	const functionName = scriptName;
+	if (typeof window[functionName] === "function") {
+	  window[functionName]();
+	} else {
+	  mw.loader.load(scriptName);
+	}
+  }
+
 
 function checkMentor(UserId) {
 	api.get({

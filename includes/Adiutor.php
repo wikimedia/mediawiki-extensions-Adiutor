@@ -19,22 +19,32 @@ class Adiutor
 {
     public static function onExtensionLoad()
     {
-        $pageContent = [
-            'MediaWiki:Adiutor-CSD.json' => '1',
-            'MediaWiki:Adiutor-PMR.json' => '2',
-            'MediaWiki:Adiutor-AIV.json' => '3',
-        ];
+        $folderPath = __DIR__ . '/resources/localization/';
+
+        // Initialize an empty array to store page content
+        $pageContent = [];
+
+        // Get a list of JSON files in the folder
+        $jsonFiles = glob($folderPath . '*.json');
+
         $user = User::newFromId(0);
         $services = MediaWikiServices::getInstance();
         $titleFactory = $services->getTitleFactory();
-        foreach ($pageContent as $pageTitle => $content) {
+        foreach ($jsonFiles as $jsonFile) {
+            $pageTitle = basename($jsonFile);
+            $content = file_get_contents($jsonFile);
+            $pageContent[$pageTitle] = $content;
             $pageUpdater = MediaWikiServices::getInstance()
                 ->getWikiPageFactory()
-                ->newFromTitle($titleFactory->newFromText($pageTitle) )
-                ->newPageUpdater( $user );
-            $pageUpdater->setContent( SlotRecord::MAIN, new TextContent($content) );
+                ->newFromTitle($titleFactory->newFromText($pageTitle))
+                ->newPageUpdater($user);
+            
+            // Pass the content as a string and set the content model to JSON
+            $textContent = new TextContent($content);
+            
+            $pageUpdater->setContent(SlotRecord::MAIN, $textContent);
             $pageUpdater->saveRevision(
-                CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ),
+                CommentStoreComment::newUnsavedComment('Initial content for Adiutor localization file'),
                 EDIT_INTERNAL | EDIT_MINOR | EDIT_AUTOSUMMARY
             );
             $saveStatus = $pageUpdater->getStatus();

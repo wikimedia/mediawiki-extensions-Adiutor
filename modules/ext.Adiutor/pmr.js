@@ -48,6 +48,7 @@ fetchApiData(function(jsonData) {
 	var apiPostSummary = jsonData.apiPostSummary;
 	var sectionTitle = jsonData.sectionTitle;
 	var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
+	console.log(jsonData);
 
 	function PageMoveRequestDialog(config) {
 		PageMoveRequestDialog.super.call(this, config);
@@ -122,7 +123,7 @@ fetchApiData(function(jsonData) {
 				};
 				if(addNewSection) {
 					apiParams.section = 'new';
-					apiParams.sectiontitle = replaceParameter(sectionTitle, '1', sectionTitle);
+					apiParams.sectiontitle = replaceParameter(sectionTitle, '1', pageTitle);
 					apiParams.text = preparedContent;
 				} else {
 					if(sectionID) {
