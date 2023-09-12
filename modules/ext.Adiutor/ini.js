@@ -1,6 +1,5 @@
 var api = new mw.Api();
-var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
-// Function to update user options
+
 function updateOptions(options) {
 	api.postWithEditToken({
 		action: 'globalpreferences',
@@ -47,7 +46,7 @@ var adiutorUserOptionsDefault = {
 	"adiutorVersion": "v1.0.0"
 };
 // Get user options related to the Adiutor
-var adiutorUserOptions = JSON.parse(mw.user.options.get(adiutorUserOptions));
+var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 // Check if user options are not present or empty
 if(!adiutorUserOptions || Object.keys(adiutorUserOptions).length === 0) {
 	// Send default user options to the server using API

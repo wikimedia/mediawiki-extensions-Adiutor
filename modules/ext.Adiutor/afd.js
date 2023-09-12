@@ -42,7 +42,21 @@ fetchApiData(function(jsonData) {
 		// You may choose to stop code execution here
 		return;
 	}
+	var afdTemplate = jsonData.afdTemplate;
+	var afdPageTitleForMultipleNomination = jsonData.afdPageTitleForMultipleNomination;
+	var apiPostSummary = jsonData.apiPostSummary;
+	var apiPostSummaryforCreator = jsonData.apiPostSummaryforCreator;
+	var apiPostSummaryforUserLog = jsonData.apiPostSummaryforUserLog;
+	var apiPostSummaryforAfdPage = jsonData.apiPostSummaryforAfdPage;
+	var afdPage = jsonData.afdPage;
+	var logNominations = jsonData.logNominations;
+	var afdLogPage = jsonData.afdLogPage;
 	var afdNotificationTemplate = jsonData.afdNotificationTemplate;
+	var userLogText = jsonData.userLogText;
+	var userPagePrefix = jsonData.userPagePrefix;
+	var userTalkPagePrefix = jsonData.userTalkPagePrefix;
+	var specialContibutions = jsonData.specialContibutions;
+	var localMonthsNames = jsonData.localMonthsNames;
 	var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
 
 	function articleForDeletionDialog(config) {
