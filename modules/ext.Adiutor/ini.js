@@ -73,15 +73,13 @@ if(!adiutorUserOptions || Object.keys(adiutorUserOptions).length === 0) {
 }
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "../extensions/Adiutor/i18n/en.json", true);
-
-xhr.onreadystatechange = function () {
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    // Parse the JSON data once it's successfully loaded
-    var messages = JSON.parse(xhr.responseText);
-    console.log(messages);
-    mw.messages.set(messages);
-  }
+xhr.onreadystatechange = function() {
+	if(xhr.readyState === 4 && xhr.status === 200) {
+		// Parse the JSON data once it's successfully loaded
+		var messages = JSON.parse(xhr.responseText);
+		console.log(messages);
+		mw.messages.set(messages);
+	}
 };
-
 xhr.send();
 mw.loader.load("ext.Adiutor.ail");

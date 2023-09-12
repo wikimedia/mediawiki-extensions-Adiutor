@@ -1,7 +1,6 @@
-
 var api = new mw.Api();
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
-var mwConfig = mw.config.get([ "wgPageName", "wgUserName"]);
+var mwConfig = mw.config.get(["wgPageName", "wgUserName"]);
 var duration;
 var reason;
 var blockReason;
@@ -11,7 +10,6 @@ var preventEmailSendingValue;
 var preventEditOwnTalkPageValue;
 
 function fetchApiData(callback) {
-	var api = new mw.Api();
 	api.get({
 		action: "query",
 		prop: "revisions",
@@ -67,7 +65,7 @@ fetchApiData(function(jsonData) {
 		userBlockDialog.super.call(this, config);
 	}
 	OO.inheritClass(userBlockDialog, OO.ui.ProcessDialog);
-	userBlockDialog.static.title = mw.msg('user-blocking') + ' ' + '('+userToBlock+')',
+	userBlockDialog.static.title = mw.msg('user-blocking') + ' ' + '(' + userToBlock + ')',
 		userBlockDialog.static.name = 'userBlockDialog';
 	userBlockDialog.static.actions = [{
 		action: 'continue',

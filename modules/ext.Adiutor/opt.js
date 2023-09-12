@@ -3,6 +3,7 @@ var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extensio
 if(!adiutorUserOptions.hasOwnProperty('myCustomSummaries')) {
 	adiutorUserOptions.myCustomSummaries = [];
 }
+
 function adiutorOptionsDialog(config) {
 	adiutorOptionsDialog.super.call(this, config);
 }

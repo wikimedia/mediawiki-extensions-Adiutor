@@ -28,7 +28,6 @@ function fetchApiData(callback) {
 		// You may choose to stop code execution here
 	});
 }
-
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined

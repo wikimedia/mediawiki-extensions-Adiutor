@@ -440,7 +440,6 @@ function loadAdiutorScript(scriptName) {
 	mw.loader.load(scriptName);
 }
 
-
 function checkMentor(UserId) {
 	api.get({
 		action: 'parse',

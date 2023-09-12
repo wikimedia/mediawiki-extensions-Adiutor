@@ -1,8 +1,8 @@
-var mwConfig = mw.config.get(["wgArticleId", "wgPageName", "wgUserGroups", "wgUserName"]);
 var api = new mw.Api();
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
+var mwConfig = mw.config.get(["wgArticleId", "wgPageName", "wgUserGroups", "wgUserName"]);
+
 function fetchApiData(callback) {
-	var api = new mw.Api();
 	api.get({
 		action: "query",
 		prop: "revisions",
@@ -33,7 +33,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-PRD.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});

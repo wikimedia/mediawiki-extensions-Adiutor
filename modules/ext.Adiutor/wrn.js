@@ -1,9 +1,9 @@
 var api = new mw.Api();
-var mwConfig = mw.config.get(["wgPageName", "wgNamespaceNumber"]);
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
+var mwConfig = mw.config.get(["wgPageName", "wgNamespaceNumber"]);
 var requestRationale, warningData;
+
 function fetchApiData(callback) {
-	var api = new mw.Api();
 	api.get({
 		action: "query",
 		prop: "revisions",

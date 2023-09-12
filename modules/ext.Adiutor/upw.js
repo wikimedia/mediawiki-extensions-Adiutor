@@ -28,7 +28,7 @@ if((mw.config.get("wgNamespaceNumber") === 2 || mw.config.get("wgNamespaceNumber
 						lastEditedDate = new Date(queryResult.query.usercontribs[0].timestamp);
 					}
 					for(var i = 0; i < queryResult.query.allmessages.length; i++) {
-						groupPages[queryResult.query.allmessages[i].name.replace("grouppage-", "")] = queryResult.query.allmessages[i]["*"].replace("{{ns:project}}:", mw.config.get("wgSiteName")+":");
+						groupPages[queryResult.query.allmessages[i].name.replace("grouppage-", "")] = queryResult.query.allmessages[i]["*"].replace("{{ns:project}}:", mw.config.get("wgSiteName") + ":");
 					}
 				} catch(e) {
 					return;
@@ -132,7 +132,7 @@ if((mw.config.get("wgNamespaceNumber") === 2 || mw.config.get("wgNamespaceNumber
 					}
 					statusText += ", " + mw.msg('registration-info', formatRelativeDateDifference(registrationDate));
 				}
-				statusText = mw.msg('this')  + ' ' + statusText;
+				statusText = mw.msg('this') + ' ' + statusText;
 				// Show the correct gender symbol
 				var firstHeading = document.getElementById("firstHeading") || document.getElementById("section-0");
 				if(!firstHeading) {

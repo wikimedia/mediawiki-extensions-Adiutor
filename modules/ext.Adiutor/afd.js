@@ -1,8 +1,9 @@
 var api = new mw.Api();
-var mwConfig = mw.config.get(["wgArticleId", "wgPageName", "wgUserName"]);
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
+var mwConfig = mw.config.get(["wgArticleId", "wgPageName", "wgUserName"]);
 var nominatedPreviously;
 var nextNominationNumber = 0;
+
 function fetchApiData(callback) {
 	api.get({
 		action: "query",
@@ -43,6 +44,7 @@ fetchApiData(function(jsonData) {
 	}
 	var afdNotificationTemplate = jsonData.afdNotificationTemplate;
 	var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
+
 	function articleForDeletionDialog(config) {
 		articleForDeletionDialog.super.call(this, config);
 	}
@@ -131,7 +133,7 @@ fetchApiData(function(jsonData) {
 						});
 					}
 				});
-				checkPreviousNominations(afdPage+"/" + mwConfig.wgPageName).then(function(data) {
+				checkPreviousNominations(afdPage + "/" + mwConfig.wgPageName).then(function(data) {
 					if(data.query.pages["-1"]) {
 						var nomCount = 0;
 						console.log(nomCount);
@@ -144,7 +146,7 @@ fetchApiData(function(jsonData) {
 				});
 
 				function Rec(nomCount) {
-					checkPreviousNominations(afdPage+"/" + mwConfig.wgPageName + ' ' + '(' + nomCount + '._aday_gösterme)').then(function(data) {
+					checkPreviousNominations(afdPage + "/" + mwConfig.wgPageName + ' ' + '(' + nomCount + '._aday_gösterme)').then(function(data) {
 						if(!data.query.pages["-1"]) {
 							Rec(nomCount + 1);
 						} else {
@@ -193,7 +195,7 @@ fetchApiData(function(jsonData) {
 			return input;
 		}
 	}
-	
+
 	function putAfDTemplate(afdTempalte, nextNominationNumber) {
 		var nominatedPageTitle;
 		if(nextNominationNumber > 1) {
@@ -251,12 +253,12 @@ fetchApiData(function(jsonData) {
 			format: "json"
 		}).done(function(data) {
 			pageContent = data.parse.wikitext['*'];
-			var NominatedBefore = pageContent.includes("{{"+afdPage+"/" + nominatedPageTitle.replace(/_/g, " ") + "}}");
+			var NominatedBefore = pageContent.includes("{{" + afdPage + "/" + nominatedPageTitle.replace(/_/g, " ") + "}}");
 			if(!NominatedBefore) {
 				api.postWithToken('csrf', {
 					action: 'edit',
 					title: afdPage,
-					appendtext: "\n" + "{{"+afdPage+"/" + nominatedPageTitle.replace(/_/g, " ") + "}}",
+					appendtext: "\n" + "{{" + afdPage + "/" + nominatedPageTitle.replace(/_/g, " ") + "}}",
 					summary: apiPostSummaryforAfdPage,
 					tags: 'Adiutor',
 					format: 'json'
@@ -274,8 +276,7 @@ fetchApiData(function(jsonData) {
 			}
 		});
 	}
-
-	if(logNominations){
+	if(logNominations) {
 		function addNominationToAfdLogPage(nominatedPageTitle) {
 			var date = new Date();
 			var date_year = date.getUTCFullYear();
@@ -288,20 +289,20 @@ fetchApiData(function(jsonData) {
 				format: "json"
 			}).done(function(data) {
 				pageContent = data.parse.wikitext['*'];
-				var NominatedBefore = pageContent.includes("{{"+afdPage+"/" + nominatedPageTitle.replace(/_/g, " ") + "}}");
+				var NominatedBefore = pageContent.includes("{{" + afdPage + "/" + nominatedPageTitle.replace(/_/g, " ") + "}}");
 				if(!NominatedBefore) {
 					api.postWithToken('csrf', {
 						action: 'edit',
 						title: afdLogPage + date_year + "_" + month_name,
-						appendtext: "\n" + "{{"+afdPage+"/" + nominatedPageTitle.replace(/_/g, " ") + "}}",
-						summary: "Adaylık [["+afdLogPage+"" + date_year + " " + month_name + "|mevcut ayın]] kayıtlarına eklendi.",
+						appendtext: "\n" + "{{" + afdPage + "/" + nominatedPageTitle.replace(/_/g, " ") + "}}",
+						summary: "Adaylık [[" + afdLogPage + "" + date_year + " " + month_name + "|mevcut ayın]] kayıtlarına eklendi.",
 						tags: 'Adiutor',
 						format: 'json'
 					}).done(function() {
-						window.location = '/wiki/'+afdPage+'/' + nominatedPageTitle.replace(/_/g, " ");
+						window.location = '/wiki/' + afdPage + '/' + nominatedPageTitle.replace(/_/g, " ");
 					});
 				} else {
-					window.location = '/wiki/'+afdPage+'/' + nominatedPageTitle.replace(/_/g, " ");
+					window.location = '/wiki/' + afdPage + '/' + nominatedPageTitle.replace(/_/g, " ");
 				}
 			});
 		}
@@ -376,7 +377,7 @@ fetchApiData(function(jsonData) {
 			action: 'edit',
 			title: userTalkPagePrefix + Author,
 			appendtext: '\n' + message,
-			summary:  replaceParameter(apiPostSummaryforCreator, '1', pageTitle),
+			summary: replaceParameter(apiPostSummaryforCreator, '1', pageTitle),
 			tags: 'Adiutor',
 			format: 'json'
 		}).done(function() {});

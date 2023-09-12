@@ -1,6 +1,6 @@
 var api = new mw.Api();
-var mwConfig = mw.config.get(["wgPageName"]);
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
+var mwConfig = mw.config.get(["wgPageName"]);
 var rationaleInput, VandalizedPageInput, reportType, sockPuppetsList, sockpuppetryType, revId;
 var vandalizedPage = {};
 vandalizedPage.value = null;
@@ -40,7 +40,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Adiutor-WRN.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-AIV.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});

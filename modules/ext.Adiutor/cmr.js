@@ -1,22 +1,52 @@
 var api = new mw.Api();
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 var sectionLink, sectionPath, sectionNumber, mentorResponse;
-api.get({
-	action: "query",
-	prop: "revisions",
-	titles: "MediaWiki:Adiutor-CMR.json",
-	rvprop: "content",
-	formatversion: 2
-}).done(function(data) {
-	var content = data.query.pages[0].revisions[0].content;
-	var jsonData = JSON.parse(content);
+
+function fetchApiData(callback) {
+	api.get({
+		action: "query",
+		prop: "revisions",
+		titles: "MediaWiki:Adiutor-CMR.json",
+		rvprop: "content",
+		formatversion: 2
+	}).done(function(data) {
+		var content = data.query.pages[0].revisions[0].content;
+		try {
+			var jsonData = JSON.parse(content);
+			callback(jsonData);
+		} catch(error) {
+			// Handle JSON parsing error
+			mw.notify('Failed to parse JSON data from API.', {
+				title: mw.msg('operation-failed'),
+				type: 'error'
+			});
+		}
+	}).fail(function() {
+		// Handle API request failure
+		mw.notify('Failed to fetch data from the API.', {
+			title: mw.msg('operation-failed'),
+			type: 'error'
+		});
+		// You may choose to stop code execution here
+	});
+}
+fetchApiData(function(jsonData) {
+	if(!jsonData) {
+		// Handle a case where jsonData is empty or undefined
+		mw.notify('MediaWiki:Adiutor-CMR.json data is empty or undefined.', {
+			title: mw.msg('operation-failed'),
+			type: 'error'
+		});
+		// You may choose to stop code execution here
+		return;
+	}
 	var predefinedResponses = jsonData.predefinedResponses;
 	var apiPostSummary = jsonData.apiPostSummary;
 	var userTalkPagePrefix = jsonData.userTalkPagePrefix;
 	console.log(predefinedResponses);
 	var crButton = new OO.ui.ButtonWidget({
 		framed: false,
-		label: '['+mw.msg('cmr-canned-response')+']',
+		label: '[' + mw.msg('cmr-canned-response') + ']',
 		classes: ['adiutor-canned-response-button']
 	});
 	$('.mw-editsection').append(crButton.$element);
@@ -32,6 +62,7 @@ api.get({
 		}
 		openCmrDialog();
 	});
+
 	function openCmrDialog() {
 		function CannedResponseDialog(config) {
 			CannedResponseDialog.super.call(this, config);
@@ -71,18 +102,20 @@ api.get({
 				inline: true,
 				label: new OO.ui.HtmlSnippet('<strong>' + mw.msg('cmr-header-title') + '</strong><br><small>' + mw.msg('cmr-header-description') + '</small>')
 			});
-			headerMessage.$element.css({'margin-top': '20px','margin-bottom': '20px'});
+			headerMessage.$element.css({
+				'margin-top': '20px',
+				'margin-bottom': '20px'
+			});
 			this.content = new OO.ui.PanelLayout({
 				padded: true,
 				expanded: false
 			});
-		
-			var previewArea = new OO.ui.Element( {
+			var previewArea = new OO.ui.Element({
 				text: '',
-				classes: [ 'adiutor-mentor-response-preview-area' ]
-			} );
+				classes: ['adiutor-mentor-response-preview-area']
+			});
 			previewArea.$element.css('display', 'none');
-			this.content.$element.append(headerMessage.$element,dropdown.$element,previewArea.$element);
+			this.content.$element.append(headerMessage.$element, dropdown.$element, previewArea.$element);
 			this.$body.append(this.content.$element);
 			dropdown.getMenu().on('choose', function(menuOption) {
 				mentorResponse = menuOption.getData();

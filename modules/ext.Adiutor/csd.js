@@ -6,6 +6,7 @@ var csdOptions = [];
 var casdReasons = [];
 var saltCsdSummary = '';
 var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
+
 function fetchApiData(callback) {
 	api.get({
 		action: "query",

@@ -1,22 +1,22 @@
 var api = new mw.Api();
-var mwConfig = mw.config.get(["wgArticleId", "wgPageName"]);
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
+var mwConfig = mw.config.get(["wgArticleId", "wgPageName"]);
 var newArticleToWorkOnIt = {
 	"id": mwConfig.wgArticleId,
 	"name": mwConfig.wgPageName
 };
-var apiUrl = "https://xtools.wmcloud.org/api/page/articleinfo/"+mw.config.get("wgServerName")+"/" + encodeURIComponent(mwConfig.wgPageName) + "?format=json";
+var apiUrl = "https://xtools.wmcloud.org/api/page/articleinfo/" + mw.config.get("wgServerName") + "/" + encodeURIComponent(mwConfig.wgPageName) + "?format=json";
 // AJAX isteği
 $.ajax({
 	url: apiUrl,
 	method: "GET",
 	dataType: "json",
-	success: function (response) {
-		var isAlreadyAdded = adiutorUserOptions.myWorks.some(function (article) {
+	success: function(response) {
+		var isAlreadyAdded = adiutorUserOptions.myWorks.some(function(article) {
 			return article.id === newArticleToWorkOnIt.id;
 		});
 		var authorEditcount = response.author_editcount;
-		if (authorEditcount === null) {
+		if(authorEditcount === null) {
 			authorEditcount = 0;
 		}
 		// Define details to buttons
@@ -34,7 +34,7 @@ $.ajax({
 			],
 			classes: ['adiutor-aricle-detail-box-button-group']
 		});
-		infoButton.on('click', function () {
+		infoButton.on('click', function() {
 			api.get({
 				action: 'query',
 				prop: 'revisions',
@@ -42,7 +42,7 @@ $.ajax({
 				rvprop: 'user|content|timestamp', // Fetch user, content, and timestamp from revision history
 				rvlimit: 1, // Only retrieve the latest revision
 				formatversion: 2
-			}).then(function (data) {
+			}).then(function(data) {
 				// Extract relevant information from the API response
 				var revision = data.query.pages[0].revisions[0];
 				// Clean up the content by removing unnecessary elements
@@ -89,7 +89,7 @@ $.ajax({
 					flags: ['safe', 'back']
 				}];
 				// Initialize the dialog with its elements
-				articleInfoDialog.prototype.initialize = function () {
+				articleInfoDialog.prototype.initialize = function() {
 					articleInfoDialog.super.prototype.initialize.apply(this, arguments);
 					// Create elements to display information
 					var authorMessage = mw.msg('page-more-info-tip-author');
@@ -118,16 +118,16 @@ $.ajax({
 					this.$body.append(articleCreator.$element, articleDate.$element, wordCountLabel.$element);
 				};
 				// Set up the dialog's initial state
-				articleInfoDialog.prototype.getSetupProcess = function (data) {
-					return articleInfoDialog.super.prototype.getSetupProcess.call(this, data).next(function () {
+				articleInfoDialog.prototype.getSetupProcess = function(data) {
+					return articleInfoDialog.super.prototype.getSetupProcess.call(this, data).next(function() {
 						this.actions.setMode('edit');
 					}, this);
 				};
 				// Handle actions performed in the dialog
-				articleInfoDialog.prototype.getActionProcess = function (action) {
-					if (action === 'continue') {
+				articleInfoDialog.prototype.getActionProcess = function(action) {
+					if(action === 'continue') {
 						var dialog = this;
-						return new OO.ui.Process(function () {
+						return new OO.ui.Process(function() {
 							dialog.close();
 						});
 					}
@@ -145,13 +145,7 @@ $.ajax({
 		});
 		var translationKey = "page-info-tip";
 		var translation = mw.msg(translationKey);
-		var translatedText = translation.replace(/\$1/g, '<strong>' + response.created_at + '</strong>')
-			.replace(/\$2/g, "<strong><a href='/wiki/Kullanıcı:" + response.author + "'>" + response.author + "</a></strong>")
-			.replace(/\$3/g, response.author_editcount)
-			.replace(/\$4/g, response.revisions)
-			.replace(/\$5/g, response.editors)
-			.replace(/\$6/g, '<strong>' + response.pageviews + '</strong>')
-			.replace(/\$7/g, response.pageviews_offset);
+		var translatedText = translation.replace(/\$1/g, '<strong>' + response.created_at + '</strong>').replace(/\$2/g, "<strong><a href='/wiki/Kullanıcı:" + response.author + "'>" + response.author + "</a></strong>").replace(/\$3/g, response.author_editcount).replace(/\$4/g, response.revisions).replace(/\$5/g, response.editors).replace(/\$6/g, '<strong>' + response.pageviews + '</strong>').replace(/\$7/g, response.pageviews_offset);
 		var AboutArticleContent = $('<div>').html(translatedText).append(aboutArticleActionButtons.$element);
 		var AboutArticle = new OO.ui.MessageWidget({
 			type: 'notice',
@@ -160,9 +154,9 @@ $.ajax({
 			label: new OO.ui.HtmlSnippet(AboutArticleContent),
 			classes: ['adiutor-aricle-detail-box']
 		});
-		aboutArticleActionButtons.items[0].on('click', function () {
-			if (isAlreadyAdded) {
-				var indexToRemove = adiutorUserOptions.myWorks.findIndex(function (article) {
+		aboutArticleActionButtons.items[0].on('click', function() {
+			if(isAlreadyAdded) {
+				var indexToRemove = adiutorUserOptions.myWorks.findIndex(function(article) {
 					return article.id === newArticleToWorkOnIt.id;
 				});
 				adiutorUserOptions.myWorks.splice(indexToRemove, 1);
@@ -182,7 +176,7 @@ $.ajax({
 		});
 		$('.vector-body-before-content').prepend(AboutArticle.$element);
 	},
-	error: function (xhr, status, error) {
+	error: function(xhr, status, error) {
 		console.error("AJAX error:", error);
 	}
 });
@@ -194,5 +188,5 @@ function updateOptions(updatedOptions) {
 		optionname: 'userjs-adiutor',
 		optionvalue: JSON.stringify(updatedOptions),
 		formatversion: 2,
-	}).done(function () { });
+	}).done(function() {});
 }

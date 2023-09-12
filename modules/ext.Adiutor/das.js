@@ -3,8 +3,9 @@ var mwConfig = mw.config.get(["wgArticleId", "wgPageName", "wgUserGroups", "wgUs
 var wikiId = mw.config.get('wgWikiID');
 var wgContentLanguage = mw.config.get('wgContentLanguage');
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
-function SectionOneLayout(name, config) {
-	SectionOneLayout.super.call(this, name, config);
+
+function sectionOneLayout(name, config) {
+	sectionOneLayout.super.call(this, name, config);
 	var currentUserWelcomeText = new OO.ui.LabelWidget({
 		label: mw.msg('hello'),
 		classes: ['adiutor-user-dashboard-welcome-text']
@@ -93,13 +94,13 @@ function SectionOneLayout(name, config) {
 	});
 	this.$element.append(adiutorUserDahboardStack.$element);
 }
-OO.inheritClass(SectionOneLayout, OO.ui.PageLayout);
-SectionOneLayout.prototype.setupOutlineItem = function() {
+OO.inheritClass(sectionOneLayout, OO.ui.PageLayout);
+sectionOneLayout.prototype.setupOutlineItem = function() {
 	this.outlineItem.setLabel(mw.msg('adiutor-dashboard-main-page'));
 };
 
-function SectionTwoLayout(name, config) {
-	SectionTwoLayout.super.call(this, name, config);
+function sectionTwoLayout(name, config) {
+	sectionTwoLayout.super.call(this, name, config);
 	var tabPanelsArray = [];
 	api.get({
 		action: 'query',
@@ -112,16 +113,16 @@ function SectionTwoLayout(name, config) {
 		var jsonData = JSON.parse(content);
 		var tabPanelData = jsonData.adiutorHelpArticles;
 
-		function AdiutorGuideTabPanelLayout(name) {
-			AdiutorGuideTabPanelLayout.super.call(this, name);
+		function adiutorGuideTabPanelLayout(name) {
+			adiutorGuideTabPanelLayout.super.call(this, name);
 			this.label = name;
 			this.tabItem = new OO.ui.TabOptionWidget({
-				classes: ['AdiutorGuideTabPanelLayout-tabItem']
+				classes: ['adiutorGuideTabPanelLayout-tabItem']
 			});
 		}
-		OO.inheritClass(AdiutorGuideTabPanelLayout, OO.ui.TabPanelLayout);
+		OO.inheritClass(adiutorGuideTabPanelLayout, OO.ui.TabPanelLayout);
 		tabPanelData.forEach(function(panelData) {
-			var tabPanel = new AdiutorGuideTabPanelLayout(panelData.title);
+			var tabPanel = new adiutorGuideTabPanelLayout(panelData.title);
 			// Create widgets for title and content
 			var titleWidget = new OO.ui.HtmlSnippet(panelData.title);
 			var textWidget = new OO.ui.HtmlSnippet(panelData.content);
@@ -131,13 +132,13 @@ function SectionTwoLayout(name, config) {
 				classes: ['adiutor-aricle-show-video-button']
 			});
 			showVideoButton.on('click', function() {
-				function ArticleVideoDialog(config) {
-					ArticleVideoDialog.super.call(this, config);
+				function articleVideoDialog(config) {
+					articleVideoDialog.super.call(this, config);
 				}
-				OO.inheritClass(ArticleVideoDialog, OO.ui.ProcessDialog);
-				ArticleVideoDialog.static.name = 'ArticleVideoDialog';
-				ArticleVideoDialog.static.title = panelData.title;
-				ArticleVideoDialog.static.actions = [{
+				OO.inheritClass(articleVideoDialog, OO.ui.ProcessDialog);
+				articleVideoDialog.static.name = 'articleVideoDialog';
+				articleVideoDialog.static.title = panelData.title;
+				articleVideoDialog.static.actions = [{
 					action: 'save',
 					label: mw.msg('okay'),
 					flags: 'primary'
@@ -145,8 +146,8 @@ function SectionTwoLayout(name, config) {
 					label: mw.msg('close'),
 					flags: 'safe'
 				}];
-				ArticleVideoDialog.prototype.initialize = function() {
-					ArticleVideoDialog.super.prototype.initialize.apply(this, arguments);
+				articleVideoDialog.prototype.initialize = function() {
+					articleVideoDialog.super.prototype.initialize.apply(this, arguments);
 					this.content = new OO.ui.PanelLayout({
 						padded: false,
 						expanded: false
@@ -159,7 +160,7 @@ function SectionTwoLayout(name, config) {
 					this.content.$element.append(videoElement);
 					this.$body.append(this.content.$element);
 				};
-				ArticleVideoDialog.prototype.getActionProcess = function(action) {
+				articleVideoDialog.prototype.getActionProcess = function(action) {
 					var dialog = this;
 					if(action) {
 						return new OO.ui.Process(function() {
@@ -168,11 +169,11 @@ function SectionTwoLayout(name, config) {
 							});
 						});
 					}
-					return ArticleVideoDialog.super.prototype.getActionProcess.call(this, action);
+					return articleVideoDialog.super.prototype.getActionProcess.call(this, action);
 				};
 				var windowManager = new OO.ui.WindowManager();
 				$(document.body).append(windowManager.$element);
-				var dialog = new ArticleVideoDialog({
+				var dialog = new articleVideoDialog({
 					size: 'larger',
 				});
 				windowManager.addWindows([dialog]);
@@ -195,8 +196,8 @@ function SectionTwoLayout(name, config) {
 		this.$element.append(index.$element);
 	}).catch(error => console.error("Error fetching data from API:", error));
 }
-OO.inheritClass(SectionTwoLayout, OO.ui.PageLayout);
-SectionTwoLayout.prototype.setupOutlineItem = function() {
+OO.inheritClass(sectionTwoLayout, OO.ui.PageLayout);
+sectionTwoLayout.prototype.setupOutlineItem = function() {
 	this.outlineItem.setLabel(mw.msg('help-and-guides'));
 };
 var _this = this;
@@ -315,7 +316,7 @@ administratorToolsLayoutCsd.prototype.setupOutlineItem = function() {
 							"id": mwConfig.wgArticleId,
 							"name": mwConfig.wgPageName
 						};
-						var apiUrl = "https://xtools.wmcloud.org/api/page/articleinfo/"+mw.config.get("wgServerName")+"/" + encodeURIComponent(item.label) + "?format=json";
+						var apiUrl = "https://xtools.wmcloud.org/api/page/articleinfo/" + mw.config.get("wgServerName") + "/" + encodeURIComponent(item.label) + "?format=json";
 						// AJAX isteği
 						$.ajax({
 							url: apiUrl,
@@ -773,14 +774,14 @@ administratorToolsLayoutCsd.prototype.setupOutlineItem = function() {
 							}, function(data) {
 								messageDialog.close();
 
-								function CopyVioDialog(config) {
-									CopyVioDialog.super.call(this, config);
+								function copyVioDialog(config) {
+									copyVioDialog.super.call(this, config);
 								}
-								OO.inheritClass(CopyVioDialog, OO.ui.ProcessDialog);
+								OO.inheritClass(copyVioDialog, OO.ui.ProcessDialog);
 								var copVioRatio = (data.best.confidence * 100).toFixed(2);
-								CopyVioDialog.static.title = mw.msg('copyvio-result', copVioRatio),
-									CopyVioDialog.static.name = 'CopyVioDialog';
-								CopyVioDialog.static.actions = [{
+								copyVioDialog.static.title = mw.msg('copyvio-result', copVioRatio),
+									copyVioDialog.static.name = 'copyVioDialog';
+								copyVioDialog.static.actions = [{
 									action: 'continue',
 									modes: 'edit',
 									label: mw.msg('detailed-analysis'),
@@ -810,8 +811,8 @@ administratorToolsLayoutCsd.prototype.setupOutlineItem = function() {
 										label: mw.msg('copyvio-potential-violation-low', copVioRatio),
 									});
 								}
-								CopyVioDialog.prototype.initialize = function() {
-									CopyVioDialog.super.prototype.initialize.apply(this, arguments);
+								copyVioDialog.prototype.initialize = function() {
+									copyVioDialog.super.prototype.initialize.apply(this, arguments);
 									var cvRelSource = data.sources.filter(function(source) {
 										return !source.excluded;
 									});
@@ -838,25 +839,25 @@ administratorToolsLayoutCsd.prototype.setupOutlineItem = function() {
 									}, this);
 									this.$body.append(this.panel1.$element);
 								};
-								CopyVioDialog.prototype.getSetupProcess = function(data) {
-									return CopyVioDialog.super.prototype.getSetupProcess.call(this, data).next(function() {
+								copyVioDialog.prototype.getSetupProcess = function(data) {
+									return copyVioDialog.super.prototype.getSetupProcess.call(this, data).next(function() {
 										this.actions.setMode('edit');
 									}, this);
 								};
-								CopyVioDialog.prototype.getActionProcess = function(action) {
+								copyVioDialog.prototype.getActionProcess = function(action) {
 									if(action === 'continue') {
 										var dialog = this;
 										return new OO.ui.Process(function() {
 											dialog.close();
-											var targetURL = "https://copyvios.toolforge.org/?lang="+wgContentLanguage+"&project=wikipedia&title=" + item.label;
+											var targetURL = "https://copyvios.toolforge.org/?lang=" + wgContentLanguage + "&project=wikipedia&title=" + item.label;
 											window.open(targetURL, '_blank');
 										});
 									}
-									return CopyVioDialog.super.prototype.getActionProcess.call(this, action);
+									return copyVioDialog.super.prototype.getActionProcess.call(this, action);
 								};
 								var windowManager = new OO.ui.WindowManager();
 								$(document.body).append(windowManager.$element);
-								var dialog = new CopyVioDialog({
+								var dialog = new copyVioDialog({
 									size: 'larger'
 								});
 								windowManager.addWindows([dialog]);
@@ -1148,8 +1149,8 @@ OO.inheritClass(SectionThreeLayout, OO.ui.PageLayout);
 SectionThreeLayout.prototype.setupOutlineItem = function() {
 	this.outlineItem.setLabel(mw.msg('administrator-tools'));
 };
-var sectionOne = new SectionOneLayout('one');
-var sectionTwo = new SectionTwoLayout('two');
+var sectionOne = new sectionOneLayout('one');
+var sectionTwo = new sectionTwoLayout('two');
 var sectionThree = new SectionThreeLayout('four');
 var booklet2 = new OO.ui.BookletLayout({
 	outlined: true,

@@ -1,10 +1,7 @@
 var api = new mw.Api();
-var apiParams = {};
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 var protectionType, protectionDuration;
-
 function fetchApiData(callback) {
-	var api = new mw.Api();
 	api.get({
 		action: "query",
 		prop: "revisions",
@@ -35,7 +32,7 @@ function fetchApiData(callback) {
 fetchApiData(function(jsonData) {
 	if(!jsonData) {
 		// Handle a case where jsonData is empty or undefined
-		mw.notify('MediaWiki:Adiutor-UBM.json data is empty or undefined.', {
+		mw.notify('MediaWiki:Adiutor-RPP.json data is empty or undefined.', {
 			title: mw.msg('operation-failed'),
 			type: 'error'
 		});
@@ -151,56 +148,26 @@ fetchApiData(function(jsonData) {
 					$4: rationaleInput.value,
 				};
 				var preparedContent = replacePlaceholders(contentPattern, placeholders);
+				var apiParams = {
+					action: 'edit',
+					title: noticeBoardTitle,
+					summary: replaceParameter(apiPostSummary, '1', pageTitle),
+					tags: 'Adiutor',
+					format: 'json'
+				};
 				if(addNewSection) {
-					apiParams = {
-						action: "edit",
-						title: noticeBoardTitle,
-						section: 'new',
-						sectiontitle: replaceParameter(sectionTitle, '1', pageTitle),
-						text: preparedContent,
-						summary: replaceParameter(apiPostSummary, '1', pageTitle),
-						tags: "Adiutor",
-						format: "json"
-					};
-					api.postWithToken('csrf', apiParams).done(function() {
-						window.location = '/wiki/' + noticeBoardLink;
-					});
+					apiParams.section = 'new';
+					apiParams.sectiontitle = replaceParameter(sectionTitle, '1', sectionTitle);
+					apiParams.text = preparedContent;
 				} else {
 					if(sectionId) {
-						apiParams = {
-							action: 'edit',
-							title: noticeBoardTitle,
-							section: sectionId,
-							summary: replaceParameter(apiPostSummary, '1', pageTitle),
-							tags: 'Adiutor',
-							format: 'json'
-						};
-						if(appendText) {
-							apiParams.appendtext = preparedContent + "\n";
-						} else if(prependText) {
-							apiParams.prependtext = preparedContent + "\n";
-						}
-						api.postWithToken('csrf', apiParams).done(function() {
-							window.location = '/wiki/' + noticeBoardLink;
-						});
-					} else {
-						apiParams = {
-							action: 'edit',
-							title: noticeBoardTitle,
-							summary: replaceParameter(apiPostSummary, '1', pageTitle),
-							tags: 'Adiutor',
-							format: 'json'
-						};
-						if(appendText) {
-							apiParams.appendtext = preparedContent + "\n";
-						} else if(prependText) {
-							apiParams.prependtext = preparedContent + "\n";
-						}
-						api.postWithToken('csrf', apiParams).done(function() {
-							window.location = '/wiki/' + noticeBoardLink;
-						});
+						apiParams.section = sectionId;
 					}
+					apiParams[appendText ? 'appendtext' : prependText ? 'prependtext' : 'text'] = preparedContent + '\n';
 				}
+				api.postWithToken('csrf', apiParams).done(function() {
+					window.location = '/wiki/' + noticeBoardLink;
+				});
 				dialog.close({
 					action: action
 				});

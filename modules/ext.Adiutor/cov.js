@@ -1,8 +1,5 @@
 var api = new mw.Api();
-var mwConfig = mw.config.get(["wgPageName"]);
-var wgContentLanguage = mw.config.get('wgContentLanguage');
-var wikiId = mw.config.get('wgWikiID');
-var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-'+wikiId));
+var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
 var messageDialog = new OO.ui.MessageDialog();
 var windowManager = new OO.ui.WindowManager();
 $('body').append(windowManager.$element);
@@ -17,9 +14,9 @@ windowManager.openWindow(messageDialog, {
 // Fetch data from Copyvio Detector API
 $.get("https://copyvios.toolforge.org/api.json?", {
 	action: "search",
-	lang: wgContentLanguage,
+	lang: mw.config.get('wgContentLanguage'),
 	project: "wikipedia",
-	title: mwConfig.wgPageName,
+	title: mw.config.get('wgPageName'),
 	oldid: "",
 	use_engine: "1",
 	use_links: "1",
@@ -27,13 +24,13 @@ $.get("https://copyvios.toolforge.org/api.json?", {
 }, function(data) {
 	messageDialog.close();
 
-	function CopyVioDialog(config) {
-		CopyVioDialog.super.call(this, config);
+	function copyVioDialog(config) {
+		copyVioDialog.super.call(this, config);
 	}
-	OO.inheritClass(CopyVioDialog, OO.ui.ProcessDialog);
+	OO.inheritClass(copyVioDialog, OO.ui.ProcessDialog);
 	var copVioRatio = (data.best.confidence * 100).toFixed(2);
-	CopyVioDialog.static.title = mw.msg('copyvio-result', copVioRatio),
-		CopyVioDialog.static.name = 'CopyVioDialog';
+	copyVioDialog.static.title = mw.msg('copyvio-result', copVioRatio),
+		copyVioDialog.static.name = 'copyVioDialog';
 	var headerTitle;
 	if(copVioRatio > 45) {
 		headerTitle = new OO.ui.MessageWidget({
@@ -41,7 +38,7 @@ $.get("https://copyvios.toolforge.org/api.json?", {
 			inline: true,
 			label: mw.msg('copyvio-potential-violation', copVioRatio),
 		});
-		CopyVioDialog.static.actions = [{
+		copyVioDialog.static.actions = [{
 			action: 'continue',
 			modes: 'edit',
 			label: mw.msg('create-speedy-deletion-request'),
@@ -62,7 +59,7 @@ $.get("https://copyvios.toolforge.org/api.json?", {
 			inline: true,
 			label: mw.msg('copyvio-potential-violation', copVioRatio),
 		});
-		CopyVioDialog.static.actions = [{
+		copyVioDialog.static.actions = [{
 			action: 'close',
 			modes: 'edit',
 			label: mw.msg('okay'),
@@ -83,7 +80,7 @@ $.get("https://copyvios.toolforge.org/api.json?", {
 			inline: true,
 			label: mw.msg('copyvio-potential-violation-low', copVioRatio),
 		});
-		CopyVioDialog.static.actions = [{
+		copyVioDialog.static.actions = [{
 			action: 'close',
 			modes: 'edit',
 			label: mw.msg('okay'),
@@ -99,8 +96,8 @@ $.get("https://copyvios.toolforge.org/api.json?", {
 			framed: false,
 		}];
 	}
-	CopyVioDialog.prototype.initialize = function() {
-		CopyVioDialog.super.prototype.initialize.apply(this, arguments);
+	copyVioDialog.prototype.initialize = function() {
+		copyVioDialog.super.prototype.initialize.apply(this, arguments);
 		var cvRelSource = data.sources.filter(function(source) {
 			return !source.excluded;
 		});
@@ -127,12 +124,12 @@ $.get("https://copyvios.toolforge.org/api.json?", {
 		}, this);
 		this.$body.append(this.panel1.$element);
 	};
-	CopyVioDialog.prototype.getSetupProcess = function(data) {
-		return CopyVioDialog.super.prototype.getSetupProcess.call(this, data).next(function() {
+	copyVioDialog.prototype.getSetupProcess = function(data) {
+		return copyVioDialog.super.prototype.getSetupProcess.call(this, data).next(function() {
 			this.actions.setMode('edit');
 		}, this);
 	};
-	CopyVioDialog.prototype.getActionProcess = function(action) {
+	copyVioDialog.prototype.getActionProcess = function(action) {
 		var dialog = this;
 		if(action === 'continue') {
 			return new OO.ui.Process(function() {
@@ -142,16 +139,16 @@ $.get("https://copyvios.toolforge.org/api.json?", {
 				}) + '&ctype=text/javascript', 'text/javascript');
 			});
 		} else if(action === 'analysis') {
-			var targetURL = "https://copyvios.toolforge.org/?lang="+wgContentLanguage+"&project=wikipedia&title=" + mwConfig.wgPageName;
+			var targetURL = "https://copyvios.toolforge.org/?lang=" + mw.config.get('wgContentLanguage') + "&project=wikipedia&title=" + mw.config.get('wgPageName');
 			window.open(targetURL, '_blank');
 		} else if(action === 'close') {
 			dialog.close();
 		}
-		return CopyVioDialog.super.prototype.getActionProcess.call(this, action);
+		return copyVioDialog.super.prototype.getActionProcess.call(this, action);
 	};
 	var windowManager = new OO.ui.WindowManager();
 	$(document.body).append(windowManager.$element);
-	var dialog = new CopyVioDialog({
+	var dialog = new copyVioDialog({
 		size: 'larger'
 	});
 	windowManager.addWindows([dialog]);

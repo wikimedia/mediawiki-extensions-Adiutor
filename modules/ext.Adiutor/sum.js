@@ -1,15 +1,44 @@
 var api = new mw.Api();
-// Get user options from Adiutor configuration
 var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extension'));
-api.get({
-	action: "query",
-	prop: "revisions",
-	titles: "MediaWiki:Adiutor-SUM.json",
-	rvprop: "content",
-	formatversion: 2
-}).done(function(data) {
-	var content = data.query.pages[0].revisions[0].content;
-	var jsonData = JSON.parse(content);
+
+function fetchApiData(callback) {
+	api.get({
+		action: "query",
+		prop: "revisions",
+		titles: "MediaWiki:Adiutor-SUM.json",
+		rvprop: "content",
+		formatversion: 2
+	}).done(function(data) {
+		var content = data.query.pages[0].revisions[0].content;
+		try {
+			var jsonData = JSON.parse(content);
+			callback(jsonData);
+		} catch(error) {
+			// Handle JSON parsing error
+			mw.notify('Failed to parse JSON data from API.', {
+				title: mw.msg('operation-failed'),
+				type: 'error'
+			});
+		}
+	}).fail(function() {
+		// Handle API request failure
+		mw.notify('Failed to fetch data from the API.', {
+			title: mw.msg('operation-failed'),
+			type: 'error'
+		});
+		// You may choose to stop code execution here
+	});
+}
+fetchApiData(function(jsonData) {
+	if(!jsonData) {
+		// Handle a case where jsonData is empty or undefined
+		mw.notify('MediaWiki:Adiutor-SUM.json data is empty or undefined.', {
+			title: mw.msg('operation-failed'),
+			type: 'error'
+		});
+		// You may choose to stop code execution here
+		return;
+	}
 	var summaryCategories = jsonData.summaryCategories;
 	// Select the summary box and summary textarea
 	var $summaryBox, $summaryTextarea = $('#wpSummary');
