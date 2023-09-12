@@ -1,6 +1,6 @@
 {
     "//": "You can utilize the parameters within this file, which include: $1 revisionNumber, $2 rationale, and $3 comment.",
-    "noticeBoardTitle": "Wikipedia:Revision deletion requests",
+    "noticeBoardTitle": "Wikipedia:Revision deletion/Noticeboard",
     "addNewSection": true,
     "sectionTitle": "Revision deletion request for [[$1]]",
     "appendText": false,

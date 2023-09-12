@@ -2,7 +2,7 @@
     "userWarnings": [
         {
             "title": "Warning: Vandalism Attempt!",
-            "body": "Hello, your recent edit on page $1 has been considered as vandalism and has been reverted. If you want to experiment, please use the sandbox. Continuation of vandalism may result in the revocation of your editing rights. If you believe this is a mistake or if you have any questions, feel free to message me on my talk page.",
+            "body": "Hello, your recent edit on page $1 has been considered as vandalism and has been reverted. I wanted to let you know that one or more of your recent contributions have been undone because they did not appear constructive. If you would like to experiment, please use the sandbox. If you have any questions, you can ask for assistance at the Teahouse or the Help desk. Thanks.",
             "label": "Vandalism Attempt"
         },
         {
