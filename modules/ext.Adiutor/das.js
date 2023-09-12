@@ -655,11 +655,11 @@ administratorToolsLayoutCsd.prototype.setupOutlineItem = function() {
 											return new OO.ui.Process(function() {
 												var casdReason;
 												var csdSummary;
-												var casdReasons = [];
+												var csdReasons = [];
 												var csdOptions = [];
 												nameSpaceDeletionReasons.items.forEach(function(Reason) {
 													if(Reason.fieldWidget.selected) {
-														casdReasons.push({
+														csdReasons.push({
 															value: Reason.fieldWidget.value,
 															data: Reason.fieldWidget.data,
 															selected: Reason.fieldWidget.selected
@@ -668,7 +668,7 @@ administratorToolsLayoutCsd.prototype.setupOutlineItem = function() {
 												});
 												generalReasons.items.forEach(function(Reason) {
 													if(Reason.fieldWidget.selected) {
-														casdReasons.push({
+														csdReasons.push({
 															value: Reason.fieldWidget.value,
 															data: Reason.fieldWidget.data,
 															selected: Reason.fieldWidget.selected
@@ -681,24 +681,24 @@ administratorToolsLayoutCsd.prototype.setupOutlineItem = function() {
 												} else {
 													CopVioURL = "";
 												}
-												if(casdReasons.length > 1) {
+												if(csdReasons.length > 1) {
 													var SaltCSDReason = '{{sil|';
 													var i = 0;
-													var keys = Object.keys(casdReasons);
+													var keys = Object.keys(csdReasons);
 													for(i = 0; i < keys.length; i++) {
 														if(i > 0) SaltCSDReason += (i < keys.length - 1) ? ', ' : ' ve ';
-														SaltCSDReason += '[[VP:HS#' + casdReasons[keys[i]].value + ']]';
+														SaltCSDReason += '[[VP:HS#' + csdReasons[keys[i]].value + ']]';
 													}
 													for(i = 0; i < keys.length; i++) {
 														if(i > 0) saltCsdSummary += (i < keys.length - 1) ? ', ' : ' ve ';
-														saltCsdSummary += '[[VP:HS#' + casdReasons[keys[i]].value + ']]';
+														saltCsdSummary += '[[VP:HS#' + csdReasons[keys[i]].value + ']]';
 													}
 													casdReason = SaltCSDReason + CopVioURL + '}}';
 													csdSummary = saltCsdSummary;
 												} else {
-													casdReason = '{{sil|' + casdReasons[0].data + CopVioURL + '}}';
-													csdSummary = casdReasons[0].data;
-													saltCsdSummary = casdReasons[0].data;
+													casdReason = '{{sil|' + csdReasons[0].data + CopVioURL + '}}';
+													csdSummary = csdReasons[0].data;
+													saltCsdSummary = csdReasons[0].data;
 												}
 												api.postWithToken('csrf', {
 													action: 'delete',
@@ -1206,13 +1206,3 @@ var dialog = new MyProcessDialog({
 });
 windowManager.addWindows([dialog]);
 windowManager.openWindow(dialog);
-
-function updateOptions(updatedOptions) {
-	api.postWithEditToken({
-		action: 'globalpreferences',
-		format: 'json',
-		optionname: 'userjs-adiutor',
-		optionvalue: JSON.stringify(updatedOptions),
-		formatversion: 2,
-	}).done(function() {});
-}

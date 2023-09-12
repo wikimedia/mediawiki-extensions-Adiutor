@@ -88,7 +88,7 @@ switch(mwConfig.wgNamespaceNumber) {
 								var sectionId = new URL(sectionElement.find('.mw-editsection a').attr('href')).searchParams.get('section');
 								window.sectionId = sectionId;
 								window.headlineElement = headlineElement;
-								loadAdiutorScript('ext.Adiutor.ubm');
+								mw.loader.load('ext.Adiutor.ubm');
 							});
 							blockedAlready.on('click', () => {
 								var sectionElement = $(this).closest('.ext-discussiontools-init-section');
@@ -271,22 +271,22 @@ switch(mwConfig.wgNamespaceNumber) {
 				});
 			} else {
 				// Load the Adiutor script based on the selected option
-				loadAdiutorScript(selectedOption);
+				mw.loader.load(selectedOption);
 			}
 		});
 		if(!mwConfig.wgPageName.includes(noticeBoards.mainPage)) {
 			//Call the packages to be pre-loaded here
 			if(mwConfig.wgNamespaceNumber === 2) {
-				loadAdiutorScript('ext.Adiutor.upw');
+				mw.loader.load('ext.Adiutor.upw');
 			}
 			if(mwConfig.wgNamespaceNumber === 0 && window.location.href.indexOf("action=") === -1) {
 				if(adiutorUserOptions.inlinePageInfo === true) {
-					loadAdiutorScript('ext.Adiutor.inf');
+					mw.loader.load('ext.Adiutor.inf');
 				}
 			}
 			if(mwConfig.wgNamespaceNumber === 4) {
 				if(mwConfig.wgPageName.includes(noticeBoards.afdNoticeBoard)) {
-					loadAdiutorScript('ext.Adiutor.afh');
+					mw.loader.load('ext.Adiutor.afh');
 				}
 			}
 			switch(mwConfig.skin) {
@@ -317,7 +317,7 @@ var adiutorDashboardIcon = new OO.ui.ToggleButtonWidget({
 });
 adiutorDashboardIcon.on('click', function() {
 	// Load the Adiutor Dashboard script using the loadAdiutorScript function
-	loadAdiutorScript('ext.Adiutor.das');
+	mw.loader.load('ext.Adiutor.das');
 });
 var adiutorIconContainer = $('<li>').append(adiutorDashboardIcon.$element);
 switch(mwConfig.skin) {
@@ -433,11 +433,7 @@ topSearch.on('change', function() {
 });
 $('#pt-notifications-notice').after($('<li>').append(workListButton.$element));
 if(adiutorUserOptions.showEditSummaries === true) {
-	loadAdiutorScript('ext.Adiutor.sum');
-}
-
-function loadAdiutorScript(scriptName) {
-	mw.loader.load(scriptName);
+	mw.loader.load('ext.Adiutor.sum');
 }
 
 function checkMentor(UserId) {
@@ -449,7 +445,7 @@ function checkMentor(UserId) {
 	}).done(function(data) {
 		if(data.parse.wikitext['*'].includes(UserId) && mwConfig.wgPageName.includes(mwConfig.wgUserName)) {
 			// Load the Adiutor CMR script using the loadAdiutorScript function
-			loadAdiutorScript('ext.Adiutor.cmr');
+			mw.loader.load('ext.Adiutor.cmr');
 		}
 	});
 }
