@@ -1,8 +1,8 @@
 {
     "summaryCategories": {
         "general": [
-            "Spelling mistake corrected",
-            "Style improved",
+            "Spelling/grammar correction",
+            "Fixing style/layout errors",
             "Media content added",
             "Minor edits made",
             "Major edit performed, removed [[Template:Edit|Edit]] template",
@@ -15,24 +15,24 @@
             "Interwiki/category added/modified"
         ],
         "article": [
-            "Removed deleted Commons file",
-            "Copyright violation detected",
-            "Non-encyclopedic content removed",
-            "Irrelevant category(ies) removed",
-            "Irrelevant external link(s) removed",
-            "Irrelevant language links removed",
-            "Content without source removed",
-            "Removed promotional or irrelevant external link",
-            "Cleanup performed"
+            "Expanding article",
+            "Adding/improving reference(s)",
+            "Adding/removing category/ies",
+            "Adding/removing external link(s)",
+            "Adding/removing wikilink(s)",
+            "Removing unsourced content",
+            "Removing [[WP:SPAM|linkspam]] per [[WP:EL]]",
+            "Cleanup performed",
+            "Copyedit (major)"
         ],
         "nonArticle": [
-            "Response provided",
-            "Comment added",
-            "Proposal submitted"
+            "Reply",
+            "Comment",
+            "Suggestion"
         ],
         "talkPage": [
-            "[[Wikipedia:WikiProject|WikiProject]] tag added",
-            "[[Wikipedia:WikiProject|WikiProject]] assessment performed"
+            "[[Wikipedia:WikiProject|WikiProject]] tagging",
+            "[[Wikipedia:WikiProject|WikiProject]] assessment"
         ]
     }
 }
