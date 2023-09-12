@@ -1,5 +1,4 @@
 var api = new mw.Api();
-
 function updateOptions(options) {
 	api.postWithEditToken({
 		action: 'globalpreferences',
@@ -76,7 +75,6 @@ xhr.onreadystatechange = function() {
 	if(xhr.readyState === 4 && xhr.status === 200) {
 		// Parse the JSON data once it's successfully loaded
 		var messages = JSON.parse(xhr.responseText);
-		console.log(messages);
 		mw.messages.set(messages);
 	}
 };

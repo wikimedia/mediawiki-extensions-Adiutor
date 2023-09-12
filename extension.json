@@ -1,132 +1,129 @@
 {
-	"name": "Adiutor",
-	"author": "Vikipolimer",
-	"url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
-	"descriptionmsg": "Adiutor-desc",
-	"license-name": "GPL-2.0-or-later",
-	"type": "other",
-	"config": {
-		"AdiutorEnable": {
-			"description": "Enable the adiutor features",
-			"value": true
-		}
-	},
-	"MessagesDirs": {
-		"Adiutor": [
-			"i18n"
-		]
-	},
-	"ExtensionMessagesFiles": {
-		"AdiutorAlias": "Adiutor.i18n.alias.php"
-	},
-	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\Adiutor\\": "includes/"
-	},
-	"SpecialPages": {
-		"CandidatesForSpeedyDeletion": "MediaWiki\\Extension\\Adiutor\\Csd"
-	},
-	"ExtensionFunctions": [
-		"MediaWiki\\Extension\\Adiutor\\Adiutor::onExtensionLoad"
-	],
-	"Hooks": {
-		"BeforePageDisplay": [
-			"MediaWiki\\Extension\\Adiutor\\Hooks::onBeforePageDisplay"
-		]
-	},
-	"ResourceFileModulePaths": {
-		"localBasePath": "modules/"
-	},
-	"ResourceModules": {
-		"ext.Adiutor": {
-			"dependencies": [
-				"mediawiki.util",
-				"mediawiki.user",
-				"mediawiki.Title",
-				"mediawiki.api",
-				"oojs-ui-core",
-				"oojs-ui-windows",
-				"oojs-ui-widgets",
-				"oojs-ui.styles.icons-interactions",
-				"oojs-ui.styles.icons-movement",
-				"oojs-ui.styles.icons-content",
-				"oojs-ui.styles.icons-moderation",
-				"oojs-ui-toolbars",
-				"oojs-ui.styles.icons-editing-core",
-				"oojs-ui.styles.icons-layout",
-				"oojs-ui.styles.icons-user",
-				"oojs-ui.styles.icons-media",
-				"oojs-ui.styles.icons-editing-advanced"
-			],
-			"styles": [
-				"ext.Adiutor/styles.css"
-			],
-			"scripts": [
-				"ext.Adiutor/ini.js"
-			]
-		},
-		"ext.Adiutor.afd": {
-			"scripts": "ext.Adiutor/afd.js"
-		},
-		"ext.Adiutor.ail": {
-			"scripts": "ext.Adiutor/ail.js"
-		},
-		"ext.Adiutor.aiv": {
-			"scripts": "ext.Adiutor/aiv.js"
-		},
-		"ext.Adiutor.bdm": {
-			"scripts": "ext.Adiutor/bdm.js"
-		},
-		"ext.Adiutor.cmr": {
-			"scripts": "ext.Adiutor/cmr.js"
-		},
-		"ext.Adiutor.cov": {
-			"scripts": "ext.Adiutor/cov.js"
-		},
+    "name": "Adiutor",
+    "author": "Vikipolimer",
+    "url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
+    "descriptionmsg": "Adiutor-desc",
+    "license-name": "GPL-2.0-or-later",
+    "type": "other",
+    "config": {
+        "AdiutorEnable": {
+            "description": "Enable the adiutor features",
+            "value": true
+        }
+    },
+    "MessagesDirs": {
+        "Adiutor": [
+            "i18n"
+        ]
+    },
+    "ExtensionMessagesFiles": {
+        "AdiutorAlias": "Adiutor.i18n.alias.php"
+    },
+    "AutoloadNamespaces": {
+        "MediaWiki\\Extension\\Adiutor\\": "includes/"
+    },
+    "SpecialPages": {
+        "CandidatesForSpeedyDeletion": "MediaWiki\\Extension\\Adiutor\\Csd"
+    },
+    "Hooks": {
+        "BeforePageDisplay": [
+            "MediaWiki\\Extension\\Adiutor\\Hooks::onBeforePageDisplay"
+        ]
+    },
+    "ResourceFileModulePaths": {
+        "localBasePath": "modules/"
+    },
+    "ResourceModules": {
+        "ext.Adiutor": {
+            "dependencies": [
+                "mediawiki.util",
+                "mediawiki.user",
+                "mediawiki.Title",
+                "mediawiki.api",
+                "oojs-ui-core",
+                "oojs-ui-windows",
+                "oojs-ui-widgets",
+                "oojs-ui.styles.icons-interactions",
+                "oojs-ui.styles.icons-movement",
+                "oojs-ui.styles.icons-content",
+                "oojs-ui.styles.icons-moderation",
+                "oojs-ui-toolbars",
+                "oojs-ui.styles.icons-editing-core",
+                "oojs-ui.styles.icons-layout",
+                "oojs-ui.styles.icons-user",
+                "oojs-ui.styles.icons-media",
+                "oojs-ui.styles.icons-editing-advanced"
+            ],
+            "styles": [
+                "ext.Adiutor/styles.css"
+            ],
+            "scripts": [
+                "ext.Adiutor/ini.js"
+            ]
+        },
+        "ext.Adiutor.afd": {
+            "scripts": "ext.Adiutor/afd.js"
+        },
+        "ext.Adiutor.ail": {
+            "scripts": "ext.Adiutor/ail.js"
+        },
+        "ext.Adiutor.aiv": {
+            "scripts": "ext.Adiutor/aiv.js"
+        },
+        "ext.Adiutor.bdm": {
+            "scripts": "ext.Adiutor/bdm.js"
+        },
+        "ext.Adiutor.cmr": {
+            "scripts": "ext.Adiutor/cmr.js"
+        },
+        "ext.Adiutor.cov": {
+            "scripts": "ext.Adiutor/cov.js"
+        },
 		"ext.Adiutor.csd": {
-			"scripts": "ext.Adiutor/csd.js"
-		},
-		"ext.Adiutor.das": {
-			"scripts": "ext.Adiutor/das.js"
-		},
-		"ext.Adiutor.del": {
-			"scripts": "ext.Adiutor/del.js"
-		},
-		"ext.Adiutor.inf": {
-			"scripts": "ext.Adiutor/inf.js"
-		},
-		"ext.Adiutor.ini": {
-			"scripts": "ext.Adiutor/ini.js"
-		},
-		"ext.Adiutor.opt": {
-			"scripts": "ext.Adiutor/opt.js"
-		},
-		"ext.Adiutor.pmr": {
-			"scripts": "ext.Adiutor/pmr.js"
-		},
-		"ext.Adiutor.prd": {
-			"scripts": "ext.Adiutor/prd.js"
-		},
-		"ext.Adiutor.rdr": {
-			"scripts": "ext.Adiutor/rdr.js"
-		},
-		"ext.Adiutor.rpp": {
-			"scripts": "ext.Adiutor/rpp.js"
-		},
-		"ext.Adiutor.sum": {
-			"scripts": "ext.Adiutor/sum.js"
-		},
-		"ext.Adiutor.tag": {
-			"scripts": "ext.Adiutor/tag.js"
-		},
-		"ext.Adiutor.ubm": {
-			"scripts": "ext.Adiutor/ubm.js"
-		},
-		"ext.Adiutor.upw": {
-			"scripts": "ext.Adiutor/upw.js"
-		},
-		"ext.Adiutor.wrn": {
-			"scripts": "ext.Adiutor/wrn.js"
-		}
-	},
-	"manifest_version": 2
+            "scripts": "ext.Adiutor/csd.js"
+        },	
+        "ext.Adiutor.das": {
+            "scripts": "ext.Adiutor/das.js"
+        },
+        "ext.Adiutor.del": {
+            "scripts": "ext.Adiutor/del.js"
+        },
+        "ext.Adiutor.inf": {
+            "scripts": "ext.Adiutor/inf.js"
+        },
+        "ext.Adiutor.ini": {
+            "scripts": "ext.Adiutor/ini.js"
+        },
+        "ext.Adiutor.opt": {
+            "scripts": "ext.Adiutor/opt.js"
+        },
+        "ext.Adiutor.pmr": {
+            "scripts": "ext.Adiutor/pmr.js"
+        },
+        "ext.Adiutor.prd": {
+            "scripts": "ext.Adiutor/prd.js"
+        },
+        "ext.Adiutor.rdr": {
+            "scripts": "ext.Adiutor/rdr.js"
+        },
+        "ext.Adiutor.rpp": {
+            "scripts": "ext.Adiutor/rpp.js"
+        },
+        "ext.Adiutor.sum": {
+            "scripts": "ext.Adiutor/sum.js"
+        },
+        "ext.Adiutor.tag": {
+            "scripts": "ext.Adiutor/tag.js"
+        },
+        "ext.Adiutor.ubm": {
+            "scripts": "ext.Adiutor/ubm.js"
+        },
+        "ext.Adiutor.upw": {
+            "scripts": "ext.Adiutor/upw.js"
+        },
+        "ext.Adiutor.wrn": {
+            "scripts": "ext.Adiutor/wrn.js"
+        }
+    },
+    "manifest_version": 2
 }

@@ -3,7 +3,6 @@ var adiutorUserOptions = JSON.parse(mw.user.options.get('userjs-adiutor-extensio
 var mwConfig = mw.config.get(["wgArticleId", "wgPageName", "wgUserName"]);
 var nominatedPreviously;
 var nextNominationNumber = 0;
-
 function fetchApiData(callback) {
 	api.get({
 		action: "query",
