@@ -16,19 +16,12 @@ class Hooks {
         if ($wgAdiutorEnable) {
             // Load our module on all pages
             $out->addModules('ext.Adiutor');
-
-            Hooks::getCsdConfiguration();
+            $configFiles = [ 'afd', 'aiv', 'cmr', 'csd', 'das', 'pmr', 'prd', 'rdr', 'rpp', 'sum', 'tag', 'ubm', 'wrn' ];
+            foreach ($configFiles as $configFile) {
+                $jsonFilePath = __DIR__ . "../../resources/localization/$configFile.json";
+                $jsonData = file_get_contents($jsonFilePath);
+                $out->addJsConfigVars("{$configFile}Configuration",[json_decode($jsonData)]);
+            }
         }
-    }
-
-    /**
-     * Fire the "Adiutor::getCsdConfiguration" hook.
-     *
-     */
-    public static function getCsdConfiguration(): void
-    {
-        $jsonFilePath = __DIR__ . '../../resources/localization/csd.json';
-        $jsonData = file_get_contents($jsonFilePath);
-        \Hooks::run('Adiutor::getCsdConfiguration', [$jsonData]);
     }
 }
