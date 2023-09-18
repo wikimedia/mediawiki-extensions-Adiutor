@@ -1,6 +1,6 @@
 # Adiutor
 
-Adiutor is an extension developed to facilitate maintenance tasks on Wikipedia, making them more efficient and user-friendly. Built using OOUI-based MediaWiki JS and JavaScript, Adiutor is designed to provide users with convenience in performing various tasks. All suggestions and bug reports are reviewed and discussed on the discussion page to continually improve and refine the tool. The active participation and support from the Wikipedia community play a vital role in further developing Adiutor into a more functional and user-friendly tool.
+Adiutor is an extension under the developing process to facilitate maintenance tasks on Wikipedia, making them more efficient and user-friendly. Built using Codex and Vue, Adiutor is designed to provide users with convenience in performing various tasks. All suggestions and bug reports are reviewed and discussed on the discussion page to continually improve and refine the tool. The active participation and support from the Wikipedia community play a vital role in further developing Adiutor into a more functional and user-friendly tool.
 
 ![Alt text](https://upload.wikimedia.org/wikipedia/commons/3/36/Adiutor_promote_image.png)
 
