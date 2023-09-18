@@ -1,0 +1,23 @@
+// This imports all Codex design tokens and mixins.
+@import 'mediawiki.skin.variables.less';
+
+.ext-adiutor {
+	&-vue-app {
+		max-width: @size-5600;
+		padding: @spacing-100 0;
+	}
+
+	// CSS-only icons.
+	// See https://doc.wikimedia.org/codex/latest/components/demos/icon.html#css-only-version
+	&-css__icon {
+		&--trash {
+			// For CSS-only icons within buttons, we need an extra param.
+			// See https://doc.wikimedia.org/codex/latest/components/demos/button.html#with-css-icon
+			.cdx-mixin-css-icon( @cdx-icon-trash, @param-is-button-icon: true );
+		}
+
+		&--robot {
+			.cdx-mixin-css-icon( @cdx-icon-robot );
+		}
+	}
+}

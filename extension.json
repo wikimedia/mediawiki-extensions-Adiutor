@@ -31,98 +31,248 @@
         ]
     },
     "ResourceFileModulePaths": {
-        "localBasePath": "modules/"
-    },
+		"localBasePath": "resources",
+		"remoteExtPath": "Adiutor/resources"
+	},
     "ResourceModules": {
         "ext.Adiutor": {
             "dependencies": [
-                "mediawiki.util",
-                "mediawiki.user",
-                "mediawiki.Title",
-                "mediawiki.api",
-                "oojs-ui-core",
-                "oojs-ui-windows",
-                "oojs-ui-widgets",
-                "oojs-ui.styles.icons-interactions",
-                "oojs-ui.styles.icons-movement",
-                "oojs-ui.styles.icons-content",
-                "oojs-ui.styles.icons-moderation",
-                "oojs-ui-toolbars",
-                "oojs-ui.styles.icons-editing-core",
-                "oojs-ui.styles.icons-layout",
-                "oojs-ui.styles.icons-user",
-                "oojs-ui.styles.icons-media",
-                "oojs-ui.styles.icons-editing-advanced"
+                "@wikimedia/codex",
+                "vue"
             ],
-            "styles": [
-                "ext.Adiutor/styles.css"
+            "messages": [
+                "create",
+                "okay",
+                "more-about-this-page",
+                "add-tag",
+                "hello",
+                "close",
+                "comment",
+                "help",
+                "back",
+                "about",
+                "adiutor-contributor-dashboard",
+                "confirm-action",
+                "speedy-deletion-policy",
+                "delete",
+                "other-options",
+                "administrator-tools",
+                "next",
+                "warn",
+                "block-requests",
+                "csd-requests",
+                "help-and-guides",
+                "my-contributions",
+                "welcome-date-change-message",
+                "propose",
+                "adiutor-dashboard-about-adiutor-title",
+                "adiutor-dashboard-about-adiutor-description",
+                "adiutor-dashboard-main-page",
+                "my-talk-page",
+                "update",
+                "continue",
+                "options",
+                "article-info",
+                "test-feature",
+                "active",
+                "suggest-edit",
+                "unpin-from-works",
+                "pin-to-works",
+                "clear",
+                "edit",
+                "works",
+                "my-works",
+                "passive",
+                "status",
+                "away",
+                "rdr-comment-placeholder",
+                "rdr-revision-id-help",
+                "rdr-rationale-1",
+                "rdr-rationale-2",
+                "rdr-rationale-3",
+                "rdr-rationale-4",
+                "rdr-rationale-5",
+                "cancel",
+                "vandalism",
+                "protect-against-rebuilding",
+                "protect-against-rebuilding-help",
+                "username-violation",
+                "related-page",
+                "wrn-related-page-help",
+                "wrn-user-mildly",
+                "wrn-user-seriously",
+                "wrn-user-sternly",
+                "disruptive-editing",
+                "test-editing",
+                "related-page-description",
+                "revision-id",
+                "revision-id-description",
+                "report",
+                "report-type",
+                "rationale",
+                "afd-rationale-placeholder",
+                "afd-inform-creator",
+                "afd-inform-creator-help",
+                "select-rationale",
+                "pmr-rationale-placeholder",
+                "rpp-rationale-placeholder",
+                "pmr-module-title",
+                "aiv-module-title",
+                "tag-module-title",
+                "afd-module-title",
+                "rdr-module-title",
+                "opt-module-title",
+                "wrn-module-title",
+                "rpp-module-title",
+                "prd-module-title",
+                "csd-module-title",
+                "warning-type",
+                "create-request",
+                "aticle-work-list-description",
+                "protection-type",
+                "indefinite",
+                "temporary",
+                "search-article",
+                "prd-deletion-rationale",
+                "duration",
+                "prd-deletion-type",
+                "prd-deletion-type-1",
+                "prd-deletion-type-2",
+                "prd-deletion-type-1-help",
+                "prd-deletion-type-2-help",
+                "select-protection-type",
+                "rpp-header-title",
+                "prd-header-title",
+                "csd-header-title",
+                "csd-header-description",
+                "rpp-header-description",
+                "prd-header-description",
+                "wrn-dialog-description",
+                "aiv-rationale-1",
+                "aiv-rationale-2",
+                "aiv-rationale-3",
+                "aiv-rationale-4",
+                "aiv-rationale-5",
+                "aiv-rationale-6",
+                "aiv-rationale-7",
+                "aiv-rationale-8",
+                "aiv-rationale-9",
+                "aiv-rationale-10",
+                "pmr-new-page-name-description",
+                "new-name",
+                "pmr-header-title",
+                "pmr-header-description",
+                "aiv-header-title",
+                "aiv-header-description",
+                "rdr-header-title",
+                "rdr-header-description",
+                "afd-header-title",
+                "afd-header-description",
+                "tag-header-description",
+                "csd-send-message-to-creator",
+                "afd-send-message-to-creator",
+                "prd-send-message-to-creator",
+                "csd-log-nominated-pages",
+                "csd-log-page-name",
+                "afd-log-nominated-pages",
+                "afd-log-page-name",
+                "prd-log-nominated-pages",
+                "prd-log-page-name",
+                "afd-nominate-opinions-log",
+                "afd-opinion-log-page-name",
+                "show-my-status",
+                "show-status-description",
+                "create-speedy-deletion-request",
+                "create-revision-deletion-request",
+                "proposed-deletion-nomination",
+                "nominate-article-for-deletion",
+                "page-move-request",
+                "page-protection-request",
+                "recent-changes",
+                "tag-page",
+                "copyright-violation-check",
+                "adiutor-settings",
+                "page-info-tip",
+                "page-more-info-tip-author-title",
+                "page-more-info-tip-author",
+                "page-more-info-tip-date-title",
+                "page-more-info-tip-date",
+                "page-more-info-tip-keyword-title",
+                "page-more-info-tip-keyword",
+                "show-inline-page-info",
+                "show-inline-page-info-description",
+                "choose-duration",
+                "infinity",
+                "3-hours",
+                "12-hours",
+                "24-hours",
+                "32-hours",
+                "36-hours",
+                "48-hours",
+                "60-hours",
+                "72-hours",
+                "1-week",
+                "2-weeks",
+                "1-month",
+                "3-months",
+                "6-months",
+                "1-year",
+                "2-years",
+                "3-years",
+                "choose-reason",
+                "please-choose-block-rationale",
+                "swearing-edit",
+                "disruption-harassment",
+                "unauthorized-bots",
+                "three-revert-rule-abuse",
+                "threatening-legal-action",
+                "disclosure-of-personal-information",
+                "copyright-violation",
+                "inappropriate-username",
+                "testing-community-patience",
+                "anonymous-proxy",
+                "violating-pillar-content-policies",
+                "inappropriate-sockpuppetry",
+                "personal-attacks",
+                "incivility",
+                "disruptive-editing",
+                "copyright-infringing-page",
+                "vandalism",
+                "bad-faith",
+                "edit-warring",
+                "block",
+                "unblock"
             ],
-            "scripts": [
-                "ext.Adiutor/ini.js"
+            "styles": [],
+            "packageFiles": [
+                "ext.Adiutor/init.js",
+                "ext.Adiutor/components/App.vue",
+                "ext.Adiutor/components/Csd.vue",
+                "ext.Adiutor/components/Prd.vue",
+                "ext.Adiutor/components/Rpp.vue",
+                "ext.Adiutor/localization/Csd.json",
+                "ext.Adiutor/localization/Prd.json",
+                "ext.Adiutor/localization/Rpp.json",
+                {
+                    "name": "ext.Adiutor/icons.json",
+                    "callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
+                    "callbackParam": [
+                        "cdxIconAdd",
+                        "cdxIconClose"
+                    ]
+                }
+            ],
+            "targets": [
+                "desktop",
+                "mobile"
             ]
         },
-        "ext.Adiutor.afd": {
-            "scripts": "ext.Adiutor/afd.js"
-        },
-        "ext.Adiutor.ail": {
-            "scripts": "ext.Adiutor/ail.js"
-        },
-        "ext.Adiutor.aiv": {
-            "scripts": "ext.Adiutor/aiv.js"
-        },
-        "ext.Adiutor.bdm": {
-            "scripts": "ext.Adiutor/bdm.js"
-        },
-        "ext.Adiutor.cmr": {
-            "scripts": "ext.Adiutor/cmr.js"
-        },
-        "ext.Adiutor.cov": {
-            "scripts": "ext.Adiutor/cov.js"
-        },
-		"ext.Adiutor.csd": {
-            "scripts": "ext.Adiutor/csd.js"
-        },	
-        "ext.Adiutor.das": {
-            "scripts": "ext.Adiutor/das.js"
-        },
-        "ext.Adiutor.del": {
-            "scripts": "ext.Adiutor/del.js"
-        },
-        "ext.Adiutor.inf": {
-            "scripts": "ext.Adiutor/inf.js"
-        },
-        "ext.Adiutor.ini": {
-            "scripts": "ext.Adiutor/ini.js"
-        },
-        "ext.Adiutor.opt": {
-            "scripts": "ext.Adiutor/opt.js"
-        },
-        "ext.Adiutor.pmr": {
-            "scripts": "ext.Adiutor/pmr.js"
-        },
-        "ext.Adiutor.prd": {
-            "scripts": "ext.Adiutor/prd.js"
-        },
-        "ext.Adiutor.rdr": {
-            "scripts": "ext.Adiutor/rdr.js"
-        },
-        "ext.Adiutor.rpp": {
-            "scripts": "ext.Adiutor/rpp.js"
-        },
-        "ext.Adiutor.sum": {
-            "scripts": "ext.Adiutor/sum.js"
-        },
-        "ext.Adiutor.tag": {
-            "scripts": "ext.Adiutor/tag.js"
-        },
-        "ext.Adiutor.ubm": {
-            "scripts": "ext.Adiutor/ubm.js"
-        },
-        "ext.Adiutor.upw": {
-            "scripts": "ext.Adiutor/upw.js"
-        },
-        "ext.Adiutor.wrn": {
-            "scripts": "ext.Adiutor/wrn.js"
+        "ext.Adiutor.styles": {
+            "styles": "ext.Adiutor.styles/styles.less",
+            "targets": [
+                "desktop",
+                "mobile"
+            ]
         }
     },
     "manifest_version": 2
