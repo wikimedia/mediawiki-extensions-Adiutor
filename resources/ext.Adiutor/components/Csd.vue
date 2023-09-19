@@ -26,10 +26,10 @@
 				<cdx-field :is-fieldset="true" v-for="reason in generalDeletionReasons">
 					<cdx-label class="adt-label"><strong>{{ reason.name }}</strong></cdx-label>
 					<cdx-checkbox v-for="reason in reason.reasons" :key="'checkbox-' + reason.value" v-model="checkboxValue"
-						:input-value="reason.value">
+						:input-value="reason.value" @click="toggleCopyVioInputBasedOnCheckbox()">
 						{{ reason.label }}
 					</cdx-checkbox>
-					<div>
+					<div v-if="showCopyVioInput">
 						<cdx-label class="adt-label"><strong>{{ $i18n('copyright-infringing-page') }} {{ copyVioInput
 						}}</strong></cdx-label>
 						<cdx-text-input v-model="copyVioInput" aria-label="TextInput default demo"></cdx-text-input>
@@ -62,7 +62,6 @@ var copyVioReasonValue = csdConfiguration.copyVioReasonValue;
 var csdTemplatePostfixReasonData = csdConfiguration.csdTemplatePostfixReasonData;
 var csdTemplatePostfixReasonValue = csdConfiguration.csdTemplatePostfixReasonValue;
 var useVerticalVarForSeparatingMultipleReasons = csdConfiguration.useVerticalVarForSeparatingMultipleReasons;
-
 const namespaceDeletionReasons = [];
 for (const reason of speedyDeletionReasons) {
 	if (reason.namespace === mw.config.get('wgNamespaceNumber')) {
@@ -92,6 +91,24 @@ module.exports = defineComponent({
 		const recreationProrection = false;
 		const informCreator = false;
 		const openCsdDialog = ref(true);
+
+		const showCopyVioInput = ref(false);
+
+		const toggleCopyVioInputBasedOnCheckbox = () => {
+			const selectedReasons = speedyDeletionReasons.reduce((selected, category) => {
+				const selectedInCategory = category.reasons.filter((reason) => {
+					return checkboxValue.value.includes(reason.value);
+				});
+				selected.push(...selectedInCategory);
+				return selected;
+			}, []);
+
+			if (selectedReasons.some((reason) => reason.value === copyVioReasonValue)) {
+				showCopyVioInput.value = true;
+			} else {
+				showCopyVioInput.value = false;
+			}
+		};
 
 		const primaryAction = {
 			label: mw.msg('tag-page'),
@@ -158,7 +175,6 @@ module.exports = defineComponent({
 			}
 		}
 
-
 		function replacePlaceholders(input, replacements) {
 			return input.replace(/\$(\d+)/g, function (match, group) {
 				var replacement = replacements['$' + group];
@@ -186,6 +202,8 @@ module.exports = defineComponent({
 			copyVioInput,
 			recreationProrection,
 			informCreator,
+			showCopyVioInput,
+			toggleCopyVioInputBasedOnCheckbox,
 			createSpeedyDeletionRequest
 		};
 	}
