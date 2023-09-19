@@ -1,184 +1,90 @@
 <template>
-	<cdx-dialog v-model:open="openRppDialog" title="Page Protection Request" close-button-label="Close"
-		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection"
-		@default="openRppDialog = false">
-		<h5>{{ $i18n('rpp-header-title') }}</h5>
-		<p>{{ $i18n('rpp-header-description') }}</p>
-		<cdx-label class="adt-label"><strong>{{ $i18n('protection-type') }}</strong></cdx-label>
-		<cdx-field>
-			<cdx-select v-model:selected="durationSelection" :menu-items="protectionDurations"
-				default-label="Choose duration"></cdx-select>
-			<cdx-select v-model:selected="typeSelection" :menu-items="protectionTypes"
-				default-label="Select protection type"></cdx-select>
-			<cdx-label class="label-second"><strong>{{ $i18n('rationale') }}</strong></cdx-label>
-			<cdx-field
-		class="cdx-demo-field-with-counter"
-		:status="status"
-		:messages="errorMessage"
-	>
-		<template #label>
-			Enter your message
-		</template>
-
-		<cdx-text-area v-model="userMessageText"></cdx-text-area>
-
-		<template #help-text>
-			<div
-				class="cdx-demo-field-with-counter__help-text"
-				:class="dynamicClasses"
-			>
-				<!-- Display help text or error message depending on error status. -->
-				<div class="cdx-demo-field-with-counter__help-text__message">
-					<p>{{ helpText }}</p>
-				</div>
-
-				<!-- Display the remaining character count. -->
-				<div class="cdx-demo-field-with-counter__help-text__counter">
-					{{ charsRemaining }}
-				</div>
-			</div>
-		</template>
-	</cdx-field>
-		</cdx-field>
-
-	</cdx-dialog>
+	<div class="cdx-docs-input-with-menu-scroll">
+		<cdx-button v-model="selectedValue" class="cdx-docs-input-with-menu-scroll__input" role="combobox"
+			:aria-expanded="expanded" :aria-controls="menuId" :aria-activedescendant="activeDescendant" @click="onClick"
+			@blur="expanded = false" @keydown="onKeydown">
+			<span class="my-icon-class--trash"></span>
+ Adiutor
+		</cdx-button>
+		<cdx-menu :id="menuId" ref="menu" v-model:selected="selectedValue" v-model:expanded="expanded"
+			:menu-items="menuItems" :footer="footer"
+			:visible-item-limit="itemLimit ? parseInt(`${itemLimit}`) : null"></cdx-menu>
+	</div>
 </template>
 <script>
-const { defineComponent, ref, computed } = require( 'vue' );
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput,CdxTextArea, CdxSelect } = require('@wikimedia/codex');
-const rppConfiguration = require('../localization/Rpp.json');
-var noticeBoardTitle = rppConfiguration.noticeBoardTitle;
-var noticeBoardLink = noticeBoardTitle.replace(/ /g, '_');
-var protectionDurations = rppConfiguration.protectionDurations;
-var protectionTypes = rppConfiguration.protectionTypes;
-var addNewSection = rppConfiguration.addNewSection;
-var appendText = rppConfiguration.appendText;
-var prependText = rppConfiguration.prependText;
-var sectionId = rppConfiguration.sectionId;
-var contentPattern = rppConfiguration.contentPattern;
-var apiPostSummary = rppConfiguration.apiPostSummary;
-var sectionTitle = rppConfiguration.sectionTitle;
-var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
+const { defineComponent, ref, computed } = require('vue');
+const { CdxMenu, CdxTextInput, CdxButton, useGeneratedId } = require('@wikimedia/codex');
+// @vue/component
 module.exports = defineComponent({
-	name: 'csdDialog',
+	name: 'InputWithMenuScroll',
 	components: {
+		CdxMenu,
 		CdxButton,
-		CdxDialog,
-		CdxCheckbox,
-		CdxField,
-		CdxLabel,
-		CdxTextInput,
-		CdxSelect,
-		CdxTextArea
-	},
-	data() {
-		return {
-			protectionDurations: rppConfiguration.protectionDurations,
-			protectionTypes: rppConfiguration.protectionTypes,
-			durationSelection: null,
-			typeSelection: null
-		};
+		CdxTextInput
 	},
 	setup() {
-		const rationaleInput = ref('');
-		const switchValue = ref(false);
-		const durationSelection = null;
-		const typeSelection = null;
-		const standardPropose = false;
-		const livingPersonPropose = false;
-		const openRppDialog = ref(true);
+		const menu = ref();
+		const selectedValue = ref('');
+		const expanded = ref(false);
+		const activeDescendant = computed(() => {
+			const highlightedItem = menu.value && menu.value.getHighlightedMenuItem();
+			return highlightedItem ? highlightedItem.id : undefined;
+		});
+		const menuId = useGeneratedId('menu');
+		const menuItems = [
+			{ label: mw.msg('create-speedy-deletion-request'), value: 'csd' },
+			{ label: mw.msg('proposed-deletion-nomination'), value: 'prd' },
+			{ label: mw.msg('nominate-article-for-deletion'), value: 'afd' },
+			{ label: mw.msg('page-move-request'), value: 'pmr' },
+			{ label: mw.msg('page-protection-request'), value: 'rpp' },
+			{ label: mw.msg('recent-changes'), value: '6' },
+			{ label: mw.msg('tag-page'), value: 'tag' },
+			{ label: mw.msg('copyright-violation-check'), value: 'cov' },
+			{ label: mw.msg('article-info'), value: 'inf' },
+		];
+		const itemLimit = ref('6');
 
-		const primaryAction = {
-			label: mw.msg('create-request'),
-			actionType: 'progressive'
+		const footer = {
+			value: 'menu-footer',
+			label: mw.msg('adiutor-settings')
 		};
 
-		function requestPageProtection() {
-			openRppDialog.value = false;
-			var placeholders = {
-				$1: pageTitle,
-				$2: durationSelection,
-				$3: typeSelection,
-				$4: rationaleInput,
-			};
-			const preparedContent = replacePlaceholders(contentPattern, placeholders);
-			console.log(preparedContent);
-		}
+		/**
+		 * Delegate most keydowns on the text input to the Menu component. This
+		 * allows the Menu component to enable keyboard navigation of the menu.
+		 *
+		 * @param {KeyboardEvent} e The keyboard event
+		 */
+		function onKeydown(e) {
+			// The menu component enables the space key to open and close the
+			// menu. However, for text inputs with menus, the space key should
+			// always insert a new space character in the input.
+			if (e.key === ' ') {
+				return;
+			}
 
-
-		const MAX_MESSAGE_LENGTH = 100;
-		const helpText = `Please enter a message of ${MAX_MESSAGE_LENGTH} characters or less`;
-
-		const errorMessage = { error: 'Message is too long' };
-		const userMessageText = ref( '' );
-
-		// This is a simplified example; support for other languages/scripts may
-		// require more complex code.
-		const charsRemaining = computed( () => MAX_MESSAGE_LENGTH - userMessageText.value.length );
-		const status = computed( () => charsRemaining.value < 0 ? 'error' : 'default' );
-
-		const dynamicClasses = computed( () => {
-			return {
-				'cdx-demo-field-with-counter__help-text--error': status.value === 'error'
-			};
-		} );
-
-
-		function replacePlaceholders(input, replacements) {
-			return input.replace(/\$(\d+)/g, function (match, group) {
-				var replacement = replacements['$' + group];
-				return replacement !== undefined ? replacement : match;
-			});
-		}
-
-		function replaceParameter(input, parameterName, newValue) {
-			const regex = new RegExp('\\$' + parameterName, 'g');
-			if (input.includes('$' + parameterName)) {
-				return input.replace(regex, newValue);
-			} else {
-				return input;
+			// Delegate all other key events to the Menu component.
+			if (menu.value) {
+				menu.value.delegateKeyNavigation(e);
 			}
 		}
 
+		function onClick() {
+			expanded.value = true;
+		}
+
 		return {
-			openRppDialog,
-			primaryAction,
-			standardPropose,
-			livingPersonPropose,
-			rationaleInput,
-			switchValue,
-			requestPageProtection,
-			userMessageText,
-			status,
-			charsRemaining,
-			errorMessage,
-			helpText,
-			dynamicClasses
+			menu,
+			selectedValue,
+			expanded,
+			activeDescendant,
+			menuId,
+			menuItems,
+			footer,
+			itemLimit,
+			onKeydown,
+			onClick
 		};
 	}
 });
 </script>
-
-<style>
-.csd-reasons-body {
-	display: flex;
-	padding-top: 10px;
-}
-
-.csd-reason-field {
-	display: flex;
-	flex-direction: column;
-	width: 50%;
-}
-
-cdx-label {
-	margin-bottom: 10px;
-	display: block;
-}
-
-.label-second {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	display: block;
-}
-</style>
