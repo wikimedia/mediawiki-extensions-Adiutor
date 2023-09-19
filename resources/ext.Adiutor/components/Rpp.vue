@@ -12,12 +12,13 @@
 				default-label="Select protection type"></cdx-select>
 			<cdx-label class="label-second"><strong>{{ $i18n('rationale') }}</strong></cdx-label>
 			<cdx-text-input v-model="rationaleInput" aria-label="TextInput default demo"></cdx-text-input>
+			<cdx-text-area v-model="rationaleInput" placeholder="Describe what you changed"></cdx-text-area>
 		</cdx-field>
 	</cdx-dialog>
 </template>
 <script>
 const { defineComponent, ref } = require('vue');
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxSelect } = require('@wikimedia/codex');
+const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxTextArea, CdxSelect } = require('@wikimedia/codex');
 const rppConfiguration = require('../localization/Rpp.json');
 var noticeBoardTitle = rppConfiguration.noticeBoardTitle;
 var noticeBoardLink = noticeBoardTitle.replace(/ /g, '_');
@@ -40,6 +41,7 @@ module.exports = defineComponent({
 		CdxField,
 		CdxLabel,
 		CdxTextInput,
+		CdxTextArea,
 		CdxSelect
 	},
 	data() {
