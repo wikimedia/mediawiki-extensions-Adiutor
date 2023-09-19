@@ -31,9 +31,9 @@
         ]
     },
     "ResourceFileModulePaths": {
-		"localBasePath": "resources",
-		"remoteExtPath": "Adiutor/resources"
-	},
+        "localBasePath": "resources",
+        "remoteExtPath": "Adiutor/resources"
+    },
     "ResourceModules": {
         "ext.Adiutor": {
             "dependencies": [

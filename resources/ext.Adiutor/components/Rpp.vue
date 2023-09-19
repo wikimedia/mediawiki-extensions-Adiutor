@@ -1,7 +1,7 @@
 <template>
 	<cdx-dialog v-model:open="openRppDialog" title="Page Protection Request" close-button-label="Close"
 		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection"
-		@default="openRppDialog = false">
+		@default="openRppDialog = true">
 		<h5>{{ $i18n('rpp-header-title') }}</h5>
 		<p>{{ $i18n('rpp-header-description') }}</p>
 		<cdx-label class="adt-label"><strong>{{ $i18n('protection-type') }}</strong></cdx-label>
@@ -32,7 +32,7 @@ var apiPostSummary = rppConfiguration.apiPostSummary;
 var sectionTitle = rppConfiguration.sectionTitle;
 var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
 module.exports = defineComponent({
-	name: 'csdDialog',
+	name: 'requestProtection',
 	components: {
 		CdxButton,
 		CdxDialog,

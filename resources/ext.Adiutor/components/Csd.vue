@@ -77,7 +77,7 @@ for (const reason of speedyDeletionReasons) {
 }
 // @vue/component
 module.exports = defineComponent({
-	name: 'csdDialog',
+	name: 'createSpeedyDeletion',
 	components: {
 		CdxButton,
 		CdxDialog,

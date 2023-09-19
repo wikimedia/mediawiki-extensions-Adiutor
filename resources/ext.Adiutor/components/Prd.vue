@@ -23,7 +23,7 @@ const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, Cdx
 const prdConfiguration = require('../localization/Prd.json');
 
 module.exports = defineComponent({
-	name: 'csdDialog',
+	name: 'proposeDeletion',
 	components: {
 		CdxButton,
 		CdxDialog,
