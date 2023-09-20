@@ -3,7 +3,7 @@
 	const App = require('./components/App.vue');
 	const Sdr = require('./components/Sdr.vue');
 	const Afd = require('./components/Afd.vue');
-	
+
 	Vue.configureCompat({
 		MODE: 3
 	});
