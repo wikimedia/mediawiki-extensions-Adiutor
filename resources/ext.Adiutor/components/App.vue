@@ -7,6 +7,9 @@
 const Rpp = require('./Rpp.vue');
 const Csd = require('./Csd.vue');
 const Prd = require('./Prd.vue');
+mw.util.addPortletLink('p-cactions', '#', 'Request speedy deletion', 't-request-speedy-deletion', 'Request speedy deletion', 'rsd');
+mw.util.addPortletLink('p-cactions', '#', 'Propose deletion', 't-propose-deletion', 'Propose deletion', 'pd');
+mw.util.addPortletLink('p-cactions', '#', 'Request protection', 't-request-protection', 'Request protection', 'pr');
 module.exports = {
 	name: 'adiutorInterfaceLoader',
 	data() {

@@ -3,17 +3,17 @@
 		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection "
 		@default="openRppDialog = true" :default-action="defaultAction">
 		<div class="header">
-		<h5>{{ $i18n('rpp-header-title') }}</h5>
-		<p>{{ $i18n('rpp-header-description') }}</p>
+		<h5>{{ $i18n('adiutor-rpp-header-title') }}</h5>
+		<p>{{ $i18n('adiutor-rpp-header-description') }}</p>
 	</div>
 		
 		<cdx-field class="rpp-dialog-body">
-			<cdx-label class="adt-label"><strong>{{ $i18n('protection-type') }}</strong></cdx-label>
+			<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-protection-type') }}</strong></cdx-label>
 			<cdx-select v-model:selected="durationSelection" :menu-items="protectionDurations"
 				default-label="Choose duration"></cdx-select>
 			<cdx-select v-model:selected="typeSelection" :menu-items="protectionTypes"
 				default-label="Select protection type"></cdx-select>
-			<cdx-label><strong>{{ $i18n('rationale') }}</strong></cdx-label>
+			<cdx-label><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
 			<cdx-text-input v-model="rationaleInput" aria-label="TextInput default demo"></cdx-text-input>
 			<div>
 				<cdx-text-area v-model="rationaleInput" placeholder="Describe what you changed"></cdx-text-area>
@@ -67,12 +67,12 @@ module.exports = defineComponent({
 		const openRppDialog = ref(true);
 
 		const primaryAction = {
-			label: mw.msg('create-request'),
+			label: mw.msg('adiutor-create-request'),
 			actionType: 'progressive'
 		};
 
 		const defaultAction = {
-			label: mw.msg('protection-policy'),
+			label: mw.msg('adiutor-protection-policy'),
 		};
 
 		function requestPageProtection() {
@@ -170,7 +170,7 @@ module.exports = defineComponent({
 	display: block;
 	align-items: baseline;
 	justify-content: space-between;
-	height: 8em;
+	height: 10em;
 	padding: 20px;
 	background-image: url(../../ext.Adiutor.images/rpp-background.png);
     background-position: right 5px;

@@ -3,8 +3,8 @@
 		:show-dividers="true" :primary-action="primaryAction" :default-action="defaultAction"
 		@primary="createSpeedyDeletionRequest" @default="openCsdDialog = true">
 		<div class="header">
-			<h5>{{ $i18n('csd-header-title') }}</h5>
-			<p>{{ $i18n('csd-header-description') }}</p>
+			<h5>{{ $i18n('adiutor-csd-header-title') }}</h5>
+			<p>{{ $i18n('adiutor-csd-header-description') }}</p>
 		</div>
 		<div class="csd-reasons-body">
 			<div class="csd-reason-field">
@@ -17,10 +17,10 @@
 					<template #help-text>
 						{{ reason.help }}
 					</template>
-					<cdx-label class="adt-label"><strong>{{ $i18n('other-options') }}</strong></cdx-label>
+					<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-other-options') }}</strong></cdx-label>
 					<cdx-checkbox v-model="recreationProrection">{{
 						$i18n('protect-against-rebuilding') }}</cdx-checkbox>
-					<cdx-checkbox v-model="informCreator">{{ $i18n('afd-inform-creator')
+					<cdx-checkbox v-model="informCreator">{{ $i18n('adiutor-afd-inform-creator')
 					}}</cdx-checkbox>
 				</cdx-field>
 			</div>
@@ -32,7 +32,7 @@
 						{{ reason.label }}
 					</cdx-checkbox>
 					<div v-if="showCopyVioInput">
-						<cdx-label class="adt-label"><strong>{{ $i18n('copyright-infringing-page') }} {{ copyVioInput
+						<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-copyright-infringing-page') }} {{ copyVioInput
 						}}</strong></cdx-label>
 						<cdx-text-input v-model="copyVioInput" aria-label="TextInput default demo"></cdx-text-input>
 					</div>
@@ -114,12 +114,12 @@ module.exports = defineComponent({
 
 		const primaryAction = {
 			icon: 'cdxIconTag',
-			label: mw.msg('request'),
+			label: mw.msg('adiutor-request'),
 			actionType: 'progressive'
 		};
 
 		const defaultAction = {
-			label: mw.msg('speedy-deletion-policy'),
+			label: mw.msg('adiutor-speedy-deletion-policy'),
 		};
 
 		function createSpeedyDeletionRequest() {
@@ -172,7 +172,7 @@ module.exports = defineComponent({
 			} else {
 				// Uyarı göster
 				mw.notify(mw.message('select-speedy-deletion-reason').text(), {
-					title: mw.msg('warning'),
+					title: mw.msg('adiutor-warning'),
 					type: 'error'
 				});
 			}
@@ -262,12 +262,12 @@ module.exports = defineComponent({
 	display: block;
 	align-items: baseline;
 	justify-content: space-between;
-	height: 8em;
+	height: 10em;
 	padding: 20px;
 	background-image: url(../../ext.Adiutor.images/csd-background.png);
-	background-position: right 0px;
-	background-repeat: no-repeat;
-	background-size: 205px;
+    background-position: right 10px;
+    background-repeat: no-repeat;
+    background-size: 205px;
 }
 
 .csd-dialog .cdx-dialog__footer {
@@ -275,7 +275,7 @@ module.exports = defineComponent({
 }
 
 .csd-dialog .header p {
-	width: 60%;
+	width: 70%;
 }
 
 .csd-dialog h2 {

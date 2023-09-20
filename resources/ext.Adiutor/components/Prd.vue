@@ -4,21 +4,21 @@
 		@default="openPrdDialog = true">
 	
 		<div class="header">
-			<h5>{{ $i18n('prd-header-title') }}</h5>
-		<p>{{ $i18n('prd-header-description') }}</p>
+			<h5>{{ $i18n('adiutor-prd-header-title') }}</h5>
+		<p>{{ $i18n('adiutor-prd-header-description') }}</p>
 	</div>
 	<cdx-field class="prd-dialog-body">
-		<cdx-label class="adt-label"><strong>{{ $i18n('prd-deletion-type') }}</strong></cdx-label>
+		<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-prd-deletion-type') }}</strong></cdx-label>
 		<cdx-checkbox v-model="standardPropose">{{
 			$i18n('prd-deletion-type-1') }}</cdx-checkbox>
 		<cdx-checkbox v-model="livingPersonPropose">{{
 			$i18n('prd-deletion-type-2') }}</cdx-checkbox>
-		<cdx-label class="adt-label"><strong>{{ $i18n('rationale') }}</strong></cdx-label>
+		<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
 		<cdx-text-input v-model="textareaValue" aria-label="TextInput default demo"></cdx-text-input>
 	</cdx-field>
 	<div class="footer">
 				<cdx-checkbox v-model="checkboxValue" :inline="true">
-					{{ $i18n('afd-inform-creator') }}
+					{{ $i18n('adiutor-afd-inform-creator') }}
 				</cdx-checkbox>
 
 				<cdx-button
@@ -26,7 +26,7 @@
 					aria-label="Next"
 					@click="proposeForDeletion"
 				>
-				{{ $i18n('propose') }}
+				{{ $i18n('adiutor-propose') }}
 				</cdx-button>
 				
 			</div>
