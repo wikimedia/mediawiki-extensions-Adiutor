@@ -1,29 +1,33 @@
 <template>
-<div class="afd">
-    <div class="header">
-			<h5>{{ $i18n('afd-special-page-title') }}</h5>
-			<p>Articles for deletion (AfD) is where Wikipedians discuss whether an article should be deleted. Articles listed are normally discussed for at least seven days, after which the deletion process proceeds based on community consensus. Common outcomes are that the article is kept, merged, redirected, incubated, renamed/moved to another title, userfied to a user subpage, or deleted per the deletion policy. Disambiguation pages are also nominated for deletion at AfD.</p>
-		</div>
-    <div>
-        <!-- Filter by namespace -->
-        <cdx-combobox v-model:selected="selectionNamespace" :menu-items="namespaceValues"
-            placeholder="Filter by namespace"></cdx-combobox>
-        <!-- Filter by reason -->
-        <cdx-combobox v-model:selected="selectionReason" :menu-items="deletionReasonsValue"
-            placeholder="Filter by reason"></cdx-combobox>
+    <div class="afd">
+        <div class="header">
+            <h5>{{ $i18n('afd-special-page-title') }}</h5>
+            <p>Articles for deletion (AfD) is where Wikipedians discuss whether an article should be deleted. Articles
+                listed are normally discussed for at least seven days, after which the deletion process proceeds based on
+                community consensus. Common outcomes are that the article is kept, merged, redirected, incubated,
+                renamed/moved to another title, userfied to a user subpage, or deleted per the deletion policy.
+                Disambiguation pages are also nominated for deletion at AfD.</p>
+        </div>
+        <div>
+            <!-- Filter by namespace -->
+            <cdx-combobox v-model:selected="selectionNamespace" :menu-items="namespaceValues"
+                placeholder="Filter by namespace"></cdx-combobox>
+            <!-- Filter by reason -->
+            <cdx-combobox v-model:selected="selectionReason" :menu-items="deletionReasonsValue"
+                placeholder="Filter by reason"></cdx-combobox>
+        </div>
+        <div class="speedy-deletion-requests">
+            <cdx-card class="sdr-item" url="https://www.example.com" v-for="request in filteredRequests"
+                :key="request.pageName">
+                <template #title>
+                    {{ request.pageName }}
+                </template>
+                <template #description>
+                    {{ request.reason }}
+                </template>
+            </cdx-card>
+        </div>
     </div>
-    <div class="speedy-deletion-requests">
-        <cdx-card class="sdr-item" url="https://www.example.com" v-for="request in filteredRequests"
-            :key="request.pageName">
-            <template #title>
-                {{ request.pageName }}
-            </template>
-            <template #description>
-                {{ request.reason }}
-            </template>
-        </cdx-card>
-    </div>
-</div>
 </template>
   
 <script>
@@ -34,8 +38,6 @@ module.exports = defineComponent({
     name: 'speedyDeletionRequests',
     components: { CdxCard, CdxCombobox },
     setup() {
-
-
         const speedyDeletionRequests = [
             {
                 "pageName": "Test2",
@@ -114,20 +116,19 @@ module.exports = defineComponent({
 </script>
   
 <style lang="css">
-
 .afd cdx-label {
-	margin-bottom: 10px;
-	display: block;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .afd .header {
-	background-color: #eaf3ff;
-	display: block;
-	align-items: baseline;
-	justify-content: space-between;
-	height: 17em;
-	padding: 20px;
-	background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/6c/Illustration_of_Reading_Wikipedia_in_the_Classroom_%28blue%29_02.png);
+    background-color: #eaf3ff;
+    display: block;
+    align-items: baseline;
+    justify-content: space-between;
+    height: 17em;
+    padding: 20px;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/6c/Illustration_of_Reading_Wikipedia_in_the_Classroom_%28blue%29_02.png);
     background-position: right 10px;
     background-repeat: no-repeat;
     background-size: 364px;
@@ -138,8 +139,8 @@ module.exports = defineComponent({
 }
 
 .afd h5 {
-	margin: 0;
-	padding: 0;
-	font-size: 24px;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
 }
 </style>

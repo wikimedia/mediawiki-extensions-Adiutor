@@ -4,9 +4,9 @@
 	</div>
 </template>
 <script>
-const Rpp = require('./Rpp.vue');
-const Csd = require('./Csd.vue');
-const Prd = require('./Prd.vue');
+const pageProtectionRequest = require('./pageProtectionRequest.vue');
+const createSpeedyDeletion = require('./createSpeedyDeletion.vue');
+const deletionPropose = require('./deletionPropose.vue');
 mw.util.addPortletLink('p-cactions', '#', 'Request speedy deletion', 't-request-speedy-deletion', 'Request speedy deletion', 'rsd');
 mw.util.addPortletLink('p-cactions', '#', 'Propose deletion', 't-propose-deletion', 'Propose deletion', 'pd');
 mw.util.addPortletLink('p-cactions', '#', 'Request protection', 't-request-protection', 'Request protection', 'pr');
@@ -19,9 +19,9 @@ module.exports = {
 		};
 	},
 	components: {
-		Rpp,
-		Csd,
-		Prd,
+		pageProtectionRequest,
+		createSpeedyDeletion,
+		deletionPropose,
 	},
 	methods: {
 		showComponent(componentName) {
@@ -39,17 +39,17 @@ module.exports = {
 			const requestProtection = document.querySelector('#t-request-protection');
 			if (speedyDeletionRequestLink) {
 				speedyDeletionRequestLink.addEventListener('click', () => {
-					this.showComponent('Csd');
+					this.showComponent('createSpeedyDeletion');
 				});
 			}
 			if (proposeDeletionLink) {
 				proposeDeletionLink.addEventListener('click', () => {
-					this.showComponent('Prd');
+					this.showComponent('deletionPropose');
 				});
 			}
 			if (requestProtection) {
 				requestProtection.addEventListener('click', () => {
-					this.showComponent('Rpp');
+					this.showComponent('pageProtectionRequest');
 				});
 			}
 		});

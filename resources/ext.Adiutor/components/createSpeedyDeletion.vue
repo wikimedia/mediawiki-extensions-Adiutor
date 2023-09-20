@@ -32,7 +32,8 @@
 						{{ reason.label }}
 					</cdx-checkbox>
 					<div v-if="showCopyVioInput">
-						<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-copyright-infringing-page') }} {{ copyVioInput
+						<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-copyright-infringing-page') }} {{
+							copyVioInput
 						}}</strong></cdx-label>
 						<cdx-text-input v-model="copyVioInput" aria-label="TextInput default demo"></cdx-text-input>
 					</div>
@@ -265,9 +266,9 @@ module.exports = defineComponent({
 	height: 10em;
 	padding: 20px;
 	background-image: url(../../ext.Adiutor.images/csd-background.png);
-    background-position: right 10px;
-    background-repeat: no-repeat;
-    background-size: 205px;
+	background-position: right 10px;
+	background-repeat: no-repeat;
+	background-size: 205px;
 }
 
 .csd-dialog .cdx-dialog__footer {

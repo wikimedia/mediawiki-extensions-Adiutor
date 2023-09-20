@@ -1,12 +1,11 @@
 <template>
 	<cdx-dialog class="rpp-dialog" v-model:open="openRppDialog" title="Page Protection Request" close-button-label="Close"
-		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection "
+		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection"
 		@default="openRppDialog = true" :default-action="defaultAction">
 		<div class="header">
-		<h5>{{ $i18n('adiutor-rpp-header-title') }}</h5>
-		<p>{{ $i18n('adiutor-rpp-header-description') }}</p>
-	</div>
-		
+			<h5>{{ $i18n('adiutor-rpp-header-title') }}</h5>
+			<p>{{ $i18n('adiutor-rpp-header-description') }}</p>
+		</div>
 		<cdx-field class="rpp-dialog-body">
 			<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-protection-type') }}</strong></cdx-label>
 			<cdx-select v-model:selected="durationSelection" :menu-items="protectionDurations"
@@ -118,7 +117,6 @@ module.exports = defineComponent({
 </script>
 
 <style lang="css">
-
 .rpp-dialog .cdx-dialog {
 	max-width: 448px;
 	padding-top: 10px;
@@ -127,8 +125,8 @@ module.exports = defineComponent({
 
 .rpp-dialog-body {
 	padding: 20px;
-    display: grid;
-    width: inherit;
+	display: grid;
+	width: inherit;
 }
 
 .rpp-dialog .cdx-dialog__body {
@@ -160,9 +158,9 @@ module.exports = defineComponent({
 }
 
 .rpp-dialog cdx-label {
-    margin-bottom: 10px;
-    display: block;
-    margin-top: 10px;
+	margin-bottom: 10px;
+	display: block;
+	margin-top: 10px;
 }
 
 .rpp-dialog .header {
@@ -173,9 +171,9 @@ module.exports = defineComponent({
 	height: 10em;
 	padding: 20px;
 	background-image: url(../../ext.Adiutor.images/rpp-background.png);
-    background-position: right 5px;
-    background-repeat: no-repeat;
-    background-size: 200px;
+	background-position: right 5px;
+	background-repeat: no-repeat;
+	background-size: 200px;
 }
 
 .rpp-dialog .cdx-dialog__footer {
@@ -191,7 +189,8 @@ module.exports = defineComponent({
 	padding: 0;
 	font-size: 1.125em;
 }
+
 .rpp-dialog .cdx-select-vue {
-    margin-bottom: 10px !important;
+	margin-bottom: 10px !important;
 }
 </style>

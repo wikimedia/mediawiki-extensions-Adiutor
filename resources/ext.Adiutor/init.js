@@ -1,14 +1,14 @@
 (function () {
 	const Vue = require('vue');
-	const App = require('./components/App.vue');
-	const Sdr = require('./components/Sdr.vue');
-	const Afd = require('./components/Afd.vue');
+	const adiutorApp = require('./components/adiutorApp.vue');
+	const speedyDeletionRequests = require('./components/speedyDeletionRequests.vue');
+	const afdList = require('./components/afdList.vue');
 
 	Vue.configureCompat({
 		MODE: 3
 	});
 
-	Vue.createMwApp(App).mount('#adiutor-container');
-	Vue.createMwApp(Sdr).mount('#adiutor-speedy-deletion-requests');
-	Vue.createMwApp(Afd).mount('#adiutor-article-for-deletion');
+	Vue.createMwApp(adiutorApp).mount('#adiutor-container');
+	Vue.createMwApp(speedyDeletionRequests).mount('#adiutor-speedy-deletion-requests');
+	Vue.createMwApp(afdList).mount('#adiutor-article-for-deletion');
 })();
