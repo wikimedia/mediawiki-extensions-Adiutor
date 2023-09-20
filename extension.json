@@ -23,7 +23,8 @@
         "MediaWiki\\Extension\\Adiutor\\": "includes/"
     },
     "SpecialPages": {
-        "CandidatesForSpeedyDeletion": "MediaWiki\\Extension\\Adiutor\\Csd"
+        "SpeedyDeletionRequests": "MediaWiki\\Extension\\Adiutor\\Sdr",
+        "ArticlesForDeletion": "MediaWiki\\Extension\\Adiutor\\Afd"
     },
     "Hooks": {
         "BeforePageDisplay": [
@@ -37,11 +38,29 @@
     "ResourceModules": {
         "ext.Adiutor": {
             "dependencies": [
+                "mediawiki.util",
+                "mediawiki.user",
+                "mediawiki.Title",
+                "mediawiki.api",
+                "oojs-ui-core",
+                "oojs-ui-windows",
+                "oojs-ui-widgets",
+                "oojs-ui.styles.icons-interactions",
+                "oojs-ui.styles.icons-movement",
+                "oojs-ui.styles.icons-content",
+                "oojs-ui.styles.icons-moderation",
+                "oojs-ui-toolbars",
+                "oojs-ui.styles.icons-editing-core",
+                "oojs-ui.styles.icons-layout",
+                "oojs-ui.styles.icons-user",
+                "oojs-ui.styles.icons-media",
+                "oojs-ui.styles.icons-editing-advanced",
                 "@wikimedia/codex",
                 "vue"
             ],
             "messages": [
                 "create",
+                "request",
                 "okay",
                 "more-about-this-page",
                 "add-tag",
@@ -232,7 +251,7 @@
                 "testing-community-patience",
                 "anonymous-proxy",
                 "violating-pillar-content-policies",
-                "inappropriate-sockpuppetry",
+                "inappropriate-sockpuppetry","afd-special-page-title",
                 "personal-attacks",
                 "incivility",
                 "disruptive-editing",
@@ -240,16 +259,20 @@
                 "vandalism",
                 "bad-faith",
                 "edit-warring",
+                "protection-policy",
                 "block",
                 "unblock"
             ],
-            "styles": [],
+            "styles": ["./ext.Adiutor.styles/styles.less"],
             "packageFiles": [
                 "ext.Adiutor/init.js",
                 "ext.Adiutor/components/App.vue",
                 "ext.Adiutor/components/Csd.vue",
                 "ext.Adiutor/components/Prd.vue",
                 "ext.Adiutor/components/Rpp.vue",
+                "ext.Adiutor/components/Sdr.vue",
+                "ext.Adiutor/components/Afd.vue",
+                "ext.Adiutor/components/icons.json",
                 "ext.Adiutor/localization/Csd.json",
                 "ext.Adiutor/localization/Prd.json",
                 "ext.Adiutor/localization/Rpp.json",
@@ -268,7 +291,7 @@
             ]
         },
         "ext.Adiutor.styles": {
-            "styles": "ext.Adiutor.styles/styles.less",
+            "styles": "ext.Adiutor.styles/styles.css",
             "targets": [
                 "desktop",
                 "mobile"

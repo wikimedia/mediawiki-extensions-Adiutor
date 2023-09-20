@@ -1,18 +1,23 @@
 <template>
-	<cdx-dialog v-model:open="openRppDialog" title="Page Protection Request" close-button-label="Close"
-		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection"
-		@default="openRppDialog = true">
+	<cdx-dialog class="rpp-dialog" v-model:open="openRppDialog" title="Page Protection Request" close-button-label="Close"
+		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection "
+		@default="openRppDialog = true" :default-action="defaultAction">
+		<div class="header">
 		<h5>{{ $i18n('rpp-header-title') }}</h5>
 		<p>{{ $i18n('rpp-header-description') }}</p>
-		<cdx-label class="adt-label"><strong>{{ $i18n('protection-type') }}</strong></cdx-label>
-		<cdx-field>
+	</div>
+		
+		<cdx-field class="rpp-dialog-body">
+			<cdx-label class="adt-label"><strong>{{ $i18n('protection-type') }}</strong></cdx-label>
 			<cdx-select v-model:selected="durationSelection" :menu-items="protectionDurations"
 				default-label="Choose duration"></cdx-select>
 			<cdx-select v-model:selected="typeSelection" :menu-items="protectionTypes"
 				default-label="Select protection type"></cdx-select>
-			<cdx-label class="label-second"><strong>{{ $i18n('rationale') }}</strong></cdx-label>
+			<cdx-label><strong>{{ $i18n('rationale') }}</strong></cdx-label>
 			<cdx-text-input v-model="rationaleInput" aria-label="TextInput default demo"></cdx-text-input>
-			<cdx-text-area v-model="rationaleInput" placeholder="Describe what you changed"></cdx-text-area>
+			<div>
+				<cdx-text-area v-model="rationaleInput" placeholder="Describe what you changed"></cdx-text-area>
+			</div>
 		</cdx-field>
 	</cdx-dialog>
 </template>
@@ -66,6 +71,10 @@ module.exports = defineComponent({
 			actionType: 'progressive'
 		};
 
+		const defaultAction = {
+			label: mw.msg('protection-policy'),
+		};
+
 		function requestPageProtection() {
 			openRppDialog.value = false;
 			var placeholders = {
@@ -97,6 +106,7 @@ module.exports = defineComponent({
 		return {
 			openRppDialog,
 			primaryAction,
+			defaultAction,
 			standardPropose,
 			livingPersonPropose,
 			rationaleInput,
@@ -107,26 +117,81 @@ module.exports = defineComponent({
 });
 </script>
 
-<style>
-.csd-reasons-body {
-	display: flex;
+<style lang="css">
+
+.rpp-dialog .cdx-dialog {
+	max-width: 448px;
 	padding-top: 10px;
+	padding-bottom: 0;
 }
 
-.csd-reason-field {
+.rpp-dialog-body {
+	padding: 20px;
+    display: grid;
+    width: inherit;
+}
+
+.rpp-dialog .cdx-dialog__body {
+	flex-grow: 1;
+	margin-top: 0;
+	padding: 0;
+	overflow-y: auto;
+}
+
+
+.rpp-dialog .cdx-dialog--dividers .cdx-dialog__body {
+	padding-top: 0;
+}
+
+.rpp-dialog .rpp-reason-field {
 	display: flex;
 	flex-direction: column;
 	width: 50%;
 }
 
-cdx-label {
-	margin-bottom: 10px;
-	display: block;
+.rpp-dialog .cdx-dialog__header {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 20px 8px;
+	font-weight: 700;
 }
 
-.label-second {
-	margin-top: 10px;
-	margin-bottom: 10px;
+.rpp-dialog cdx-label {
+    margin-bottom: 10px;
+    display: block;
+    margin-top: 10px;
+}
+
+.rpp-dialog .header {
+	background-color: #eaf3ff;
 	display: block;
+	align-items: baseline;
+	justify-content: space-between;
+	height: 8em;
+	padding: 20px;
+	background-image: url(../../ext.Adiutor.images/rpp-background.png);
+    background-position: right 5px;
+    background-repeat: no-repeat;
+    background-size: 200px;
+}
+
+.rpp-dialog .cdx-dialog__footer {
+	padding: 10px !important;
+}
+
+.rpp-dialog .header p {
+	width: 60%;
+}
+
+.rpp-dialog h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.125em;
+}
+.rpp-dialog .cdx-select-vue {
+    margin-bottom: 10px !important;
 }
 </style>

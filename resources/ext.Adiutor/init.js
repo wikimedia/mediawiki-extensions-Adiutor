@@ -1,14 +1,11 @@
 (function () {
 	const Vue = require('vue');
 	const App = require('./components/App.vue');
-  
-	// Create a new div element with the id "adiutor-container"
-	const adiutorContainer = document.createElement('div');
-	adiutorContainer.id = 'adiutor-container';
-	document.body.appendChild(adiutorContainer);
+	const Sdr = require('./components/Sdr.vue');
+	const Afd = require('./components/Afd.vue');
   
 	// Add portlet links
-	mw.util.addPortletLink('p-cactions', '#', 'Speedy deletion request', 't-deletion-request', 'Speedy deletion request', 'sdr');
+	mw.util.addPortletLink('p-cactions', '#', 'Request speedy deletion', 't-request-speedy-deletion', 'Request speedy deletion', 'rsd');
 	mw.util.addPortletLink('p-cactions', '#', 'Propose deletion', 't-propose-deletion', 'Propose deletion', 'pd');
 	mw.util.addPortletLink('p-cactions', '#', 'Request protection', 't-request-protection', 'Request protection', 'pr');
   
@@ -16,7 +13,8 @@
 	  MODE: 3
 	});
   
-	Vue.createMwApp(App)
-	  .mount('#adiutor-container'); // Mount the app to the adiutor-container element
+	Vue.createMwApp(App).mount('#adiutor-container');
+	Vue.createMwApp(Sdr).mount('#adiutor-speedy-deletion-requests');
+	Vue.createMwApp(Afd).mount('#adiutor-article-for-deletion');
   })();
   

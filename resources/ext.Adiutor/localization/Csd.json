@@ -8,10 +8,25 @@
                 {
                     "namespace": 0,
                     "value": "A1",
-                    "data": "[[WP:CSD#A1|CSD:A1]]: Test article",
+                    "data": "[[WP:CSD#A1|A1]]: Short article without enough context to identify the subject",
                     "selected": false,
-                    "label": "A1 - Article created for test",
-                    "help": "This is a help text about the criteria"
+                    "label": "A1 - No context.",
+                    "help": "Short article without enough context to identify the subject"
+                },
+                {
+                    "namespace": 0,
+                    "value": "A2",
+                    "data": "[[WP:CSD#A2|A2]]: Article in a foreign language that exists on another project",
+                    "selected": false,
+                    "label": "A2 - Article in a foreign language",
+                    "help": "Article in a foreign language that exists on another project"
+                },  {
+                    "namespace": 0,
+                    "value": "A3",
+                    "data": "[[WP:CSD#A3|A3]]: No content",
+                    "selected": false,
+                    "label": "A3 - No content",
+                    "help": "Article in a foreign language that exists on another project"
                 }
             ]
         },
@@ -90,18 +105,32 @@
             "namespace": "general",
             "reasons": [
                 {
-                    "data": "[[WP:CSD#G1|CSD:G1]]: A test page",
+                    "data": "[[WP:CSD#G1|G1]]: [[WP:PN|Patent nonsense]], meaningless, or incomprehensible",
                     "value": "G1",
                     "selected": false,
-                    "label": "G1 - A test page",
+                    "label": "G1 -  Patent nonsense",
                     "namespace": "general",
                     "help": "This is a help text about the criteria"
                 },
                 {
-                    "data": "[[WP:CSD#G2|CSD:G2]]: Copyright violation",
+                    "data": "[[WP:CSD#G2|G2]]: Test page",
                     "value": "G2",
                     "selected": false,
-                    "label": "G2 - Copyright violation",
+                    "label": "G2 - Test page",
+                    "namespace": "general",
+                    "help": "This is a help text about the criteria"
+                },  {
+                    "data": "[[WP:CSD#G3|G3]]: [[WP:Vandalism|Vandalism]]",
+                    "value": "G3",
+                    "selected": false,
+                    "label": "G3 - Pure vandalism",
+                    "namespace": "general",
+                    "help": "This is a help text about the criteria"
+                },{
+                    "data": "[[WP:CSD#G4|G4]]: Unambiguous [[WP:CV|copyright infringement]]",
+                    "value": "G4",
+                    "selected": false,
+                    "label": "G4 - Unambiguous copyright infringement",
                     "namespace": "general",
                     "help": "This is a help text about the criteria"
                 }
@@ -155,5 +184,5 @@
     "singleReasonSummary": "Requesting fast deletion of the page due to reason $2.",
     "multipleReasonSummary": "Requesting fast deletion of the page due to reasons $2.",
     "csdCategoryForBatchDeletion": "Category:Pages nominated for speedy deletion",
-    "copyVioReasonValue": "G2"
+    "copyVioReasonValue": "G4"
 }

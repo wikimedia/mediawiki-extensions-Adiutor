@@ -1,9 +1,13 @@
 <template>
-	<cdx-dialog v-model:open="openPrdDialog" title="Proposed Deletion" close-button-label="Close" :show-dividers="true"
-		:primary-action="primaryAction" @primary="proposeForDeletion"
+	<cdx-dialog class="prd-dialog"  v-model:open="openPrdDialog" title="Proposed Deletion" close-button-label="Close" :show-dividers="true"
+		
 		@default="openPrdDialog = true">
-		<h5>{{ $i18n('prd-header-title') }}</h5>
+	
+		<div class="header">
+			<h5>{{ $i18n('prd-header-title') }}</h5>
 		<p>{{ $i18n('prd-header-description') }}</p>
+	</div>
+	<cdx-field class="prd-dialog-body">
 		<cdx-label class="adt-label"><strong>{{ $i18n('prd-deletion-type') }}</strong></cdx-label>
 		<cdx-checkbox v-model="standardPropose">{{
 			$i18n('prd-deletion-type-1') }}</cdx-checkbox>
@@ -11,9 +15,21 @@
 			$i18n('prd-deletion-type-2') }}</cdx-checkbox>
 		<cdx-label class="adt-label"><strong>{{ $i18n('rationale') }}</strong></cdx-label>
 		<cdx-text-input v-model="textareaValue" aria-label="TextInput default demo"></cdx-text-input>
-		<cdx-toggle-switch v-model="switchValue">
-			{{ $i18n('afd-inform-creator') }}
-		</cdx-toggle-switch>
+	</cdx-field>
+	<div class="footer">
+				<cdx-checkbox v-model="checkboxValue" :inline="true">
+					{{ $i18n('afd-inform-creator') }}
+				</cdx-checkbox>
+
+				<cdx-button
+				action="progressive" weight="primary"
+					aria-label="Next"
+					@click="proposeForDeletion"
+				>
+				{{ $i18n('propose') }}
+				</cdx-button>
+				
+			</div>
 	</cdx-dialog>
 </template>
 
@@ -41,10 +57,7 @@ module.exports = defineComponent({
 		const livingPersonPropose = false;
 		const openPrdDialog = ref(true);
 
-		const primaryAction = {
-			label: mw.msg('propose'),
-			actionType: 'progressive'
-		};
+
 
 		function proposeForDeletion() {
 			openPrdDialog.value = false;
@@ -52,7 +65,6 @@ module.exports = defineComponent({
 
 		return {
 			openPrdDialog,
-			primaryAction,
 			standardPropose,
 			livingPersonPropose,
 			textareaValue,
@@ -62,21 +74,88 @@ module.exports = defineComponent({
 	}
 });
 </script>
+<style lang="css">
 
-<style>
-.csd-reasons-body {
-	display: flex;
+.prd-dialog .cdx-dialog {
+	max-width: 548px;
 	padding-top: 10px;
+	padding-bottom: 0;
 }
 
-.csd-reason-field {
+.prd-dialog-body {
+	padding: 20px;
+    display: grid;
+    width: inherit;
+}
+
+.prd-dialog .cdx-dialog__body {
+	flex-grow: 1;
+	margin-top: 0;
+	padding: 0;
+	overflow-y: auto;
+}
+
+
+.prd-dialog .cdx-dialog--dividers .cdx-dialog__body {
+	padding-top: 0;
+}
+
+.prd-dialog .prd-reason-field {
 	display: flex;
 	flex-direction: column;
 	width: 50%;
 }
 
-cdx-label {
-	margin-bottom: 10px;
-	display: block;
+.prd-dialog .cdx-dialog__header {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 20px 8px;
+	font-weight: 700;
 }
+
+.prd-dialog cdx-label {
+    margin-bottom: 10px;
+    display: block;
+    margin-top: 10px;
+}
+
+.prd-dialog .header {
+	background-color: #eaf3ff;
+	display: block;
+	align-items: baseline;
+	justify-content: space-between;
+	height: 10em;
+	padding: 20px;
+	background-image: url(../../ext.Adiutor.images/prd-background.png);
+	background-position: right 10px;
+    background-repeat: no-repeat;
+    background-size: 215px;
+}
+
+.prd-dialog .cdx-dialog__footer {
+	padding: 10px !important;
+}
+
+.prd-dialog .header p {
+	width: 60%;
+}
+
+.prd-dialog h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.125em;
+}
+.prd-dialog .cdx-select-vue {
+    margin-bottom: 10px !important;
+}
+.footer {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		border-top: solid 1px #c8ccd1;
+		padding: 16px;
+	}
 </style>

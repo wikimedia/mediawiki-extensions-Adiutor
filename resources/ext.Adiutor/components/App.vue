@@ -31,7 +31,7 @@ module.exports = {
 	},
 	created() {
 		this.$nextTick(() => {
-			const speedyDeletionRequestLink = document.querySelector('#t-deletion-request');
+			const speedyDeletionRequestLink = document.querySelector('#t-request-speedy-deletion');
 			const proposeDeletionLink = document.querySelector('#t-propose-deletion');
 			const requestProtection = document.querySelector('#t-request-protection');
 			if (speedyDeletionRequestLink) {

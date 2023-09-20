@@ -7,7 +7,7 @@
 
 namespace MediaWiki\Extension\Adiutor;
 
-class Csd extends \SpecialPage {
+class Afd extends \SpecialPage {
 
     /**
      * Initialize the special page.
@@ -16,7 +16,7 @@ class Csd extends \SpecialPage {
         // A special page should at least have a name.
         // We do this by calling the parent class (the SpecialPage class)
         // constructor method with the name as first and only parameter.
-        parent::__construct( 'CandidatesForSpeedyDeletion' );
+        parent::__construct( 'ArticlesForDeletion' );
     }
 
     /**
@@ -27,11 +27,11 @@ class Csd extends \SpecialPage {
     public function execute( $sub ) {
         $out = $this->getOutput();
 
-        $out->setPageTitle( $this->msg( 'adiutor-candidates-for-speedy-deletion' ) );
+        $out->setPageTitle( $this->msg( 'afd-module-title' ) );
 
         // Parses message from .i18n.php as wikitext and adds it to the
         // page output.
-        $out->addWikiMsg( 'Test' );
+        $out->addHtml('<div id="adiutor-article-for-deletion">This is the content of the element.</div>');
     }
 
     /** @inheritDoc */

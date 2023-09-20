@@ -1,9 +1,11 @@
 <template>
-	<cdx-dialog v-model:open="openCsdDialog" title="Speedy Deletion Request" close-button-label="Close"
+	<cdx-dialog class="csd-dialog" v-model:open="openCsdDialog" title="Speedy Deletion Request" close-button-label="Close"
 		:show-dividers="true" :primary-action="primaryAction" :default-action="defaultAction"
 		@primary="createSpeedyDeletionRequest" @default="openCsdDialog = true">
-		<h5>{{ $i18n('csd-header-title') }}</h5>
-		<p>{{ $i18n('csd-header-description') }}</p>
+		<div class="header">
+			<h5>{{ $i18n('csd-header-title') }}</h5>
+			<p>{{ $i18n('csd-header-description') }}</p>
+		</div>
 		<div class="csd-reasons-body">
 			<div class="csd-reason-field">
 				<cdx-field :is-fieldset="true" v-for="reason in namespaceDeletionReasons">
@@ -111,7 +113,8 @@ module.exports = defineComponent({
 		};
 
 		const primaryAction = {
-			label: mw.msg('tag-page'),
+			icon: 'cdxIconTag',
+			label: mw.msg('request'),
 			actionType: 'progressive'
 		};
 
@@ -209,21 +212,75 @@ module.exports = defineComponent({
 	}
 });
 </script>
-
-<style>
-.csd-reasons-body {
+<style lang="css">
+.csd-dialog .csd-reasons-body {
 	display: flex;
-	padding-top: 10px;
+	padding: 20px;
 }
 
-.csd-reason-field {
+.csd-dialog .cdx-dialog {
+	max-width: 720px;
+	padding-top: 10px;
+	padding-bottom: 0;
+}
+
+.csd-dialog .cdx-dialog__body {
+	flex-grow: 1;
+	margin-top: 0;
+	padding: 0;
+	overflow-y: auto;
+}
+
+
+.csd-dialog .cdx-dialog--dividers .cdx-dialog__body {
+	padding-top: 0;
+}
+
+.csd-dialog .csd-reason-field {
 	display: flex;
 	flex-direction: column;
 	width: 50%;
 }
 
-cdx-label {
+.csd-dialog .cdx-dialog__header {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 20px 8px;
+	font-weight: 700;
+}
+
+.csd-dialog cdx-label {
 	margin-bottom: 10px;
 	display: block;
+}
+
+.csd-dialog .header {
+	background-color: #eaf3ff;
+	display: block;
+	align-items: baseline;
+	justify-content: space-between;
+	height: 8em;
+	padding: 20px;
+	background-image: url(../../ext.Adiutor.images/csd-background.png);
+	background-position: right 0px;
+	background-repeat: no-repeat;
+	background-size: 205px;
+}
+
+.csd-dialog .cdx-dialog__footer {
+	padding: 10px !important;
+}
+
+.csd-dialog .header p {
+	width: 60%;
+}
+
+.csd-dialog h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.125em;
 }
 </style>
