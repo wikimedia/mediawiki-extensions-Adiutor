@@ -68,7 +68,7 @@ for (const reason of speedyDeletionReasons) {
 		generalDeletionReasons.push(reason);
 	}
 }
-// @vue/component
+
 module.exports = defineComponent({
 	name: 'createSpeedyDeletion',
 	components: {
