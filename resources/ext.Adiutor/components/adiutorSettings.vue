@@ -13,9 +13,10 @@
     <cdx-tabs v-model:active="currentTab" :framed="framed">
         <cdx-tab v-for="( tab, index ) in tabsData" :key="index" :name="tab.name" :label="tab.label">
             <template v-if="tab.name === 'csd'">
-                <createSpeedyDeletionOptions></createSpeedyDeletionOptions>
+                csd
             </template>
             <template v-if="tab.name === 'rpp'">
+                rpp
             </template>
         </cdx-tab>
     </cdx-tabs>
