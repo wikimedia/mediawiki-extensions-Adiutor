@@ -15,7 +15,7 @@
 				</template>
 			</cdx-radio>
 			<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-			<cdx-text-input v-model="textareaValue" aria-label="TextInput default demo"></cdx-text-input>
+			<cdx-text-area v-model="textareaValue" :placeholder="rationalePlaceholder"></cdx-text-area>
 		</cdx-field>
 		<div class="footer">
 			<cdx-checkbox v-model="checkboxValue" :inline="true">
@@ -29,7 +29,7 @@
 </template>
 <script>
 const { defineComponent, ref } = require('vue');
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxToggleSwitch, CdxRadio } = require('@wikimedia/codex');
+const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextArea, CdxToggleSwitch, CdxRadio } = require('@wikimedia/codex');
 const prdConfiguration = require('../localization/Prd.json');
 
 module.exports = defineComponent({
@@ -41,8 +41,13 @@ module.exports = defineComponent({
 		CdxCheckbox,
 		CdxField,
 		CdxLabel,
-		CdxTextInput,
+		CdxTextArea,
 		CdxToggleSwitch
+	},
+	data() {
+		return {
+			rationalePlaceholder: mw.msg('adiutor-prd-deletion-rationale')
+		};
 	},
 	setup() {
 		const textareaValue = ref('');
@@ -120,7 +125,7 @@ module.exports = defineComponent({
 	justify-content: flex-end;
 	box-sizing: border-box;
 	width: 100%;
-	padding: 0 20px 8px;
+	padding: 10px 20px 10px;
 	font-weight: 700;
 }
 
@@ -154,18 +159,18 @@ module.exports = defineComponent({
 .prd-dialog h2 {
 	margin: 0;
 	padding: 0;
-	font-size: 1.125em;
+	font-size: 1.125em !important
 }
 
 .prd-dialog .cdx-select-vue {
 	margin-bottom: 10px !important;
 }
 
-.footer {
+.prd-dialog .footer {
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
 	border-top: solid 1px #c8ccd1;
-	padding: 16px;
+	padding: 20px;
 }
 </style>

@@ -11,4 +11,5 @@ $specialPageAliases = [];
 $specialPageAliases['en'] = [
 	'Candicates for speedy deletion' => [ 'Csd' ],
 	'Article for deletion' => [ 'Afd' ],
+	'Adiutor Settings' => [ 'Adiutor' ],
 ];

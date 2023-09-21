@@ -24,7 +24,8 @@
     },
     "SpecialPages": {
         "SpeedyDeletionRequests": "MediaWiki\\Extension\\Adiutor\\Sdr",
-        "ArticlesForDeletion": "MediaWiki\\Extension\\Adiutor\\Afd"
+        "ArticlesForDeletion": "MediaWiki\\Extension\\Adiutor\\Afd",
+        "AdiutorSettings": "MediaWiki\\Extension\\Adiutor\\Adiutor"
     },
     "Hooks": {
         "BeforePageDisplay": [
@@ -112,6 +113,7 @@
                 "adiutor-rdr-rationale-4",
                 "adiutor-rdr-rationale-5",
                 "adiutor-cancel",
+                "adiutor-and",
                 "adiutor-vandalism",
                 "adiutor-protect-against-rebuilding",
                 "adiutor-protect-against-rebuilding-help",
@@ -272,13 +274,16 @@
                 "ext.Adiutor/components/adiutorApp.vue",
                 "ext.Adiutor/components/createSpeedyDeletion.vue",
                 "ext.Adiutor/components/deletionPropose.vue",
+                "ext.Adiutor/components/articleForDeletion.vue",
                 "ext.Adiutor/components/pageProtectionRequest.vue",
                 "ext.Adiutor/components/speedyDeletionRequests.vue",
                 "ext.Adiutor/components/afdList.vue",
+                "ext.Adiutor/components/adiutorSettings.vue",
                 "ext.Adiutor/icons.json",
                 "ext.Adiutor/localization/Csd.json",
                 "ext.Adiutor/localization/Prd.json",
                 "ext.Adiutor/localization/Rpp.json",
+                "ext.Adiutor/localization/Afd.json",
                 {
                     "name": "ext.Adiutor/icons.json",
                     "callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",

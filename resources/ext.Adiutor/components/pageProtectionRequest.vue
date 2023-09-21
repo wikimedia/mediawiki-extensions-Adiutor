@@ -13,10 +13,7 @@
 			<cdx-select v-model:selected="typeSelection" :menu-items="protectionTypes"
 				default-label="Select protection type"></cdx-select>
 			<cdx-label><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-			<cdx-text-input v-model="rationaleInput" aria-label="TextInput default demo"></cdx-text-input>
-			<div>
-				<cdx-text-area v-model="rationaleInput" placeholder="Describe what you changed"></cdx-text-area>
-			</div>
+			<cdx-text-area v-model="rationaleInput" :placeholder="rationalePlaceholder"></cdx-text-area>
 		</cdx-field>
 	</cdx-dialog>
 </template>
@@ -53,7 +50,8 @@ module.exports = defineComponent({
 			protectionDurations: rppConfiguration.protectionDurations,
 			protectionTypes: rppConfiguration.protectionTypes,
 			durationSelection: null,
-			typeSelection: null
+			typeSelection: null,
+			rationalePlaceholder: mw.msg('adiutor-rpp-rationale-placeholder')
 		};
 	},
 	setup() {
@@ -117,10 +115,20 @@ module.exports = defineComponent({
 </script>
 
 <style lang="css">
+
+.rpp-dialog{
+
+    max-width: 29.571429em;
+
+}
 .rpp-dialog .cdx-dialog {
 	max-width: 448px;
 	padding-top: 10px;
 	padding-bottom: 0;
+}
+
+.rpp-dialog .cdx-field__control {
+    display: contents;
 }
 
 .rpp-dialog-body {
@@ -134,6 +142,7 @@ module.exports = defineComponent({
 	margin-top: 0;
 	padding: 0;
 	overflow-y: auto;
+	padding-bottom: 20px;
 }
 
 
@@ -148,13 +157,13 @@ module.exports = defineComponent({
 }
 
 .rpp-dialog .cdx-dialog__header {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	box-sizing: border-box;
-	width: 100%;
-	padding: 0 20px 8px;
-	font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 20px 10px;
+    font-weight: 700;
 }
 
 .rpp-dialog cdx-label {
@@ -168,16 +177,17 @@ module.exports = defineComponent({
 	display: block;
 	align-items: baseline;
 	justify-content: space-between;
-	height: 10em;
+	height: 9em;
 	padding: 20px;
 	background-image: url(../../ext.Adiutor.images/rpp-background.png);
-	background-position: right 5px;
-	background-repeat: no-repeat;
-	background-size: 200px;
+	background-position: right 22px;
+    background-repeat: no-repeat;
+    background-size: 200px;
 }
 
 .rpp-dialog .cdx-dialog__footer {
-	padding: 10px !important;
+	padding: 20px !important;
+	border-top: 1px solid #a2a9b1;
 }
 
 .rpp-dialog .header p {
@@ -187,7 +197,7 @@ module.exports = defineComponent({
 .rpp-dialog h2 {
 	margin: 0;
 	padding: 0;
-	font-size: 1.125em;
+	font-size: 1.125em !important
 }
 
 .rpp-dialog .cdx-select-vue {

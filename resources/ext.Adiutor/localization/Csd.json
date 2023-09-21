@@ -1,5 +1,4 @@
 {
-    "//": "You can utilize the parameters within this file, which include: $1 page name, $2 reason data, and $3 reason value",
     "speedyDeletionReasons": [
         {
             "name": "Articles",
@@ -20,7 +19,8 @@
                     "selected": false,
                     "label": "A2 - Article in a foreign language",
                     "help": "Article in a foreign language that exists on another project"
-                },  {
+                },
+                {
                     "namespace": 0,
                     "value": "A3",
                     "data": "[[WP:CSD#A3|A3]]: No content",
@@ -119,14 +119,16 @@
                     "label": "G2 - Test page",
                     "namespace": "general",
                     "help": "This is a help text about the criteria"
-                },  {
+                },
+                {
                     "data": "[[WP:CSD#G3|G3]]: [[WP:Vandalism|Vandalism]]",
                     "value": "G3",
                     "selected": false,
                     "label": "G3 - Pure vandalism",
                     "namespace": "general",
                     "help": "This is a help text about the criteria"
-                },{
+                },
+                {
                     "data": "[[WP:CSD#G4|G4]]: Unambiguous [[WP:CV|copyright infringement]]",
                     "value": "G4",
                     "selected": false,
@@ -165,24 +167,16 @@
             ]
         }
     ],
-    "csdTemplateStartSingleReason": "{{Db-$3",
+    "csdTemplateStartSingleReason": "{{Db-",
     "csdTemplateStartMultipleReason": "{{Db-multiple",
-    "useVerticalVarForSeparatingMultipleReasons": true,
-    "csdTemplatePostfixReasonData": false,
-    "csdTemplatePostfixReasonValue": true,
-    "reasonAndSeperator": "and",
+    "postfixReasonUsage": "value",
+    "multipleReasonSeparation": "vertical_bar",
     "speedyDeletionPolicyLink": "Wikipedia:Criteria_for_speedy_deletion",
-    "speedyDeletionPolicyPageShorcut": "WP:CSD",
+    "speedyDeletionPolicyPageShortcut": "WP:CSD",
     "apiPostSummaryforTalkPage": "[[WP:CSD#G1]]: Discussion page of the deleted article",
-    "apiPostSummaryforLog": "Daily record of the fast deletion candidacy of page [[$1]] is being kept.",
-    "apiPostSummary": "Fast deletion requested for page [[$1]].",
+    "apiPostSummaryforLog": "Log record of the speedy deletion request of [[$1]] is being logged.",
     "csdNotificationTemplate": "{{subst:CSD-Notification|1=$1|2=$2}}",
-    "talkPagePrefix": "Talk:",
-    "userPagePrefix": "User:",
-    "userTalkPagePrefix": "User talk:",
-    "localLangCode": "en-US",
-    "singleReasonSummary": "Requesting fast deletion of the page due to reason $2.",
-    "multipleReasonSummary": "Requesting fast deletion of the page due to reasons $2.",
-    "csdCategoryForBatchDeletion": "Category:Pages nominated for speedy deletion",
+    "singleReasonSummary": "Requesting speedy deletion for the page per $2.",
+    "multipleReasonSummary": "Requesting speedy deletion for the page per $2.",
     "copyVioReasonValue": "G4"
 }

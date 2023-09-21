@@ -19,7 +19,7 @@
 					</template>
 					<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-other-options') }}</strong></cdx-label>
 					<cdx-checkbox v-model="recreationProrection">{{
-						$i18n('protect-against-rebuilding') }}</cdx-checkbox>
+						$i18n('adiutor-protect-against-rebuilding') }}</cdx-checkbox>
 					<cdx-checkbox v-model="informCreator">{{ $i18n('adiutor-afd-inform-creator')
 					}}</cdx-checkbox>
 				</cdx-field>
@@ -47,24 +47,15 @@
 const { defineComponent, ref } = require('vue');
 const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput } = require('@wikimedia/codex');
 const csdConfiguration = require('../localization/Csd.json');
-var speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
-var csdTemplateStartSingleReason = csdConfiguration.csdTemplateStartSingleReason;
-var csdTemplateStartMultipleReason = csdConfiguration.csdTemplateStartMultipleReason;
-var reasonAndSeperator = csdConfiguration.reasonAndSeperator;
-var speedyDeletionPolicyLink = csdConfiguration.speedyDeletionPolicyLink;
-var speedyDeletionPolicyPageShorcut = csdConfiguration.speedyDeletionPolicyPageShorcut;
-var apiPostSummaryforLog = csdConfiguration.apiPostSummaryforLog;
-var apiPostSummary = csdConfiguration.apiPostSummary;
-var csdNotificationTemplate = csdConfiguration.csdNotificationTemplate;
-var userPagePrefix = csdConfiguration.userPagePrefix;
-var userTalkPagePrefix = csdConfiguration.userTalkPagePrefix;
-var localLangCode = csdConfiguration.localLangCode;
-var singleReasonSummary = csdConfiguration.singleReasonSummary;
-var multipleReasonSummary = csdConfiguration.multipleReasonSummary;
-var copyVioReasonValue = csdConfiguration.copyVioReasonValue;
-var csdTemplatePostfixReasonData = csdConfiguration.csdTemplatePostfixReasonData;
-var csdTemplatePostfixReasonValue = csdConfiguration.csdTemplatePostfixReasonValue;
-var useVerticalVarForSeparatingMultipleReasons = csdConfiguration.useVerticalVarForSeparatingMultipleReasons;
+const speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
+const copyVioReasonValue = csdConfiguration.copyVioReasonValue;
+const postfixReasonUsage = csdConfiguration.postfixReasonUsage;
+const multipleReasonSeparation = csdConfiguration.multipleReasonSeparation;
+const csdTemplateStartSingleReason = csdConfiguration.csdTemplateStartSingleReason;
+const csdTemplateStartMultipleReason = csdConfiguration.csdTemplateStartMultipleReason;
+const singleReasonSummary = csdConfiguration.singleReasonSummary;
+const multipleReasonSummary = csdConfiguration.multipleReasonSummary;
+const speedyDeletionPolicyPageShortcut = csdConfiguration.speedyDeletionPolicyPageShortcut;
 const namespaceDeletionReasons = [];
 for (const reason of speedyDeletionReasons) {
 	if (reason.namespace === mw.config.get('wgNamespaceNumber')) {
@@ -124,8 +115,6 @@ module.exports = defineComponent({
 		};
 
 		function createSpeedyDeletionRequest() {
-			openCsdDialog.value = false;
-			let csdReason, csdSummary;
 			const selectedReasons = speedyDeletionReasons.reduce((selected, category) => {
 				const selectedInCategory = category.reasons.filter((reason) => {
 					return checkboxValue.value.includes(reason.value);
@@ -133,57 +122,55 @@ module.exports = defineComponent({
 				selected.push(...selectedInCategory);
 				return selected;
 			}, []);
-			console.log(selectedReasons);
 
-			if (selectedReasons.length > 0) {
+			if (selectedReasons.length) {
+				let csdReason;
+				let csdSummary = '';
 				let saltCSDSummary = '';
 				let copyVioURL = '';
-
 				if (copyVioInput.value !== '') {
 					copyVioURL = '|url=' + copyVioInput.value;
 				}
-
 				if (selectedReasons.length > 1) {
 					let saltCSDReason = csdTemplateStartMultipleReason;
-					for (let i = 0; i < selectedReasons.length; i++) {
-						saltCSDReason += '|' + selectedReasons[i].value;
-
-						if (i > 0) {
-							saltCSDSummary += (i < selectedReasons.length - 1) ? ', ' : ' ' + reasonAndSeperator + ' ';
+					if (multipleReasonSeparation === 'vertical_bar') {
+						for (let i = 0; i < selectedReasons.length; i++) {
+							saltCSDReason += '|' + selectedReasons[i].value;
 						}
-						saltCSDSummary += '[[' + speedyDeletionPolicyPageShorcut + '#' + selectedReasons[i].value + ']]';
+						csdReason = saltCSDReason + '}}';
+					} else if (multipleReasonSeparation === 'default') {
+						for (let i = 0; i < selectedReasons.length; i++) {
+							if (i > 0) {
+								saltCSDReason += (i < selectedReasons.length - 1) ? ', ' : ' ' + mw.msg('adiutor-and') + ' ';
+							}
+							saltCSDReason += '|[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[i].value + ']]';
+						}
+						csdReason = saltCSDReason + '}}';
 					}
-					csdReason = saltCSDReason + '}}';
+					for (let i = 0; i < selectedReasons.length; i++) {
+						if (i > 0) {
+							saltCSDSummary += (i < selectedReasons.length - 1) ? ', ' : ' ' + mw.msg('adiutor-and') + ' ';
+						}
+						saltCSDSummary += '[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[i].value + ']]';
+					}
 					csdSummary = replaceParameter(multipleReasonSummary, '2', saltCSDSummary);
-					console.log(csdReason);
-					console.log(csdSummary);
 				} else {
-					const reasonPlaceholder = csdTemplateStartSingleReason + copyVioURL + '}}';
-					if (csdTemplatePostfixReasonData) {
-						csdReason = replaceParameter(reasonPlaceholder, '3', selectedReasons[0].data);
-					} else if (csdTemplatePostfixReasonValue) {
-						csdReason = replaceParameter(reasonPlaceholder, '3', selectedReasons[0].value);
+					if (postfixReasonUsage === 'data') {
+						csdReason = csdTemplateStartSingleReason + selectedReasons[0].data + '}}';
+					} else if (postfixReasonUsage === 'value') {
+						csdReason = csdTemplateStartSingleReason + selectedReasons[0].value + '}}';
 					}
 					csdSummary = replaceParameter(singleReasonSummary, '2', selectedReasons[0].data);
-					saltCSDSummary = replaceParameter(singleReasonSummary, '2', selectedReasons[0].data);
 				}
-				//putCSDTemplate(csdReason, csdSummary);
 				console.log(csdReason);
 				console.log(csdSummary);
+				openCsdDialog.value = false;
 			} else {
-				// Uyarı göster
 				mw.notify(mw.message('select-speedy-deletion-reason').text(), {
 					title: mw.msg('adiutor-warning'),
 					type: 'error'
 				});
 			}
-		}
-
-		function replacePlaceholders(input, replacements) {
-			return input.replace(/\$(\d+)/g, function (match, group) {
-				var replacement = replacements['$' + group];
-				return replacement !== undefined ? replacement : match;
-			});
 		}
 
 		function replaceParameter(input, parameterName, newValue) {
@@ -214,6 +201,10 @@ module.exports = defineComponent({
 });
 </script>
 <style lang="css">
+.csd-dialog {
+	max-width: 45em;
+}
+
 .csd-dialog .csd-reasons-body {
 	display: flex;
 	padding: 20px;
@@ -249,7 +240,7 @@ module.exports = defineComponent({
 	justify-content: flex-end;
 	box-sizing: border-box;
 	width: 100%;
-	padding: 0 20px 8px;
+	padding: 10px 20px 10px;
 	font-weight: 700;
 }
 
@@ -272,7 +263,8 @@ module.exports = defineComponent({
 }
 
 .csd-dialog .cdx-dialog__footer {
-	padding: 10px !important;
+	padding: 20px !important;
+	border-top: 1px solid #a2a9b1;
 }
 
 .csd-dialog .header p {
@@ -282,6 +274,6 @@ module.exports = defineComponent({
 .csd-dialog h2 {
 	margin: 0;
 	padding: 0;
-	font-size: 1.125em;
+	font-size: 1.125em !important
 }
 </style>
