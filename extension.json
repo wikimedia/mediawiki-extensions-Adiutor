@@ -279,6 +279,7 @@
                 "ext.Adiutor/components/speedyDeletionRequests.vue",
                 "ext.Adiutor/components/afdList.vue",
                 "ext.Adiutor/components/adiutorSettings.vue",
+                "ext.Adiutor/components/createSpeedyDeletionOptions.vue",
                 "ext.Adiutor/icons.json",
                 "ext.Adiutor/localization/Csd.json",
                 "ext.Adiutor/localization/Prd.json",
