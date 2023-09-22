@@ -11,6 +11,17 @@
             "value": true
         }
     },
+    "APIModules": {
+        "adiutor": {
+            "class": "MediaWiki\\Extension\\Adiutor\\Api\\AdiutorApi",
+            "name": "action",
+            "path": "extensions/Adiutor/includes/api",
+            "format": "json",
+            "requirements": {
+                "format": "(json)"
+            }
+        }
+    },
     "MessagesDirs": {
         "Adiutor": [
             "i18n"
@@ -20,7 +31,8 @@
         "AdiutorAlias": "Adiutor.i18n.alias.php"
     },
     "AutoloadNamespaces": {
-        "MediaWiki\\Extension\\Adiutor\\": "includes/"
+        "MediaWiki\\Extension\\Adiutor\\": "includes/",
+        "MediaWiki\\Extension\\Adiutor\\Api\\": "includes/" 
     },
     "SpecialPages": {
         "SpeedyDeletionRequests": "MediaWiki\\Extension\\Adiutor\\Sdr",
@@ -30,9 +42,6 @@
     "Hooks": {
         "BeforePageDisplay": [
             "MediaWiki\\Extension\\Adiutor\\Hooks::onBeforePageDisplay"
-        ],
-        "PageContentSaveComplete": [
-            "MediaWiki\\Extension\\Adiutor\\Hooks::onPageContentSaveComplete"
         ]
     },
     "ResourceFileModulePaths": {

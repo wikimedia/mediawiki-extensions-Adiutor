@@ -14,12 +14,9 @@ class Hooks {
         global $wgAdiutorEnable;
 
         if ($wgAdiutorEnable) {
+            // Load our module on all pages
             $out->addHtml('<div id="adiutor-container"></div>');
             $out->addModules('ext.Adiutor');
         }
-    }
-
-    public static function onPageContentSaveComplete() {
-        return true;
     }
 }

@@ -234,23 +234,32 @@ module.exports = defineComponent({
             this.saveButtonAction = 'default';
             this.saveButtonDisabled = true;
 
-            var hookName = 'PageContentSaveComplete';
+            const data = {
+                action: 'updateLocalConfiguration',
+                module: 'Rpp',
+                configuration: rppConfiguration
+            };
 
-            $.ajax({
-                type: 'POST',
-                url: mw.util.wikiScript('api'),
-                data: {
-                    action: 'post', 
-                    rs: hookName, 
-                    rsargs: JSON.stringify(rppConfiguration)
+            const apiUrl = 'http://localhost:8888/mediawiki/api.php?action=adiutor&format=json';
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function (error) {
-                    console.error(error);
-                }
-            });
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(responseData => {
+                    if (responseData.status === 'success') {
+                        console.log('Configuration updated successfully');
+                    } else {
+                        console.error('Error updating configuration');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
 
             setTimeout(() => {
                 this.saveButtonLabel = 'Save configurations';
