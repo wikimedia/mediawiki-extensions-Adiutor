@@ -235,12 +235,11 @@ module.exports = defineComponent({
             this.saveButtonDisabled = true;
 
             const data = {
-                action: 'updateLocalConfiguration',
                 module: 'Rpp',
                 configuration: rppConfiguration
             };
 
-            const apiUrl = 'http://localhost:8888/mediawiki/api.php?action=adiutor&format=json';
+            const apiUrl = '/mediawiki/rest.php/adiutor/v0/updatelocalconfigurationmodule';
 
             fetch(apiUrl, {
                 method: 'POST',
