@@ -228,7 +228,6 @@ module.exports = defineComponent({
                 this.protectionTypes.splice(index, 1);
             }
         },
-
         async saveConfiguration() {
             this.saveButtonLabel = 'Saving...';
             this.saveButtonAction = 'default';
@@ -236,37 +235,53 @@ module.exports = defineComponent({
 
             const data = {
                 module: 'Rpp',
-                configuration: rppConfiguration
+                configuration: {
+                    "protectionDurations": this.protectionDurations,
+                    "protectionTypes": this.protectionTypes,
+                    "noticeBoardTitle": this.noticeBoardTitle,
+                    "addNewSection": this.addNewSection,
+                    "useExistSection": this.useExistSection,
+                    "sectionTitle": this.sectionTitle,
+                    "textModificationDirection": this.textModificationDirection,
+                    "sectionId": this.sectionId,
+                    "contentPattern": this.contentPattern,
+                    "apiPostSummary": this.apiPostSummary
+                }
             };
 
             const apiUrl = '/mediawiki/rest.php/adiutor/v0/updatelocalconfigurationmodule';
 
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-                .then(response => response.json())
-                .then(responseData => {
-                    if (responseData.status === 'success') {
-                        console.log('Configuration updated successfully');
-                    } else {
-                        console.error('Error updating configuration');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
                 });
 
-            setTimeout(() => {
-                this.saveButtonLabel = 'Save configurations';
-                this.saveButtonAction = 'progressive';
-                this.saveButtonDisabled = false;
-            }, 2000);
-        },
+                if (!response.ok) {
+                    // Handle HTTP error
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
 
+                const responseData = await response.json();
+
+                if (responseData.status === 'success') {
+                    console.log('Configuration updated successfully');
+                } else {
+                    console.error('Error updating configuration');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+            } finally {
+                setTimeout(() => {
+                    this.saveButtonLabel = 'Save configurations';
+                    this.saveButtonAction = 'progressive';
+                    this.saveButtonDisabled = false;
+                }, 2000);
+            }
+        }
     },
 });
 </script>
