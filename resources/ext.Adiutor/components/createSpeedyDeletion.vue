@@ -23,6 +23,12 @@
 					<cdx-checkbox v-model="informCreator">{{ $i18n('adiutor-afd-inform-creator')
 					}}</cdx-checkbox>
 				</cdx-field>
+				<cdx-field :is-fieldset="true" v-if="!namespaceDeletionReasons.length">
+					<cdx-message inline type="warning">
+						<p>{{ $i18n('adiutor-warning') }}</p>
+						<small>{{ $i18n('adiutor-no-namespace-reason-for-csd-title') }}</small>
+					</cdx-message>
+				</cdx-field>
 			</div>
 			<div class="csd-reason-field">
 				<cdx-field :is-fieldset="true" v-for="reason in generalDeletionReasons">
@@ -45,7 +51,7 @@
 
 <script>
 const { defineComponent, ref } = require('vue');
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput } = require('@wikimedia/codex');
+const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require('@wikimedia/codex');
 const csdConfiguration = require('../localization/Csd.json');
 const speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
 const copyVioReasonValue = csdConfiguration.copyVioReasonValue;
@@ -77,13 +83,14 @@ module.exports = defineComponent({
 		CdxCheckbox,
 		CdxField,
 		CdxLabel,
-		CdxTextInput
+		CdxTextInput,
+		CdxMessage
 	},
 	setup() {
-		const checkboxValue = ref(['quickReply', 'quickTopic']);
+		const checkboxValue = ref(['']);
 		const copyVioInput = ref('');
-		const recreationProrection = false;
-		const informCreator = false;
+		const recreationProrection = ref(false);
+		const informCreator = ref(true);
 		const openCsdDialog = ref(true);
 
 		const showCopyVioInput = ref(false);

@@ -1,7 +1,8 @@
 <template>
-    <cdx-message class="top-message" type="info" dismiss-button-label="Close">This page contains configuration data for the
-        Adiutor tool's speedy deletion reasons for various namespaces on your wiki. These settings allow you to customize
-        the reasons for which pages, files, categories, and other elements can be speedy deleted on your wiki.</cdx-message>
+    <cdx-message class="top-message">
+        <strong>Create speedy deletion configuration</strong>
+        <cdx-button action="progressive" class="save-button" weight="primary"> Save configurations </cdx-button>
+    </cdx-message>
     <cdx-message type="warning" dismiss-button-label="Close">
         <h3>Parameters</h3>
         <p>You can utilize the parameters within this options, which include:</p>
@@ -101,7 +102,7 @@
 </template>
 <script>
 const { defineComponent, watch, ref, computed } = require('vue');
-const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxField, CdxRadio, CdxTextArea } = require('@wikimedia/codex');
+const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxField, CdxRadio, CdxTextArea, CdxButton } = require('@wikimedia/codex');
 const csdConfiguration = require('../localization/Csd.json');
 module.exports = defineComponent({
     name: '',
@@ -114,7 +115,7 @@ module.exports = defineComponent({
         CdxMessage,
         CdxCheckbox,
         CdxField,
-        CdxRadio, CdxTextArea
+        CdxRadio, CdxTextArea,CdxButton
     },
     props: {
         framed: {
@@ -124,18 +125,17 @@ module.exports = defineComponent({
     },
     setup() {
         const speedyDeletionReasons = JSON.stringify(csdConfiguration.speedyDeletionReasons);
-        const csdTemplateStartSingleReason = csdConfiguration.csdTemplateStartSingleReason;
-        const csdTemplateStartMultipleReason = csdConfiguration.csdTemplateStartMultipleReason;
-        const reasonAndSeparator = csdConfiguration.reasonAndSeparator;
-        const speedyDeletionPolicyLink = csdConfiguration.speedyDeletionPolicyLink;
-        const speedyDeletionPolicyPageShortcut = csdConfiguration.speedyDeletionPolicyPageShortcut;
+        const csdTemplateStartSingleReason = ref(csdConfiguration.csdTemplateStartSingleReason);
+        const csdTemplateStartMultipleReason = ref(csdConfiguration.csdTemplateStartMultipleReason);
+        const speedyDeletionPolicyLink = ref(csdConfiguration.speedyDeletionPolicyLink);
+        const speedyDeletionPolicyPageShortcut = ref(csdConfiguration.speedyDeletionPolicyPageShortcut);
         const apiPostSummaryforTalkPage = csdConfiguration.apiPostSummaryforTalkPage;
         const apiPostSummaryforLog = csdConfiguration.apiPostSummaryforLog;
-        const csdNotificationTemplate = csdConfiguration.csdNotificationTemplate;
+        const csdNotificationTemplate = ref(csdConfiguration.csdNotificationTemplate);
         const singleReasonSummary = csdConfiguration.singleReasonSummary;
         const multipleReasonSummary = csdConfiguration.multipleReasonSummary;
         const copyVioReasonValue = csdConfiguration.copyVioReasonValue;
-        const postfixReasonUsage = csdConfiguration.postfixReasonUsage;
+        const postfixReasonUsage = ref(csdConfiguration.postfixReasonUsage);
         const postfixReasonUsageRadios = [
             {
                 label: 'Use reason value',
@@ -152,14 +152,14 @@ module.exports = defineComponent({
                 output: '[[WP:CSD#A1|A1]]: Short article without enough context to identify the subject}}',
             }
         ];
-        const multipleReasonSeparation = csdConfiguration.multipleReasonSeparation;
+        const multipleReasonSeparation = ref(csdConfiguration.multipleReasonSeparation);
         const multipleReasonSeparationRadios = [
             {
                 label: 'Use vertical bar',
                 description: 'When activated, reasons within the speedy deletion template are separated by "|".',
                 value: 'vertical_bar',
                 parameter: '$3',
-                output: 'A1|G1}}',
+                output: '|A1|G1}}',
             },
             {
                 label: 'Default',
@@ -174,7 +174,6 @@ module.exports = defineComponent({
             speedyDeletionReasons,
             csdTemplateStartSingleReason,
             csdTemplateStartMultipleReason,
-            reasonAndSeparator,
             speedyDeletionPolicyLink,
             speedyDeletionPolicyPageShortcut,
             apiPostSummaryforTalkPage,

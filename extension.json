@@ -30,6 +30,9 @@
     "Hooks": {
         "BeforePageDisplay": [
             "MediaWiki\\Extension\\Adiutor\\Hooks::onBeforePageDisplay"
+        ],
+        "PageContentSaveComplete": [
+            "MediaWiki\\Extension\\Adiutor\\Hooks::onPageContentSaveComplete"
         ]
     },
     "ResourceFileModulePaths": {
@@ -261,7 +264,9 @@
                 "adiutor-copyright-infringing-page",
                 "adiutor-vandalism",
                 "adiutor-bad-faith",
+                "adiutor-no-namespace-reason-for-csd-title",
                 "adiutor-edit-warring",
+                "adiutor-warning",
                 "adiutor-protection-policy",
                 "adiutor-block",
                 "adiutor-unblock"
@@ -280,6 +285,7 @@
                 "ext.Adiutor/components/afdList.vue",
                 "ext.Adiutor/components/adiutorSettings.vue",
                 "ext.Adiutor/components/createSpeedyDeletionOptions.vue",
+                "ext.Adiutor/components/requestPageProtectionOptions.vue",
                 "ext.Adiutor/icons.json",
                 "ext.Adiutor/localization/Csd.json",
                 "ext.Adiutor/localization/Prd.json",

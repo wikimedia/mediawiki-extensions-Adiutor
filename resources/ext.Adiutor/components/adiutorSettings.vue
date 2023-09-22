@@ -11,26 +11,24 @@
         </div>
     </div>
     <cdx-tabs v-model:active="currentTab" :framed="framed">
-        <cdx-tab v-for="( tab, index ) in tabsData" :key="index" :name="tab.name" :label="tab.label">
-            <template v-if="tab.name === 'csd'">
-                csd
-            </template>
-            <template v-if="tab.name === 'rpp'">
-                rpp
-            </template>
+        <cdx-tab v-for="(tab, index) in tabsData" :key="index" :name="tab.name" :label="tab.label">
+            <component :is="tab.component"></component>
         </cdx-tab>
     </cdx-tabs>
 </template>
+
 <script>
 const { defineComponent } = require('vue');
 const { CdxTabs, CdxTab } = require('@wikimedia/codex');
 const createSpeedyDeletionOptions = require('./createSpeedyDeletionOptions.vue');
+const requestPageProtectionOptions = require('./requestPageProtectionOptions.vue');
 module.exports = defineComponent({
     name: 'adiutorSettings',
     components: {
         CdxTabs,
         CdxTab,
-        createSpeedyDeletionOptions
+        createSpeedyDeletionOptions,
+        requestPageProtectionOptions
     },
     props: {
         framed: {
@@ -43,16 +41,18 @@ module.exports = defineComponent({
             tabsData: [{
                 name: 'csd',
                 label: 'Create Speedy Deletion',
+                component: createSpeedyDeletionOptions
             }, {
                 name: 'rpp',
                 label: 'Request Page Protection',
+                component: requestPageProtectionOptions
             }],
-
             currentTab: 'csd'
         };
     }
 });
 </script>
+
 <style lang="less">
 .adiutor-settings .header {
     background-color: #eaf3ff;

@@ -128,7 +128,7 @@ module.exports = defineComponent({
 }
 
 .rpp-dialog .cdx-field__control {
-    display: contents;
+    display: grid;
 }
 
 .rpp-dialog-body {
