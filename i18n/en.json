@@ -222,6 +222,7 @@
     "adiutor-frequently-used-edit-summaries-help": "{{GENDER:|You}} can add frequently used edit summaries in this area. Separate {{GENDER:|your}} edit summaries with line breaks.",
     "adiutor-frequently-used-edit-summaries-placeholder": "{{GENDER:|You}} can add frequently used edit summaries in this area. Separate {{GENDER:|your}} edit summaries with line breaks.",
     "adiutor-settings-has-been-updated": "{{GENDER:|Your}} Adiutor settings have been successfully updated.",
+    "adiutor-localization-settings-has-been-updated": "Adiutor localization settings have been successfully updated.",
     "adiutor-copyvio-checking": "Checking...",
     "adiutor-copyvio-result": "Result (%$1)",
     "adiutor-copyvio-potential-violation": "Potential Violation: %$1",

@@ -268,7 +268,10 @@ module.exports = defineComponent({
                 const responseData = await response.json();
 
                 if (responseData.status === 'success') {
-                    console.log('Configuration updated successfully');
+                    mw.notify(mw.message('adiutor-localization-settings-has-been-updated').text(), {
+					title: mw.msg('adiutor-warning'),
+					type: 'success'
+				});
                 } else {
                     console.error('Error updating configuration');
                 }

@@ -173,7 +173,7 @@ module.exports = defineComponent({
 				console.log(csdSummary);
 				openCsdDialog.value = false;
 			} else {
-				mw.notify(mw.message('select-speedy-deletion-reason').text(), {
+				mw.notify(mw.message('adiutor-select-speedy-deletion-reason').text(), {
 					title: mw.msg('adiutor-warning'),
 					type: 'error'
 				});
