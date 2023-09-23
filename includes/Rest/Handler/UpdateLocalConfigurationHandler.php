@@ -14,11 +14,11 @@ class UpdateLocalConfigurationHandler extends SimpleHandler {
         $jsonBodyValidator = new JsonBodyValidator(
             [
                 'configuration' => [
-                  	ParamValidator::PARAM_TYPE => 'string',
+                  	ParamValidator::PARAM_TYPE => 'object',
                 ],
             ]
         );
-        
+
         // Parse the JSON data into a PHP object
         $jsonData = json_decode($rawJson);
         
@@ -26,7 +26,7 @@ class UpdateLocalConfigurationHandler extends SimpleHandler {
         $configurationData = $jsonData->configuration;
         
         // Define the path to the JSON file to be updated
-        $jsonFilePath = __DIR__ . "../../../../resources/ext.Adiutor/localization/Rpp.json";
+        $jsonFilePath = __DIR__ . "../../../../resources/ext.Adiutor/localization/$jsonData->module.json";
         
         // Convert the updated configuration data back to JSON with pretty-printing
         $updatedJson = json_encode($configurationData, JSON_PRETTY_PRINT);
