@@ -228,11 +228,14 @@ module.exports = defineComponent({
                 this.protectionTypes.splice(index, 1);
             }
         },
+
         async saveConfiguration() {
+            // Change the button label and disable it during the save operation
             this.saveButtonLabel = 'Saving...';
             this.saveButtonAction = 'default';
             this.saveButtonDisabled = true;
 
+            // Prepare the data to be sent in the HTTP request
             const data = {
                 module: 'Rpp',
                 configuration: {
@@ -249,9 +252,11 @@ module.exports = defineComponent({
                 }
             };
 
+            // Define the API endpoint URL
             const apiUrl = '/mediawiki/rest.php/adiutor/v0/updatelocalconfigurationmodule';
 
             try {
+                // Send a POST request to the API with the data
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
@@ -261,23 +266,28 @@ module.exports = defineComponent({
                 });
 
                 if (!response.ok) {
-                    // Handle HTTP error
+                    // Handle HTTP error if the response status is not OK
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
 
+                // Parse the response data as JSON
                 const responseData = await response.json();
 
                 if (responseData.status === 'success') {
+                    // Display a success notification if the update was successful
                     mw.notify(mw.message('adiutor-localization-settings-has-been-updated').text(), {
-					title: mw.msg('adiutor-warning'),
-					type: 'success'
-				});
+                        title: mw.msg('adiutor-warning'),
+                        type: 'success'
+                    });
                 } else {
+                    // Log an error message if the update was not successful
                     console.error('Error updating configuration');
                 }
             } catch (error) {
+                // Handle any fetch-related errors and log them
                 console.error('Fetch error:', error);
             } finally {
+                // Revert the button label and enable it after a delay (2 seconds)
                 setTimeout(() => {
                     this.saveButtonLabel = 'Save configurations';
                     this.saveButtonAction = 'progressive';
@@ -285,6 +295,7 @@ module.exports = defineComponent({
                 }, 2000);
             }
         }
+
     },
 });
 </script>
