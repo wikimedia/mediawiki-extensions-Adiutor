@@ -253,7 +253,7 @@ module.exports = defineComponent({
             };
 
             // Define the API endpoint URL
-            const apiUrl = '/mediawiki/rest.php/adiutor/v0/updatelocalconfigurationmodule';
+            const apiUrl = '/mediawiki/rest.php/adiutor/v0/updatelocalconfiguration';
 
             try {
                 // Send a POST request to the API with the data

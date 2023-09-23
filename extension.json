@@ -314,9 +314,9 @@
     },
     "RestRoutes": [
         {
-            "path": "/adiutor/v0/updatelocalconfigurationmodule",
+            "path": "/adiutor/v0/updatelocalconfiguration",
             "method": "POST",
-            "class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\UpdateLocalConfiguration"
+            "class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\UpdateLocalConfigurationHandler"
         }
     ],
     "manifest_version": 2

@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\Adiutor\Rest\Handler;
 
 use MediaWiki\Rest\SimpleHandler;
 
-class UpdateLocalConfiguration extends SimpleHandler {
+class UpdateLocalConfigurationHandler extends SimpleHandler {
     public function run() {
         // Read the raw JSON data from the incoming request body
         $rawJson = file_get_contents('php://input');
