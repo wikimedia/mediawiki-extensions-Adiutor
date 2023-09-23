@@ -25,10 +25,10 @@
     ],
     "noticeBoardTitle": "Wikipedia:Requests for page protection",
     "addNewSection": false,
-    "useExistSection": false,
     "sectionTitle": "Protection request for [[$1|$1]]",
-    "textModificationDirection": "appendtext",
+    "useExistSection": false,
     "sectionId": 1,
+    "textModificationDirection": "appendtext",
     "contentPattern": "Protection Type: $2 $3 Rationale: $4 ~~~~",
     "apiPostSummary": "Protection requested for [[$1|$1]]"
 }
