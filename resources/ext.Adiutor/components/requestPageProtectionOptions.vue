@@ -286,6 +286,9 @@ module.exports = defineComponent({
                 } else {
                     // Log an error message if the update was not successful
                     console.error('Error updating configuration');
+                    this.saveButtonLabel = 'Try again';
+                    this.saveButtonAction = 'destructive';
+                    this.saveButtonDisabled = false;
                 }
             } catch (error) {
                 // Handle any fetch-related errors and log them
