@@ -279,6 +279,10 @@ module.exports = defineComponent({
                         title: mw.msg('adiutor-warning'),
                         type: 'success'
                     });
+                    // Revert the button label and enable it after a delay (2 seconds)
+                    this.saveButtonLabel = 'Save configurations';
+                    this.saveButtonAction = 'progressive';
+                    this.saveButtonDisabled = false;
                 } else {
                     // Log an error message if the update was not successful
                     console.error('Error updating configuration');
@@ -286,13 +290,6 @@ module.exports = defineComponent({
             } catch (error) {
                 // Handle any fetch-related errors and log them
                 console.error('Fetch error:', error);
-            } finally {
-                // Revert the button label and enable it after a delay (2 seconds)
-                setTimeout(() => {
-                    this.saveButtonLabel = 'Save configurations';
-                    this.saveButtonAction = 'progressive';
-                    this.saveButtonDisabled = false;
-                }, 2000);
             }
         }
 
