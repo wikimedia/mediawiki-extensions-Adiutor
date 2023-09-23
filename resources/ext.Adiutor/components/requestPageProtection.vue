@@ -34,7 +34,7 @@ var apiPostSummary = rppConfiguration.apiPostSummary;
 var sectionTitle = rppConfiguration.sectionTitle;
 var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
 module.exports = defineComponent({
-	name: 'requestProtection',
+	name: 'requestPageProtection',
 	components: {
 		CdxButton,
 		CdxDialog,

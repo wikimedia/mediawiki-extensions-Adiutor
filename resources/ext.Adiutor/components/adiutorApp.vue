@@ -4,7 +4,7 @@
 	</div>
 </template>
 <script>
-const pageProtectionRequest = require('./pageProtectionRequest.vue');
+const requestPageProtection = require('./requestPageProtection.vue');
 const createSpeedyDeletion = require('./createSpeedyDeletion.vue');
 const deletionPropose = require('./deletionPropose.vue');
 const articleForDeletion = require('./articleForDeletion.vue');
@@ -21,7 +21,7 @@ module.exports = {
 		};
 	},
 	components: {
-		pageProtectionRequest,
+		requestPageProtection,
 		createSpeedyDeletion,
 		deletionPropose,
 		articleForDeletion,
@@ -58,7 +58,7 @@ module.exports = {
 			}
 			if (requestProtection) {
 				requestProtection.addEventListener('click', () => {
-					this.showComponent('pageProtectionRequest');
+					this.showComponent('requestPageProtection');
 				});
 			}
 		});

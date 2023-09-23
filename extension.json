@@ -23,8 +23,6 @@
         "MediaWiki\\Extension\\Adiutor\\": "includes/"
     },
     "SpecialPages": {
-        "SpeedyDeletionRequests": "MediaWiki\\Extension\\Adiutor\\Sdr",
-        "ArticlesForDeletion": "MediaWiki\\Extension\\Adiutor\\Afd",
         "AdiutorSettings": "MediaWiki\\Extension\\Adiutor\\Adiutor"
     },
     "Hooks": {
@@ -276,15 +274,13 @@
             "packageFiles": [
                 "ext.Adiutor/init.js",
                 "ext.Adiutor/components/adiutorApp.vue",
-                "ext.Adiutor/components/createSpeedyDeletion.vue",
                 "ext.Adiutor/components/deletionPropose.vue",
-                "ext.Adiutor/components/articleForDeletion.vue",
-                "ext.Adiutor/components/pageProtectionRequest.vue",
-                "ext.Adiutor/components/speedyDeletionRequests.vue",
-                "ext.Adiutor/components/afdList.vue",
-                "ext.Adiutor/components/adiutorSettings.vue",
+                "ext.Adiutor/components/articleForDeletion.vue",  
+                "ext.Adiutor/components/createSpeedyDeletion.vue",
                 "ext.Adiutor/components/createSpeedyDeletionOptions.vue",
+                "ext.Adiutor/components/requestPageProtection.vue",
                 "ext.Adiutor/components/requestPageProtectionOptions.vue",
+                "ext.Adiutor/components/adiutorSettings.vue",
                 "ext.Adiutor/icons.json",
                 "ext.Adiutor/localization/Csd.json",
                 "ext.Adiutor/localization/Prd.json",
