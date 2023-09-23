@@ -3,11 +3,21 @@
 namespace MediaWiki\Extension\Adiutor\Rest\Handler;
 
 use MediaWiki\Rest\SimpleHandler;
+use MediaWiki\Rest\Validator\JsonBodyValidator;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class UpdateLocalConfigurationHandler extends SimpleHandler {
     public function run() {
         // Read the raw JSON data from the incoming request body
         $rawJson = file_get_contents('php://input');
+
+        $jsonBodyValidator = new JsonBodyValidator(
+            [
+                'configuration' => [
+                  	ParamValidator::PARAM_TYPE => 'string',
+                ],
+            ]
+        );
         
         // Parse the JSON data into a PHP object
         $jsonData = json_decode($rawJson);
@@ -27,7 +37,7 @@ class UpdateLocalConfigurationHandler extends SimpleHandler {
         // Check if the write operation was successful
         if ($result !== false) {
             // If successful, return a success status
-            return ['status' => 'success'];
+            return ['status' => 'success','message_test' =>  $jsonBodyValidator];
         } else {
             // If not successful, return an error status
             return ['status' => 'error'];
