@@ -243,10 +243,10 @@ module.exports = defineComponent({
                     "protectionTypes": this.protectionTypes,
                     "noticeBoardTitle": this.noticeBoardTitle,
                     "addNewSection": this.addNewSection,
-                    "useExistSection": this.useExistSection,
                     "sectionTitle": this.sectionTitle,
-                    "textModificationDirection": this.textModificationDirection,
+                    "useExistSection": this.useExistSection,
                     "sectionId": this.sectionId,
+                    "textModificationDirection": this.textModificationDirection,
                     "contentPattern": this.contentPattern,
                     "apiPostSummary": this.apiPostSummary
                 }
