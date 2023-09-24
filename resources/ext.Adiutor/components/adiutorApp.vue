@@ -5,6 +5,7 @@
 </template>
 <script>
 const requestPageProtection = require('./requestPageProtection.vue');
+const requestPageMove = require('./requestPageMove.vue');
 const createSpeedyDeletion = require('./createSpeedyDeletion.vue');
 const deletionPropose = require('./deletionPropose.vue');
 const articleForDeletion = require('./articleForDeletion.vue');
@@ -38,6 +39,13 @@ const portletLinks = [
     namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
   },
   {
+    id: 't-request-page-move',
+    label: 'Request page move',
+    action: 'Request page move',
+    key: 'rpm',
+    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+  },
+  {
     id: 't-report-user',
     label: 'Report user',
     action: 'Report user',
@@ -62,6 +70,7 @@ module.exports = {
 	},
 	components: {
 		requestPageProtection,
+		requestPageMove,
 		createSpeedyDeletion,
 		deletionPropose,
 		articleForDeletion,
@@ -80,7 +89,8 @@ module.exports = {
 			const speedyDeletionRequestLink = document.querySelector('#t-request-speedy-deletion');
 			const proposeDeletionLink = document.querySelector('#t-propose-deletion');
 			const articleForDeletionLink = document.querySelector('#t-article-for-deletion');
-			const requestProtection = document.querySelector('#t-request-protection');
+			const requestProtectionLink = document.querySelector('#t-request-protection');
+			const requestPageMoveLink = document.querySelector('#t-request-page-move');
 			if (speedyDeletionRequestLink) {
 				speedyDeletionRequestLink.addEventListener('click', () => {
 					this.showComponent('createSpeedyDeletion');
@@ -96,9 +106,14 @@ module.exports = {
 					this.showComponent('articleForDeletion');
 				});
 			}
-			if (requestProtection) {
-				requestProtection.addEventListener('click', () => {
+			if (requestProtectionLink) {
+				requestProtectionLink.addEventListener('click', () => {
 					this.showComponent('requestPageProtection');
+				});
+			}
+			if (requestPageMoveLink) {
+				requestPageMoveLink.addEventListener('click', () => {
+					this.showComponent('requestPageMove');
 				});
 			}
 		});
