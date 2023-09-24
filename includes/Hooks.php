@@ -30,12 +30,24 @@ class Hooks
             $out->addModules('ext.Adiutor');
             $configPages = [
                 [
+                    'title' => 'MediaWiki:AdiutorRequestPageProtection.json',
+                    'configuration' => 'AdiutorRequestPageProtection'
+                ],
+                [
                     'title' => 'MediaWiki:AdiutorCreateSpeedyDeletion.json',
                     'configuration' => 'AdiutorCreateSpeedyDeletion'
                 ],
                 [
-                    'title' => 'MediaWiki:AdiutorRequestPageProtection.json',
-                    'configuration' => 'AdiutorRequestPageProtection'
+                    'title' => 'MediaWiki:AdiutorDeletionPropose.json',
+                    'configuration' => 'AdiutorDeletionPropose'
+                ],
+                [
+                    'title' => 'MediaWiki:AdiutorRequestPageMove.json',
+                    'configuration' => 'AdiutorRequestPageMove'
+                ],
+                [
+                    'title' => 'MediaWiki:AdiutorRequestRevisionDeletion.json',
+                    'configuration' => 'AdiutorRequestRevisionDeletion'
                 ]
             ];
 
