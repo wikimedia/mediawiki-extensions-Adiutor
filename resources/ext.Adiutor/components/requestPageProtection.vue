@@ -7,7 +7,9 @@
 			<p>{{ $i18n('adiutor-rpp-header-description') }}</p>
 		</div>
 		<cdx-field class="rpp-dialog-body">
-			<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-protection-type') }}</strong></cdx-label>
+			<cdx-label class="adt-label">
+				<strong>{{ $i18n('adiutor-protection-type') }}</strong>
+			</cdx-label>
 			<cdx-select v-model:selected="durationSelection" :menu-items="protectionDurations"
 				default-label="Choose duration"></cdx-select>
 			<cdx-select v-model:selected="typeSelection" :menu-items="protectionTypes"
@@ -23,15 +25,13 @@ const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, Cdx
 const rppConfiguration = mw.config.get('AdiutorRequestPageProtection');
 var noticeBoardTitle = rppConfiguration.noticeBoardTitle;
 var noticeBoardLink = noticeBoardTitle.replace(/ /g, '_');
-var protectionDurations = rppConfiguration.protectionDurations;
-var protectionTypes = rppConfiguration.protectionTypes;
 var addNewSection = rppConfiguration.addNewSection;
-var appendText = rppConfiguration.appendText;
-var prependText = rppConfiguration.prependText;
+var sectionTitle = rppConfiguration.sectionTitle;
+var useExistSection = rppConfiguration.useExistSection;
 var sectionId = rppConfiguration.sectionId;
+var textModificationDirection = rppConfiguration.textModificationDirection;
 var contentPattern = rppConfiguration.contentPattern;
 var apiPostSummary = rppConfiguration.apiPostSummary;
-var sectionTitle = rppConfiguration.sectionTitle;
 var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
 module.exports = defineComponent({
 	name: 'requestPageProtection',
@@ -47,22 +47,19 @@ module.exports = defineComponent({
 	},
 	data() {
 		return {
-			protectionDurations: rppConfiguration.protectionDurations,
-			protectionTypes: rppConfiguration.protectionTypes,
+			protectionDurations: ref(rppConfiguration.protectionDurations),
+			protectionTypes: ref(rppConfiguration.protectionTypes),
 			durationSelection: null,
 			typeSelection: null,
 			rationalePlaceholder: mw.msg('adiutor-rpp-rationale-placeholder')
 		};
 	},
-	setup() {
-		const rationaleInput = ref('');
-		const switchValue = ref(false);
-		const durationSelection = null;
-		const typeSelection = null;
-		const standardPropose = false;
-		const livingPersonPropose = false;
-		const openRppDialog = ref(true);
 
+	setup() {
+		const durationSelection = ref('');
+		const typeSelection = ref('');
+		const rationaleInput = ref('');
+		const openRppDialog = ref(true);
 		const primaryAction = {
 			label: mw.msg('adiutor-create-request'),
 			actionType: 'progressive'
@@ -72,24 +69,59 @@ module.exports = defineComponent({
 			label: mw.msg('adiutor-protection-policy'),
 		};
 
-		function requestPageProtection() {
-			openRppDialog.value = false;
-			var placeholders = {
+		const requestPageProtection = async () => {
+
+			const placeholders = {
 				$1: pageTitle,
-				$2: durationSelection,
-				$3: typeSelection,
-				$4: rationaleInput,
+				$2: durationSelection.value,
+				$3: typeSelection.value,
+				$4: rationaleInput.value,
 			};
 			const preparedContent = replacePlaceholders(contentPattern, placeholders);
-			console.log(preparedContent);
+
+			if (!durationSelection.value || !typeSelection.value || !rationaleInput.value) {
+				mw.notify('adiutor-rpp-incomplete-request-details', {
+					title: mw.msg('adiutor-operation-failed'),
+					type: 'error'
+				});
+			} else {
+				createApiRequest(preparedContent);
+			}
+		};
+
+		const createApiRequest = async (preparedContent) => {
+			var api = new mw.Api();
+			var apiParams = {
+				action: 'edit',
+				title: noticeBoardTitle,
+				summary: replaceParameter(apiPostSummary, '1', pageTitle),
+				tags: 'Adiutor',
+				format: 'json'
+			};
+
+			if (addNewSection) {
+				apiParams.section = 'new';
+				apiParams.sectiontitle = replaceParameter(sectionTitle, '1', pageTitle);
+				apiParams.text = preparedContent;
+			} else {
+				if (useExistSection) {
+					apiParams.section = sectionId;
+				}
+				apiParams[textModificationDirection === 'appendtext' ? 'appendtext' : textModificationDirection === 'prependtext' ? 'prependtext' : 'text'] = preparedContent + '\n';
+			}
+
+			api.postWithToken('csrf', apiParams).done(function () {
+				window.location = 'http://localhost:8888/mediawiki/index.php/' + noticeBoardLink;
+				openRppDialog.value = false;
+			});
 		}
 
-		function replacePlaceholders(input, replacements) {
+		const replacePlaceholders = (input, replacements) => {
 			return input.replace(/\$(\d+)/g, function (match, group) {
 				var replacement = replacements['$' + group];
 				return replacement !== undefined ? replacement : match;
 			});
-		}
+		};
 
 		function replaceParameter(input, parameterName, newValue) {
 			const regex = new RegExp('\\$' + parameterName, 'g');
@@ -104,23 +136,22 @@ module.exports = defineComponent({
 			openRppDialog,
 			primaryAction,
 			defaultAction,
-			standardPropose,
-			livingPersonPropose,
 			rationaleInput,
-			switchValue,
+			durationSelection,
+			typeSelection,
 			requestPageProtection
 		};
-	}
+	},
 });
 </script>
 
 <style lang="css">
+.rpp-dialog {
 
-.rpp-dialog{
-
-    max-width: 29.571429em;
+	max-width: 29.571429em;
 
 }
+
 .rpp-dialog .cdx-dialog {
 	max-width: 448px;
 	padding-top: 10px;
@@ -128,7 +159,7 @@ module.exports = defineComponent({
 }
 
 .rpp-dialog .cdx-field__control {
-    display: grid;
+	display: grid;
 }
 
 .rpp-dialog-body {
@@ -157,13 +188,13 @@ module.exports = defineComponent({
 }
 
 .rpp-dialog .cdx-dialog__header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px 20px 10px;
-    font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px 20px 10px;
+	font-weight: 700;
 }
 
 .rpp-dialog cdx-label {
@@ -181,8 +212,8 @@ module.exports = defineComponent({
 	padding: 20px;
 	background-image: url(../../ext.Adiutor.images/rpp-background.png);
 	background-position: right 22px;
-    background-repeat: no-repeat;
-    background-size: 200px;
+	background-repeat: no-repeat;
+	background-size: 200px;
 }
 
 .rpp-dialog .cdx-dialog__footer {

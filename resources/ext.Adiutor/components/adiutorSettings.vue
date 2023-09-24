@@ -22,6 +22,9 @@ const { defineComponent } = require('vue');
 const { CdxTabs, CdxTab } = require('@wikimedia/codex');
 const createSpeedyDeletionOptions = require('./createSpeedyDeletionOptions.vue');
 const requestPageProtectionOptions = require('./requestPageProtectionOptions.vue');
+const requestPageMoveOptions = require('./requestPageMoveOptions.vue');
+const requestRevisionDeletionOptions = require('./requestRevisionDeletionOptions.vue');
+const deletionProposeOptions = require('./deletionProposeOptions.vue');
 module.exports = defineComponent({
     name: 'adiutorSettings',
     components: {
@@ -46,6 +49,18 @@ module.exports = defineComponent({
                 name: 'rpp',
                 label: 'Request Page Protection',
                 component: requestPageProtectionOptions
+            }, {
+                name: 'rpm',
+                label: 'Request Page Move',
+                component: requestPageMoveOptions
+            }, {
+                name: 'rrd',
+                label: 'Request Revision Deletion',
+                component: requestRevisionDeletionOptions
+            }, {
+                name: 'dpr',
+                label: 'Deletion Propose',
+                component: deletionProposeOptions
             }],
             currentTab: 'csd'
         };

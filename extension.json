@@ -266,6 +266,8 @@
                 "adiutor-bad-faith",
                 "adiutor-no-namespace-reason-for-csd-title",
                 "adiutor-edit-warring",
+                "adiutor-operation-failed",
+                "adiutor-rpp-incomplete-request-details",
                 "adiutor-warning",
                 "adiutor-protection-policy",
                 "adiutor-block",
@@ -283,6 +285,9 @@
                 "ext.Adiutor/components/createSpeedyDeletionOptions.vue",
                 "ext.Adiutor/components/requestPageProtection.vue",
                 "ext.Adiutor/components/requestPageProtectionOptions.vue",
+                "ext.Adiutor/components/requestPageMoveOptions.vue",
+                "ext.Adiutor/components/requestRevisionDeletionOptions.vue",
+                "ext.Adiutor/components/deletionProposeOptions.vue",
                 "ext.Adiutor/components/adiutorSettings.vue",
                 "ext.Adiutor/icons.json",
                 {

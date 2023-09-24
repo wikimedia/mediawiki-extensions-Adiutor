@@ -104,6 +104,7 @@
     "adiutor-prd-deletion-type-2-help": "Proposed deletion of entirely unsourced biographies of living individuals, following the guidelines stated in [[WP:BLPPROD]].",
     "adiutor-select-protection-type": "Select protection type",
     "adiutor-rpp-header-title": "Page protect request",
+    "adiutor-rpp-incomplete-request-details": "Please ensure you have selected a duration, a type, and provided a rationale.",
     "adiutor-prd-header-title": "Proposed deletion",
     "adiutor-csd-header-title": "Speedy deletion rationale",
     "adiutor-csd-header-description": "Please select the appropriate reason for the deletion of this page from the options below. If the reason for the speedy deletion request does not meet the criteria for speedy deletion, the page may not be deleted.",

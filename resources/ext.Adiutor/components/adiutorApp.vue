@@ -8,10 +8,50 @@ const requestPageProtection = require('./requestPageProtection.vue');
 const createSpeedyDeletion = require('./createSpeedyDeletion.vue');
 const deletionPropose = require('./deletionPropose.vue');
 const articleForDeletion = require('./articleForDeletion.vue');
-mw.util.addPortletLink('p-cactions', '#', 'Request speedy deletion', 't-request-speedy-deletion', 'Request speedy deletion', 'rsd');
-mw.util.addPortletLink('p-cactions', '#', 'Propose deletion', 't-propose-deletion', 'Propose deletion', 'pd');
-mw.util.addPortletLink('p-cactions', '#', 'Article for deletion', 't-article-for-deletion', 'Article for deletion', 'afd');
-mw.util.addPortletLink('p-cactions', '#', 'Request protection', 't-request-protection', 'Request protection', 'pr');
+const portletLinks = [
+  {
+    id: 't-request-speedy-deletion',
+    label: 'Request speedy deletion',
+    action: 'Request speedy deletion',
+    key: 'rsd',
+    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+  },
+  {
+    id: 't-propose-deletion',
+    label: 'Propose deletion',
+    action: 'Propose deletion',
+    key: 'pd',
+    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+  },
+  {
+    id: 't-article-for-deletion',
+    label: 'Article for deletion',
+    action: 'Article for deletion',
+    key: 'afd',
+    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+  },
+  {
+    id: 't-request-protection',
+    label: 'Request protection',
+    action: 'Request protection',
+    key: 'pr',
+    namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
+  },
+  {
+    id: 't-report-user',
+    label: 'Report user',
+    action: 'Report user',
+    key: 'rep',
+    namespaces: [2, 3],
+  },
+];
+
+portletLinks.forEach(link => {
+  if (link.namespaces.includes(mw.config.get('wgNamespaceNumber'))) {
+    mw.util.addPortletLink('p-cactions', '#', link.label, link.id, link.action, link.key);
+  }
+});
+
 module.exports = {
 	name: 'adiutorInterfaceLoader',
 	data() {
