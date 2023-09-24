@@ -20,7 +20,7 @@
 <script>
 const { defineComponent, ref } = require('vue');
 const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxTextArea, CdxSelect } = require('@wikimedia/codex');
-const rppConfiguration = require('../localization/Rpp.json');
+const rppConfiguration = mw.config.get('AdiutorRequestPageProtection');
 var noticeBoardTitle = rppConfiguration.noticeBoardTitle;
 var noticeBoardLink = noticeBoardTitle.replace(/ /g, '_');
 var protectionDurations = rppConfiguration.protectionDurations;

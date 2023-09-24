@@ -22,7 +22,7 @@
 <script>
 const { defineComponent, ref } = require('vue');
 const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextArea } = require('@wikimedia/codex');
-const afdConfiguration = require('../localization/Afd.json');
+const afdConfiguration = mw.config.get('AdiutorArticleForDeletion');
 module.exports = defineComponent({
     name: 'articleForDeletion',
     components: {

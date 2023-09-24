@@ -30,8 +30,7 @@
 <script>
 const { defineComponent, ref } = require('vue');
 const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextArea, CdxToggleSwitch, CdxRadio } = require('@wikimedia/codex');
-const prdConfiguration = require('../localization/Prd.json');
-
+const prdConfiguration = mw.config.get('AdiutorProposeDeletion');
 module.exports = defineComponent({
 	name: 'proposeDeletion',
 	components: {

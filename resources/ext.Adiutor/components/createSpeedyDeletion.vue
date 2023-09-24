@@ -52,7 +52,7 @@
 <script>
 const { defineComponent, ref } = require('vue');
 const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require('@wikimedia/codex');
-const csdConfiguration = require('../localization/Csd.json');
+const csdConfiguration = mw.config.get('AdiutorCreateSpeedyDeletion');
 const speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
 const copyVioReasonValue = csdConfiguration.copyVioReasonValue;
 const postfixReasonUsage = csdConfiguration.postfixReasonUsage;

@@ -128,7 +128,7 @@
 <script>
 const { defineComponent, watch, ref, computed } = require('vue');
 const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxToggleSwitch, CdxButton, CdxCheckbox, CdxField, CdxRadio, CdxTextArea } = require('@wikimedia/codex');
-const rppConfiguration = require('../localization/Rpp.json');
+const rppConfiguration = mw.config.get('AdiutorRequestPageProtection');
 module.exports = defineComponent({
     name: '',
     components: {
@@ -233,12 +233,12 @@ module.exports = defineComponent({
             // Change the button label and disable it during the save operation
             this.saveButtonLabel = 'Saving...';
             this.saveButtonAction = 'default';
-            this.saveButtonDisabled = true;
+            //this.saveButtonDisabled = true;
 
             // Prepare the data to be sent in the HTTP request
             const data = {
-                module: 'Rpp',
-                configuration: {
+                title: 'MediaWiki:AdiutorRequestPageProtection.json',
+                content: {
                     "protectionDurations": this.protectionDurations,
                     "protectionTypes": this.protectionTypes,
                     "noticeBoardTitle": this.noticeBoardTitle,

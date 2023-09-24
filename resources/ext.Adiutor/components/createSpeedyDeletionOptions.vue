@@ -103,7 +103,7 @@
 <script>
 const { defineComponent, watch, ref, computed } = require('vue');
 const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxField, CdxRadio, CdxTextArea, CdxButton } = require('@wikimedia/codex');
-const csdConfiguration = require('../localization/Csd.json');
+const csdConfiguration = mw.config.get('AdiutorCreateSpeedyDeletion');
 module.exports = defineComponent({
     name: '',
     components: {

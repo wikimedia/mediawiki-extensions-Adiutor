@@ -23,13 +23,16 @@
         "MediaWiki\\Extension\\Adiutor\\": "includes/"
     },
     "SpecialPages": {
-        "AdiutorSettings": "MediaWiki\\Extension\\Adiutor\\Adiutor"
+        "AdiutorSettings": "MediaWiki\\Extension\\Adiutor\\AdiutorSettings"
     },
     "Hooks": {
         "BeforePageDisplay": [
             "MediaWiki\\Extension\\Adiutor\\Hooks::onBeforePageDisplay"
         ]
     },
+    "ExtensionFunctions": [
+		"MediaWiki\\Extension\\Adiutor\\Adiutor::onExtensionLoad"
+	],
     "ResourceFileModulePaths": {
         "localBasePath": "resources",
         "remoteExtPath": "Adiutor/resources"
@@ -282,10 +285,6 @@
                 "ext.Adiutor/components/requestPageProtectionOptions.vue",
                 "ext.Adiutor/components/adiutorSettings.vue",
                 "ext.Adiutor/icons.json",
-                "ext.Adiutor/localization/Csd.json",
-                "ext.Adiutor/localization/Prd.json",
-                "ext.Adiutor/localization/Rpp.json",
-                "ext.Adiutor/localization/Afd.json",
                 {
                     "name": "ext.Adiutor/icons.json",
                     "callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
