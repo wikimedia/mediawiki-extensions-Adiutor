@@ -1,10 +1,11 @@
 <template>
     <cdx-message class="top-message">
-        <strong>Request page protection configuration</strong>
         <cdx-button :action="saveButtonAction" :class="saveButtonClass" :weight="saveButtonWeight"
             @click="saveConfiguration" :disabled="saveButtonDisabled">
             {{ saveButtonLabel }}
         </cdx-button>
+        <h3 style="display: initial;">Request page protection configuration</h3>
+        <p style="margin-top: 22px;">This page provides you with the ability to customize the settings of Adiutor's request page protection module. When you make adjustments here, it directly updates the configuration stored in the <a href="/MediaWiki:AdiutorRequestPageProtection.json">MediaWiki:AdiutorRequestPageProtection.json</a> page on your behalf. You can easily track and review the history of your modifications on that page.</p>
     </cdx-message>
     <cdx-message type="warning" dismiss-button-label="Close">
         <h3>Parameters</h3>
