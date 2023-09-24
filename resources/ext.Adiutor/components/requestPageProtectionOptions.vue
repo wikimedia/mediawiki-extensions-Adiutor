@@ -321,48 +321,6 @@ cdx-label {
     margin-top: 10px;
 }
 
-#adiutor-options-props {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-#adiutor-options-props caption {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: #fef6e8;
-    color: black;
-    text-align: center;
-    border: 1px solid #ddd;
-    font-weight: 900;
-}
-
-#adiutor-options-props td,
-#adiutor-options-props th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-#adiutor-options-props tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-#adiutor-options-props tr:hover {
-    background-color: #ddd;
-}
-
-#adiutor-options-props th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #eaecf0;
-    color: black;
-}
-
-#adiutor-options-props .add-new-button {
-    float: right;
-    margin-right: 10px;
-}
-
 .save-button {
     float: right;
 }

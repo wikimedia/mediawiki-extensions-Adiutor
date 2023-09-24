@@ -20,6 +20,14 @@ class Adiutor
 {
     public static function onExtensionLoad()
     {
+        $deletionProposeConfiguration = '{
+            "standardProposeTemplate": "{{subst:Proposed deletion|concern=$2}}",
+            "livingPersonProposeTemplate": "{{Prod blp/dated|concern=$2|user=$6|timestamp=$3 $4 $5|help=off}}",
+            "apiPostSummary": "Proposed deletion of the page per [[WP:PROD]]",
+            "apiPostSummaryforCreator": "Proposed deletion of [[$1|$1]] per [[WP:PROD]]",
+            "apiPostSummaryforLog": "Logging the page [[$1|$1]] as a pending deletion candidate per [[WP:PROD]].",
+            "prodNotificationTemplate": "{{subst:Proposed deletion notify|$1}}"
+        }';
         $requestPageProtectionConfiguration = '{
             "protectionDurations": [
                 {
@@ -236,9 +244,32 @@ class Adiutor
             "multipleReasonSummary": "Requesting speedy deletion for the page per $2.",
             "copyVioReasonValue": "G4"
         }';
+        $requestPageMoveConfiguration = '{
+            "noticeBoardTitle": "Wikipedia:Page move requests",
+            "addNewSection": false,
+            "sectionTitle": "Page move request for [[$1]]",
+            "useExistSection": false,
+            "sectionId": 1,
+            "textModificationDirection": "appendtext",
+            "contentPattern": "Move [[$1]] to [[$2]]\n\nRationale: $3 ~~~~",
+            "apiPostSummary": "Page move request created for [[$1|$1]]."
+        }';
+        $requestRevisionDeletionConfiguration = '{
+            "noticeBoardTitle": "Wikipedia:Revision deletion/Noticeboard",
+            "addNewSection": false,
+            "sectionTitle": "Revision deletion request for [[$1]]",
+            "useExistSection": false,
+            "sectionId": 1,
+            "textModificationDirection": "appendtext",
+            "contentPattern": "*\'\'\'Revision:\'\'\' [[Special:Diff/$1]]\n*\'\'\'Rationale:\'\'\' $2\n*\'\'\'Comment:\'\'\' $3 ~~~~\n*\'\'\'Outcome:\'\'\'",
+            "apiPostSummary": "Created a revision deletion request for [[$1]] page."
+        }';
         $pageContent = [
             'MediaWiki:AdiutorRequestPageProtection.json' => $requestPageProtectionConfiguration,
             'MediaWiki:AdiutorCreateSpeedyDeletion.json' => $createSpeedyDeletionRequestConfgiuration,
+            'MediaWiki:AdiutorDeletionPropose.json' => $deletionProposeConfiguration,
+            'MediaWiki:AdiutorRequestPageMove.json' => $requestPageMoveConfiguration,
+            'MediaWiki:AdiutorRequestRevisionDeletion.json' => $requestRevisionDeletionConfiguration,
         ];
         $user = User::newFromId(0);
         $services = MediaWikiServices::getInstance();
