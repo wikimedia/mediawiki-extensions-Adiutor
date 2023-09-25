@@ -25,8 +25,8 @@
         </cdx-field>
         <cdx-field :is-fieldset="true">
             <cdx-label input-id="contentPattern">Content pattern:</cdx-label>
-            <cdx-text-input v-model="contentPattern" id="contentPattern"
-                aria-label="Speedy Deletion Policy Link"></cdx-text-input>
+            <cdx-text-area v-model="contentPattern" id="contentPattern"
+                aria-label="Speedy Deletion Policy Link"></cdx-text-area>
             <template #help-text>
                 In this field you can create the basic pattern of the content to be added to the page using the parameters
                 specified above, you can use a preload templates in this field or you can also add regular templates.
