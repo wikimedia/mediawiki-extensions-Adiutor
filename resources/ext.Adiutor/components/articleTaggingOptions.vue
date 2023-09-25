@@ -25,7 +25,7 @@
             <cdx-text-input v-model="multipleIssuesTemplate" id="multipleIssuesTemplate"
                 aria-label="Multiple issues template"></cdx-text-input>
             <template #help-text>
-                This is a speedy deletion request template to be used for a single reason.
+                This template will be added to other templates for requests with multiple issues.
                 <h5>Output:</h5>
                 <pre>{{ generateTemplateOutput() }}</pre>
             </template>
@@ -35,7 +35,7 @@
             <cdx-text-input v-model="uncategorizedTemplate" id="uncategorizedTemplate"
                 aria-label="Uncategorized template"></cdx-text-input>
             <template #help-text>
-                This is a speedy deletion request template to be used for a single reason.
+                Template to be added to the uncategorized article.
             </template>
         </cdx-field>
     </cdx-message>
