@@ -26,8 +26,8 @@
         </cdx-field>
         <cdx-field :is-fieldset="true">
             <cdx-label input-id="contentPattern">Content pattern:</cdx-label>
-            <cdx-text-input v-model="contentPattern" id="contentPattern"
-                aria-label="Speedy Deletion Policy Link"></cdx-text-input>
+            <cdx-text-area v-model="contentPattern" id="contentPattern"
+                aria-label="Speedy Deletion Policy Link"></cdx-text-area>
             <template #help-text>
                 In this field you can create the basic pattern of the content to be added to the page using the parameters
                 specified above, you can use a preload templates in this field or you can also add regular templates.
@@ -70,8 +70,8 @@
             <template #label>
                 Text Modification Direction
             </template>
-            <cdx-radio v-for="direction in textModificationDirectionRadios" :key="'radio-' + direction.value"
-                v-model="textModificationDirection" name="radio-group-{{direction.value}}-descriptions"
+            <cdx-radio v-for="direction in textModificationDirectionRadios" :key="'rpp-radio-' + direction.value"
+                v-model="textModificationDirection" name="rpp-radio-group-{{direction.value}}-descriptions"
                 :input-value="direction.value">
                 {{ direction.label }}
                 <template #description> {{ direction.description }} </template>

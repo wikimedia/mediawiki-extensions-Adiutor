@@ -48,6 +48,9 @@ class Hooks
                 [
                     'title' => 'MediaWiki:AdiutorRequestRevisionDeletion.json',
                     'configuration' => 'AdiutorRequestRevisionDeletion'
+                ],[
+                    'title' => 'MediaWiki:AdiutorArticleTagging.json',
+                    'configuration' => 'AdiutorArticleTagging'
                 ]
             ];
 

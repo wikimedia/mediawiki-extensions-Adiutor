@@ -133,7 +133,7 @@
     "adiutor-rdr-header-description": "Prior to using this tool to make a request, the user should be informed about Wikipedia rules. In cases involving offensive edits or threats, a request can be made without following the notification procedure.",
     "adiutor-afd-header-title": "AfD discussion",
     "adiutor-afd-header-description": "The initiation of a discussion for the deletion of the page, even though it doesn't meet the stricter and more challenging criteria required for speedy deletion.",
-    "adiutor-tag-header-description": "{{GENDER:|You}} are currently tagging this page. {{GENDER:|You}} can select warning tags from the list below that {{GENDER:|you}} want to apply to this page.",
+    "adiutor-tag-header-description": "Now {{GENDER:|you}} are tagging this article. {{GENDER:|You}} can select maintenance or other type of tags from the list below that {{GENDER:|you}} want to add to this article.",
     "adiutor-csd-send-message-to-creator": "Inform the user who created the page during the speedy deletion request.",
     "adiutor-afd-send-message-to-creator": "Inform the user who created the page during the nomination for deletion.",
     "adiutor-prd-send-message-to-creator": "Inform the user who created the page during the proposed deletion request.",

@@ -69,8 +69,8 @@
             <template #label>
                 Text Modification Direction
             </template>
-            <cdx-radio v-for="direction in textModificationDirectionRadios" :key="'radio-' + direction.value"
-                v-model="textModificationDirection" name="radio-group-{{direction.value}}-descriptions"
+            <cdx-radio v-for="direction in textModificationDirectionRadios" :key="'rpm-radio-' + direction.value"
+                v-model="textModificationDirection" name="rpm-radio-group-{{direction.value}}-descriptions"
                 :input-value="direction.value">
                 {{ direction.label }}
                 <template #description> {{ direction.description }} </template>
