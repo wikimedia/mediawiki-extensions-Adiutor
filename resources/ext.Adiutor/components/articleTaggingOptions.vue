@@ -103,7 +103,7 @@
                             <tr v-for="(subitem, subitemIndex) in tag.items" :key="'subitem-' + subitemIndex">
                                 <td><cdx-text-input style="min-width: 80px;" v-model="subitem.name"
                                         aria-label="Subitem Value"></cdx-text-input></td>
-                                <td><cdx-toggle-switch v-model="subitem.required"></cdx-toggle-switch></td>
+                                <td><cdx-toggle-switch v-model="subitem.required" aria-label="Required"></cdx-toggle-switch></td>
                                 <td><cdx-text-input style="min-width: 80px;" v-model="subitem.parameter"
                                         aria-label="Subitem parameter"></cdx-text-input></td>
                                 <td><cdx-text-input style="min-width: 50px;" v-model="subitem.type"
