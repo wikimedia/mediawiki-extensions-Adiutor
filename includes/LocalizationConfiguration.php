@@ -938,7 +938,7 @@ class LocalizationConfiguration
                 'label' => 'Specific content issues',
                 'tags' => [
                     [
-                        'tag' => 'Language',
+                        'tag' => 'Not English',
                         'description' => 'Article is written in a language other than English and needs translation',
                         'items' => [
                             [
@@ -963,12 +963,30 @@ class LocalizationConfiguration
                         'description' => 'Article should be expanded with text translated from an article in a foreign-language Wikipedia',
                         'items' => [
                             [
-                                'name' => 'expandLanguage',
-                                'required' => false,
-                                'parameter' => '1',
-                                'type' => 'input',
-                                'label' => 'Article to be translated from:',
+                                'name' => 'expandLangTopic',
+                                'required' => true,
+                                'parameter' => 'topic',
+                                'type' => 'hidden',
+                                'label' => '',
                                 'help' => '',
+                                'value' => ''
+                            ],
+                            [
+                                'name' => 'expandLanguageLangCode',
+                                'required' => true,
+                                'parameter' => 'langcode',
+                                'type' => 'input',
+                                'label' => 'Language code:',
+                                'help' => 'Language code of the language from which the article is to be expanded from',
+                                'value' => ''
+                            ],
+                            [
+                                'name' => 'expandLanguageArticle',
+                                'required' => false,
+                                'parameter' => 'otherarticle',
+                                'type' => 'input',
+                                'label' => 'Name of article:',
+                                'help' => 'Name of the article to be expanded from, without the interwiki prefix',
                                 'value' => ''
                             ]
                         ]
@@ -978,6 +996,35 @@ class LocalizationConfiguration
                         'description' => 'Article citations need translation',
                         'items' => []
                     ]
+                ]
+            ], [
+                'label' => 'Links',
+                'tags' => [
+                    ['tag' => 'Dead end', 'description' => 'Article has no links to other articles', 'items' => []],
+                    ['tag' => 'Orphan', 'description' => 'Article linked to from no other articles', 'items' => []],
+                    ['tag' => 'Overlinked', 'description' => 'Article too many duplicate and/or irrelevant links to other articles', 'items' => []],
+                    ['tag' => 'Underlinked', 'description' => 'Article needs more wikilinks to other articles', 'items' => []]
+                ]
+            ], [
+                'label' => 'Referencing technique',
+                'tags' => [
+                    ['tag' => 'Citation style', 'description' => 'Article unclear or inconsistent citation style', 'items' => []],
+                    ['tag' => 'Cleanup bare URLs', 'description' => 'Article uses bare URLs for references, which are prone to link rot', 'items' => []],
+                    ['tag' => 'More footnotes needed', 'description' => 'Article has some references, but insufficient inline citations', 'items' => []],
+                    ['tag' => 'No footnotes', 'description' => 'Article has references, but lacks inline citations', 'items' => []]
+                ]
+            ], [
+                'label' => 'Categories',
+                'tags' => [
+                    ['tag' => 'Improve categories', 'description' => 'Article needs additional or more specific categories', 'items' => []],
+                    ['tag' => 'Uncategorized', 'description' => 'Article not added to any categories', 'items' => []]
+                ]
+            ], [
+                'label' => 'Informational',
+                'tags' => [
+                    ['tag' => 'GOCEinuse', 'description' => 'Article currently undergoing a major copy edit by the Guild of Copy Editors', 'items' => []],
+                    ['tag' => 'In use', 'description' => 'Article undergoing a major edit for a short while', 'items' => []],
+                    ['tag' => 'Under construction', 'description' => 'Article in the process of an expansion or major restructuring', 'items' => []]
                 ]
             ]
         ],
