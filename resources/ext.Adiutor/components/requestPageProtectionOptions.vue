@@ -277,7 +277,7 @@ module.exports = defineComponent({
                 if (responseData.status === 'success') {
                     // Display a success notification if the update was successful
                     mw.notify(mw.message('adiutor-localization-settings-has-been-updated').text(), {
-                        title: mw.msg('adiutor-warning'),
+                        title: mw.msg('adiutor-operation-completed'),
                         type: 'success'
                     });
                     // Revert the button label and enable it after a delay (2 seconds)
