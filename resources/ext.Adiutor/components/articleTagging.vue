@@ -3,7 +3,7 @@
         :show-dividers="true" :primary-action="primaryAction" :default-action="defaultAction" @primary="tagArticle"
         @default="openTagDialog = true">
         <div class="header">
-            <h5>{{ $i18n('adiutor-tag-module-title') }}</h5>
+            <h5>{{ $i18n('adiutor-choose-appropriate-tags') }}</h5>
             <p>{{ $i18n('adiutor-tag-header-description') }}</p>
             <cdx-text-input style="width: 200px;" v-model="searchTag" aria-label="New page name"
                 placeholder="Search tag..."></cdx-text-input>
