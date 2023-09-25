@@ -25,6 +25,7 @@ const requestPageProtectionOptions = require('./requestPageProtectionOptions.vue
 const requestPageMoveOptions = require('./requestPageMoveOptions.vue');
 const requestRevisionDeletionOptions = require('./requestRevisionDeletionOptions.vue');
 const deletionProposeOptions = require('./deletionProposeOptions.vue');
+const articleTaggingOptions = require('./articleTaggingOptions.vue');
 module.exports = defineComponent({
     name: 'adiutorSettings',
     components: {
@@ -61,6 +62,10 @@ module.exports = defineComponent({
                 name: 'dpr',
                 label: 'Deletion Propose',
                 component: deletionProposeOptions
+            },{
+                name: 'tag',
+                label: 'Article Tagging',
+                component: articleTaggingOptions
             }],
             currentTab: 'csd'
         };

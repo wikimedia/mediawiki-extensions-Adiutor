@@ -158,7 +158,7 @@ module.exports = defineComponent({
             // Change the button label and disable it during the save operation
             this.saveButtonLabel = 'Saving...';
             this.saveButtonAction = 'default';
-            //this.saveButtonDisabled = true;
+            this.saveButtonDisabled = true;
 
             // Prepare the data to be sent in the HTTP request
             const data = {

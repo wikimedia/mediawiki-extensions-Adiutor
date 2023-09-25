@@ -287,6 +287,7 @@
                 "ext.Adiutor/components/createSpeedyDeletion.vue",
                 "ext.Adiutor/components/createSpeedyDeletionOptions.vue",
                 "ext.Adiutor/components/articleTagging.vue",
+                "ext.Adiutor/components/articleTaggingOptions.vue",
                 "ext.Adiutor/components/requestPageMove.vue",
                 "ext.Adiutor/components/requestPageProtection.vue",
                 "ext.Adiutor/components/requestPageProtectionOptions.vue",
