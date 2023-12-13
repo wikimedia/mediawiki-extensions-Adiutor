@@ -4,4 +4,4 @@ Adiutor is a MediaWiki extension that is currently under development to facilita
 
 # Licensing and Attribution
 
-This extension is licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) and GNU Free Documentation License (GFDL).
+This extension is licensed under the GNU General Public License version 2.0 or later (GPL-2.0-or-later).
