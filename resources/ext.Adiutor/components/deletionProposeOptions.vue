@@ -4,58 +4,58 @@
             @click="saveConfiguration" :disabled="saveButtonDisabled">
             {{ saveButtonLabel }}
         </cdx-button>
-        <h3 style="display: initial;">Create speedy deletion configuration</h3>
-        <p style="margin-top: 22px;">This page provides you with the ability to customize the settings of Adiutor's request speedy deletion module. When you make adjustments here, it directly updates the configuration stored in the <a href="/MediaWiki:AdiutorDeletionPropose.json">MediaWiki:AdiutorDeletionPropose.json</a> page on your behalf. You can easily track and review the history of your modifications on that page.</p>
+        <h3 style="display: initial;">{{ $i18n('adiutor-proposed-deletion-configuration') }}</h3>
+        <p style="margin-top: 22px;">{{ $i18n('adiutor-proposed-deletion-description') }}</p>
     </cdx-message>
-    <cdx-message type="warning" dismiss-button-label="Close">
-        <h3>Parameters</h3>
-        <p>You can utilize the parameters within this options, which include:</p>
+    <cdx-message type="warning" dismiss-button-label="{{ $i18n('adiutor-close') }}">
+        <h3>{{ $i18n('adiutor-parameters') }}</h3>
+        <p>{{ $i18n('adiutor-parameters-description') }}</p>
         <ul>
-            <li><strong>$1</strong>: page name</li>
-            <li><strong>$2</strong>: rationale</li>
-            <li><strong>$3</strong>: day</li>
-            <li><strong>$4</strong>: month</li>
-            <li><strong>$5</strong>: year</li>
-            <li><strong>$6</strong>: requester</li>
+            <li><strong>$1</strong>: {{ $i18n('adiutor-parameters-page-name') }}</li>
+            <li><strong>$2</strong>: {{ $i18n('adiutor-parameters-rationale') }}</li>
+            <li><strong>$3</strong>: {{ $i18n('adiutor-parameters-day') }}</li>
+            <li><strong>$4</strong>: {{ $i18n('adiutor-parameters-month') }}</li>
+            <li><strong>$5</strong>: {{ $i18n('adiutor-parameters-year') }}</li>
+            <li><strong>$6</strong>: {{ $i18n('adiutor-parameters-requester') }}</li>
         </ul>
     </cdx-message>
     <cdx-message>
-        <strong>Settings</strong>
-        <cdx-label input-id="prodNotificationTemplate">Prod Notification Template:</cdx-label>
+        <strong>{{ $i18n('adiutor-settings') }}</strong>
+        <cdx-label input-id="prodNotificationTemplate">{{ $i18n('adiutor-prod-notification-template') }}</cdx-label>
         <cdx-text-input v-model="prodNotificationTemplate" id="prodNotificationTemplate"
-            aria-label="Prod Notification Template"></cdx-text-input>
+            aria-label="{{ $i18n('adiutor-prod-notification-template') }}"></cdx-text-input>
     </cdx-message>
     <cdx-message>
         <cdx-field>
-            <strong>In-page request templating configuration</strong>
-            <cdx-label input-id="standardProposeTemplate">Proposed Deletion Template:</cdx-label>
+            <strong>{{ $i18n('adiutor-in-page-request-templating-configuration') }}</strong>
+            <cdx-label input-id="standardProposeTemplate">{{ $i18n('adiutor-proposed-deletion-template') }}</cdx-label>
             <cdx-text-input v-model="standardProposeTemplate" id="standardProposeTemplate"
-                aria-label="Proposed Deletion Template"></cdx-text-input>
+                aria-label="{{ $i18n('adiutor-proposed-deletion-template') }}"></cdx-text-input>
             <template #help-text>
-                This is a speedy deletion request template to be used for a single reason.
+                {{ $i18n('adiutor-proposed-deletion-template-description') }}
             </template>
         </cdx-field>
         <cdx-field>
-            <cdx-label input-id="livingPersonProposeTemplate">Proposed deletion of unsourced BLPs Template:</cdx-label>
+            <cdx-label input-id="livingPersonProposeTemplate">{{ $i18n('adiutor-proposed-deletion-blps-template') }}</cdx-label>
             <cdx-text-input v-model="livingPersonProposeTemplate" id="livingPersonProposeTemplate"
-                aria-label="Proposed deletion of unsourced BLPs Template"></cdx-text-input>
+                aria-label="{{ $i18n('adiutor-proposed-deletion-blps-template') }}"></cdx-text-input>
             <template #help-text>
-                This is a speedy deletion request template to be used for a single reason.
+                {{ $i18n('adiutor-proposed-deletion-blps-template-description') }}
             </template>
         </cdx-field>
     </cdx-message>
     <cdx-message>
         <cdx-field>
-            <strong>Summaries</strong>
-            <cdx-label input-id="apiPostSummaryforLog">API Post Summary for Log:</cdx-label>
+            <strong>{{ $i18n('adiutor-summaries') }}</strong>
+            <cdx-label input-id="apiPostSummaryforLog">{{ $i18n('adiutor-api-post-summary-for-log') }}</cdx-label>
             <cdx-text-input v-model="apiPostSummaryforLog" id="apiPostSummaryforLog"
-                aria-label="API Post Summary for Log"></cdx-text-input>
-            <cdx-label input-id="apiPostSummary">API Post Summary:</cdx-label>
+                aria-label="{{ $i18n('adiutor-api-post-summary-for-log') }}"></cdx-text-input>
+            <cdx-label input-id="apiPostSummary">{{ $i18n('adiutor-api-post-summary') }}</cdx-label>
             <cdx-text-input v-model="apiPostSummary" id="apiPostSummary"
-                aria-label="API Post Summary for Talk Page"></cdx-text-input>
-            <cdx-label input-id="apiPostSummaryforCreator">API Post Summary for Creator:</cdx-label>
+                aria-label="{{ $i18n('adiutor-api-post-summary-for-talk-page') }}"></cdx-text-input>
+            <cdx-label input-id="apiPostSummaryforCreator">{{ $i18n('adiutor-api-post-summary-for-creator') }}</cdx-label>
             <cdx-text-input v-model="apiPostSummaryforCreator" id="apiPostSummaryforCreator"
-                aria-label="API Post Summary for Creator"></cdx-text-input>
+                aria-label="{{ $i18n('adiutor-api-post-summary-for-creator') }}"></cdx-text-input>
         </cdx-field>
     </cdx-message>
 </template>

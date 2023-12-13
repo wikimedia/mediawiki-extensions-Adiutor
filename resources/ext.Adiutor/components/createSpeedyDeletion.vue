@@ -20,7 +20,7 @@
 					<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-other-options') }}</strong></cdx-label>
 					<cdx-checkbox v-model="recreationProrection">{{
 						$i18n('adiutor-protect-against-rebuilding') }}</cdx-checkbox>
-					<cdx-checkbox v-model="informCreator">{{ $i18n('adiutor-afd-inform-creator')
+					<cdx-checkbox v-model="informCreator">{{ $i18n('adiutor-inform-creator')
 					}}</cdx-checkbox>
 				</cdx-field>
 				<cdx-field :is-fieldset="true" v-if="!namespaceDeletionReasons.length">
@@ -62,6 +62,7 @@ const csdTemplateStartMultipleReason = csdConfiguration.csdTemplateStartMultiple
 const singleReasonSummary = csdConfiguration.singleReasonSummary;
 const multipleReasonSummary = csdConfiguration.multipleReasonSummary;
 const speedyDeletionPolicyPageShortcut = csdConfiguration.speedyDeletionPolicyPageShortcut;
+const csdNotificationTemplate = csdConfiguration.csdNotificationTemplate;
 const namespaceDeletionReasons = [];
 for (const reason of speedyDeletionReasons) {
 	if (reason.namespace === mw.config.get('wgNamespaceNumber')) {
@@ -87,14 +88,13 @@ module.exports = defineComponent({
 		CdxMessage
 	},
 	setup() {
+		const api = new mw.Api();
 		const checkboxValue = ref(['']);
 		const copyVioInput = ref('');
 		const recreationProrection = ref(false);
 		const informCreator = ref(true);
 		const openCsdDialog = ref(true);
-
 		const showCopyVioInput = ref(false);
-
 		const toggleCopyVioInputBasedOnCheckbox = () => {
 			const selectedReasons = speedyDeletionReasons.reduce((selected, category) => {
 				const selectedInCategory = category.reasons.filter((reason) => {
@@ -121,7 +121,14 @@ module.exports = defineComponent({
 			label: mw.msg('adiutor-speedy-deletion-policy'),
 		};
 
-		function createSpeedyDeletionRequest() {
+		/**
+		 * Creates a speedy deletion request based on the selected reasons.
+		 * If there are selected reasons, it constructs the csdReason and csdSummary based on the selectedReasons array.
+		 * It then calls the createApiRequest function with the csdReason and csdSummary.
+		 * If informCreator is true, it fetches the creator of the article and sends a notification message to the creator.
+		 * If there are no selected reasons, it displays an error notification.
+		 */
+		const createSpeedyDeletionRequest = async () => {
 			const selectedReasons = speedyDeletionReasons.reduce((selected, category) => {
 				const selectedInCategory = category.reasons.filter((reason) => {
 					return checkboxValue.value.includes(reason.value);
@@ -171,7 +178,24 @@ module.exports = defineComponent({
 				}
 				console.log(csdReason);
 				console.log(csdSummary);
-				openCsdDialog.value = false;
+				createApiRequest(csdReason, csdSummary);
+				if (informCreator.value) {
+					try {
+						const creatorData = await getCreator();
+						var articleAuthor = creatorData.query.pages[mw.config.get('wgArticleId')].revisions[0].user;
+						if (!mw.util.isIPAddress(articleAuthor)) {
+							const placeholdersForNotification = {
+								$1: mw.config.get("wgPageName"),
+								$2: csdSummary,
+								$3: csdReason,
+							};
+							var message = replacePlaceholders(csdNotificationTemplate, placeholdersForNotification);
+							await sendMessageToAuthor(articleAuthor, message);
+						}
+					} catch (error) {
+						console.error('Error in fetching creator or sending message:', error);
+					}
+				}
 			} else {
 				mw.notify(mw.message('adiutor-select-speedy-deletion-reason').text(), {
 					title: mw.msg('adiutor-warning'),
@@ -180,6 +204,57 @@ module.exports = defineComponent({
 			}
 		}
 
+		/**
+		 * Creates an API request to tag an article for speedy deletion.
+		 * 
+		 * @param {string} csdReason - The reason for the speedy deletion.
+		 * @param {string} csdSummary - The summary of the speedy deletion.
+		 */
+		const createApiRequest = async (csdReason, csdSummary) => {
+			// API request to tag the article for speedy deletion
+			api.postWithToken('csrf', {
+				action: 'edit',
+				title: mw.config.get("wgPageName"),
+				prependtext: csdReason + "\n",
+				summary: csdSummary,
+				tags: 'Adiutor',
+				format: 'json'
+			}).done(function () {
+				openCsdDialog.value = false;
+				mw.notify("Article tagged for speedy deletion", {
+					title: mw.msg('adiutor-operation-completed'),
+					type: 'success'
+				});
+			}).fail(function (error) {
+				mw.notify("Failed to tag article for speedy deletion: " + error, {
+					title: mw.msg('adiutor-operation-failed'),
+					type: 'error'
+				});
+			});
+		}
+
+		/**
+		 * Replaces placeholders in the input string with the corresponding replacements.
+		 * 
+		 * @param {string} input - The input string with placeholders.
+		 * @param {object} replacements - An object containing the replacements for the placeholders.
+		 * @returns {string} - The input string with placeholders replaced by their corresponding replacements.
+		 */
+		const replacePlaceholders = (input, replacements) => {
+			return input.replace(/\$(\d+)/g, function (match, group) {
+				var replacement = replacements['$' + group];
+				return replacement !== undefined ? replacement : match;
+			});
+		};
+
+		/**
+		 * Replaces a parameter in the input string with a new value.
+		 * 
+		 * @param {string} input - The input string.
+		 * @param {string} parameterName - The name of the parameter to replace.
+		 * @param {string} newValue - The new value to replace the parameter with.
+		 * @returns {string} - The modified input string with the parameter replaced.
+		 */
 		function replaceParameter(input, parameterName, newValue) {
 			const regex = new RegExp('\\$' + parameterName, 'g');
 			if (input.includes('$' + parameterName)) {
@@ -188,6 +263,44 @@ module.exports = defineComponent({
 				return input;
 			}
 		}
+
+		/**
+		 * Retrieves the creator of the page.
+		 * @returns {Promise} A promise that resolves with the creator's information.
+		 */
+		function getCreator() {
+			return api.get({
+				action: 'query',
+				prop: 'revisions',
+				rvlimit: 1,
+				rvprop: ['user'],
+				rvdir: 'newer',
+				titles: mw.config.get("wgPageName")
+			});
+		}
+
+		/**
+		 * Sends a notification message to the author of an article.
+		 * 
+		 * @param {string} articleAuthor - The username of the article author.
+		 * @param {string} notificationMessage - The message to be sent as a notification.
+		 * @param {string} csdSummary - The summary of the notification.
+		 * @returns {Promise<void>} - A promise that resolves when the message is sent successfully.
+		 */
+		const sendMessageToAuthor = async (articleAuthor, notificationMessage, csdSummary) => {
+			try {
+				await api.postWithToken('csrf', {
+					action: 'edit',
+					title: 'User_talk:' + articleAuthor,
+					appendtext: '\n' + notificationMessage,
+					summary: csdSummary,
+					tags: 'Adiutor',
+					format: 'json'
+				});
+			} catch (error) {
+				console.error('Error sending message to author:', error);
+			}
+		};
 
 		return {
 			checkboxValue,
@@ -201,6 +314,7 @@ module.exports = defineComponent({
 			recreationProrection,
 			informCreator,
 			showCopyVioInput,
+			api,
 			toggleCopyVioInputBasedOnCheckbox,
 			createSpeedyDeletionRequest
 		};

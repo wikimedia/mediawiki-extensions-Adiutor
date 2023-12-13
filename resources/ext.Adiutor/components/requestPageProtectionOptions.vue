@@ -4,40 +4,39 @@
             @click="saveConfiguration" :disabled="saveButtonDisabled">
             {{ saveButtonLabel }}
         </cdx-button>
-        <h3 style="display: initial;">Request page protection configuration</h3>
-        <p style="margin-top: 22px;">This page provides you with the ability to customize the settings of Adiutor's request page protection module. When you make adjustments here, it directly updates the configuration stored in the <a href="/MediaWiki:AdiutorRequestPageProtection.json">MediaWiki:AdiutorRequestPageProtection.json</a> page on your behalf. You can easily track and review the history of your modifications on that page.</p>
+        <h3 style="display: initial;">{{ $i18n('adiutor-request-page-protection-configuration') }}</h3>
+        <p style="margin-top: 22px;">{{ $i18n('adiutor-request-page-protection-description') }}</p>
     </cdx-message>
     <cdx-message type="warning" dismiss-button-label="Close">
-        <h3>Parameters</h3>
-        <p>You can utilize the parameters within this options, which include:</p>
+        <h3>{{ $i18n('adiutor-parameters') }}</h3>
+        <p>{{ $i18n('adiutor-parameters-description') }}</p>
         <ul>
-            <li><strong>$1</strong>: page name</li>
-            <li><strong>$2</strong>: protection duration</li>
-            <li><strong>$3</strong>: protection type</li>
-            <li><strong>$4</strong>: protection rationale</li>
+            <li><strong>$1</strong>: {{ $i18n('adiutor-parameters-page-name') }}</li>
+            <li><strong>$2</strong>: {{ $i18n('adiutor-parameters-protection-duration') }}</li>
+            <li><strong>$3</strong>: {{ $i18n('adiutor-parameters-protection-type') }}</li>
+            <li><strong>$4</strong>: {{ $i18n('adiutor-parameters-protection-rationale') }} </li>
         </ul>
     </cdx-message>
     <cdx-message>
-        <strong>Settings</strong>
+        <strong>{{ $i18n('adiutor-settings') }}</strong>
         <cdx-field :is-fieldset="true">
-            <cdx-label input-id="noticeBoardTitle">Noticeboard:</cdx-label>
+            <cdx-label input-id="noticeBoardTitle">{{ $i18n('adiutor-noticeboard') }}</cdx-label>
             <cdx-text-input v-model="noticeBoardTitle" id="noticeBoardTitle"
-                aria-label="Speedy Deletion Policy Link"></cdx-text-input>
+                aria-label="{{ $i18n('adiutor-noticeboard') }}"></cdx-text-input>
         </cdx-field>
         <cdx-field :is-fieldset="true">
-            <cdx-label input-id="contentPattern">Content pattern:</cdx-label>
+            <cdx-label input-id="contentPattern">{{ $i18n('adiutor-content-pattern') }}</cdx-label>
             <cdx-text-area v-model="contentPattern" id="contentPattern"
-                aria-label="Speedy Deletion Policy Link"></cdx-text-area>
+                aria-label="{{ $i18n('adiutor-content-pattern') }}"></cdx-text-area>
             <template #help-text>
-                In this field you can create the basic pattern of the content to be added to the page using the parameters
-                specified above, you can use a preload templates in this field or you can also add regular templates.
+                {{ $i18n('adiutor-content-pattern-description') }}
             </template>
         </cdx-field>
         <cdx-field :is-fieldset="true">
             <cdx-toggle-switch v-model="addNewSection">
-                <cdx-label input-id="addNewSection"> Create a new section on a new request queue.</cdx-label>
+                <cdx-label input-id="addNewSection">{{ $i18n('adiutor-create-new-section') }}</cdx-label>
                 <template #description>
-                    When this checkbox is enabled, a new section will be added to the notice board page.
+                    {{ $i18n('adiutor-new-section-description') }}
                 </template>
             </cdx-toggle-switch>
         </cdx-field>
@@ -48,27 +47,28 @@
         </cdx-field>
         <cdx-field :is-fieldset="true" v-if="!addNewSection">
             <cdx-toggle-switch v-model="useExistSection">
-                <cdx-label input-id="useExistSection">Use exist section to append or prepend the content
-                    pattern.</cdx-label>
+                <cdx-label input-id="useExistSection">{{ $i18n('adiutor-use-exist-section') }}</cdx-label>
                 <template #description>
-                    When this checkbox is enabled, a new section will be added to the notice board page.
+                    {{ $i18n('adiutor-use-exist-section-description') }}
                 </template>
             </cdx-toggle-switch>
         </cdx-field>
+
         <cdx-field :is-fieldset="true" v-if="useExistSection">
-            <cdx-label input-id="sectionId">Section ID:</cdx-label>
-            <cdx-text-input v-model="sectionId" id="sectionId" aria-label="Speedy Deletion Policy Link"></cdx-text-input>
+            <cdx-label input-id="sectionId">{{ $i18n('adiutor-section-id') }}</cdx-label>
+            <cdx-text-input v-model="sectionId" id="sectionId"
+                aria-label="{{ $i18n('adiutor-section-id') }}"></cdx-text-input>
             <template #help-text>
-                The content pattern will be prepended or appended in the section belonging to the ID specified here.
+                {{ $i18n('adiutor-section-id-description') }}
             </template>
         </cdx-field>
+
         <cdx-field :is-fieldset="true">
             <template #description v-if="!addNewSection && !useExistSection">
-                If you do not create a new section or use an existing section, the content will be prepended or appended on
-                the page.
+                {{ $i18n('adiutor-no-section-description') }}
             </template>
             <template #label>
-                Text Modification Direction
+                {{ $i18n('adiutor-text-modification-direction') }}
             </template>
             <cdx-radio v-for="direction in textModificationDirectionRadios" :key="'rpp-radio-' + direction.value"
                 v-model="textModificationDirection" name="rpp-radio-group-{{direction.value}}-descriptions"
@@ -77,57 +77,58 @@
                 <template #description> {{ direction.description }} </template>
             </cdx-radio>
         </cdx-field>
+
     </cdx-message>
     <cdx-message>
         <cdx-field>
-            <strong>Summaries</strong>
-            <cdx-label input-id="apiPostSummary">API Post Summary:</cdx-label>
-            <cdx-text-input v-model="apiPostSummary" id="apiPostSummary" aria-label="API Post Summary"></cdx-text-input>
+            <strong>{{ $i18n('adiutor-summaries') }}</strong>
+            <cdx-label input-id="apiPostSummary">{{ $i18n('adiutor-api-post-summary') }}</cdx-label>
+            <cdx-text-input v-model="apiPostSummary" id="apiPostSummary"
+                aria-label="{{ $i18n('adiutor-api-post-summary') }}"></cdx-text-input>
         </cdx-field>
     </cdx-message>
+
     <cdx-field>
         <table width="100%" id="adiutor-options-props">
             <caption>
-                Protection durations <cdx-button class="add-new-button" weight="quiet" @click="addNewProtectionDuration">Add
-                    New</cdx-button>
+                {{ $i18n('adiutor-protection-durations') }} <cdx-button class="add-new-button" weight="quiet" @click="addNewProtectionDuration">{{ $i18n('adiutor-add-new') }}</cdx-button>
             </caption>
             <tr>
-                <th>Value</th>
-                <th>Data</th>
-                <th>Label</th>
-                <th>Action</th>
+                <th>{{ $i18n('adiutor-value') }}</th>
+                <th>{{ $i18n('adiutor-data') }}</th>
+                <th>{{ $i18n('adiutor-label') }}</th>
+                <th>{{ $i18n('adiutor-action') }}</th>
             </tr>
             <tr v-for="duration in protectionDurations">
                 <td><cdx-text-input v-model="duration.value" aria-label="Duration value"></cdx-text-input></td>
                 <td><cdx-text-input v-model="duration.data" aria-label="Duration data"></cdx-text-input></td>
                 <td><cdx-text-input v-model="duration.label" aria-label="Duration label"></cdx-text-input></td>
-                <td><cdx-button action="destructive" @click="deleteProtectionDuration(duration)">Delete</cdx-button></td>
+                <td><cdx-button action="destructive" @click="deleteProtectionDuration(duration)">{{ $i18n('adiutor-delete') }}</cdx-button></td>
             </tr>
         </table>
     </cdx-field>
     <cdx-field>
         <table width="100%" id="adiutor-options-props">
             <caption>
-                Protection types <cdx-button class="add-new-button" weight="quiet" @click="addNewProtectionType">Add
-                    New</cdx-button>
+                {{ $i18n('adiutor-protection-types') }} <cdx-button class="add-new-button" weight="quiet" @click="addNewProtectionType">{{ $i18n('adiutor-add-new') }}</cdx-button>
             </caption>
             <tr>
-                <th>Value</th>
-                <th>Data</th>
-                <th>Label</th>
-                <th>Action</th>
+                <th>{{ $i18n('adiutor-value') }}</th>
+                <th>{{ $i18n('adiutor-data') }}</th>
+                <th>{{ $i18n('adiutor-label') }}</th>
+                <th>{{ $i18n('adiutor-action') }}</th>
             </tr>
             <tr v-for="protection_type in protectionTypes">
                 <td><cdx-text-input v-model="protection_type.value" aria-label="Type value"></cdx-text-input></td>
                 <td><cdx-text-input v-model="protection_type.data" aria-label="Type data"></cdx-text-input></td>
                 <td><cdx-text-input v-model="protection_type.label" aria-label="Type label"></cdx-text-input></td>
-                <td><cdx-button action="destructive" @click="deleteProtectionType(protection_type)">Delete</cdx-button></td>
+                <td><cdx-button action="destructive" @click="deleteProtectionType(protection_type)">{{ $i18n('adiutor-delete') }}</cdx-button></td>
             </tr>
         </table>
     </cdx-field>
 </template>
 <script>
-const { defineComponent, watch, ref, computed } = require('vue');
+const { defineComponent, ref } = require('vue');
 const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxToggleSwitch, CdxButton, CdxCheckbox, CdxField, CdxRadio, CdxTextArea } = require('@wikimedia/codex');
 const rppConfiguration = mw.config.get('AdiutorRequestPageProtection');
 module.exports = defineComponent({

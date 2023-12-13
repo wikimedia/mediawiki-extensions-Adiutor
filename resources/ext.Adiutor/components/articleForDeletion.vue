@@ -11,7 +11,7 @@
         </cdx-field>
         <div class="footer">
             <cdx-checkbox v-model="informCreator" :inline="true">
-                {{ $i18n('adiutor-afd-inform-creator') }}
+                {{ $i18n('adiutor-inform-creator') }}
             </cdx-checkbox>
             <cdx-button action="progressive" weight="primary" aria-label="Next" @click="nominateForDeletion">
                 {{ $i18n('adiutor-continue') }}
@@ -35,7 +35,7 @@ module.exports = defineComponent({
     },
     data() {
         return {
-            rationalePlaceholder: mw.msg('adiutor-afd-rationale-placeholder')
+            rationalePlaceholder: mw.msg('adiutor-rationale-placeholder')
         };
     },
     setup() {

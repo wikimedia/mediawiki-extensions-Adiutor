@@ -25,6 +25,12 @@ class AdiutorSettings extends \SpecialPage {
      *  [[Special:Adiutor/subpage]].
      */
     public function execute( $sub ) {
+        // Get the current user
+        $user = $this->getUser();
+        if ( !$user->isAllowed( 'editinterface' ) ) {
+            throw new \PermissionsError( 'editinterface' );
+        }
+
         $out = $this->getOutput();
 
         $out->setPageTitle( $this->msg( 'adiutor-settings' ) );

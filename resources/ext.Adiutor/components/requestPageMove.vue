@@ -1,14 +1,13 @@
 <template>
 	<cdx-dialog class="rpm-dialog" v-model:open="openRpmDialog" title="Request Page move" close-button-label="Close"
-		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageMove"
-		@default="openRpmDialog = true">
+		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageMove" @default="openRpmDialog = true">
 		<div class="header">
 			<h5>{{ $i18n('adiutor-pmr-header-title') }}</h5>
 			<p>{{ $i18n('adiutor-pmr-header-description') }}</p>
 		</div>
 		<cdx-field class="rpm-dialog-body">
 			<cdx-label class="rpm-label"><strong>{{ $i18n('adiutor-new-name') }}</strong></cdx-label>
-            <cdx-text-input v-model="newPageName" aria-label="New page name"></cdx-text-input>
+			<cdx-text-input v-model="newPageName" aria-label="New page name"></cdx-text-input>
 			<cdx-label class="rpm-label"><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
 			<cdx-text-area v-model="rationaleInput" :placeholder="rationalePlaceholder"></cdx-text-area>
 		</cdx-field>
@@ -54,7 +53,7 @@ module.exports = defineComponent({
 		const durationSelection = ref('');
 		const typeSelection = ref('');
 		const rationaleInput = ref('');
-        const newPageName = ref( '' );
+		const newPageName = ref('');
 		const openRpmDialog = ref(true);
 		const primaryAction = {
 			label: mw.msg('adiutor-create-request'),

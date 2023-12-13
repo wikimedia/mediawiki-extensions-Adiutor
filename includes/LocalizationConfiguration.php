@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * This file contains the LocalizationConfiguration class, which defines various configuration constants
+ * for the Adiutor extension in MediaWiki.
+ *
+ * The LocalizationConfiguration class contains constants for deletion propose configuration,
+ * page protection configuration, speedy deletion request configuration, page move configuration,
+ * revision deletion configuration, and article tagging configuration.
+ *
+ * @package MediaWiki\Extension\Adiutor
+ */
 namespace MediaWiki\Extension\Adiutor;
 
 class LocalizationConfiguration
@@ -431,15 +440,6 @@ class LocalizationConfiguration
                         'tag' => 'Notability',
                         'description' => 'Article subject may not meet the general notability guideline',
                         'items' => [
-                            [
-                                'name' => 'notability',
-                                'required' => false,
-                                'parameter' => '1',
-                                'type' => 'checkbox',
-                                'label' => "{{notability}}: article's subject may not meet the general notability guideline",
-                                'help' => '',
-                                'value' => ''
-                            ],
                             [
                                 'name' => 'notability',
                                 'required' => false,

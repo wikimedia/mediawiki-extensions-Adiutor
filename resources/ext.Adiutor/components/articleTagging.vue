@@ -1,7 +1,6 @@
 <template>
     <cdx-dialog class="tag-dialog" v-model:open="openTagDialog" title="Article Tagging" close-button-label="Close"
-        :show-dividers="true" :primary-action="primaryAction" :default-action="defaultAction" @primary="tagArticle"
-        @default="openTagDialog = true">
+        :show-dividers="true" :primary-action="primaryAction" @primary="tagArticle" @default="openTagDialog = true">
         <div class="header">
             <h5>{{ $i18n('adiutor-choose-appropriate-tags') }}</h5>
             <p>{{ $i18n('adiutor-tag-header-description') }}</p>
@@ -51,6 +50,7 @@ module.exports = defineComponent({
         CdxMessage
     },
     setup() {
+        const api = new mw.Api();
         const checkboxValue = ref(['']);
         const openTagDialog = ref(true);
         const tagConfiguration = mw.config.get('AdiutorArticleTagging');
@@ -62,12 +62,8 @@ module.exports = defineComponent({
         const searchTag = ref('');
         const primaryAction = {
             icon: 'cdxIconTag',
-            label: mw.msg('adiutor-request'),
+            label: mw.msg('adiutor-tag-page'),
             actionType: 'progressive'
-        };
-
-        const defaultAction = {
-            label: mw.msg('adiutor-speedy-deletion-policy'),
         };
         const filteredTagList = computed(() => {
             const searchTerm = searchTag.value.toLowerCase();
@@ -82,10 +78,8 @@ module.exports = defineComponent({
 
         function toggleTag(tag) {
             if (checkboxValue.value.includes(tag)) {
-                // If the tag is already in selectedTags and the checkbox is unchecked, remove it
                 checkboxValue.value = checkboxValue.value.filter(selectedTag => selectedTag !== tag);
             } else {
-                // If the tag is not in selectedTags and the checkbox is checked, add it
                 checkboxValue.value.push(tag);
             }
             console.log(checkboxValue.value);
@@ -100,18 +94,16 @@ module.exports = defineComponent({
             selectedTags.forEach(function (tag) {
                 if (tag.items && tag.items.length > 0) {
                     tag.items.forEach(function (subItem) {
-                        if (tag.tag) { // Check if tag.tag is defined
+                        if (tag.tag) {
                             let template = `{{${tag.tag}`;
                             if (subItem.parameter) {
-                                // If information for this template has not been provided before, get it from the user
                                 if (!templateInfo[tag.tag]) {
                                     templateInfo[tag.tag] = {};
                                 }
                                 if (!templateInfo[tag.tag][subItem.parameter]) {
-                                    const inputValue = getInputValue(subItem.name); // Get information from the user
+                                    const inputValue = getInputValue(subItem.name);
                                     templateInfo[tag.tag][subItem.parameter] = inputValue;
                                 }
-                                // Create the template using the previously entered information
                                 template += `|${subItem.parameter}=${templateInfo[tag.tag][subItem.parameter]}`;
                             }
                             template += '}}';
@@ -119,8 +111,7 @@ module.exports = defineComponent({
                         }
                     });
                 } else {
-                    if (tag.tag) { // Check if tag.tag is defined
-                        // If there are no tag.items, just add {{Template}}
+                    if (tag.tag) {
                         preparedTemplates.push(`{{${tag.tag}}}`);
                     }
                 }
@@ -128,18 +119,16 @@ module.exports = defineComponent({
             console.log(preparedTemplates);
 
             if (useMultipleIssuesTemplate && preparedTemplates.length > 1) {
-                // Join the formatted tags with newline characters and wrap in {{Multiple issues|...}}
                 preparedTagsString = `{{${multipleIssuesTemplate}|\n${preparedTemplates.join('\n')}\n}}`;
             } else {
-                // If there's only one tag or useMultipleIssuesTemplate is false, just use it as-is
                 preparedTagsString = preparedTemplates.join('\n');
             }
 
             console.log(preparedTagsString);
 
             if (selectedTags.length > 0) {
-                //tagPage(); // You may want to define the tagPage function if it's not already defined
-                //openTagDialog.value = false;
+                tagPage(preparedTagsString);
+                openTagDialog.value = false;
 
             } else {
                 mw.notify(mw.msg('adiutor-select-a-tag'), {
@@ -149,26 +138,44 @@ module.exports = defineComponent({
             }
         }
 
-
         function getInputValue(inputName) {
-            // Find the input element that matches inputName
             var inputElement = document.querySelector('input[name="' + inputName + '"]');
             if (inputElement) {
-                // If the input element is found, get its value
                 return inputElement.value;
             } else {
-                // If the input element is not found, return a default value or handle the error
-                return ""; // You can return a default value or perform other actions
+                return "";
             }
         }
 
+        function tagPage(preparedTagsString) {
+            var editParams = {
+                action: 'edit',
+                title: mw.config.get("wgPageName"),
+                summary: apiPostSummary,
+                tags: 'Adiutor',
+                format: 'json'
+            };
+            var removedContent = "";
+            var modifiedTags = preparedTagsString.replace('{{' + uncategorizedTemplate + '}}', function (match) {
+                removedContent = match;
+                return "";
+            });
+            if (removedContent) {
+                editParams.prependtext = modifiedTags.split(',').join('\n') + '\n';
+                editParams.appendtext = '\n' + removedContent;
+            } else {
+                editParams.prependtext = modifiedTags.split(',').join('\n') + '\n';
+            }
+            api.postWithToken('csrf', editParams).done(function () {
+                location.reload();
+            });
+        }
 
         return {
             checkboxValue,
             tagList,
             openTagDialog,
             primaryAction,
-            defaultAction,
             searchTag,
             toggleTag,
             filteredTagList,

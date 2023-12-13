@@ -19,6 +19,13 @@ use User;
  */
 class UpdateLocalConfigurationHandler extends SimpleHandler
 {
+	/**
+	 * Updates the local configuration file with the provided JSON data.
+	 *
+	 * @return array An array containing the status and message.
+	 * - If the update is successful, the status will be 'success' and the message will be the updated content.
+	 * - If the update fails, the status will be 'error'.
+	 */
 	public function run()
 	{
 		$jsonData = $this->getValidatedBody();
@@ -46,6 +53,12 @@ class UpdateLocalConfigurationHandler extends SimpleHandler
 		}
 	}
 
+	/**
+	 * Returns the appropriate body validator based on the content type.
+	 *
+	 * @param string $contentType The content type of the request body.
+	 * @return BodyValidatorInterface The body validator instance.
+	 */
 	public function getBodyValidator($contentType)
 	{
 		if ($contentType === 'application/json') {

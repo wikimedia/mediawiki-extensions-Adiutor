@@ -4,70 +4,68 @@
             @click="saveConfiguration" :disabled="saveButtonDisabled">
             {{ saveButtonLabel }}
         </cdx-button>
-        <h3 style="display: initial;">Request page move configuration</h3>
-        <p style="margin-top: 22px;">This page provides you with the ability to customize the settings of Adiutor's request page protection module. When you make adjustments here, it directly updates the configuration stored in the <a href="/MediaWiki:AdiutorRequestPageMove.json">MediaWiki:AdiutorRequestPageMove.json</a> page on your behalf. You can easily track and review the history of your modifications on that page.</p>
+        <h3 style="display: initial;">{{ $i18n('adiutor-request-page-move-configuration') }}</h3>
+        <p style="margin-top: 22px;">{{ $i18n('adiutor-request-page-move-description') }}</p>
     </cdx-message>
-    <cdx-message type="warning" dismiss-button-label="Close">
-        <h3>Parameters</h3>
-        <p>You can utilize the parameters within this options, which include:</p>
+    <cdx-message type="warning" dismiss-button-label="{{ $i18n('adiutor-close') }}">
+        <h3>{{ $i18n('adiutor-parameters') }}</h3>
+        <p>{{ $i18n('adiutor-parameters-description') }}</p>
         <ul>
-            <li><strong>$1</strong>: page name</li>
-            <li><strong>$2</strong>: new page name</li>
-            <li><strong>$3</strong>: rationale</li>
+            <li><strong>$1</strong>: {{ $i18n('adiutor-parameters-page-name') }}</li>
+            <li><strong>$2</strong>: {{ $i18n('adiutor-parameters-new-page-name') }}</li>
+            <li><strong>$3</strong>: {{ $i18n('adiutor-parameters-rationale') }}</li>
         </ul>
     </cdx-message>
     <cdx-message>
-        <strong>Settings</strong>
+        <strong>{{ $i18n('adiutor-settings') }}</strong>
         <cdx-field :is-fieldset="true">
-            <cdx-label input-id="noticeBoardTitle">Noticeboard:</cdx-label>
+            <cdx-label input-id="noticeBoardTitle">{{ $i18n('adiutor-noticeboard') }}</cdx-label>
             <cdx-text-input v-model="noticeBoardTitle" id="noticeBoardTitle"
-                aria-label="Speedy Deletion Policy Link"></cdx-text-input>
+                aria-label="{{ $i18n('adiutor-noticeboard') }}"></cdx-text-input>
         </cdx-field>
         <cdx-field :is-fieldset="true">
-            <cdx-label input-id="contentPattern">Content pattern:</cdx-label>
+            <cdx-label input-id="contentPattern">{{ $i18n('adiutor-content-pattern') }}</cdx-label>
             <cdx-text-area v-model="contentPattern" id="contentPattern"
-                aria-label="Speedy Deletion Policy Link"></cdx-text-area>
+                aria-label="{{ $i18n('adiutor-content-pattern') }}"></cdx-text-area>
             <template #help-text>
-                In this field you can create the basic pattern of the content to be added to the page using the parameters
-                specified above, you can use a preload templates in this field or you can also add regular templates.
+                {{ $i18n('adiutor-content-pattern-description') }}
             </template>
         </cdx-field>
         <cdx-field :is-fieldset="true">
             <cdx-toggle-switch v-model="addNewSection">
-                <cdx-label input-id="addNewSection"> Create a new section on a new request queue.</cdx-label>
+                <cdx-label input-id="addNewSection">{{ $i18n('adiutor-create-new-section') }}</cdx-label>
                 <template #description>
-                    When this checkbox is enabled, a new section will be added to the notice board page.
+                    {{ $i18n('adiutor-new-section-description') }}
                 </template>
             </cdx-toggle-switch>
         </cdx-field>
         <cdx-field :is-fieldset="true" v-if="addNewSection">
-            <cdx-label input-id="sectionTitle">New section title:</cdx-label>
+            <cdx-label input-id="sectionTitle">{{ $i18n('adiutor-new-section-title') }}</cdx-label>
             <cdx-text-input v-model="sectionTitle" id="sectionTitle"
-                aria-label="Speedy Deletion Policy Link"></cdx-text-input>
+                aria-label="{{ $i18n('adiutor-new-section-title') }}"></cdx-text-input>
         </cdx-field>
         <cdx-field :is-fieldset="true" v-if="!addNewSection">
             <cdx-toggle-switch v-model="useExistSection">
-                <cdx-label input-id="useExistSection">Use exist section to append or prepend the content
-                    pattern.</cdx-label>
+                <cdx-label input-id="useExistSection">{{ $i18n('adiutor-use-exist-section') }}</cdx-label>
                 <template #description>
-                    When this checkbox is enabled, a new section will be added to the notice board page.
+                    {{ $i18n('adiutor-use-exist-section-description') }}
                 </template>
             </cdx-toggle-switch>
         </cdx-field>
         <cdx-field :is-fieldset="true" v-if="useExistSection">
-            <cdx-label input-id="sectionId">Section ID:</cdx-label>
-            <cdx-text-input v-model="sectionId" id="sectionId" aria-label="Speedy Deletion Policy Link"></cdx-text-input>
+            <cdx-label input-id="sectionId">{{ $i18n('adiutor-section-id') }}</cdx-label>
+            <cdx-text-input v-model="sectionId" id="sectionId"
+                aria-label="{{ $i18n('adiutor-section-id') }}"></cdx-text-input>
             <template #help-text>
-                The content pattern will be prepended or appended in the section belonging to the ID specified here.
+                {{ $i18n('adiutor-section-id-description') }}
             </template>
         </cdx-field>
         <cdx-field :is-fieldset="true">
             <template #description v-if="!addNewSection && !useExistSection">
-                If you do not create a new section or use an existing section, the content will be prepended or appended on
-                the page.
+                {{ $i18n('adiutor-no-section-description') }}
             </template>
             <template #label>
-                Text Modification Direction
+                {{ $i18n('adiutor-text-modification-direction') }}
             </template>
             <cdx-radio v-for="direction in textModificationDirectionRadios" :key="'rpm-radio-' + direction.value"
                 v-model="textModificationDirection" name="rpm-radio-group-{{direction.value}}-descriptions"
@@ -79,9 +77,10 @@
     </cdx-message>
     <cdx-message>
         <cdx-field>
-            <strong>Summaries</strong>
-            <cdx-label input-id="apiPostSummary">API Post Summary:</cdx-label>
-            <cdx-text-input v-model="apiPostSummary" id="apiPostSummary" aria-label="API Post Summary"></cdx-text-input>
+            <strong>{{ $i18n('adiutor-summaries') }}</strong>
+            <cdx-label input-id="apiPostSummary">{{ $i18n('adiutor-api-post-summary') }}</cdx-label>
+            <cdx-text-input v-model="apiPostSummary" id="apiPostSummary"
+                aria-label="{{ $i18n('adiutor-api-post-summary') }}"></cdx-text-input>
         </cdx-field>
     </cdx-message>
 </template>

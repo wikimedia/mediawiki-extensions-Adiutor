@@ -25,6 +25,7 @@ const portletLinks = [
     key: 'pd',
     namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
   },
+  /*
   {
     id: 't-article-for-deletion',
     label: 'Article for deletion',
@@ -32,6 +33,7 @@ const portletLinks = [
     key: 'afd',
     namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
   },
+  */
   {
     id: 't-request-protection',
     label: 'Request protection',
@@ -53,18 +55,22 @@ const portletLinks = [
     key: 'tag',
     namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
   },
+  /*
   {
     id: 't-report-user',
     label: 'Report user',
     action: 'Report user',
     key: 'rep',
     namespaces: [2, 3],
-  },
+  },*/
 ];
 
 portletLinks.forEach(link => {
-  if (link.namespaces.includes(mw.config.get('wgNamespaceNumber'))) {
-    mw.util.addPortletLink('p-cactions', '#', link.label, link.id, link.action, link.key);
+  // Check if the current page is not a special page
+  if (mw.config.get('wgNamespaceNumber') >= 0) {
+    if (link.namespaces.includes(mw.config.get('wgNamespaceNumber'))) {
+      mw.util.addPortletLink('p-cactions', '#', link.label, link.id, link.action, link.key);
+    }
   }
 });
 

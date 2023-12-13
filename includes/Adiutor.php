@@ -19,6 +19,16 @@ use User;
 
 class Adiutor
 {
+    /**
+     * This method is called when the Adiutor extension is loaded.
+     * It creates and saves configuration pages for the extension if they do not already exist.
+     * The configuration pages are defined in the $configurationPages array.
+     * Each page is checked if it already exists, and if not, a new page is created with the specified content.
+     * The content is encoded as JSON and saved as the main slot content of the page.
+     * The method uses MediaWiki's PageUpdater to create and save the pages.
+     * The user used for creating the pages is User::newFromId(0), which represents the system user.
+     * After saving each page, the save status is stored in the $saveStatus variable.
+     */
     public static function onExtensionLoad()
     {
         $configurationPages = [
