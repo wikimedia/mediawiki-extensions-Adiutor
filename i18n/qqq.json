@@ -1,11 +1,5 @@
 {
     "@metadata": {
-<<<<<<< HEAD   (4c6e3d Add .gitreview)
-	    "authors": [
-		    "Vikipolimer"
-		]
-	},
-=======
         "authors": [
             "Vikipolimer"
         ]
@@ -13,10 +7,11 @@
     "adiutor-title": "The name of the extension",
     "adiutor-desc": "{{desc}}",
     "adiutor-beta-feature-enabled": "Beta feature status",
->>>>>>> CHANGE (02af75 Merge branch 'bugfix/vikipolimer')
     "adiutor-create": "This message will be displayed on the action window.",
+    "adiutor-request": "This message will be displayed on the request action window.",
+    "adiutor-protection-policy": "This message will be displayed on the protection policy action window.",
     "adiutor-speedy-deletion-policy": "This message will be displayed on the create speedy deletion request action window.",
-    "adiutor-delete": "This message will be displayed on the adiutor menu.",
+    "adiutor-delete": "Label for the delete function or option within the Adiutor extension, typically used to remove content or cancel actions.",
     "adiutor-other-options": "This message will be displayed on various windows.",
     "adiutor-propose": "This message will be displayed on the action window.",
     "adiutor-continue": "This message will be displayed on the action window.",
@@ -24,12 +19,15 @@
     "adiutor-protect-against-rebuilding": "This message will be displayed on the speedy deletion request action window.",
     "adiutor-protect-against-rebuilding-help": "This message will be displayed on the speedy deletion action window.",
     "adiutor-rationale": "This message will be displayed on the user block request action window.",
-    "adiutor-rationale-placeholder": "This message will be displayed on the aticle for deletion request action window.",
-    "adiutor-inform-creator": "This message will be displayed on the aticle for deletion request action window.",
-    "adiutor-inform-creator-help": "This message will be displayed on the aticle for deletion request action window.",
+    "adiutor-rationale-placeholder": "This message will be displayed on the article for deletion request action window.",
+    "adiutor-inform-creator": "This message will be displayed on the article for deletion request action window.",
+    "adiutor-inform-creator-help": "This message will be displayed on the article for deletion request action window.",
     "adiutor-rpp-rationale-placeholder": "This message will be displayed on the page protection request action window.",
+    "adiutor-rpm-rationale-placeholder": "This message will be displayed on the page move request action window.",
+    "adiutor-afd-special-page-title": "This message will be displayed on the article for deletion request action window.",
     "adiutor-create-request": "This message will be displayed on the action window.",
     "adiutor-protection-type": "This message will be displayed on the protection request action window.",
+    "adiutor-choose-appropriate-tags": "This message will be displayed on the choose appropriate tags action window.",
     "adiutor-prd-deletion-rationale": "This message will be displayed on the window while proposing article for deletion",
     "adiutor-prd-deletion-type": "This message will be displayed on the window while proposing article for deletion",
     "adiutor-prd-deletion-type-1": "This message will be displayed on the window while proposing article for deletion",
@@ -37,6 +35,8 @@
     "adiutor-prd-deletion-type-1-help": "This message will be displayed on the window while proposing article for deletion",
     "adiutor-prd-deletion-type-2-help": "This message will be displayed on the window while proposing article for deletion",
     "adiutor-rpp-header-title": "This message will be displayed on the protection request action window.",
+    "adiutor-rpp-incomplete-request-details": "This message will be displayed on the protection request action window.",
+    "adiutor-rpm-incomplete-request-details": "This message will be displayed on the page move request action window.",
     "adiutor-prd-header-title": "This message will be displayed on the window while proposing article for deletion",
     "adiutor-csd-header-title": "This message will be displayed on the create speedy deletion request action window.",
     "adiutor-csd-header-description": "This message will be displayed on the create speedy deletion request action window.",
@@ -51,8 +51,8 @@
     "adiutor-page-move-request": "This message will be displayed on the adiutor menu.",
     "adiutor-page-protection-request": "This message will be displayed on the adiutor menu.",
     "adiutor-tag-page": "This message will be displayed on the adiutor menu.",
-    "adiutor-settings": "This message will be displayed on the adiutor menu.",
-    "adiutor-protect": "This message will be displayed on Adiutor menu.",
+    "adiutor-settings": "Label for accessing the central settings or configuration panel within the Adiutor extension.",
+    "adiutor-localization-settings-has-been-updated": "This message will be displayed on the localization settings update confirmation window.",
     "adiutor-copyright-infringing-page": "This message will be displayed on copyvio check window.",
     "adiutor-operation-completed": "This message will be displayed after operations completed.",
     "adiutor-operation-failed": "This message will be displayed after operations failed.",
@@ -60,9 +60,6 @@
     "adiutor-no-namespace-reason-for-csd": "This message will be displayed on the create speedy deletion request action window.",
     "adiutor-and": "This message will be displayed on the user page widget.",
     "adiutor-select-speedy-deletion-reason": "This message will be displayed on the Adiutor dashboard.",
-<<<<<<< HEAD   (4c6e3d Add .gitreview)
-    "adiutor-warning": "This message will be displayed on the various windows."
-=======
     "adiutor-warning": "This message will be displayed on the various windows.",
     "adiutor-select-a-tag": "This message will be displayed on article tagging dialog.",
     "adiutor-article-tagging-configuration-title": "Article tagging configuration",
@@ -186,6 +183,7 @@
     "adiutor-prepend-text-on-the-page": "Label for the option to prepend text on the page optionally.",
     "adiutor-prepend-text-on-the-page-description": "Description of the option to prepend text on the page optionally.",
     "adiutor-append-text-on-the-page": "Label for the option to append text on the page optionally.",
-    "adiutor-append-text-on-the-page-description": "Description of the option to append text on the page optionally."
->>>>>>> CHANGE (02af75 Merge branch 'bugfix/vikipolimer')
+    "adiutor-append-text-on-the-page-description": "Description of the option to append text on the page optionally.",
+    "adiutor-module-enabled": "Label for the option to enable a module.",
+    "adiutor-module-enabled-description": "Description of the option to enable a module."
 }
