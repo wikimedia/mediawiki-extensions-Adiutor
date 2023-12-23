@@ -7,7 +7,7 @@
  */
 
 namespace MediaWiki\Extension\Adiutor;
-
+use Message;
 class AdiutorSettings extends \SpecialPage
 {
     /**
@@ -25,7 +25,7 @@ class AdiutorSettings extends \SpecialPage
      */
     public function getDescription()
     {
-        return $this->msg('adiutor-settings')->text();
+        return Message::newFromKey('adiutor-settings');
     }
 
     /**
@@ -39,7 +39,7 @@ class AdiutorSettings extends \SpecialPage
             throw new \PermissionsError('editinterface');
         }
         $out = $this->getOutput();
-        $out->setPageTitle($this->msg('adiutor-settings'));
+        $out->setPageTitle(Message::newFromKey('adiutor-settings'));
         $out->addHtml('<div id="adiutor-settings"></div>');
     }
 
