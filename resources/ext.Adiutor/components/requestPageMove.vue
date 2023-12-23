@@ -100,7 +100,7 @@ module.exports = defineComponent({
 			}
 
 			api.postWithToken('csrf', apiParams).done(function () {
-				window.location = '/' + noticeBoardLink;
+				window.location = '/wiki/' + noticeBoardLink;
 				openRpmDialog.value = false;
 			});
 		}
