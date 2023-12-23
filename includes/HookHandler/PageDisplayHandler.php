@@ -55,6 +55,9 @@ class PageDisplayHandler implements BeforePageDisplayHook
 		) {
 			return;
 		}
+		if (!$this->userOptionsLookup->getOption($user, 'adiutor-switch')) {
+			return;
+		}
 		if (
             !$this->permissionManager->userHasRight($user, 'edit' )
         ) {
