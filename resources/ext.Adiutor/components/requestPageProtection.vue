@@ -1,9 +1,8 @@
 <template>
-	<cdx-dialog class="rpp-dialog" v-model:open="openRppDialog" title="Page Protection Request" close-button-label="Close"
+	<cdx-dialog class="rpp-dialog" v-model:open="openRppDialog" :title="$i18n('adiutor-rpp-header-title')" close-button-label="Close"
 		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection"
 		@default="openRppDialog = true" :default-action="defaultAction">
 		<div class="header">
-			<h5>{{ $i18n('adiutor-rpp-header-title') }}</h5>
 			<p>{{ $i18n('adiutor-rpp-header-description') }}</p>
 		</div>
 		<cdx-field class="rpp-dialog-body">

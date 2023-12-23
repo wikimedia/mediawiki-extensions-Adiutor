@@ -1,9 +1,8 @@
 <template>
-	<cdx-dialog class="csd-dialog" v-model:open="openCsdDialog" title="Speedy Deletion Request" close-button-label="Close"
+	<cdx-dialog class="csd-dialog" v-model:open="openCsdDialog" :title="$i18n('adiutor-csd-header-title')" close-button-label="Close"
 		:show-dividers="true" :primary-action="primaryAction" :default-action="defaultAction"
 		@primary="createSpeedyDeletionRequest" @default="openCsdDialog = true">
 		<div class="header">
-			<h5>{{ $i18n('adiutor-csd-header-title') }}</h5>
 			<p>{{ $i18n('adiutor-csd-header-description') }}</p>
 		</div>
 		<div class="csd-reasons-body">

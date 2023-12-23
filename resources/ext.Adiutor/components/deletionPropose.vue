@@ -1,10 +1,9 @@
 <template>
 	<!-- This component is a dialog for proposing the deletion of an article. -->
-	<cdx-dialog class="prd-dialog" v-model:open="openPrdDialog" title="Proposed Deletion" close-button-label="Close"
+	<cdx-dialog class="prd-dialog" v-model:open="openPrdDialog" :title="$i18n('adiutor-prd-header-title')" close-button-label="Close"
 		:show-dividers="true" @default="openPrdDialog = true">
 		<!-- Header section with title and description. -->
 		<div class="header">
-			<h5>{{ $i18n('adiutor-prd-header-title') }}</h5>
 			<p>{{ $i18n('adiutor-prd-header-description') }}</p>
 		</div>
 

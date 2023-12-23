@@ -40,6 +40,7 @@
     "adiutor-rpm-incomplete-request-details": "This message will be displayed on the page move request action window.",
     "adiutor-prd-header-title": "This message will be displayed on the window while proposing article for deletion",
     "adiutor-csd-header-title": "This message will be displayed on the create speedy deletion request action window.",
+    "adiutor-tag-header-title": "This message will be displayed on the page tagging action window.",
     "adiutor-csd-header-description": "This message will be displayed on the create speedy deletion request action window.",
     "adiutor-rpp-header-description": "This message will be displayed on the request page protection action window.",
     "adiutor-prd-header-description": "This message will be displayed on the proposed deletion request action window.",

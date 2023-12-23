@@ -1,8 +1,7 @@
 <template>
-    <cdx-dialog class="afd-dialog" v-model:open="openAfdDialog" title="Article For Deletion" close-button-label="Close"
+    <cdx-dialog class="afd-dialog" v-model:open="openAfdDialog" :title="$i18n('adiutor-afd-header-title')" close-button-label="Close"
         :show-dividers="true" @default="openAfdDialog = true">
         <div class="header">
-            <h5>{{ $i18n('adiutor-afd-header-title') }}</h5>
             <p>{{ $i18n('adiutor-afd-header-description') }}</p>
         </div>
         <cdx-field class="afd-dialog-body">

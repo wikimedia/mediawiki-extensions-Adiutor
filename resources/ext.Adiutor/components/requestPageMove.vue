@@ -1,8 +1,7 @@
 <template>
-	<cdx-dialog class="rpm-dialog" v-model:open="openRpmDialog" title="Request Page move" close-button-label="Close"
+	<cdx-dialog class="rpm-dialog" v-model:open="openRpmDialog" :title="$i18n('adiutor-pmr-header-title')" close-button-label="Close"
 		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageMove" @default="openRpmDialog = true">
 		<div class="header">
-			<h5>{{ $i18n('adiutor-pmr-header-title') }}</h5>
 			<p>{{ $i18n('adiutor-pmr-header-description') }}</p>
 		</div>
 		<cdx-field class="rpm-dialog-body">
