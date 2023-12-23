@@ -5,6 +5,7 @@
         ]
     },
     "adiutor-title": "The name of the extension",
+    "adiutor-toggle-adiutor": "Label for the option to toggle the Adiutor extension on or off.",
     "adiutor-desc": "{{desc}}",
     "adiutor-beta-feature-enabled": "Beta feature status",
     "adiutor-create": "This message will be displayed on the action window.",

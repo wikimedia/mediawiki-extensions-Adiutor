@@ -3,6 +3,7 @@
     "author": "Vikipolimer",
     "url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
     "descriptionmsg": "adiutor-desc",
+    "version": "0.0.1",
     "license-name": "GPL-2.0-or-later",
     "type": "other",
     "config": {
@@ -16,12 +17,18 @@
             "i18n"
         ]
     },
+    "requires": {
+		"MediaWiki": ">=1.41"
+	},
     "ExtensionMessagesFiles": {
         "AdiutorAlias": "Adiutor.i18n.alias.php"
     },
     "AutoloadNamespaces": {
         "MediaWiki\\Extension\\Adiutor\\": "includes/"
     },
+    "DefaultUserOptions": {
+		"adiutor-switch": 0
+	},
     "SpecialPages": {
         "AdiutorSettings": {
             "class": "MediaWiki\\Extension\\Adiutor\\AdiutorSettings"
@@ -76,6 +83,7 @@
             ],
             "messages": [
                 "adiutor-title",
+                "adiutor-toggle-adiutor",
                 "adiutor-desc",
                 "adiutor-beta-feature-enabled",
                 "adiutor-create",

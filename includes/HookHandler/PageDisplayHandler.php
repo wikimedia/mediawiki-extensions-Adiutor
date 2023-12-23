@@ -55,6 +55,11 @@ class PageDisplayHandler implements BeforePageDisplayHook
 		) {
 			return;
 		}
+		if (
+            !$this->permissionManager->userHasRight($user, 'edit' )
+        ) {
+            return;
+        }
 		$out->addHtml('<div id="adiutor-container"></div>');
 		$out->addModules('ext.Adiutor');
 		$configPages = [
