@@ -100,7 +100,7 @@ module.exports = defineComponent({
 			}
 
 			api.postWithToken('csrf', apiParams).done(function () {
-				window.location = 'http://localhost:8888/mediawiki/index.php/' + noticeBoardLink;
+				window.location = '/' + noticeBoardLink;
 				openRpmDialog.value = false;
 			});
 		}
