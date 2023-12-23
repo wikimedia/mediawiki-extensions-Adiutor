@@ -224,6 +224,7 @@ module.exports = defineComponent({
 					title: mw.msg('adiutor-operation-completed'),
 					type: 'success'
 				});
+				window.location.reload();
 			}).fail(function (error) {
 				mw.notify("Failed to tag article for speedy deletion: " + error, {
 					title: mw.msg('adiutor-operation-failed'),
