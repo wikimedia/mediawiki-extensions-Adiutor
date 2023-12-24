@@ -5,7 +5,7 @@
         ]
     },
     "adiutor-title": "Adiutor",
-    "adiutor-toggle-adiutor": "Use Adiutor for moderate, triage, and maintain content tasks",
+    "adiutor-toggle-adiutor": "Use Adiutor to moderate, triage, and maintain content tasks",
     "adiutor-desc": "Adiutor is an MediaWiki extension designed to facilitate maintenance tasks on Wikipedia. This extension offers Wikipedia users an user-friendly and convenient interface for conducting a wide range of tasks. Its user interface simplifies complex processes, making Wikipedia maintenance more accessible and efficient for users of all skill levels.",
     "adiutor-beta-feature-enabled": "Adiutor is now enabled as a beta feature.",
     "adiutor-create": "Create",
@@ -193,5 +193,8 @@
     "adiutor-namespaces": "Namespaces",
     "adiutor-namespaces-description": "You can specify the namespaces where this module will be active.",
     "prefs-moderate": "Moderate",
-    "prefs-adiutor": "Adiutor"
+    "prefs-adiutor": "Adiutor",
+    "adiutor-new-name-placeholder": "New name",
+    "adiutor-search-tag-placeholder": "Search tag...",
+    "adiutor-no-tag-found": "No maintenance tag matches your search."
 }

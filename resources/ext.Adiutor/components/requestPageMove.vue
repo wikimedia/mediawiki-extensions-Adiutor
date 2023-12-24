@@ -6,9 +6,9 @@
 		</div>
 		<cdx-field class="rpm-dialog-body">
 			<cdx-label class="rpm-label"><strong>{{ $i18n('adiutor-new-name') }}</strong></cdx-label>
-			<cdx-text-input v-model="newPageName" aria-label="New page name"></cdx-text-input>
+			<cdx-text-input v-model="newPageName" :placeholder="$i18n('adiutor-new-name-placeholder')" aria-label="New page name"></cdx-text-input>
 			<cdx-label class="rpm-label"><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-			<cdx-text-area v-model="rationaleInput" :placeholder="rationalePlaceholder"></cdx-text-area>
+			<cdx-text-area v-model="rationaleInput" :placeholder="$i18n('adiutor-rpm-rationale-placeholder')"></cdx-text-area>
 		</cdx-field>
 	</cdx-dialog>
 </template>
@@ -44,7 +44,6 @@ module.exports = defineComponent({
 			protectionTypes: ref(rpmConfiguration.protectionTypes),
 			durationSelection: null,
 			typeSelection: null,
-			rationalePlaceholder: mw.msg('adiutor-rpm-rationale-placeholder')
 		};
 	},
 

@@ -268,7 +268,10 @@
                 "adiutor-namespaces",
                 "adiutor-namespaces-description",
                 "prefs-moderate",
-                "prefs-Adiutor"
+                "prefs-Adiutor",
+                "adiutor-new-name-placeholder",
+                "adiutor-search-tag-placeholder",
+                "adiutor-no-tag-found"
             ],
             "styles": [
                 "./ext.Adiutor.styles/styles.less"

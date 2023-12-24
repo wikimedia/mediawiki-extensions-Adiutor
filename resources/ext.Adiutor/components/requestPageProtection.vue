@@ -14,7 +14,7 @@
 			<cdx-select v-model:selected="typeSelection" :menu-items="protectionTypes"
 				default-label="Select protection type"></cdx-select>
 			<cdx-label><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-			<cdx-text-area v-model="rationaleInput" :placeholder="rationalePlaceholder"></cdx-text-area>
+			<cdx-text-area v-model="rationaleInput" :placeholder="$i18n('adiutor-rpp-rationale-placeholder')"></cdx-text-area>
 		</cdx-field>
 	</cdx-dialog>
 </template>
@@ -50,7 +50,6 @@ module.exports = defineComponent({
 			protectionTypes: ref(rppConfiguration.protectionTypes),
 			durationSelection: null,
 			typeSelection: null,
-			rationalePlaceholder: mw.msg('adiutor-rpp-rationale-placeholder')
 		};
 	},
 

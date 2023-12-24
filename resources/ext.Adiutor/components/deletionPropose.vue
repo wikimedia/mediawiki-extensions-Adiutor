@@ -18,7 +18,7 @@
 				</template>
 			</cdx-radio>
 			<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-			<cdx-text-area v-model="textareaValue" :placeholder="rationalePlaceholder"></cdx-text-area>
+			<cdx-text-area v-model="textareaValue" :placeholder="$i18n('adiutor-prd-rationale-placeholder')"></cdx-text-area>
 		</cdx-field>
 
 		<!-- Footer section with notification option and submit button. -->
@@ -51,11 +51,6 @@ const {
 module.exports = defineComponent({
 	name: 'proposeDeletion',
 	components: { CdxRadio, CdxButton, CdxDialog, CdxCheckbox, CdxField, CdxLabel, CdxTextArea, CdxToggleSwitch },
-	data() {
-		return {
-			rationalePlaceholder: mw.msg('adiutor-prd-deletion-rationale')
-		};
-	},
 	setup() {
 		const api = new mw.Api();
 		const informCreator = ref(true);

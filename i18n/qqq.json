@@ -193,5 +193,8 @@
     "adiutor-namespaces": "Label for the namespaces parameter.",
     "adiutor-namespaces-description": "Description of the namespaces parameter.",
     "prefs-moderate": "Label for the moderate preferences on the Special:Preferences.",
-    "prefs-Adiutor": "Label for the Adiutor preferences on the Special:Preferences#mw-prefsection-moderate."
+    "prefs-Adiutor": "Label for the Adiutor preferences on the Special:Preferences#mw-prefsection-moderate.",
+    "adiutor-new-name-placeholder": "Placeholder for the new name field in the page move request action window.",
+    "adiutor-search-tag-placeholder": "Placeholder for the search tag field in the article tagging dialog.",
+    "adiutor-no-tag-found": "Label for the message indicating that no tag was found."
 }

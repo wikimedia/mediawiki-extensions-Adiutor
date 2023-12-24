@@ -1,11 +1,13 @@
 <template>
-    <cdx-dialog class="tag-dialog" v-model:open="openTagDialog" :title="$i18n('adiutor-tag-header-title')" close-button-label="Close"
-        :show-dividers="true" :primary-action="primaryAction" @primary="tagArticle" @default="openTagDialog = true">
+    <cdx-dialog class="tag-dialog" v-model:open="openTagDialog" :title="$i18n('adiutor-tag-header-title')"
+        close-button-label="Close" :show-dividers="true" :primary-action="primaryAction" @primary="tagArticle"
+        @default="openTagDialog = true">
         <div class="header">
             <p>{{ $i18n('adiutor-tag-header-description') }}</p>
             <cdx-text-input style="width: 200px;" v-model="searchTag" aria-label="New page name"
-                placeholder="Search tag..."></cdx-text-input>
+                :placeholder="$i18n('adiutor-search-tag-placeholder')"></cdx-text-input>
         </div>
+
         <div class="tag-reasons-body">
             <cdx-field :is-fieldset="true" v-for="label in filteredTagList" :key="'fieldset-' + label.label">
                 <template v-if="label.tags.length > 0">
@@ -31,6 +33,9 @@
                     </template>
                 </cdx-field>
             </cdx-field>
+            <cdx-message inline type="warning" v-if="!filteredTagList.length">
+                <p>{{ $i18n('adiutor-no-tag-found') }}</p>
+            </cdx-message>
         </div>
     </cdx-dialog>
 </template>
@@ -72,7 +77,7 @@ module.exports = defineComponent({
                     tag.description.toLowerCase().includes(searchTerm)
                 );
                 return { ...label, tags: filteredTags };
-            });
+            }).filter(label => label.tags.length > 0);
         });
 
         function toggleTag(tag) {
