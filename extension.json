@@ -266,7 +266,9 @@
                 "adiutor-test-mode",
                 "adiutor-test-mode-description",
                 "adiutor-namespaces",
-                "adiutor-namespaces-description"
+                "adiutor-namespaces-description",
+                "prefs-moderate",
+                "prefs-Adiutor"
             ],
             "styles": [
                 "./ext.Adiutor.styles/styles.less"

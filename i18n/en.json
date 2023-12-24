@@ -191,5 +191,7 @@
     "adiutor-test-mode": "Test mode",
     "adiutor-test-mode-description": "When this swhiched on, this module can only be tested by interface administrators.",
     "adiutor-namespaces": "Namespaces",
-    "adiutor-namespaces-description": "You can specify the namespaces where this module will be active."
+    "adiutor-namespaces-description": "You can specify the namespaces where this module will be active.",
+    "prefs-moderate": "Moderate",
+    "prefs-adiutor": "Adiutor"
 }
