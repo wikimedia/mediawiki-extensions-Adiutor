@@ -60,7 +60,7 @@ class PreferencesHandler implements GetPreferencesHook
         $preferences['adiutor-switch'] = [
             'type' => 'toggle',
             'label-message' => 'adiutor-toggle-adiutor',
-            'section' => 'editing/editor'
+            'section' => 'moderate/adiutor'
         ];
     }
 
