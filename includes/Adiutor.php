@@ -41,7 +41,6 @@ class Adiutor
             'MediaWiki:AdiutorCreateSpeedyDeletion.json' => LocalizationConfiguration::SPEEDY_DELETION_REQUEST_CONFIGURATION,
             'MediaWiki:AdiutorDeletionPropose.json' => LocalizationConfiguration::DELETION_PROPOSE_CONFIGURATION,
             'MediaWiki:AdiutorRequestPageMove.json' => LocalizationConfiguration::PAGE_MOVE_CONFIGURATION,
-            'MediaWiki:AdiutorRequestRevisionDeletion.json' => LocalizationConfiguration::REVISION_DELETION_CONFIGURATION,
             'MediaWiki:AdiutorArticleTagging.json' => LocalizationConfiguration::ARTICLE_TAGGING_CONFIGURATION,
         ];
 

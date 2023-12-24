@@ -17,7 +17,6 @@
         </ul>
     </cdx-message>
     <cdx-field>
-        <strong>{{ $i18n('adiutor-settings-label') }}</strong>
         <cdx-field :is-fieldset="true">
             <cdx-toggle-switch v-model="moduleEnabled">
                 <cdx-label input-id="moduleEnabled">{{ $i18n('adiutor-module-enabled') }}</cdx-label>
@@ -25,6 +24,23 @@
                     {{ $i18n('adiutor-module-enabled-description') }}
                 </template>
             </cdx-toggle-switch>
+        </cdx-field>
+        <cdx-field :is-fieldset="true">
+            <cdx-toggle-switch v-model="testMode">
+                <cdx-label input-id="testMode">{{ $i18n('adiutor-test-mode') }}</cdx-label>
+                <template #description>
+                    {{ $i18n('adiutor-test-mode-description') }}
+                </template>
+            </cdx-toggle-switch>
+        </cdx-field>
+        <cdx-field :is-fieldset="true">
+            <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
+            <template #label>
+                {{ $i18n('adiutor-namespaces') }}
+            </template>
+            <template #description>
+                {{ $i18n('adiutor-namespaces-description') }}
+            </template>
         </cdx-field>
         <cdx-field :is-fieldset="true">
             <cdx-label input-id="noticeBoardTitle">{{ $i18n('adiutor-noticeboard') }}</cdx-label>
@@ -94,7 +110,7 @@
 </template>
 <script>
 const { defineComponent, watch, ref, computed } = require('vue');
-const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxToggleSwitch, CdxButton, CdxCheckbox, CdxField, CdxRadio, CdxTextArea } = require('@wikimedia/codex');
+const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxToggleSwitch, CdxChipInput, CdxButton, CdxCheckbox, CdxField, CdxRadio, CdxTextArea } = require('@wikimedia/codex');
 const rpmConfiguration = mw.config.get('AdiutorRequestPageMove');
 module.exports = defineComponent({
     name: '',
@@ -102,6 +118,7 @@ module.exports = defineComponent({
         CdxCard,
         CdxCombobox,
         CdxTextInput,
+        CdxChipInput,
         CdxTabs,
         CdxTab,
         CdxMessage,
@@ -126,6 +143,8 @@ module.exports = defineComponent({
         const apiPostSummary = ref(rpmConfiguration.apiPostSummary);
         const textModificationDirection = ref(rpmConfiguration.textModificationDirection);
         const moduleEnabled = ref(rpmConfiguration.moduleEnabled);
+        const testMode = ref(rpmConfiguration.testMode);
+        const namespaces = ref(rpmConfiguration.namespaces);
         const textModificationDirectionRadios = [
             {
                 label: mw.message('adiutor-prepend-text-on-the-page').text(),
@@ -148,7 +167,9 @@ module.exports = defineComponent({
             textModificationDirection,
             apiPostSummary,
             textModificationDirectionRadios,
-            moduleEnabled
+            moduleEnabled,
+            testMode,
+            namespaces
         };
     },
     data() {
@@ -181,12 +202,14 @@ module.exports = defineComponent({
                     "textModificationDirection": this.textModificationDirection,
                     "contentPattern": this.contentPattern,
                     "apiPostSummary": this.apiPostSummary,
-                    "moduleEnabled": this.moduleEnabled
+                    "moduleEnabled": this.moduleEnabled,
+                    "testMode": this.testMode,
+                    "namespaces": this.namespaces
                 }
             };
 
             // Define the API endpoint URL
-            const apiUrl = '/rest.php/adiutor/v0/updatelocalconfiguration';
+            const apiUrl = 'rest.php/adiutor/v0/updatelocalconfiguration';
 
             try {
                 // Send a POST request to the API with the data

@@ -17,16 +17,36 @@ class LocalizationConfiguration
 {
     public const DELETION_PROPOSE_CONFIGURATION = [
         'moduleEnabled' => false,
+        'testMode' => false,
         'standardProposeTemplate' => '{{subst:Proposed deletion|concern=$2}}',
         'livingPersonProposeTemplate' => '{{Prod blp/dated|concern=$2|user=$6|timestamp=$3 $4 $5|help=off}}',
         'apiPostSummary' => 'Proposed deletion of the page per [[WP:PROD]]',
         'apiPostSummaryforCreator' => 'Proposed deletion of [[$1|$1]] per [[WP:PROD]]',
         'apiPostSummaryforLog' => 'Logging the page [[$1|$1]] as a pending deletion candidate per [[WP:PROD]].',
-        'prodNotificationTemplate' => '{{subst:Proposed deletion notify|$1}}'
+        'prodNotificationTemplate' => '{{subst:Proposed deletion notify|$1}}',
+        'namespaces' => [
+            ['value' => '-1'],
+            ['value' => '0'],
+            ['value' => '1'],
+            ['value' => '2'],
+            ['value' => '3'],
+            ['value' => '4'],
+            ['value' => '5'],
+            ['value' => '6'],
+            ['value' => '7'],
+            ['value' => '14'],
+            ['value' => '10'],
+            ['value' => '11'],
+            ['value' => '100'],
+            ['value' => '101'],
+            ['value' => '102'],
+            ['value' => '103'],
+        ]
     ];
 
     public const PAGE_PROTECTION_CONFIGURATION = [
         'moduleEnabled' => false,
+        'testMode' => false,
         'protectionDurations' => [
             [
                 'value' => 'temporary',
@@ -52,17 +72,36 @@ class LocalizationConfiguration
             ]
         ],
         'noticeBoardTitle' => 'Wikipedia:Requests for page protection',
-        'addNewSection' => false,
+        'addNewSection' => true,
         'sectionTitle' => 'Protection request for [[$1|$1]]',
         'useExistSection' => false,
         'sectionId' => null,
         'textModificationDirection' => 'appendtext',
         'contentPattern' => 'Protection Type: $2 $3 Rationale: $4 ~~~~',
-        'apiPostSummary' => 'Protection requested for [[$1|$1]]'
+        'apiPostSummary' => 'Protection requested for [[$1|$1]]',
+        'namespaces' => [
+            ['value' => '-1'],
+            ['value' => '0'],
+            ['value' => '1'],
+            ['value' => '2'],
+            ['value' => '3'],
+            ['value' => '4'],
+            ['value' => '5'],
+            ['value' => '6'],
+            ['value' => '7'],
+            ['value' => '14'],
+            ['value' => '10'],
+            ['value' => '11'],
+            ['value' => '100'],
+            ['value' => '101'],
+            ['value' => '102'],
+            ['value' => '103'],
+        ]
     ];
 
     public const SPEEDY_DELETION_REQUEST_CONFIGURATION = [
         'moduleEnabled' => false,
+        'testMode' => false,
         'speedyDeletionReasons' => [
             [
                 'name' => 'Articles',
@@ -242,35 +281,61 @@ class LocalizationConfiguration
         'csdNotificationTemplate' => '{{subst:CSD-Notification|1=$1|2=$2}}',
         'singleReasonSummary' => 'Requesting speedy deletion for the page per $2.',
         'multipleReasonSummary' => 'Requesting speedy deletion for the page per $2.',
-        'copyVioReasonValue' => 'G4'
+        'copyVioReasonValue' => 'G4',
+        'namespaces' => [
+            ['value' => '-1'],
+            ['value' => '0'],
+            ['value' => '1'],
+            ['value' => '2'],
+            ['value' => '3'],
+            ['value' => '4'],
+            ['value' => '5'],
+            ['value' => '6'],
+            ['value' => '7'],
+            ['value' => '14'],
+            ['value' => '10'],
+            ['value' => '11'],
+            ['value' => '100'],
+            ['value' => '101'],
+            ['value' => '102'],
+            ['value' => '103'],
+        ]
     ];
 
     public const PAGE_MOVE_CONFIGURATION = [
         'moduleEnabled' => false,
+        'testMode' => false,
         'noticeBoardTitle' => 'Wikipedia:Page move requests',
-        'addNewSection' => false,
+        'addNewSection' => true,
         'sectionTitle' => 'Page move request for [[$1]]',
         'useExistSection' => false,
         'sectionId' => null,
         'textModificationDirection' => 'appendtext',
         'contentPattern' => "Move [[\$1]] to [[\$2]]\n\nRationale: \$3 ~~~~",
-        'apiPostSummary' => 'Page move request created for [[$1|$1]].'
-    ];
-
-    public const REVISION_DELETION_CONFIGURATION = [
-        'moduleEnabled' => false,
-        'noticeBoardTitle' => 'Wikipedia:Revision deletion/Noticeboard',
-        'addNewSection' => false,
-        'sectionTitle' => 'Revision deletion request for [[$1]]',
-        'useExistSection' => false,
-        'sectionId' => null,
-        'textModificationDirection' => 'appendtext',
-        'contentPattern' => "*'''Revision:''' [[Special:Diff/\$1]]\n*'''Rationale:''' \$2\n*'''Comment:''' \$3 ~~~~\n*'''Outcome:'''",
-        'apiPostSummary' => 'Created a revision deletion request for [[$1]] page.'
+        'apiPostSummary' => 'Page move request created for [[$1|$1]].',
+        'namespaces' => [
+            ['value' => '-1'],
+            ['value' => '0'],
+            ['value' => '1'],
+            ['value' => '2'],
+            ['value' => '3'],
+            ['value' => '4'],
+            ['value' => '5'],
+            ['value' => '6'],
+            ['value' => '7'],
+            ['value' => '14'],
+            ['value' => '10'],
+            ['value' => '11'],
+            ['value' => '100'],
+            ['value' => '101'],
+            ['value' => '102'],
+            ['value' => '103'],
+        ]
     ];
 
     public const ARTICLE_TAGGING_CONFIGURATION = [
         'moduleEnabled' => false,
+        'testMode' => false,
         'tagList' => [
             [
                 'label' => 'Cleanup and maintenance',
@@ -1039,7 +1104,25 @@ class LocalizationConfiguration
         'useMultipleIssuesTemplate' => true,
         'multipleIssuesTemplate' => 'Multiple issues',
         'uncategorizedTemplate' => 'Uncategorized',
-        'apiPostSummary' => 'Page has been tagged'
+        'apiPostSummary' => 'Page has been tagged',
+        'namespaces' => [
+            ['value' => '-1'],
+            ['value' => '0'],
+            ['value' => '1'],
+            ['value' => '2'],
+            ['value' => '3'],
+            ['value' => '4'],
+            ['value' => '5'],
+            ['value' => '6'],
+            ['value' => '7'],
+            ['value' => '14'],
+            ['value' => '10'],
+            ['value' => '11'],
+            ['value' => '100'],
+            ['value' => '101'],
+            ['value' => '102'],
+            ['value' => '103'],
+        ]
     ];
 
     public const CONFIGURATION_MAP = [
@@ -1047,7 +1130,6 @@ class LocalizationConfiguration
         'request_page_protection' => self::REQUEST_PAGE_PROTECTION_CONFIGURATION,
         'create_speedy_deletion_request' => self::CREATE_SPEEDY_DELETION_REQUEST_CONFIGURATION,
         'request_page_move' => self::PAGE_MOVE_CONFIGURATION,
-        'request_revision_deletion' => self::REVISION_DELETION_CONFIGURATION,
         'article_tagging' => self::ARTICLE_TAGGING_CONFIGURATION,
     ];
 }

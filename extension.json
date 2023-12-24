@@ -262,7 +262,11 @@
                 "adiutor-append-text-on-the-page",
                 "adiutor-append-text-on-the-page-description",
                 "adiutor-module-enabled",
-                "adiutor-module-enabled-description"
+                "adiutor-module-enabled-description",
+                "adiutor-test-mode",
+                "adiutor-test-mode-description",
+                "adiutor-namespaces",
+                "adiutor-namespaces-description"
             ],
             "styles": [
                 "./ext.Adiutor.styles/styles.less"

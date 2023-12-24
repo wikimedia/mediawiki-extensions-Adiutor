@@ -3,100 +3,80 @@
 		<component :is="activeComponent" :key="activeComponentKey" />
 	</div>
 </template>
+
 <script>
+// Import components
 const requestPageProtection = require('./requestPageProtection.vue');
 const requestPageMove = require('./requestPageMove.vue');
 const articleTagging = require('./articleTagging.vue');
 const createSpeedyDeletion = require('./createSpeedyDeletion.vue');
 const deletionPropose = require('./deletionPropose.vue');
 const articleForDeletion = require('./articleForDeletion.vue');
+
+// Configuration objects
 const csdConfiguration = mw.config.get('AdiutorCreateSpeedyDeletion');
 const rppConfiguration = mw.config.get('AdiutorRequestPageProtection');
 const rpmConfiguration = mw.config.get('AdiutorRequestPageMove');
 const dprConfiguration = mw.config.get('AdiutorDeletionPropose');
 const tagConfiguration = mw.config.get('AdiutorArticleTagging');
+const userGroups = mw.config.get('wgUserGroups');
 
 let portletLinks = [];
-if (csdConfiguration.moduleEnabled) {
-	portletLinks.push({
-		id: 't-request-speedy-deletion',
-		label: mw.msg('adiutor-request-speedy-deletion'),
-		action: mw.msg('adiutor-request-speedy-deletion'),
-		key: 'rsd',
-		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	});
+
+function addPortletLink(config, permission, linkId, linkLabel, linkKey) {
+  if (config && config.moduleEnabled) {
+    if (!config.testMode || (userGroups && userGroups.includes(permission))) {
+      portletLinks.push({
+        id: linkId,
+        label: mw.msg(linkLabel),
+        action: mw.msg(linkLabel),
+        key: linkKey,
+        namespaces: config.namespaces || [],
+      });
+    }
+  }
 }
-if (dprConfiguration.moduleEnabled) {
-	portletLinks.push({
-		id: 't-propose-deletion',
-		label: mw.msg('adiutor-propose-deletion'),
-		action: mw.msg('adiutor-propose-deletion'),
-		key: 'pd',
-		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	});
-}
-if (rppConfiguration.moduleEnabled) {
-	portletLinks.push({
-		id: 't-request-protection',
-		label: mw.msg('adiutor-request-protection'),
-		action: mw.msg('adiutor-request-protection'),
-		key: 'pr',
-		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	});
-}
-if (rpmConfiguration.moduleEnabled) {
-	portletLinks.push({
-		id: 't-request-page-move',
-		label: mw.msg('adiutor-request-page-move'),
-		action: mw.msg('adiutor-request-page-move'),
-		key: 'rpm',
-		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	});
-}
-if (tagConfiguration.moduleEnabled) {
-	portletLinks.push({
-		id: 't-tag-article',
-		label: mw.msg('adiutor-tag-article'),
-		action: mw.msg('adiutor-tag-article'),
-		key: 'tag',
-		namespaces: [-1, 0, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 100, 101, 102, 103, 828, 829],
-	});
-}
+
+addPortletLink(csdConfiguration, 'interface-admin', 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion');
+addPortletLink(rppConfiguration, 'interface-admin', 't-request-protection', 'adiutor-request-protection', 'requestPageProtection');
+addPortletLink(rpmConfiguration, 'interface-admin', 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove');
+addPortletLink(dprConfiguration, 'interface-admin', 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose');
+addPortletLink(tagConfiguration, 'interface-admin', 't-tag-article', 'adiutor-tag-article', 'articleTagging');
+
+const currentNamespace = mw.config.get('wgNamespaceNumber');
 portletLinks.forEach(link => {
-	// Check if the current page is not a special page
-	if (mw.config.get('wgNamespaceNumber') >= 0) {
-		if (link.namespaces.includes(mw.config.get('wgNamespaceNumber'))) {
-			mw.util.addPortletLink('p-cactions', '#', link.label, link.id, link.action, link.key);
-		}
-	}
+  const linkNamespaces = link.namespaces.map(nsObj => parseInt(nsObj.value, 10));
+  if (linkNamespaces.includes(currentNamespace)) {
+    mw.util.addPortletLink('p-cactions', '#', link.label, link.id, link.action, link.key);
+  }
 });
 
 module.exports = {
-	name: 'adiutorInterfaceLoader',
-	data() {
-		return {
-			activeComponent: null,
-			activeComponentKey: 0,
-		};
-	},
-	components: {
-		requestPageProtection,
-		requestPageMove,
-		createSpeedyDeletion,
-		deletionPropose,
-		articleForDeletion,
-		articleTagging,
-	},
-	methods: {
-		showComponent(componentName) {
-			if (componentName === this.activeComponent) {
-				this.activeComponentKey++;
-			} else {
-				this.activeComponent = componentName;
-			}
-		},
-	},
-	created() {
+  name: 'adiutorInterfaceLoader',
+  data() {
+    return {
+      activeComponent: null,
+      activeComponentKey: 0,
+    };
+  },
+  components: {
+    requestPageProtection,
+    requestPageMove,
+    createSpeedyDeletion,
+    deletionPropose,
+    articleForDeletion,
+    articleTagging,
+  },
+  methods: {
+    showComponent(componentName) {
+      if (componentName === this.activeComponent) {
+        this.activeComponentKey++;
+      } else {
+        this.activeComponent = componentName;
+      }
+    },
+  },
+  created() {
 		this.$nextTick(() => {
 			const speedyDeletionRequestLink = document.querySelector('#t-request-speedy-deletion');
 			const proposeDeletionLink = document.querySelector('#t-propose-deletion');

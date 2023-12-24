@@ -187,5 +187,9 @@
     "adiutor-append-text-on-the-page": "Label for the option to append text on the page optionally.",
     "adiutor-append-text-on-the-page-description": "Description of the option to append text on the page optionally.",
     "adiutor-module-enabled": "Label for the option to enable a module.",
-    "adiutor-module-enabled-description": "Description of the option to enable a module."
+    "adiutor-module-enabled-description": "Description of the option to enable a module.",
+    "adiutor-test-mode": "Label for the option to enable test mode.",
+    "adiutor-test-mode-description": "Description of the option to enable test mode.",
+    "adiutor-namespaces": "Label for the namespaces parameter.",
+    "adiutor-namespaces-description": "Description of the namespaces parameter."
 }

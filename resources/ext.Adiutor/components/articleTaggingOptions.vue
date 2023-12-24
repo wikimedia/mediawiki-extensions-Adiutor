@@ -8,7 +8,6 @@
         <p style="margin-top: 22px;">{{ $i18n('adiutor-article-tagging-description') }}</p>
     </cdx-field>
     <cdx-field>
-        <strong>{{ $i18n('adiutor-settings-label') }}</strong>
         <cdx-field :is-fieldset="true">
             <cdx-toggle-switch v-model="moduleEnabled">
                 <cdx-label input-id="moduleEnabled">{{ $i18n('adiutor-module-enabled') }}</cdx-label>
@@ -16,6 +15,23 @@
                     {{ $i18n('adiutor-module-enabled-description') }}
                 </template>
             </cdx-toggle-switch>
+        </cdx-field>
+        <cdx-field :is-fieldset="true">
+            <cdx-toggle-switch v-model="testMode">
+                <cdx-label input-id="testMode">{{ $i18n('adiutor-test-mode') }}</cdx-label>
+                <template #description>
+                    {{ $i18n('adiutor-test-mode-description') }}
+                </template>
+            </cdx-toggle-switch>
+        </cdx-field>
+        <cdx-field :is-fieldset="true">
+            <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
+            <template #label>
+                {{ $i18n('adiutor-namespaces') }}
+            </template>
+            <template #description>
+                {{ $i18n('adiutor-namespaces-description') }}
+            </template>
         </cdx-field>
         <cdx-field :is-fieldset="true">
             <cdx-toggle-switch v-model="useMultipleIssuesTemplate">
@@ -130,7 +146,7 @@
 </template>
 <script>
 const { defineComponent, watch, ref, computed } = require('vue');
-const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxField, CdxRadio, CdxToggleSwitch, CdxTextArea, CdxButton } = require('@wikimedia/codex');
+const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxChipInput, CdxField, CdxRadio, CdxToggleSwitch, CdxTextArea, CdxButton } = require('@wikimedia/codex');
 const tagConfiguration = mw.config.get('AdiutorArticleTagging');
 module.exports = defineComponent({
     name: '',
@@ -138,6 +154,7 @@ module.exports = defineComponent({
         CdxCard,
         CdxCombobox,
         CdxTextInput,
+        CdxChipInput,
         CdxTabs,
         CdxTab,
         CdxMessage,
@@ -159,6 +176,8 @@ module.exports = defineComponent({
         const uncategorizedTemplate = ref(tagConfiguration.uncategorizedTemplate);
         const apiPostSummary = ref(tagConfiguration.apiPostSummary);
         const moduleEnabled = ref(tagConfiguration.moduleEnabled);
+        const testMode = ref(tagConfiguration.testMode);
+        const namespaces = ref(tagConfiguration.namespaces);
         return {
             tagList,
             useMultipleIssuesTemplate,
@@ -166,6 +185,8 @@ module.exports = defineComponent({
             uncategorizedTemplate,
             apiPostSummary,
             moduleEnabled,
+            testMode,
+            namespaces
         };
     },
     data() {
@@ -259,11 +280,13 @@ module.exports = defineComponent({
                     "uncategorizedTemplate": this.uncategorizedTemplate,
                     "apiPostSummary": this.apiPostSummary,
                     "moduleEnabled": this.moduleEnabled,
+                    "testMode": this.testMode,
+                    "namespaces": this.namespaces
                 }
             };
 
             // Define the API endpoint URL
-            const apiUrl = '/rest.php/adiutor/v0/updatelocalconfiguration';
+            const apiUrl = 'rest.php/adiutor/v0/updatelocalconfiguration';
 
             try {
                 // Send a POST request to the API with the data

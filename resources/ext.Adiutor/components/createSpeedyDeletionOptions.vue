@@ -17,7 +17,6 @@
         </ul>
     </cdx-message>
     <cdx-field>
-        <strong>{{ $i18n('adiutor-settings-label') }}</strong>
         <cdx-field :is-fieldset="true">
             <cdx-toggle-switch v-model="moduleEnabled">
                 <cdx-label input-id="moduleEnabled">{{ $i18n('adiutor-module-enabled') }}</cdx-label>
@@ -25,6 +24,23 @@
                     {{ $i18n('adiutor-module-enabled-description') }}
                 </template>
             </cdx-toggle-switch>
+        </cdx-field>
+        <cdx-field :is-fieldset="true">
+            <cdx-toggle-switch v-model="testMode">
+                <cdx-label input-id="testMode">{{ $i18n('adiutor-test-mode') }}</cdx-label>
+                <template #description>
+                    {{ $i18n('adiutor-test-mode-description') }}
+                </template>
+            </cdx-toggle-switch>
+        </cdx-field>
+        <cdx-field :is-fieldset="true">
+            <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
+            <template #label>
+                {{ $i18n('adiutor-namespaces') }}
+            </template>
+            <template #description>
+                {{ $i18n('adiutor-namespaces-description') }}
+            </template>
         </cdx-field>
         <cdx-label input-id="speedyDeletionPolicyLink">{{ $i18n('adiutor-speedy-deletion-policy-link') }}</cdx-label>
         <cdx-text-input v-model="speedyDeletionPolicyLink" id="speedyDeletionPolicyLink"
@@ -153,20 +169,21 @@
 </template>
 <script>
 const { defineComponent, ref } = require('vue');
-const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxCheckbox, CdxToggleSwitch, CdxField, CdxRadio, CdxTextArea, CdxButton } = require('@wikimedia/codex');
+const { CdxCard, CdxCombobox, CdxTabs, CdxTab, CdxMessage, CdxTextInput, CdxChipInput, CdxCheckbox, CdxToggleSwitch, CdxField, CdxRadio, CdxTextArea, CdxButton } = require('@wikimedia/codex');
 const csdConfiguration = mw.config.get('AdiutorCreateSpeedyDeletion');
 module.exports = defineComponent({
     name: '',
     components: {
         CdxCard,
         CdxCombobox,
+        CdxChipInput,
         CdxTextInput,
         CdxTabs,
         CdxTab,
         CdxMessage,
         CdxCheckbox,
         CdxField,
-        CdxRadio, CdxTextArea, CdxButton,CdxToggleSwitch
+        CdxRadio, CdxTextArea, CdxButton, CdxToggleSwitch
     },
     props: {
         framed: {
@@ -188,6 +205,8 @@ module.exports = defineComponent({
         const copyVioReasonValue = ref(csdConfiguration.copyVioReasonValue);
         const postfixReasonUsage = ref(csdConfiguration.postfixReasonUsage);
         const moduleEnabled = ref(csdConfiguration.moduleEnabled);
+        const testMode = ref(csdConfiguration.testMode);
+        const namespaces = ref(csdConfiguration.namespaces);
         const postfixReasonUsageRadios = [
             {
                 label: mw.message('adiutor-csd-use-reason-value').text(),
@@ -237,6 +256,8 @@ module.exports = defineComponent({
             copyVioReasonValue,
             postfixReasonUsage,
             moduleEnabled,
+            namespaces,
+            testMode,
             postfixReasonUsageRadios,
             multipleReasonSeparation,
             multipleReasonSeparationRadios
@@ -326,11 +347,13 @@ module.exports = defineComponent({
                     "multipleReasonSummary": this.multipleReasonSummary,
                     "copyVioReasonValue": this.copyVioReasonValue,
                     "moduleEnabled": this.moduleEnabled,
+                    "testMode": this.testMode,
+                    "namespaces": this.namespaces
                 }
             };
 
             // Define the API endpoint URL
-            const apiUrl = '/rest.php/adiutor/v0/updatelocalconfiguration';
+            const apiUrl = 'rest.php/adiutor/v0/updatelocalconfiguration';
 
             try {
                 // Send a POST request to the API with the data
@@ -370,6 +393,9 @@ module.exports = defineComponent({
             } catch (error) {
                 // Handle any fetch-related errors and log them
                 console.error('Fetch error:', error);
+                this.saveButtonLabel = mw.message('adiutor-try-again').text();
+                this.saveButtonAction = 'destructive';
+                this.saveButtonDisabled = false;
             }
         }
 

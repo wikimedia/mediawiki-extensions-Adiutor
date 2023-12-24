@@ -83,9 +83,6 @@ class PageDisplayHandler implements BeforePageDisplayHook
 				'configuration' => 'AdiutorRequestPageMove'
 			],
 			[
-				'title' => 'MediaWiki:AdiutorRequestRevisionDeletion.json',
-				'configuration' => 'AdiutorRequestRevisionDeletion'
-			], [
 				'title' => 'MediaWiki:AdiutorArticleTagging.json',
 				'configuration' => 'AdiutorArticleTagging'
 			]

@@ -187,5 +187,9 @@
     "adiutor-append-text-on-the-page": "Append text to page.",
     "adiutor-append-text-on-the-page-description": "When this checkbox is activated, the specified content in the content pattern input will be appended to the page.",
     "adiutor-module-enabled": "Module enabled",
-    "adiutor-module-enabled-description": "When this swhiched on, the module will be enabled."
+    "adiutor-module-enabled-description": "When this swhiched on, the module will be enabled.",
+    "adiutor-test-mode": "Test mode",
+    "adiutor-test-mode-description": "When this swhiched on, this module can only be tested by interface administrators.",
+    "adiutor-namespaces": "Namespaces",
+    "adiutor-namespaces-description": "You can specify the namespaces where this module will be active."
 }
