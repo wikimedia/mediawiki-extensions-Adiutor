@@ -52,9 +52,9 @@ const {
 	proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut,
 	apiPostSummaryforLog
 } = prdConfiguration;
-function processDeletionHelpMessage(key, message, link, shortCut) {
-	const linkHTML = '<a href="wiki/' + link + '" target="_blank">' + shortCut + '</a>';
-	return message.replace(key, linkHTML);
+function processDeletionHelpMessage(message, link, shortcut) {
+	const linkHTML = '<a href="' + mw.config.get('wgServer') + mw.config.get('wgArticlePath').replace('$1', '') + link + '" target="_blank">' + shortcut + '</a>';
+	return message.replace('$1', linkHTML);
 }
 module.exports = defineComponent({
 	name: 'proposeDeletion',
@@ -71,12 +71,12 @@ module.exports = defineComponent({
 		const radios = [
 			{
 				label: mw.msg('adiutor-prd-deletion-type-1'),
-				description: processDeletionHelpMessage('{{WP:PROD}}', mw.msg('adiutor-prd-deletion-type-1-help'), proposedDeletionPolicy, proposedDeletionPolicyShortcut),
+				description: processDeletionHelpMessage(mw.msg('adiutor-prd-deletion-type-1-help'), proposedDeletionPolicy, proposedDeletionPolicyShortcut),
 				value: 'standardPropose'
 			},
 			{
 				label: mw.msg('adiutor-prd-deletion-type-2'),
-				description: processDeletionHelpMessage('{{WP:BLPPROD}}', mw.msg('adiutor-prd-deletion-type-2-help'), proposedDeletionOfBiographiesOfLivingPeoplePolicy, proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut),
+				description: processDeletionHelpMessage(mw.msg('adiutor-prd-deletion-type-2-help'), proposedDeletionOfBiographiesOfLivingPeoplePolicy, proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut),
 				value: 'livingPersonPropose'
 			}
 		];
