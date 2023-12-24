@@ -191,5 +191,7 @@
     "adiutor-test-mode": "Label for the option to enable test mode.",
     "adiutor-test-mode-description": "Description of the option to enable test mode.",
     "adiutor-namespaces": "Label for the namespaces parameter.",
-    "adiutor-namespaces-description": "Description of the namespaces parameter."
+    "adiutor-namespaces-description": "Description of the namespaces parameter.",
+    "prefs-moderate": "Label for the moderate preferences on the Special:Preferences.",
+    "prefs-Adiutor": "Label for the Adiutor preferences on the Special:Preferences#mw-prefsection-moderate."
 }
