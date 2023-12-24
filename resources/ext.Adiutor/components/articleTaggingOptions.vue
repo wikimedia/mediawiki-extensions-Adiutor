@@ -286,7 +286,7 @@ module.exports = defineComponent({
             };
 
             // Define the API endpoint URL
-            const apiUrl = 'rest.php/adiutor/v0/updatelocalconfiguration';
+            const apiUrl = '/rest.php/adiutor/v0/updatelocalconfiguration';
 
             try {
                 // Send a POST request to the API with the data
