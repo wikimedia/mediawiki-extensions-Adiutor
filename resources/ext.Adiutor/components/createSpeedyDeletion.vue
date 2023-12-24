@@ -60,6 +60,7 @@ const csdTemplateStartSingleReason = csdConfiguration.csdTemplateStartSingleReas
 const csdTemplateStartMultipleReason = csdConfiguration.csdTemplateStartMultipleReason;
 const singleReasonSummary = csdConfiguration.singleReasonSummary;
 const multipleReasonSummary = csdConfiguration.multipleReasonSummary;
+const speedyDeletionPolicyLink = csdConfiguration.speedyDeletionPolicyLink;
 const speedyDeletionPolicyPageShortcut = csdConfiguration.speedyDeletionPolicyPageShortcut;
 const csdNotificationTemplate = csdConfiguration.csdNotificationTemplate;
 const namespaceDeletionReasons = [];
@@ -108,6 +109,10 @@ module.exports = defineComponent({
 			} else {
 				showCopyVioInput.value = false;
 			}
+		};
+
+		const openSpeedyDeletionPolicy = () => {
+			window.open(speedyDeletionPolicyLink, '_blank');
 		};
 
 		const primaryAction = {

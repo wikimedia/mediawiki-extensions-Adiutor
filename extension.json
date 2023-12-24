@@ -271,7 +271,12 @@
                 "prefs-Adiutor",
                 "adiutor-new-name-placeholder",
                 "adiutor-search-tag-placeholder",
-                "adiutor-no-tag-found"
+                "adiutor-no-tag-found",
+                "adiutor-prd-rationale-placeholder",
+                "adiutor-proposed-deletion-policy",
+                "adiutor-proposed-deletion-policy-shortcut",
+                "adiutor-proposed-deletion-blpprod-policy",
+                "adiutor-proposed-deletion-blpprod-policy-shortcut"
             ],
             "styles": [
                 "./ext.Adiutor.styles/styles.less"

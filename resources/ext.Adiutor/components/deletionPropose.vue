@@ -1,7 +1,7 @@
 <template>
 	<!-- This component is a dialog for proposing the deletion of an article. -->
-	<cdx-dialog class="prd-dialog" v-model:open="openPrdDialog" :title="$i18n('adiutor-prd-header-title')" close-button-label="Close"
-		:show-dividers="true" @default="openPrdDialog = true">
+	<cdx-dialog class="prd-dialog" v-model:open="openPrdDialog" :title="$i18n('adiutor-prd-header-title')"
+		close-button-label="Close" :show-dividers="true" @default="openPrdDialog = true">
 		<!-- Header section with title and description. -->
 		<div class="header">
 			<p>{{ $i18n('adiutor-prd-header-description') }}</p>
@@ -14,11 +14,12 @@
 				name="radio-group-descriptions" :input-value="radio.value">
 				{{ radio.label }}
 				<template #description>
-					{{ radio.description }}
+					<span v-html="radio.description"></span>
 				</template>
 			</cdx-radio>
 			<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-			<cdx-text-area v-model="textareaValue" :placeholder="$i18n('adiutor-prd-rationale-placeholder')"></cdx-text-area>
+			<cdx-text-area v-model="textareaValue"
+				:placeholder="$i18n('adiutor-prd-rationale-placeholder')"></cdx-text-area>
 		</cdx-field>
 
 		<!-- Footer section with notification option and submit button. -->
@@ -45,9 +46,16 @@ const {
 	apiPostSummary,
 	apiPostSummaryforCreator,
 	prodNotificationTemplate,
+	proposedDeletionPolicy,
+	proposedDeletionPolicyShortcut,
+	proposedDeletionOfBiographiesOfLivingPeoplePolicy,
+	proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut,
 	apiPostSummaryforLog
 } = prdConfiguration;
-
+function processDeletionHelpMessage(key, message, link, shortCut) {
+	const linkHTML = '<a href="wiki/' + link + '" target="_blank">' + shortCut + '</a>';
+	return message.replace(key, linkHTML);
+}
 module.exports = defineComponent({
 	name: 'proposeDeletion',
 	components: { CdxRadio, CdxButton, CdxDialog, CdxCheckbox, CdxField, CdxLabel, CdxTextArea, CdxToggleSwitch },
@@ -63,12 +71,12 @@ module.exports = defineComponent({
 		const radios = [
 			{
 				label: mw.msg('adiutor-prd-deletion-type-1'),
-				description: mw.msg('adiutor-prd-deletion-type-1-help'),
+				description: processDeletionHelpMessage('{{WP:PROD}}', mw.msg('adiutor-prd-deletion-type-1-help'), proposedDeletionPolicy, proposedDeletionPolicyShortcut),
 				value: 'standardPropose'
 			},
 			{
 				label: mw.msg('adiutor-prd-deletion-type-2'),
-				description: mw.msg('adiutor-prd-deletion-type-2-help'),
+				description: processDeletionHelpMessage('{{WP:BLPPROD}}', mw.msg('adiutor-prd-deletion-type-2-help'), proposedDeletionOfBiographiesOfLivingPeoplePolicy, proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut),
 				value: 'livingPersonPropose'
 			}
 		];
@@ -212,7 +220,7 @@ module.exports = defineComponent({
 				return input;
 			}
 		}
-		
+
 		return {
 			openPrdDialog,
 			standardPropose,
@@ -224,7 +232,7 @@ module.exports = defineComponent({
 			radios,
 			proposeForDeletion
 		};
-	}
+	},
 });
 </script>
 <style lang="css">

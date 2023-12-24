@@ -196,5 +196,10 @@
     "prefs-Adiutor": "Label for the Adiutor preferences on the Special:Preferences#mw-prefsection-moderate.",
     "adiutor-new-name-placeholder": "Placeholder for the new name field in the page move request action window.",
     "adiutor-search-tag-placeholder": "Placeholder for the search tag field in the article tagging dialog.",
-    "adiutor-no-tag-found": "Label for the message indicating that no tag was found."
+    "adiutor-no-tag-found": "Label for the message indicating that no tag was found.",
+    "adiutor-prd-rationale-placeholder": "Placeholder for the rationale field in the proposed deletion request action window.",
+    "adiutor-proposed-deletion-policy": "Label for the link to the policy regarding proposed deletions.",
+    "adiutor-proposed-deletion-policy-shortcut": "Label for the shortcut to the page outlining the proposed deletion policy.",
+    "adiutor-proposed-deletion-blpprod-policy": "Label for the link to the policy regarding proposed deletions of biographies of living persons.",
+    "adiutor-proposed-deletion-blpprod-policy-shortcut": "Label for the shortcut to the page outlining the proposed deletion policy for biographies of living persons."
 }

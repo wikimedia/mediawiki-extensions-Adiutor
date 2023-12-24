@@ -67,7 +67,7 @@
         <cdx-field :is-fieldset="true" v-if="addNewSection">
             <cdx-label input-id="sectionTitle">{{ $i18n('adiutor-new-section-title') }}</cdx-label>
             <cdx-text-input v-model="sectionTitle" id="sectionTitle"
-                aria-label="Speedy Deletion Policy Link"></cdx-text-input>
+                aria-label="Speedy Deletion Policy"></cdx-text-input>
         </cdx-field>
         <cdx-field :is-fieldset="true" v-if="!addNewSection">
             <cdx-toggle-switch v-model="useExistSection">

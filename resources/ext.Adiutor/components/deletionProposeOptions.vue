@@ -45,9 +45,31 @@
                 {{ $i18n('adiutor-namespaces-description') }}
             </template>
         </cdx-field>
-        <cdx-label input-id="prodNotificationTemplate">{{ $i18n('adiutor-prod-notification-template') }}</cdx-label>
-        <cdx-text-input v-model="prodNotificationTemplate" id="prodNotificationTemplate"
-            aria-label="{{ $i18n('adiutor-prod-notification-template') }}"></cdx-text-input>
+        <cdx-field>
+            <cdx-label input-id="proposedDeletionPolicy">{{ $i18n('adiutor-proposed-deletion-policy') }}</cdx-label>
+            <cdx-text-input v-model="proposedDeletionPolicy" id="proposedDeletionPolicy"
+                aria-label="{{ $i18n('adiutor-proposed-deletion-policy') }}"></cdx-text-input>
+        </cdx-field>
+        <cdx-field>
+            <cdx-label input-id="proposedDeletionPolicyShortcut">{{ $i18n('adiutor-proposed-deletion-policy-shortcut')
+            }}</cdx-label>
+            <cdx-text-input v-model="proposedDeletionPolicyShortcut" id="proposedDeletionPolicyShortcut"
+                aria-label="{{ $i18n('adiutor-proposed-deletion-policy-shortcut') }}"></cdx-text-input>
+        </cdx-field>
+        <cdx-field>
+            <cdx-label input-id="proposedDeletionOfBiographiesOfLivingPeoplePolicy">{{
+                $i18n('adiutor-proposed-deletion-blpprod-policy') }}</cdx-label>
+            <cdx-text-input v-model="proposedDeletionOfBiographiesOfLivingPeoplePolicy"
+                id="proposedDeletionOfBiographiesOfLivingPeoplePolicy"
+                aria-label="{{ $i18n('adiutor-proposed-deletion-blpprod-policy') }}"></cdx-text-input>
+        </cdx-field>
+        <cdx-field>
+            <cdx-label input-id="proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut">{{
+                $i18n('adiutor-proposed-deletion-blpprod-policy-shortcut') }}</cdx-label>
+            <cdx-text-input v-model="proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut"
+                id="proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut"
+                aria-label="{{ $i18n('adiutor-proposed-deletion-blpprod-policy-shortcut') }}"></cdx-text-input>
+        </cdx-field>
     </cdx-field>
     <cdx-field>
         <cdx-field>
@@ -68,6 +90,11 @@
                 {{ $i18n('adiutor-proposed-deletion-blps-template-description') }}
             </template>
         </cdx-field>
+    </cdx-field>
+    <cdx-field>
+        <cdx-label input-id="prodNotificationTemplate">{{ $i18n('adiutor-prod-notification-template') }}</cdx-label>
+        <cdx-text-input v-model="prodNotificationTemplate" id="prodNotificationTemplate"
+            aria-label="{{ $i18n('adiutor-prod-notification-template') }}"></cdx-text-input>
     </cdx-field>
     <cdx-field>
         <cdx-field>
@@ -119,6 +146,10 @@ module.exports = defineComponent({
         const moduleEnabled = ref(dprConfiguration.moduleEnabled);
         const testMode = ref(dprConfiguration.testMode);
         const namespaces = ref(dprConfiguration.namespaces);
+        const proposedDeletionPolicy = ref(dprConfiguration.proposedDeletionPolicy);
+        const proposedDeletionPolicyShortcut = ref(dprConfiguration.proposedDeletionPolicyShortcut);
+        const proposedDeletionOfBiographiesOfLivingPeoplePolicy = ref(dprConfiguration.proposedDeletionOfBiographiesOfLivingPeoplePolicy);
+        const proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut = ref(dprConfiguration.proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut);
 
         return {
             standardProposeTemplate,
@@ -129,7 +160,11 @@ module.exports = defineComponent({
             apiPostSummaryforLog,
             moduleEnabled,
             testMode,
-            namespaces
+            namespaces,
+            proposedDeletionPolicy,
+            proposedDeletionPolicyShortcut,
+            proposedDeletionOfBiographiesOfLivingPeoplePolicy,
+            proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut
         };
     },
     data() {
@@ -161,7 +196,11 @@ module.exports = defineComponent({
                     "apiPostSummaryforLog": this.apiPostSummaryforLog,
                     "moduleEnabled": this.moduleEnabled,
                     "testMode": this.testMode,
-                    "namespaces": this.namespaces
+                    "namespaces": this.namespaces,
+                    "proposedDeletionPolicy": this.proposedDeletionPolicy,
+                    "proposedDeletionPolicyShortcut": this.proposedDeletionPolicyShortcut,
+                    "proposedDeletionOfBiographiesOfLivingPeoplePolicy": this.proposedDeletionOfBiographiesOfLivingPeoplePolicy,
+                    "proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut": this.proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut
                 }
             };
 
@@ -226,5 +265,4 @@ cdx-label {
 
 .top-message {
     margin-top: 10px;
-}
-</style>
+}</style>
