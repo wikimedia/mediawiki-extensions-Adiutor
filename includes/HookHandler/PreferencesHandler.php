@@ -8,9 +8,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 
-
-class PreferencesHandler implements GetPreferencesHook
-{
+class PreferencesHandler implements GetPreferencesHook {
 	/**
 	 * @var PermissionManager
 	 */
@@ -44,34 +42,32 @@ class PreferencesHandler implements GetPreferencesHook
 	/**
 	 * @inheritDoc
 	 */
-
 	public function onGetPreferences( $user, &$preferences ): void {
-        if ( !$this->permissionManager->userHasRight( $user, 'edit' ) ) {
+		if ( !$this->permissionManager->userHasRight( $user, 'edit' ) ) {
 			return;
 		}
 
-        $isBetaFeatureLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
-        if (
-            $isBetaFeatureLoaded && !$this->userOptionsLookup->getOption( $user, 'adiutor-beta-feature-enable' )
-        ) {
-            return;
-        }
+		$isBetaFeatureLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
+		if (
+			$isBetaFeatureLoaded && !$this->userOptionsLookup->getOption( $user, 'adiutor-beta-feature-enable' )
+		) {
+			return;
+		}
 
-        $preferences['adiutor-switch'] = [
-            'type' => 'toggle',
-            'label-message' => 'adiutor-toggle-adiutor',
-            'section' => 'moderate/adiutor'
-        ];
-    }
+		$preferences['adiutor-switch'] = [
+			'type' => 'toggle',
+			'label-message' => 'adiutor-toggle-adiutor',
+			'section' => 'moderate/adiutor'
+		];
+	}
 
 	/**
 	 * @param array $options
 	 * @param string $option
 	 * @return bool The option is set and truthy
 	 */
-	private function isTruthy($options, $option): bool
-	{
-		return !empty($options[$option]);
+	private function isTruthy( $options, $option ): bool {
+		return !empty( $options[$option] );
 	}
 
 	/**
@@ -79,9 +75,8 @@ class PreferencesHandler implements GetPreferencesHook
 	 * @param string $option
 	 * @return bool The option is set and falsey
 	 */
-	private function isFalsey($options, $option): bool
-	{
-		return isset($options[$option]) && !$options[$option];
+	private function isFalsey( $options, $option ): bool {
+		return isset( $options[$option] ) && !$options[$option];
 	}
 
 	/**
@@ -89,23 +84,23 @@ class PreferencesHandler implements GetPreferencesHook
 	 * @param array &$modifiedOptions
 	 * @param array $originalOptions
 	 */
-	public function onSaveUserOptions ( $user, &$modifiedOptions, $originalOptions ) {
-        $betaFeatureIsEnabled = $this->isTruthy( $originalOptions, 'adiutor-beta-feature-enable' );
-        $betaFeatureIsDisabled = !$betaFeatureIsEnabled;
+	public function onSaveUserOptions( $user, &$modifiedOptions, $originalOptions ) {
+		$betaFeatureIsEnabled = $this->isTruthy( $originalOptions, 'adiutor-beta-feature-enable' );
+		$betaFeatureIsDisabled = !$betaFeatureIsEnabled;
 
-        $betaFeatureWillEnable = $this->isTruthy( $modifiedOptions, 'adiutor-beta-feature-enable' );
-        $betaFeatureWillDisable = $this->isFalsey( $modifiedOptions, 'adiutor-beta-feature-enable' );
+		$betaFeatureWillEnable = $this->isTruthy( $modifiedOptions, 'adiutor-beta-feature-enable' );
+		$betaFeatureWillDisable = $this->isFalsey( $modifiedOptions, 'adiutor-beta-feature-enable' );
 
-        $autoEnrollIsEnabled = $this->isTruthy( $originalOptions, 'betafeatures-auto-enroll' );
-        $autoEnrollIsDisabled = !$autoEnrollIsEnabled;
-        $autoEnrollWillEnable = $this->isTruthy( $modifiedOptions, 'betafeatures-auto-enroll' );
+		$autoEnrollIsEnabled = $this->isTruthy( $originalOptions, 'betafeatures-auto-enroll' );
+		$autoEnrollIsDisabled = !$autoEnrollIsEnabled;
+		$autoEnrollWillEnable = $this->isTruthy( $modifiedOptions, 'betafeatures-auto-enroll' );
 
-        if (
-            ( $betaFeatureIsEnabled && $betaFeatureWillDisable ) ||
-            ( $betaFeatureIsDisabled && $betaFeatureWillEnable ) ||
-            ( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable )
-        ) {
-            $modifiedOptions[ 'adiutor-switch' ] = false;
-        }
-    }
+		if (
+			( $betaFeatureIsEnabled && $betaFeatureWillDisable ) ||
+			( $betaFeatureIsDisabled && $betaFeatureWillEnable ) ||
+			( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable )
+		) {
+			$modifiedOptions[ 'adiutor-switch' ] = false;
+		}
+	}
 }
