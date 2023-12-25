@@ -20,63 +20,67 @@ const rpmConfiguration = mw.config.get('AdiutorRequestPageMove');
 const dprConfiguration = mw.config.get('AdiutorDeletionPropose');
 const tagConfiguration = mw.config.get('AdiutorArticleTagging');
 const userGroups = mw.config.get('wgUserGroups');
+const isSpecialPage = mw.config.get('wgCanonicalSpecialPageName');
+const isMainPage = mw.config.get('wgIsMainPage');
 
 let portletLinks = [];
 
 function addPortletLink(config, permission, linkId, linkLabel, linkKey) {
-  if (config && config.moduleEnabled) {
-    if (!config.testMode || (userGroups && userGroups.includes(permission))) {
-      portletLinks.push({
-        id: linkId,
-        label: mw.msg(linkLabel),
-        action: mw.msg(linkLabel),
-        key: linkKey,
-        namespaces: config.namespaces || [],
-      });
+    if (config && config.moduleEnabled) {
+        if (!config.testMode || (userGroups && userGroups.includes(permission))) {
+            portletLinks.push({
+                id: linkId,
+                label: mw.msg(linkLabel),
+                action: mw.msg(linkLabel),
+                key: linkKey,
+                namespaces: config.namespaces || [],
+            });
+        }
     }
-  }
 }
 
-addPortletLink(csdConfiguration, 'interface-admin', 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion');
-addPortletLink(rppConfiguration, 'interface-admin', 't-request-protection', 'adiutor-request-protection', 'requestPageProtection');
-addPortletLink(rpmConfiguration, 'interface-admin', 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove');
-addPortletLink(dprConfiguration, 'interface-admin', 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose');
-addPortletLink(tagConfiguration, 'interface-admin', 't-tag-article', 'adiutor-tag-article', 'articleTagging');
+if (!isSpecialPage && !isMainPage) {
+    addPortletLink(csdConfiguration, 'interface-admin', 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion');
+    addPortletLink(rppConfiguration, 'interface-admin', 't-request-protection', 'adiutor-request-protection', 'requestPageProtection');
+    addPortletLink(rpmConfiguration, 'interface-admin', 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove');
+    addPortletLink(dprConfiguration, 'interface-admin', 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose');
+    addPortletLink(tagConfiguration, 'interface-admin', 't-tag-article', 'adiutor-tag-article', 'articleTagging');
+}
 
 const currentNamespace = mw.config.get('wgNamespaceNumber');
 portletLinks.forEach(link => {
-  const linkNamespaces = link.namespaces.map(nsObj => parseInt(nsObj.value, 10));
-  if (linkNamespaces.includes(currentNamespace)) {
-    mw.util.addPortletLink('p-cactions', '#', link.label, link.id, link.action, link.key);
-  }
+	const linkNamespaces = link.namespaces.map(nsObj => parseInt(nsObj.value, 10));
+	if (linkNamespaces.includes(currentNamespace)) {
+		mw.util.addPortletLink('p-cactions', '#', link.label, link.id, link.action, link.key);
+	}
 });
 
 module.exports = {
-  name: 'adiutorInterfaceLoader',
-  data() {
-    return {
-      activeComponent: null,
-      activeComponentKey: 0,
-    };
-  },
-  components: {
-    requestPageProtection,
-    requestPageMove,
-    createSpeedyDeletion,
-    deletionPropose,
-    articleForDeletion,
-    articleTagging,
-  },
-  methods: {
-    showComponent(componentName) {
-      if (componentName === this.activeComponent) {
-        this.activeComponentKey++;
-      } else {
-        this.activeComponent = componentName;
-      }
-    },
-  },
-  created() {
+	name: 'adiutorInterfaceLoader',
+	data() {
+		return {
+			activeComponent: null,
+			activeComponentKey: 0,
+		};
+	},
+	components: {
+		requestPageProtection,
+		requestPageMove,
+		createSpeedyDeletion,
+		deletionPropose,
+		articleForDeletion,
+		articleTagging,
+	},
+	methods: {
+		showComponent(componentName) {
+			if (componentName === this.activeComponent) {
+				this.activeComponentKey++;
+			} else {
+				this.activeComponent = componentName;
+			}
+		},
+	},
+	created() {
 		this.$nextTick(() => {
 			const speedyDeletionRequestLink = document.querySelector('#t-request-speedy-deletion');
 			const proposeDeletionLink = document.querySelector('#t-propose-deletion');
