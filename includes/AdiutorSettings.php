@@ -9,8 +9,10 @@
 namespace MediaWiki\Extension\Adiutor;
 
 use Message;
+use PermissionsError;
+use SpecialPage;
 
-class AdiutorSettings extends \SpecialPage {
+class AdiutorSettings extends SpecialPage {
 	/**
 	 * Initialize the special page.
 	 */
@@ -35,7 +37,7 @@ class AdiutorSettings extends \SpecialPage {
 	public function execute( $sub ) {
 		$user = $this->getUser();
 		if ( !$user->isAllowed( 'editinterface' ) ) {
-			throw new \PermissionsError( 'editinterface' );
+			throw new PermissionsError( 'editinterface' );
 		}
 		$out = $this->getOutput();
 		$out->setPageTitle( Message::newFromKey( 'adiutor-settings' ) );

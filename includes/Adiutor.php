@@ -9,12 +9,12 @@
 
 namespace MediaWiki\Extension\Adiutor;
 
+use TextContent;
+use User;
 use ChangeTags;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
-use TextContent;
-use User;
 
 class Adiutor {
 	/**
