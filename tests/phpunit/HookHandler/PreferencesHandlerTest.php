@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\Adiutor\Test\Unit\HookHandler;
 
-use MediaWiki\adiutor\HookHandler\PreferencesHandler;
+use MediaWiki\Extension\Adiutor\HookHandler\PreferencesHandler;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -20,7 +20,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 				'userGroupManager' => $this->createMock( UserGroupManager::class ),
 			],
 			$options
-		)));
+		) ) );
 	}
 
 	public function testOnSaveUserOptionsNoAccessChange( $originalOptions, $modifiedOptions ) {
