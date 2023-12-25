@@ -1,14 +1,17 @@
 <template>
-	<cdx-dialog class="rpm-dialog" v-model:open="openRpmDialog" :title="$i18n('adiutor-pmr-header-title')" close-button-label="Close"
-		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageMove" @default="openRpmDialog = true">
+	<cdx-dialog class="rpm-dialog" v-model:open="openRpmDialog" :title="$i18n('adiutor-pmr-header-title')"
+		close-button-label="Close" :show-dividers="true" :primary-action="primaryAction" @primary="requestPageMove"
+		@default="openRpmDialog = true">
 		<div class="header">
 			<p>{{ $i18n('adiutor-pmr-header-description') }}</p>
 		</div>
 		<cdx-field class="rpm-dialog-body">
 			<cdx-label class="rpm-label"><strong>{{ $i18n('adiutor-new-name') }}</strong></cdx-label>
-			<cdx-text-input v-model="newPageName" :placeholder="$i18n('adiutor-new-name-placeholder')" aria-label="New page name"></cdx-text-input>
+			<cdx-text-input v-model="newPageName" :placeholder="$i18n('adiutor-new-name-placeholder')"
+				aria-label="New page name"></cdx-text-input>
 			<cdx-label class="rpm-label"><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-			<cdx-text-area v-model="rationaleInput" :placeholder="$i18n('adiutor-rpm-rationale-placeholder')"></cdx-text-area>
+			<cdx-text-area v-model="rationaleInput"
+				:placeholder="$i18n('adiutor-rpm-rationale-placeholder')"></cdx-text-area>
 		</cdx-field>
 	</cdx-dialog>
 </template>
@@ -219,5 +222,4 @@ module.exports = defineComponent({
 
 .rpm-dialog .cdx-select-vue {
 	margin-bottom: 10px !important;
-}
-</style>
+}</style>

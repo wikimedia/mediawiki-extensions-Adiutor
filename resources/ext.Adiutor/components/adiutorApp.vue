@@ -26,25 +26,25 @@ const isMainPage = mw.config.get('wgIsMainPage');
 let portletLinks = [];
 
 function addPortletLink(config, permission, linkId, linkLabel, linkKey) {
-    if (config && config.moduleEnabled) {
-        if (!config.testMode || (userGroups && userGroups.includes(permission))) {
-            portletLinks.push({
-                id: linkId,
-                label: mw.msg(linkLabel),
-                action: mw.msg(linkLabel),
-                key: linkKey,
-                namespaces: config.namespaces || [],
-            });
-        }
-    }
+	if (config && config.moduleEnabled) {
+		if (!config.testMode || (userGroups && userGroups.includes(permission))) {
+			portletLinks.push({
+				id: linkId,
+				label: mw.msg(linkLabel),
+				action: mw.msg(linkLabel),
+				key: linkKey,
+				namespaces: config.namespaces || [],
+			});
+		}
+	}
 }
 
 if (!isSpecialPage && !isMainPage) {
-    addPortletLink(csdConfiguration, 'interface-admin', 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion');
-    addPortletLink(rppConfiguration, 'interface-admin', 't-request-protection', 'adiutor-request-protection', 'requestPageProtection');
-    addPortletLink(rpmConfiguration, 'interface-admin', 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove');
-    addPortletLink(dprConfiguration, 'interface-admin', 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose');
-    addPortletLink(tagConfiguration, 'interface-admin', 't-tag-article', 'adiutor-tag-article', 'articleTagging');
+	addPortletLink(csdConfiguration, 'interface-admin', 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion');
+	addPortletLink(rppConfiguration, 'interface-admin', 't-request-protection', 'adiutor-request-protection', 'requestPageProtection');
+	addPortletLink(rpmConfiguration, 'interface-admin', 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove');
+	addPortletLink(dprConfiguration, 'interface-admin', 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose');
+	addPortletLink(tagConfiguration, 'interface-admin', 't-tag-article', 'adiutor-tag-article', 'articleTagging');
 }
 
 const currentNamespace = mw.config.get('wgNamespaceNumber');

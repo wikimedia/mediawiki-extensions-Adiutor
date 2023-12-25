@@ -35,7 +35,8 @@
         </cdx-field>
         <cdx-field :is-fieldset="true">
             <cdx-toggle-switch v-model="useMultipleIssuesTemplate">
-                <cdx-label input-id="useMultipleIssuesTemplate">{{ $i18n('adiutor-use-multiple-issues-template-label') }}</cdx-label>
+                <cdx-label input-id="useMultipleIssuesTemplate">{{ $i18n('adiutor-use-multiple-issues-template-label')
+                }}</cdx-label>
                 <template #description>
                     {{ $i18n('adiutor-multiple-issues-template-description') }}
                 </template>
@@ -71,7 +72,8 @@
     <cdx-field>
         <table width="100%" id="adiutor-options-props">
             <caption>
-                {{ $i18n('adiutor-tag-labels') }} <cdx-button class="add-new-button" weight="quiet" @click="addNewTagLabel">{{ $i18n('adiutor-action-column') }}</cdx-button>
+                {{ $i18n('adiutor-tag-labels') }} <cdx-button class="add-new-button" weight="quiet"
+                    @click="addNewTagLabel">{{ $i18n('adiutor-action-column') }}</cdx-button>
             </caption>
             <tr>
                 <th>{{ $i18n('adiutor-label-column') }}</th>
@@ -79,7 +81,8 @@
             </tr>
             <tr v-for="(label, index) in tagList" :key="index">
                 <td><cdx-text-input v-model="label.label" aria-label="Namespace value"></cdx-text-input></td>
-                <td style="text-align: right;"><cdx-button action="destructive" @click="deleteLabel(label)">{{ $i18n('adiutor-delete-button') }}</cdx-button></td>
+                <td style="text-align: right;"><cdx-button action="destructive" @click="deleteLabel(label)">{{
+                    $i18n('adiutor-delete-button') }}</cdx-button></td>
             </tr>
         </table>
     </cdx-field>
@@ -87,7 +90,8 @@
         <table width="100%" id="adiutor-options-props">
             <caption>
                 {{ $i18n('adiutor-tags-for') }} {{ label.label }}
-                <cdx-button class="add-new-button" weight="quiet" @click="addNewTag(labelIndex)">{{ $i18n('adiutor-action-column') }}</cdx-button>
+                <cdx-button class="add-new-button" weight="quiet" @click="addNewTag(labelIndex)">{{
+                    $i18n('adiutor-action-column') }}</cdx-button>
             </caption>
             <tr>
                 <th>{{ $i18n('adiutor-tag-template') }}</th>
@@ -98,8 +102,10 @@
                 <td><cdx-text-input style="min-width: 50px;" v-model="tag.tag" aria-label="Value"></cdx-text-input></td>
                 <td><cdx-text-input v-model="tag.description" aria-label="Data"></cdx-text-input></td>
                 <td style="text-align: right;">
-                    <cdx-button action="destructive" @click="deleteTag(labelIndex, tagIndex)">{{ $i18n('adiutor-delete') }}</cdx-button>
-                    <cdx-button @click="addNewSubitem(labelIndex, tagIndex)">{{ $i18n('adiutor-add-sub-item') }}</cdx-button>
+                    <cdx-button action="destructive" @click="deleteTag(labelIndex, tagIndex)">{{ $i18n('adiutor-delete')
+                    }}</cdx-button>
+                    <cdx-button @click="addNewSubitem(labelIndex, tagIndex)">{{ $i18n('adiutor-add-sub-item')
+                    }}</cdx-button>
                 </td>
             </tr>
             <tr v-for="(tag, tagIndex) in label.tags" :key="'nestedTable-' + tagIndex">
@@ -109,7 +115,8 @@
                             <caption>
                                 {{ $i18n('adiutor-sub-items-for') }} {{ tag.description }}
                                 <cdx-button class="add-new-button" weight="quiet"
-                                    @click="addNewSubitem(labelIndex, tagIndex)">{{ $i18n('adiutor-action-column') }}</cdx-button>
+                                    @click="addNewSubitem(labelIndex, tagIndex)">{{ $i18n('adiutor-action-column')
+                                    }}</cdx-button>
                             </caption>
                             <tr>
                                 <th>{{ $i18n('adiutor-name') }}</th>
@@ -124,7 +131,8 @@
                             <tr v-for="(subitem, subitemIndex) in tag.items" :key="'subitem-' + subitemIndex">
                                 <td><cdx-text-input style="min-width: 80px;" v-model="subitem.name"
                                         aria-label="Subitem Value"></cdx-text-input></td>
-                                <td><cdx-toggle-switch v-model="subitem.required" aria-label="Required"></cdx-toggle-switch></td>
+                                <td><cdx-toggle-switch v-model="subitem.required" aria-label="Required"></cdx-toggle-switch>
+                                </td>
                                 <td><cdx-text-input style="min-width: 80px;" v-model="subitem.parameter"
                                         aria-label="Subitem parameter"></cdx-text-input></td>
                                 <td><cdx-text-input style="min-width: 50px;" v-model="subitem.type"
@@ -133,9 +141,11 @@
                                         aria-label="Subitem value"></cdx-text-input></td>
                                 <td><cdx-text-input v-model="subitem.label" aria-label="Subitem label"></cdx-text-input>
                                 </td>
-                                <td><cdx-text-input style="min-width: 150px;" v-model="subitem.help" aria-label="Subitem help"></cdx-text-input></td>
+                                <td><cdx-text-input style="min-width: 150px;" v-model="subitem.help"
+                                        aria-label="Subitem help"></cdx-text-input></td>
                                 <td style="text-align: right;"><cdx-button action="destructive"
-                                        @click="deleteSubitem(labelIndex, tagIndex, subitemIndex)">{{ $i18n('adiutor-delete-button') }}</cdx-button></td>
+                                        @click="deleteSubitem(labelIndex, tagIndex, subitemIndex)">{{
+                                            $i18n('adiutor-delete-button') }}</cdx-button></td>
                             </tr>
                         </table>
                     </cdx-field>
@@ -346,5 +356,4 @@ cdx-label {
 
 .top-message {
     margin-top: 10px;
-}
-</style>
+}</style>

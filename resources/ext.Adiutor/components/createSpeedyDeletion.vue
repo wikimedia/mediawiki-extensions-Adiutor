@@ -1,6 +1,6 @@
 <template>
-	<cdx-dialog class="csd-dialog" v-model:open="openCsdDialog" :title="$i18n('adiutor-csd-header-title')" close-button-label="Close"
-		:show-dividers="true" :primary-action="primaryAction" :default-action="defaultAction"
+	<cdx-dialog class="csd-dialog" v-model:open="openCsdDialog" :title="$i18n('adiutor-csd-header-title')"
+		close-button-label="Close" :show-dividers="true" :primary-action="primaryAction" :default-action="defaultAction"
 		@primary="createSpeedyDeletionRequest" @default="openCsdDialog = true">
 		<div class="header">
 			<p>{{ $i18n('adiutor-csd-header-description') }}</p>

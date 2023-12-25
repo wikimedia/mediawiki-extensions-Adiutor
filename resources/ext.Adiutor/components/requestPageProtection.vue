@@ -1,6 +1,6 @@
 <template>
-	<cdx-dialog class="rpp-dialog" v-model:open="openRppDialog" :title="$i18n('adiutor-rpp-header-title')" close-button-label="Close"
-		:show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection"
+	<cdx-dialog class="rpp-dialog" v-model:open="openRppDialog" :title="$i18n('adiutor-rpp-header-title')"
+		close-button-label="Close" :show-dividers="true" :primary-action="primaryAction" @primary="requestPageProtection"
 		@default="openRppDialog = true" :default-action="defaultAction">
 		<div class="header">
 			<p>{{ $i18n('adiutor-rpp-header-description') }}</p>
@@ -14,7 +14,8 @@
 			<cdx-select v-model:selected="typeSelection" :menu-items="protectionTypes"
 				default-label="Select protection type"></cdx-select>
 			<cdx-label><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-			<cdx-text-area v-model="rationaleInput" :placeholder="$i18n('adiutor-rpp-rationale-placeholder')"></cdx-text-area>
+			<cdx-text-area v-model="rationaleInput"
+				:placeholder="$i18n('adiutor-rpp-rationale-placeholder')"></cdx-text-area>
 		</cdx-field>
 	</cdx-dialog>
 </template>

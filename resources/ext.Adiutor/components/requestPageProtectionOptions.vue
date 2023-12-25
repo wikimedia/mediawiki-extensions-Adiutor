@@ -66,8 +66,7 @@
         </cdx-field>
         <cdx-field :is-fieldset="true" v-if="addNewSection">
             <cdx-label input-id="sectionTitle">{{ $i18n('adiutor-new-section-title') }}</cdx-label>
-            <cdx-text-input v-model="sectionTitle" id="sectionTitle"
-                aria-label="Speedy Deletion Policy"></cdx-text-input>
+            <cdx-text-input v-model="sectionTitle" id="sectionTitle" aria-label="Speedy Deletion Policy"></cdx-text-input>
         </cdx-field>
         <cdx-field :is-fieldset="true" v-if="!addNewSection">
             <cdx-toggle-switch v-model="useExistSection">
@@ -115,7 +114,8 @@
     <cdx-field>
         <table width="100%" id="adiutor-options-props">
             <caption>
-                {{ $i18n('adiutor-protection-durations') }} <cdx-button class="add-new-button" weight="quiet" @click="addNewProtectionDuration">{{ $i18n('adiutor-add-new') }}</cdx-button>
+                {{ $i18n('adiutor-protection-durations') }} <cdx-button class="add-new-button" weight="quiet"
+                    @click="addNewProtectionDuration">{{ $i18n('adiutor-add-new') }}</cdx-button>
             </caption>
             <tr>
                 <th>{{ $i18n('adiutor-value') }}</th>
@@ -127,14 +127,16 @@
                 <td><cdx-text-input v-model="duration.value" aria-label="Duration value"></cdx-text-input></td>
                 <td><cdx-text-input v-model="duration.data" aria-label="Duration data"></cdx-text-input></td>
                 <td><cdx-text-input v-model="duration.label" aria-label="Duration label"></cdx-text-input></td>
-                <td><cdx-button action="destructive" @click="deleteProtectionDuration(duration)">{{ $i18n('adiutor-delete') }}</cdx-button></td>
+                <td><cdx-button action="destructive" @click="deleteProtectionDuration(duration)">{{ $i18n('adiutor-delete')
+                }}</cdx-button></td>
             </tr>
         </table>
     </cdx-field>
     <cdx-field>
         <table width="100%" id="adiutor-options-props">
             <caption>
-                {{ $i18n('adiutor-protection-types') }} <cdx-button class="add-new-button" weight="quiet" @click="addNewProtectionType">{{ $i18n('adiutor-add-new') }}</cdx-button>
+                {{ $i18n('adiutor-protection-types') }} <cdx-button class="add-new-button" weight="quiet"
+                    @click="addNewProtectionType">{{ $i18n('adiutor-add-new') }}</cdx-button>
             </caption>
             <tr>
                 <th>{{ $i18n('adiutor-value') }}</th>
@@ -146,7 +148,8 @@
                 <td><cdx-text-input v-model="protection_type.value" aria-label="Type value"></cdx-text-input></td>
                 <td><cdx-text-input v-model="protection_type.data" aria-label="Type data"></cdx-text-input></td>
                 <td><cdx-text-input v-model="protection_type.label" aria-label="Type label"></cdx-text-input></td>
-                <td><cdx-button action="destructive" @click="deleteProtectionType(protection_type)">{{ $i18n('adiutor-delete') }}</cdx-button></td>
+                <td><cdx-button action="destructive" @click="deleteProtectionType(protection_type)">{{
+                    $i18n('adiutor-delete') }}</cdx-button></td>
             </tr>
         </table>
     </cdx-field>
@@ -358,5 +361,4 @@ cdx-label {
 
 .save-button {
     float: right;
-}
-</style>
+}</style>

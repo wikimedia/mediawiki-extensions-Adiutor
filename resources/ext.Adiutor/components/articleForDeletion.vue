@@ -1,6 +1,6 @@
 <template>
-    <cdx-dialog class="afd-dialog" v-model:open="openAfdDialog" :title="$i18n('adiutor-afd-header-title')" close-button-label="Close"
-        :show-dividers="true" @default="openAfdDialog = true">
+    <cdx-dialog class="afd-dialog" v-model:open="openAfdDialog" :title="$i18n('adiutor-afd-header-title')"
+        close-button-label="Close" :show-dividers="true" @default="openAfdDialog = true">
         <div class="header">
             <p>{{ $i18n('adiutor-afd-header-description') }}</p>
         </div>
