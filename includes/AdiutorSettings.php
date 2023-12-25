@@ -29,6 +29,7 @@ class AdiutorSettings extends \SpecialPage {
 
 	/**
 	 * Shows the page to the user.
+	 *
 	 * @param string $sub The subpage string argument (if any).
 	 */
 	public function execute( $sub ) {

@@ -1,4 +1,5 @@
 <?php
+
 namespace MediaWiki\Extension\Adiutor\HookHandler;
 
 use ExtensionRegistry;
@@ -29,11 +30,7 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserGroupManager $userGroupManager
 	 */
-	public function __construct(
-		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup,
-		UserGroupManager $userGroupManager
-	) {
+	public function __construct( PermissionManager $permissionManager, UserOptionsLookup $userOptionsLookup, UserGroupManager $userGroupManager ) {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userGroupManager = $userGroupManager;
@@ -42,41 +39,21 @@ class PreferencesHandler implements GetPreferencesHook {
 	/**
 	 * @inheritDoc
 	 */
-	public function onGetPreferences( $user, &$preferences ): void {
-		if ( !$this->permissionManager->userHasRight( $user, 'edit' ) ) {
+	public function onGetPreferences( $user, &$preferences ) : void {
+		if ( !$this->permissionManager->userHasRight( $user,
+			'edit' ) ) {
 			return;
 		}
 
 		$isBetaFeatureLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
-		if (
-			$isBetaFeatureLoaded && !$this->userOptionsLookup->getOption( $user, 'adiutor-beta-feature-enable' )
-		) {
+		if ( $isBetaFeatureLoaded && !$this->userOptionsLookup->getOption( $user,
+				'adiutor-beta-feature-enable' ) ) {
 			return;
 		}
 
-		$preferences['adiutor-switch'] = [
-			'type' => 'toggle',
+		$preferences['adiutor-switch'] = [ 'type' => 'toggle',
 			'label-message' => 'adiutor-toggle-adiutor',
-			'section' => 'moderate/adiutor'
-		];
-	}
-
-	/**
-	 * @param array $options
-	 * @param string $option
-	 * @return bool The option is set and truthy
-	 */
-	private function isTruthy( $options, $option ): bool {
-		return !empty( $options[$option] );
-	}
-
-	/**
-	 * @param array $options
-	 * @param string $option
-	 * @return bool The option is set and falsey
-	 */
-	private function isFalsey( $options, $option ): bool {
-		return isset( $options[$option] ) && !$options[$option];
+			'section' => 'moderate/adiutor', ];
 	}
 
 	/**
@@ -85,22 +62,43 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param array $originalOptions
 	 */
 	public function onSaveUserOptions( $user, &$modifiedOptions, $originalOptions ) {
-		$betaFeatureIsEnabled = $this->isTruthy( $originalOptions, 'adiutor-beta-feature-enable' );
+		$betaFeatureIsEnabled = $this->isTruthy( $originalOptions,
+			'adiutor-beta-feature-enable' );
 		$betaFeatureIsDisabled = !$betaFeatureIsEnabled;
 
-		$betaFeatureWillEnable = $this->isTruthy( $modifiedOptions, 'adiutor-beta-feature-enable' );
-		$betaFeatureWillDisable = $this->isFalsey( $modifiedOptions, 'adiutor-beta-feature-enable' );
+		$betaFeatureWillEnable = $this->isTruthy( $modifiedOptions,
+			'adiutor-beta-feature-enable' );
+		$betaFeatureWillDisable = $this->isFalsey( $modifiedOptions,
+			'adiutor-beta-feature-enable' );
 
-		$autoEnrollIsEnabled = $this->isTruthy( $originalOptions, 'betafeatures-auto-enroll' );
+		$autoEnrollIsEnabled = $this->isTruthy( $originalOptions,
+			'betafeatures-auto-enroll' );
 		$autoEnrollIsDisabled = !$autoEnrollIsEnabled;
-		$autoEnrollWillEnable = $this->isTruthy( $modifiedOptions, 'betafeatures-auto-enroll' );
+		$autoEnrollWillEnable = $this->isTruthy( $modifiedOptions,
+			'betafeatures-auto-enroll' );
 
-		if (
-			( $betaFeatureIsEnabled && $betaFeatureWillDisable ) ||
-			( $betaFeatureIsDisabled && $betaFeatureWillEnable ) ||
-			( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable )
-		) {
-			$modifiedOptions[ 'adiutor-switch' ] = false;
+		if ( ( $betaFeatureIsEnabled && $betaFeatureWillDisable ) || ( $betaFeatureIsDisabled && $betaFeatureWillEnable ) || ( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable ) ) {
+			$modifiedOptions['adiutor-switch'] = false;
 		}
+	}
+
+	/**
+	 * @param array $options
+	 * @param string $option
+	 *
+	 * @return bool The option is set and truthy
+	 */
+	private function isTruthy( $options, $option ) : bool {
+		return !empty( $options[$option] );
+	}
+
+	/**
+	 * @param array $options
+	 * @param string $option
+	 *
+	 * @return bool The option is set and falsey
+	 */
+	private function isFalsey( $options, $option ) : bool {
+		return isset( $options[$option] ) && !$options[$option];
 	}
 }
