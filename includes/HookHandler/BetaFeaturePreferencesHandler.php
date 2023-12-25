@@ -1,11 +1,12 @@
 <?php
 namespace MediaWiki\Extension\Adiutor\HookHandler;
 
-use Config;
 use MediaWiki\Permissions\PermissionManager;
+use Config;
 use User;
 
-class BetaFeaturePreferencesHandler {
+class BetaFeaturePreferencesHandler
+{
 	/**
 	 * @var Config
 	 */
@@ -32,11 +33,12 @@ class BetaFeaturePreferencesHandler {
 	 * @param User $user
 	 * @param array[] &$betaPrefs
 	 */
-	public function onGetBetaFeaturePreferences( $user, &$betaPrefs ) {
-		$extensionAssetsPath = $this->config->get( 'ExtensionAssetsPath' );
+	public function onGetBetaFeaturePreferences($user, &$betaPrefs)
+	{
+		$extensionAssetsPath = $this->config->get('ExtensionAssetsPath');
 
 		if (
-			$this->permissionManager->userHasRight( $user, 'edit' )
+			$this->permissionManager->userHasRight($user, 'edit')
 		) {
 			$url = 'https://mediawiki.org/wiki/';
 			$infoLink = $url . 'Extension:Adiutor';
