@@ -1,8 +1,26 @@
 {
 	"root": true,
-	"extends": [
-		"wikimedia/client-es6",
-		"wikimedia/mediawiki",
-		"wikimedia/jquery"
+	"extends": ["wikimedia/client-es6", "wikimedia/mediawiki"],
+	"plugins": ["vue"],
+	"globals": {
+	  "exports": "writable"
+	},
+	"rules": {
+	  "max-len": "off",
+	  "es-x/no-array-prototype-includes": "off",
+	  "es-x/no-async-functions": "off"
+	},
+	"overrides": [
+	  {
+		"files": ["**/*.vue"],
+		"parser": "vue-eslint-parser",
+		"parserOptions": {
+		  "parser": "@babel/eslint-parser",
+		  "ecmaVersion": 2020,
+		  "sourceType": "module",
+		  "requireConfigFile": false
+		}
+	  }
 	]
-}
+  }
+  

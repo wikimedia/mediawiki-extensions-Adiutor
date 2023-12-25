@@ -1,64 +1,116 @@
 <template>
-	<cdx-dialog class="rpm-dialog" v-model:open="openRpmDialog" :title="$i18n('adiutor-pmr-header-title')"
-		close-button-label="Close" :show-dividers="true" :primary-action="primaryAction" @primary="requestPageMove"
+	<cdx-dialog
+		v-model:open="openRpmDialog"
+		class="rpm-dialog"
+		:title="$i18n( 'adiutor-pmr-header-title' )"
+		close-button-label="Close"
+		:show-dividers="true"
+		:primary-action="primaryAction"
+		@primary="requestPageMove"
 		@default="openRpmDialog = true">
 		<div class="header">
-			<p>{{ $i18n('adiutor-pmr-header-description') }}</p>
+			<p>{{ $i18n( 'adiutor-pmr-header-description' ) }}</p>
 		</div>
 		<cdx-field class="rpm-dialog-body">
-			<cdx-label class="rpm-label"><strong>{{ $i18n('adiutor-new-name') }}</strong></cdx-label>
-			<cdx-text-input v-model="newPageName" :placeholder="$i18n('adiutor-new-name-placeholder')"
+			<cdx-label class="rpm-label">
+				<strong>{{ $i18n( 'adiutor-new-name' ) }}</strong>
+			</cdx-label>
+			<cdx-text-input
+				v-model="newPageName"
+				:placeholder="$i18n( 'adiutor-new-name-placeholder' )"
 				aria-label="New page name"></cdx-text-input>
-			<cdx-label class="rpm-label"><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-			<cdx-text-area v-model="rationaleInput"
-				:placeholder="$i18n('adiutor-rpm-rationale-placeholder')"></cdx-text-area>
+			<cdx-label class="rpm-label">
+				<strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
+			</cdx-label>
+			<cdx-text-area
+				v-model="rationaleInput"
+				:placeholder="$i18n( 'adiutor-rpm-rationale-placeholder' )"></cdx-text-area>
 		</cdx-field>
 	</cdx-dialog>
 </template>
+
 <script>
-const { defineComponent, ref } = require('vue');
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxTextArea, CdxSelect } = require('@wikimedia/codex');
-const rpmConfiguration = mw.config.get('AdiutorRequestPageMove');
-var noticeBoardTitle = rpmConfiguration.noticeBoardTitle;
-var noticeBoardLink = noticeBoardTitle.replace(/ /g, '_');
-var addNewSection = rpmConfiguration.addNewSection;
-var sectionTitle = rpmConfiguration.sectionTitle;
-var useExistSection = rpmConfiguration.useExistSection;
-var sectionId = rpmConfiguration.sectionId;
-var textModificationDirection = rpmConfiguration.textModificationDirection;
-var contentPattern = rpmConfiguration.contentPattern;
-var apiPostSummary = rpmConfiguration.apiPostSummary;
-var pageTitle = mw.config.get("wgPageName").replace(/_/g, " ");
-module.exports = defineComponent({
-	name: 'requestPageMove',
+const { defineComponent, ref } = require( 'vue' );
+const { CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxTextArea } = require( '@wikimedia/codex' );
+const rpmConfiguration = mw.config.get( 'AdiutorRequestPageMove' );
+const noticeBoardTitle = rpmConfiguration.noticeBoardTitle;
+const noticeBoardLink = noticeBoardTitle.replace( / /g, '_' );
+const addNewSection = rpmConfiguration.addNewSection;
+const sectionTitle = rpmConfiguration.sectionTitle;
+const useExistSection = rpmConfiguration.useExistSection;
+const sectionId = rpmConfiguration.sectionId;
+const textModificationDirection = rpmConfiguration.textModificationDirection;
+const contentPattern = rpmConfiguration.contentPattern;
+const apiPostSummary = rpmConfiguration.apiPostSummary;
+const pageTitle = mw.config.get( 'wgPageName' ).replace( /_/g, ' ' );
+module.exports = defineComponent( {
+	name: 'RequestPageMove',
 	components: {
-		CdxButton,
 		CdxDialog,
-		CdxCheckbox,
 		CdxField,
 		CdxLabel,
 		CdxTextInput,
-		CdxTextArea,
-		CdxSelect
-	},
-	data() {
-		return {
-			protectionDurations: ref(rpmConfiguration.protectionDurations),
-			protectionTypes: ref(rpmConfiguration.protectionTypes),
-			durationSelection: null,
-			typeSelection: null,
-		};
+		CdxTextArea
 	},
 
 	setup() {
-		const durationSelection = ref('');
-		const typeSelection = ref('');
-		const rationaleInput = ref('');
-		const newPageName = ref('');
-		const openRpmDialog = ref(true);
+		const rationaleInput = ref( '' );
+		const newPageName = ref( '' );
+		const openRpmDialog = ref( true );
 		const primaryAction = {
-			label: mw.msg('adiutor-create-request'),
+			label: mw.msg( 'adiutor-create-request' ),
 			actionType: 'progressive'
+		};
+
+		/**
+		 * Replaces placeholders in the input string with the corresponding replacements.
+		 *
+		 * @param {string} input - The input string with placeholders.
+		 * @param {Object} replacements - An object containing the replacements for the placeholders.
+		 * @return {string} - The input string with the placeholders replaced.
+		 */
+		const replacePlaceholders = ( input, replacements ) => {
+			return input.replace( /\$(\d+)/g, function ( match, group ) {
+				const replacement = replacements[ '$' + group ];
+				return replacement !== undefined ? replacement : match;
+			} );
+		};
+
+		function replaceParameter( input, parameterName, newValue ) {
+			// eslint-disable-next-line security/detect-non-literal-regexp
+			const regex = new RegExp( '\\$' + parameterName, 'g' );
+			if ( input.includes( '$' + parameterName ) ) {
+				return input.replace( regex, newValue );
+			} else {
+				return input;
+			}
+		}
+
+		const createApiRequest = async ( preparedContent ) => {
+			const api = new mw.Api();
+			const apiParams = {
+				action: 'edit',
+				title: noticeBoardTitle,
+				summary: replaceParameter( apiPostSummary, '1', pageTitle ),
+				tags: 'Adiutor',
+				format: 'json'
+			};
+
+			if ( addNewSection ) {
+				apiParams.section = 'new';
+				apiParams.sectiontitle = replaceParameter( sectionTitle, '1', pageTitle );
+				apiParams.text = preparedContent;
+			} else {
+				if ( useExistSection ) {
+					apiParams.section = sectionId;
+				}
+				apiParams[ textModificationDirection === 'appendtext' ? 'appendtext' : textModificationDirection === 'prependtext' ? 'prependtext' : 'text' ] = preparedContent + '\n';
+			}
+
+			api.postWithToken( 'csrf', apiParams ).done( function () {
+				window.location = '/wiki/' + noticeBoardLink;
+				openRpmDialog.value = false;
+			} );
 		};
 
 		const requestPageMove = async () => {
@@ -66,74 +118,29 @@ module.exports = defineComponent({
 			const placeholders = {
 				$1: pageTitle,
 				$2: newPageName.value,
-				$3: rationaleInput.value,
+				$3: rationaleInput.value
 			};
-			const preparedContent = replacePlaceholders(contentPattern, placeholders);
+			const preparedContent = replacePlaceholders( contentPattern, placeholders );
 
-			if (!newPageName.value || !rationaleInput.value) {
-				mw.notify('adiutor-rpm-incomplete-request-details', {
-					title: mw.msg('adiutor-operation-failed'),
+			if ( !newPageName.value || !rationaleInput.value ) {
+				mw.notify( 'adiutor-rpm-incomplete-request-details', {
+					title: mw.msg( 'adiutor-operation-failed' ),
 					type: 'error'
-				});
+				} );
 			} else {
-				createApiRequest(preparedContent);
+				createApiRequest( preparedContent );
 			}
 		};
-
-		const createApiRequest = async (preparedContent) => {
-			var api = new mw.Api();
-			var apiParams = {
-				action: 'edit',
-				title: noticeBoardTitle,
-				summary: replaceParameter(apiPostSummary, '1', pageTitle),
-				tags: 'Adiutor',
-				format: 'json'
-			};
-
-			if (addNewSection) {
-				apiParams.section = 'new';
-				apiParams.sectiontitle = replaceParameter(sectionTitle, '1', pageTitle);
-				apiParams.text = preparedContent;
-			} else {
-				if (useExistSection) {
-					apiParams.section = sectionId;
-				}
-				apiParams[textModificationDirection === 'appendtext' ? 'appendtext' : textModificationDirection === 'prependtext' ? 'prependtext' : 'text'] = preparedContent + '\n';
-			}
-
-			api.postWithToken('csrf', apiParams).done(function () {
-				window.location = '/wiki/' + noticeBoardLink;
-				openRpmDialog.value = false;
-			});
-		}
-
-		const replacePlaceholders = (input, replacements) => {
-			return input.replace(/\$(\d+)/g, function (match, group) {
-				var replacement = replacements['$' + group];
-				return replacement !== undefined ? replacement : match;
-			});
-		};
-
-		function replaceParameter(input, parameterName, newValue) {
-			const regex = new RegExp('\\$' + parameterName, 'g');
-			if (input.includes('$' + parameterName)) {
-				return input.replace(regex, newValue);
-			} else {
-				return input;
-			}
-		}
 
 		return {
 			openRpmDialog,
 			primaryAction,
 			rationaleInput,
 			newPageName,
-			durationSelection,
-			typeSelection,
 			requestPageMove
 		};
-	},
-});
+	}
+} );
 </script>
 
 <style lang="css">
@@ -166,7 +173,6 @@ module.exports = defineComponent({
 	overflow-y: auto;
 	padding-bottom: 20px;
 }
-
 
 .rpm-dialog .cdx-dialog--dividers .cdx-dialog__body {
 	padding-top: 0;

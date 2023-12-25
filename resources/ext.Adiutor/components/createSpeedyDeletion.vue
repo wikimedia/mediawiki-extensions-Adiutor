@@ -1,47 +1,73 @@
+<!-- eslint-disable vue/valid-v-for -->
+<!-- eslint-disable vue/html-indent -->
 <template>
-	<cdx-dialog class="csd-dialog" v-model:open="openCsdDialog" :title="$i18n('adiutor-csd-header-title')"
-		close-button-label="Close" :show-dividers="true" :primary-action="primaryAction" :default-action="defaultAction"
-		@primary="createSpeedyDeletionRequest" @default="openCsdDialog = true">
+	<cdx-dialog
+		v-model:open="openCsdDialog"
+		class="csd-dialog"
+		:title="$i18n( 'adiutor-csd-header-title' )"
+		close-button-label="Close"
+		:show-dividers="true"
+		:primary-action="primaryAction"
+		:default-action="defaultAction"
+		@primary="createSpeedyDeletionRequest"
+		@default="openCsdDialog = true">
 		<div class="header">
-			<p>{{ $i18n('adiutor-csd-header-description') }}</p>
+			<p>{{ $i18n( 'adiutor-csd-header-description' ) }}</p>
 		</div>
 		<div class="csd-reasons-body">
 			<div class="csd-reason-field">
-				<cdx-field :is-fieldset="true" v-for="reason in namespaceDeletionReasons">
-					<cdx-label class="adt-label"><strong>{{ reason.name }}</strong></cdx-label>
-					<cdx-checkbox v-for="reason in reason.reasons" :key="'checkbox-' + reason.value" v-model="checkboxValue"
-						:input-value="reason.value">
+				<cdx-field v-for="namespaceReason in namespaceDeletionReasons" :is-fieldset="true">
+					<cdx-label class="adt-label">
+						<strong>{{ namespaceReason.name }}</strong>
+					</cdx-label>
+					<cdx-checkbox
+						v-for="reason in namespaceReason.reasons"
+						:key="reason.value"
+						v-model="checkboxValue"
+						:input-value="reason.value"
+					>
 						{{ reason.label }}
 					</cdx-checkbox>
 					<template #help-text>
-						{{ reason.help }}
+						{{ namespaceReason.help }}
 					</template>
-					<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-other-options') }}</strong></cdx-label>
-					<cdx-checkbox v-model="recreationProrection">{{
-						$i18n('adiutor-protect-against-rebuilding') }}</cdx-checkbox>
-					<cdx-checkbox v-model="informCreator">{{ $i18n('adiutor-inform-creator')
-					}}</cdx-checkbox>
+					<cdx-label class="adt-label">
+						<strong>{{ $i18n( 'adiutor-other-options' ) }}</strong>
+					</cdx-label>
+					<cdx-checkbox v-model="recreationProrection">
+						{{ $i18n( 'adiutor-protect-against-rebuilding' ) }}
+					</cdx-checkbox>
+					<cdx-checkbox v-model="informCreator">
+						{{ $i18n( 'adiutor-inform-creator' ) }}
+					</cdx-checkbox>
 				</cdx-field>
-				<cdx-field :is-fieldset="true" v-if="!namespaceDeletionReasons.length">
+				<cdx-field v-if="!namespaceDeletionReasons.length" :is-fieldset="true">
 					<cdx-message inline type="warning">
-						<p>{{ $i18n('adiutor-warning') }}</p>
-						<small>{{ $i18n('adiutor-no-namespace-reason-for-csd-title') }}</small>
+						<p>{{ $i18n( 'adiutor-warning' ) }}</p>
+						<small>{{ $i18n( 'adiutor-no-namespace-reason-for-csd-title' ) }}</small>
 					</cdx-message>
 				</cdx-field>
 			</div>
 			<div class="csd-reason-field">
-				<cdx-field :is-fieldset="true" v-for="reason in generalDeletionReasons">
-					<cdx-label class="adt-label"><strong>{{ reason.name }}</strong></cdx-label>
-					<cdx-checkbox v-for="reason in reason.reasons" :key="'checkbox-' + reason.value" v-model="checkboxValue"
-						:input-value="reason.value" @click="toggleCopyVioInputBasedOnCheckbox()">
-						{{ reason.label }}
-					</cdx-checkbox>
-					<div v-if="showCopyVioInput">
-						<cdx-label class="adt-label"><strong>{{ $i18n('adiutor-copyright-infringing-page') }} {{
-							copyVioInput
-						}}</strong></cdx-label>
-						<cdx-text-input v-model="copyVioInput" aria-label="TextInput default demo"></cdx-text-input>
-					</div>
+				<cdx-field v-for="generalReason in generalDeletionReasons" :is-fieldset="true">
+				<cdx-label class="adt-label">
+					<strong>{{ generalReason.name }}</strong>
+				</cdx-label>
+				<cdx-checkbox
+					v-for="reasonItem in generalReason.reasons"
+					:key="'checkbox-' + reasonItem.value"
+					v-model="checkboxValue"
+					:input-value="reasonItem.value"
+					@click="toggleCopyVioInputBasedOnCheckbox"
+				>
+					{{ reasonItem.label }}
+				</cdx-checkbox>
+				<div v-if="showCopyVioInput">
+					<cdx-label class="adt-label">
+					<strong>{{ $i18n( 'adiutor-copyright-infringing-page' ) }} {{ copyVioInput }}</strong>
+					</cdx-label>
+					<cdx-text-input v-model="copyVioInput" aria-label="TextInput default demo"></cdx-text-input>
+				</div>
 				</cdx-field>
 			</div>
 		</div>
@@ -49,9 +75,9 @@
 </template>
 
 <script>
-const { defineComponent, ref } = require('vue');
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require('@wikimedia/codex');
-const csdConfiguration = mw.config.get('AdiutorCreateSpeedyDeletion');
+const { defineComponent, ref } = require( 'vue' );
+const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
+const csdConfiguration = mw.config.get( 'AdiutorCreateSpeedyDeletion' );
 const speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
 const copyVioReasonValue = csdConfiguration.copyVioReasonValue;
 const postfixReasonUsage = csdConfiguration.postfixReasonUsage;
@@ -60,26 +86,25 @@ const csdTemplateStartSingleReason = csdConfiguration.csdTemplateStartSingleReas
 const csdTemplateStartMultipleReason = csdConfiguration.csdTemplateStartMultipleReason;
 const singleReasonSummary = csdConfiguration.singleReasonSummary;
 const multipleReasonSummary = csdConfiguration.multipleReasonSummary;
-const speedyDeletionPolicyLink = csdConfiguration.speedyDeletionPolicyLink;
+// const speedyDeletionPolicyLink = csdConfiguration.speedyDeletionPolicyLink;
 const speedyDeletionPolicyPageShortcut = csdConfiguration.speedyDeletionPolicyPageShortcut;
 const csdNotificationTemplate = csdConfiguration.csdNotificationTemplate;
 const namespaceDeletionReasons = [];
-for (const reason of speedyDeletionReasons) {
-	if (reason.namespace === mw.config.get('wgNamespaceNumber')) {
-		namespaceDeletionReasons.push(reason);
+for ( const reason of speedyDeletionReasons ) {
+	if ( reason.namespace === mw.config.get( 'wgNamespaceNumber' ) ) {
+		namespaceDeletionReasons.push( reason );
 	}
 }
 const generalDeletionReasons = [];
-for (const reason of speedyDeletionReasons) {
-	if (reason.namespace === 'general') {
-		generalDeletionReasons.push(reason);
+for ( const reason of speedyDeletionReasons ) {
+	if ( reason.namespace === 'general' ) {
+		generalDeletionReasons.push( reason );
 	}
 }
 
-module.exports = defineComponent({
-	name: 'createSpeedyDeletion',
+module.exports = defineComponent( {
+	name: 'CreateSpeedyDeletion',
 	components: {
-		CdxButton,
 		CdxDialog,
 		CdxCheckbox,
 		CdxField,
@@ -89,40 +114,121 @@ module.exports = defineComponent({
 	},
 	setup() {
 		const api = new mw.Api();
-		const checkboxValue = ref(['']);
-		const copyVioInput = ref('');
-		const recreationProrection = ref(false);
-		const informCreator = ref(true);
-		const openCsdDialog = ref(true);
-		const showCopyVioInput = ref(false);
+		const checkboxValue = ref( [ '' ] );
+		const copyVioInput = ref( '' );
+		const recreationProrection = ref( false );
+		const informCreator = ref( true );
+		const openCsdDialog = ref( true );
+		const showCopyVioInput = ref( false );
 		const toggleCopyVioInputBasedOnCheckbox = () => {
-			const selectedReasons = speedyDeletionReasons.reduce((selected, category) => {
-				const selectedInCategory = category.reasons.filter((reason) => {
-					return checkboxValue.value.includes(reason.value);
-				});
-				selected.push(...selectedInCategory);
+			const selectedReasons = speedyDeletionReasons.reduce( ( selected, category ) => {
+				const selectedInCategory = category.reasons.filter( ( reason ) => {
+					return checkboxValue.value.includes( reason.value );
+				} );
+				selected.push( ...selectedInCategory );
 				return selected;
-			}, []);
+			}, [] );
 
-			if (selectedReasons.some((reason) => reason.value === copyVioReasonValue)) {
+			if ( selectedReasons.some( ( reason ) => reason.value === copyVioReasonValue ) ) {
 				showCopyVioInput.value = true;
 			} else {
 				showCopyVioInput.value = false;
 			}
 		};
 
-		const openSpeedyDeletionPolicy = () => {
-			window.open(speedyDeletionPolicyLink, '_blank');
-		};
-
 		const primaryAction = {
 			icon: 'cdxIconTag',
-			label: mw.msg('adiutor-request'),
+			label: mw.msg( 'adiutor-request' ),
 			actionType: 'progressive'
 		};
 
 		const defaultAction = {
-			label: mw.msg('adiutor-speedy-deletion-policy'),
+			label: mw.msg( 'adiutor-speedy-deletion-policy' )
+		};
+
+		/**
+		 * Creates an API request to tag an article for speedy deletion.
+		 *
+		 * @param {string} csdReason - The reason for the speedy deletion.
+		 * @param {string} csdSummary - The summary of the speedy deletion.
+		 */
+		const createApiRequest = async ( csdReason, csdSummary ) => {
+			// API request to tag the article for speedy deletion
+			api.postWithToken( 'csrf', {
+				action: 'edit',
+				title: mw.config.get( 'wgPageName' ),
+				prependtext: csdReason + '\n',
+				summary: csdSummary,
+				tags: 'Adiutor',
+				format: 'json'
+			} ).done( function () {
+				openCsdDialog.value = false;
+				mw.notify( 'Article tagged for speedy deletion', {
+					title: mw.msg( 'adiutor-operation-completed' ),
+					type: 'success'
+				} );
+				window.location.reload();
+			} ).fail( function ( error ) {
+				mw.notify( 'Failed to tag article for speedy deletion: ' + error, {
+					title: mw.msg( 'adiutor-operation-failed' ),
+					type: 'error'
+				} );
+			} );
+		};
+
+		/**
+		 * Replaces placeholders in the input string with the corresponding replacements.
+		 *
+		 * @param {string} input - The input string with placeholders.
+		 * @param {Object} replacements - An object containing the replacements for the placeholders.
+		 * @return {string} - The input string with placeholders replaced by their corresponding replacements.
+		 */
+		const replacePlaceholders = ( input, replacements ) => {
+			return input.replace( /\$(\d+)/g, function ( match, group ) {
+				const replacement = replacements[ '$' + group ];
+				return replacement !== undefined ? replacement : match;
+			} );
+		};
+
+		/**
+		 * Replaces a parameter in the input string with a new value.
+		 *
+		 * @param {string} input - The input string.
+		 * @param {string} parameterName - The name of the parameter to replace.
+		 * @param {string} newValue - The new value to replace the parameter with.
+		 * @return {string} - The modified input string with the parameter replaced.
+		 */
+		function replaceParameter( input, parameterName, newValue ) {
+			// eslint-disable-next-line security/detect-non-literal-regexp
+			const regex = new RegExp( '\\$' + parameterName, 'g' );
+			if ( input.includes( '$' + parameterName ) ) {
+				return input.replace( regex, newValue );
+			} else {
+				return input;
+			}
+		}
+
+		/**
+		 * Sends a notification message to the author of an article.
+		 *
+		 * @param {string} articleAuthor - The username of the article author.
+		 * @param {string} notificationMessage - The message to be sent as a notification.
+		 * @param {string} csdSummary - The summary of the notification.
+		 * @return {Promise<void>} - A promise that resolves when the message is sent successfully.
+		 */
+		const sendMessageToAuthor = async ( articleAuthor, notificationMessage, csdSummary ) => {
+			try {
+				await api.postWithToken( 'csrf', {
+					action: 'edit',
+					title: 'User_talk:' + articleAuthor,
+					appendtext: '\n' + notificationMessage,
+					summary: csdSummary,
+					tags: 'Adiutor',
+					format: 'json'
+				} );
+			} catch ( error ) {
+				handleError( error );
+			}
 		};
 
 		/**
@@ -133,183 +239,101 @@ module.exports = defineComponent({
 		 * If there are no selected reasons, it displays an error notification.
 		 */
 		const createSpeedyDeletionRequest = async () => {
-			const selectedReasons = speedyDeletionReasons.reduce((selected, category) => {
-				const selectedInCategory = category.reasons.filter((reason) => {
-					return checkboxValue.value.includes(reason.value);
-				});
-				selected.push(...selectedInCategory);
+			const selectedReasons = speedyDeletionReasons.reduce( ( selected, category ) => {
+				const selectedInCategory = category.reasons.filter( ( reason ) => {
+					return checkboxValue.value.includes( reason.value );
+				} );
+				selected.push( ...selectedInCategory );
 				return selected;
-			}, []);
+			}, [] );
 
-			if (selectedReasons.length) {
+			if ( selectedReasons.length ) {
 				let csdReason;
 				let csdSummary = '';
 				let saltCSDSummary = '';
-				let copyVioURL = '';
-				if (copyVioInput.value !== '') {
-					copyVioURL = '|url=' + copyVioInput.value;
+				// let copyVioURL = '';
+				if ( copyVioInput.value !== '' ) {
+					// copyVioURL = '|url=' + copyVioInput.value;
 				}
-				if (selectedReasons.length > 1) {
+				if ( selectedReasons.length > 1 ) {
 					let saltCSDReason = csdTemplateStartMultipleReason;
-					if (multipleReasonSeparation === 'vertical_bar') {
-						for (let i = 0; i < selectedReasons.length; i++) {
-							saltCSDReason += '|' + selectedReasons[i].value;
+					if ( multipleReasonSeparation === 'vertical_bar' ) {
+						for ( let i = 0; i < selectedReasons.length; i++ ) {
+							saltCSDReason += '|' + selectedReasons[ i ].value;
 						}
 						csdReason = saltCSDReason + '}}';
-					} else if (multipleReasonSeparation === 'default') {
-						for (let i = 0; i < selectedReasons.length; i++) {
-							if (i > 0) {
-								saltCSDReason += (i < selectedReasons.length - 1) ? ', ' : ' ' + mw.msg('adiutor-and') + ' ';
+					} else if ( multipleReasonSeparation === 'default' ) {
+						for ( let i = 0; i < selectedReasons.length; i++ ) {
+							if ( i > 0 ) {
+								saltCSDReason += ( i < selectedReasons.length - 1 ) ? ', ' : ' ' + mw.msg( 'adiutor-and' ) + ' ';
 							}
-							saltCSDReason += '|[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[i].value + ']]';
+							saltCSDReason += '|[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[ i ].value + ']]';
 						}
 						csdReason = saltCSDReason + '}}';
 					}
-					for (let i = 0; i < selectedReasons.length; i++) {
-						if (i > 0) {
-							saltCSDSummary += (i < selectedReasons.length - 1) ? ', ' : ' ' + mw.msg('adiutor-and') + ' ';
+					for ( let i = 0; i < selectedReasons.length; i++ ) {
+						if ( i > 0 ) {
+							saltCSDSummary += ( i < selectedReasons.length - 1 ) ? ', ' : ' ' + mw.msg( 'adiutor-and' ) + ' ';
 						}
-						saltCSDSummary += '[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[i].value + ']]';
+						saltCSDSummary += '[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[ i ].value + ']]';
 					}
-					csdSummary = replaceParameter(multipleReasonSummary, '2', saltCSDSummary);
+					csdSummary = replaceParameter( multipleReasonSummary, '2', saltCSDSummary );
 				} else {
-					if (postfixReasonUsage === 'data') {
-						csdReason = csdTemplateStartSingleReason + selectedReasons[0].data + '}}';
-					} else if (postfixReasonUsage === 'value') {
-						csdReason = csdTemplateStartSingleReason + selectedReasons[0].value + '}}';
+					if ( postfixReasonUsage === 'data' ) {
+						csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].data + '}}';
+					} else if ( postfixReasonUsage === 'value' ) {
+						csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].value + '}}';
 					}
-					csdSummary = replaceParameter(singleReasonSummary, '2', selectedReasons[0].data);
+					csdSummary = replaceParameter( singleReasonSummary, '2', selectedReasons[ 0 ].data );
 				}
-				console.log(csdReason);
-				console.log(csdSummary);
-				createApiRequest(csdReason, csdSummary);
-				if (informCreator.value) {
+
+				createApiRequest( csdReason, csdSummary );
+				if ( informCreator.value ) {
 					try {
 						const creatorData = await getCreator();
-						var articleAuthor = creatorData.query.pages[mw.config.get('wgArticleId')].revisions[0].user;
-						if (!mw.util.isIPAddress(articleAuthor)) {
+						const articleAuthor = creatorData.query.pages[ mw.config.get( 'wgArticleId' ) ].revisions[ 0 ].user;
+						if ( !mw.util.isIPAddress( articleAuthor ) ) {
 							const placeholdersForNotification = {
-								$1: mw.config.get("wgPageName"),
+								$1: mw.config.get( 'wgPageName' ),
 								$2: csdSummary,
-								$3: csdReason,
+								$3: csdReason
 							};
-							var message = replacePlaceholders(csdNotificationTemplate, placeholdersForNotification);
-							await sendMessageToAuthor(articleAuthor, message);
+							const message = replacePlaceholders( csdNotificationTemplate, placeholdersForNotification );
+							await sendMessageToAuthor( articleAuthor, message );
 						}
-					} catch (error) {
-						console.error('Error in fetching creator or sending message:', error);
+					} catch ( error ) {
+						handleError( error );
 					}
 				}
 			} else {
-				mw.notify(mw.message('adiutor-select-speedy-deletion-reason').text(), {
-					title: mw.msg('adiutor-warning'),
+				mw.notify( mw.message( 'adiutor-select-speedy-deletion-reason' ).text(), {
+					title: mw.msg( 'adiutor-warning' ),
 					type: 'error'
-				});
+				} );
 			}
-		}
-
-		/**
-		 * Creates an API request to tag an article for speedy deletion.
-		 * 
-		 * @param {string} csdReason - The reason for the speedy deletion.
-		 * @param {string} csdSummary - The summary of the speedy deletion.
-		 */
-		const createApiRequest = async (csdReason, csdSummary) => {
-			// API request to tag the article for speedy deletion
-			api.postWithToken('csrf', {
-				action: 'edit',
-				title: mw.config.get("wgPageName"),
-				prependtext: csdReason + "\n",
-				summary: csdSummary,
-				tags: 'Adiutor',
-				format: 'json'
-			}).done(function () {
-				openCsdDialog.value = false;
-				mw.notify("Article tagged for speedy deletion", {
-					title: mw.msg('adiutor-operation-completed'),
-					type: 'success'
-				});
-				window.location.reload();
-			}).fail(function (error) {
-				mw.notify("Failed to tag article for speedy deletion: " + error, {
-					title: mw.msg('adiutor-operation-failed'),
-					type: 'error'
-				});
-			});
-		}
-
-		/**
-		 * Replaces placeholders in the input string with the corresponding replacements.
-		 * 
-		 * @param {string} input - The input string with placeholders.
-		 * @param {object} replacements - An object containing the replacements for the placeholders.
-		 * @returns {string} - The input string with placeholders replaced by their corresponding replacements.
-		 */
-		const replacePlaceholders = (input, replacements) => {
-			return input.replace(/\$(\d+)/g, function (match, group) {
-				var replacement = replacements['$' + group];
-				return replacement !== undefined ? replacement : match;
-			});
 		};
 
-		/**
-		 * Replaces a parameter in the input string with a new value.
-		 * 
-		 * @param {string} input - The input string.
-		 * @param {string} parameterName - The name of the parameter to replace.
-		 * @param {string} newValue - The new value to replace the parameter with.
-		 * @returns {string} - The modified input string with the parameter replaced.
-		 */
-		function replaceParameter(input, parameterName, newValue) {
-			const regex = new RegExp('\\$' + parameterName, 'g');
-			if (input.includes('$' + parameterName)) {
-				return input.replace(regex, newValue);
-			} else {
-				return input;
-			}
+		function handleError() {
+			// Implement error handling
 		}
 
 		/**
 		 * Retrieves the creator of the page.
-		 * @returns {Promise} A promise that resolves with the creator's information.
+		 * @return {Promise} A promise that resolves with the creator's information.
 		 */
 		function getCreator() {
-			return api.get({
+			return api.get( {
 				action: 'query',
 				prop: 'revisions',
 				rvlimit: 1,
-				rvprop: ['user'],
+				rvprop: [ 'user' ],
 				rvdir: 'newer',
-				titles: mw.config.get("wgPageName")
-			});
+				titles: mw.config.get( 'wgPageName' )
+			} );
 		}
-
-		/**
-		 * Sends a notification message to the author of an article.
-		 * 
-		 * @param {string} articleAuthor - The username of the article author.
-		 * @param {string} notificationMessage - The message to be sent as a notification.
-		 * @param {string} csdSummary - The summary of the notification.
-		 * @returns {Promise<void>} - A promise that resolves when the message is sent successfully.
-		 */
-		const sendMessageToAuthor = async (articleAuthor, notificationMessage, csdSummary) => {
-			try {
-				await api.postWithToken('csrf', {
-					action: 'edit',
-					title: 'User_talk:' + articleAuthor,
-					appendtext: '\n' + notificationMessage,
-					summary: csdSummary,
-					tags: 'Adiutor',
-					format: 'json'
-				});
-			} catch (error) {
-				console.error('Error sending message to author:', error);
-			}
-		};
 
 		return {
 			checkboxValue,
-			speedyDeletionReasons,
 			namespaceDeletionReasons,
 			generalDeletionReasons,
 			openCsdDialog,
@@ -319,13 +343,13 @@ module.exports = defineComponent({
 			recreationProrection,
 			informCreator,
 			showCopyVioInput,
-			api,
 			toggleCopyVioInputBasedOnCheckbox,
 			createSpeedyDeletionRequest
 		};
 	}
-});
+} );
 </script>
+
 <style lang="css">
 .csd-dialog {
 	max-width: 45em;
@@ -348,7 +372,6 @@ module.exports = defineComponent({
 	padding: 0;
 	overflow-y: auto;
 }
-
 
 .csd-dialog .cdx-dialog--dividers .cdx-dialog__body {
 	padding-top: 0;
