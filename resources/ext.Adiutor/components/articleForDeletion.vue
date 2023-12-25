@@ -1,53 +1,68 @@
 <template>
-    <cdx-dialog class="afd-dialog" v-model:open="openAfdDialog" :title="$i18n('adiutor-afd-header-title')"
-        close-button-label="Close" :show-dividers="true" @default="openAfdDialog = true">
-        <div class="header">
-            <p>{{ $i18n('adiutor-afd-header-description') }}</p>
-        </div>
-        <cdx-field class="afd-dialog-body">
-            <cdx-label class="adt-label"><strong>{{ $i18n('adiutor-rationale') }}</strong></cdx-label>
-            <cdx-text-area v-model="rationaleValue" :placeholder="$i18n('adiutor-rationale-placeholder')"></cdx-text-area>
-        </cdx-field>
-        <div class="footer">
-            <cdx-checkbox v-model="informCreator" :inline="true">
-                {{ $i18n('adiutor-inform-creator') }}
-            </cdx-checkbox>
-            <cdx-button action="progressive" weight="primary" aria-label="Next" @click="nominateForDeletion">
-                {{ $i18n('adiutor-continue') }}
-            </cdx-button>
-        </div>
-    </cdx-dialog>
+	<cdx-dialog
+		v-model:open="openAfdDialog"
+		class="afd-dialog"
+		:title="$i18n( 'adiutor-afd-header-title' )"
+		close-button-label="Close"
+		:show-dividers="true"
+		@default="openAfdDialog = true">
+		<div class="header">
+			<p>{{ $i18n( 'adiutor-afd-header-description' ) }}</p>
+		</div>
+		<cdx-field class="afd-dialog-body">
+			<cdx-label class="adt-label">
+				<strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
+			</cdx-label>
+			<cdx-text-area
+				v-model="rationaleValue"
+				:placeholder="$i18n( 'adiutor-rationale-placeholder' )"
+			></cdx-text-area>
+		</cdx-field>
+		<div class="footer">
+			<cdx-checkbox v-model="informCreator" :inline="true">
+				{{ $i18n( 'adiutor-inform-creator' ) }}
+			</cdx-checkbox>
+			<cdx-button
+				action="progressive"
+				weight="primary"
+				aria-label="Next"
+				@click="nominateForDeletion">
+				{{ $i18n( 'adiutor-continue' ) }}
+			</cdx-button>
+		</div>
+	</cdx-dialog>
 </template>
+
 <script>
-const { defineComponent, ref } = require('vue');
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextArea } = require('@wikimedia/codex');
-const afdConfiguration = mw.config.get('AdiutorArticleForDeletion');
-module.exports = defineComponent({
-    name: 'articleForDeletion',
-    components: {
-        CdxButton,
-        CdxDialog,
-        CdxCheckbox,
-        CdxField,
-        CdxLabel,
-        CdxTextArea,
-    },
-    setup() {
-        const rationaleValue = ref('');
-        const openAfdDialog = ref(true);
-        const informCreator = ref(true);
-        function nominateForDeletion() {
-            openAfdDialog.value = false;
-        }
-        return {
-            openAfdDialog,
-            rationaleValue,
-            informCreator,
-            nominateForDeletion
-        };
-    }
-});
+const { defineComponent, ref } = require( 'vue' );
+const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextArea } = require( '@wikimedia/codex' );
+module.exports = defineComponent( {
+	name: 'ArticleForDeletion',
+	components: {
+		CdxButton,
+		CdxDialog,
+		CdxCheckbox,
+		CdxField,
+		CdxLabel,
+		CdxTextArea
+	},
+	setup() {
+		const rationaleValue = ref( '' );
+		const openAfdDialog = ref( true );
+		const informCreator = ref( true );
+		function nominateForDeletion() {
+			openAfdDialog.value = false;
+		}
+		return {
+			openAfdDialog,
+			rationaleValue,
+			informCreator,
+			nominateForDeletion
+		};
+	}
+} );
 </script>
+
 <style lang="css">
 .afd-dialog .cdx-dialog {
     max-width: 548px;
@@ -67,7 +82,6 @@ module.exports = defineComponent({
     padding: 0;
     overflow-y: auto;
 }
-
 
 .afd-dialog .cdx-dialog--dividers .cdx-dialog__body {
     padding-top: 0;

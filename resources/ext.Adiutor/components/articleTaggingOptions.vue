@@ -73,7 +73,7 @@
         <table width="100%" id="adiutor-options-props">
             <caption>
                 {{ $i18n('adiutor-tag-labels') }} <cdx-button class="add-new-button" weight="quiet"
-                    @click="addNewTagLabel">{{ $i18n('adiutor-action-column') }}</cdx-button>
+                    @click="addNewTagLabel">{{ $i18n('adiutor-add-new-tag-label') }}</cdx-button>
             </caption>
             <tr>
                 <th>{{ $i18n('adiutor-label-column') }}</th>
@@ -91,7 +91,7 @@
             <caption>
                 {{ $i18n('adiutor-tags-for') }} {{ label.label }}
                 <cdx-button class="add-new-button" weight="quiet" @click="addNewTag(labelIndex)">{{
-                    $i18n('adiutor-action-column') }}</cdx-button>
+                    $i18n('adiutor-add-new-tag-label') }}</cdx-button>
             </caption>
             <tr>
                 <th>{{ $i18n('adiutor-tag-template') }}</th>
@@ -115,7 +115,7 @@
                             <caption>
                                 {{ $i18n('adiutor-sub-items-for') }} {{ tag.description }}
                                 <cdx-button class="add-new-button" weight="quiet"
-                                    @click="addNewSubitem(labelIndex, tagIndex)">{{ $i18n('adiutor-action-column')
+                                    @click="addNewSubitem(labelIndex, tagIndex)">{{ $i18n('adiutor-add-new-tag-label')
                                     }}</cdx-button>
                             </caption>
                             <tr>
