@@ -5,7 +5,7 @@ $specialPageAliases['en'] = [
 	'AdiutorSettings' => [ 'Adiutor settings' ],
 ];
 /* Turkish */
-$specialPageAliases['re'] = [
+$specialPageAliases['tr'] = [
 	'AdiutorSettings' => [ 'Adiutor ayarları' ],
 ];
 /* German */
@@ -158,11 +158,11 @@ $specialPageAliases['als'] = [
 ];
 /* Aragonese */
 $specialPageAliases['an'] = [
-	'AdiutorSettings' => [ 'Configuración d\'Adiutor' ],
+	'AdiutorSettings' => [ "Configuración d'Adiutor" ],
 ];
 /* Asturian */
 $specialPageAliases['ast'] = [
-	'AdiutorSettings' => [ 'Afitamientu d\'Adiutor' ],
+	'AdiutorSettings' => [ "Afitamientu d'Adiutor" ],
 ];
 /* Azerbaijani */
 $specialPageAliases['az'] = [
@@ -314,7 +314,7 @@ $specialPageAliases['se'] = [
 ];
 /* Occitan */
 $specialPageAliases['oc'] = [
-	'AdiutorSettings' => [ 'Paramètres d\'Adiutor' ],
+	'AdiutorSettings' => [ "Paramètres d'Adiutor" ],
 ];
 /* Pashto */
 $specialPageAliases['ps'] = [
