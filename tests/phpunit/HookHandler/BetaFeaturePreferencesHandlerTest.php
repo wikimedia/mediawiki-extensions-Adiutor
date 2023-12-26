@@ -7,21 +7,24 @@ use MediaWikiIntegrationTestCase;
 use User;
 
 class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
+	/**
+	 * @covers \MediaWiki\Extension\Adiutor\HookHandler\BetaFeaturePreferencesHandler::onGetBetaFeaturePreferences
+	 */
 	public function testOnGetBetaFeaturePreferences() {
-		$this->overrideMwServices(
-			null,
-			[
-				'PermissionManager' => function () {
-					$permissionManager = $this->createMock( PermissionManager::class );
-					$permissionManager->method( 'userHasRight' )->willReturn( true );
-					return $permissionManager;
-				}
-			]
-		);
+		$this->overrideMwServices( null,
+			[ 'PermissionManager' => function () {
+				$permissionManager = $this->createMock( PermissionManager::class );
+				$permissionManager->method( 'userHasRight' )->willReturn( true );
+
+				return $permissionManager;
+			} ] );
 
 		$user = $this->createMock( User::class );
 		$preferences = [];
-		$this->getServiceContainer()->getHookContainer()->run( 'GetBetaFeaturePreferences', [ $user, $preferences ] );
-		$this->assertArrayHasKey( 'adiutor-beta-feature-enable', $preferences );
+		$this->getServiceContainer()->getHookContainer()->run( 'GetBetaFeaturePreferences',
+			[ $user,
+				$preferences ] );
+		$this->assertArrayHasKey( 'adiutor-beta-feature-enable',
+			$preferences );
 	}
 }

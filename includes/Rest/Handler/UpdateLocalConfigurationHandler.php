@@ -18,30 +18,30 @@ class UpdateLocalConfigurationHandler extends SimpleHandler {
 	/**
 	 * Updates the local configuration file with the provided JSON data.
 	 *
-	 * @return array An array containing the status and message.
+	 * @return array|string[] An array containing the status and message.
 	 * - If the update is successful, the status will be 'success' and the message will be the updated content.
 	 * - If the update fails, the status will be 'error'.
 	 */
-	public function run() {
+	public function run() : array {
 		$jsonData = $this->getValidatedBody();
 		$pageTitle = $jsonData['title'];
-		$pageContent = json_encode( $jsonData['content'], JSON_PRETTY_PRINT );
+		$pageContent = json_encode( $jsonData['content'],
+			JSON_PRETTY_PRINT );
 		$user = $this->getAuthority()->getUser();
 		$pageUpdater = MediaWikiServices::getInstance();
 		$titleFactory = $pageUpdater->getTitleFactory();
-		$pageUpdater = MediaWikiServices::getInstance()
-			->getWikiPageFactory()
-			->newFromTitle( $titleFactory->newFromText( $pageTitle ) )
-			->newPageUpdater( $user );
-		$pageUpdater->setContent( SlotRecord::MAIN, new TextContent( $pageContent ) );
-		$pageUpdater->saveRevision(
-			CommentStoreComment::newUnsavedComment( 'Configuration file updated' ),
-			EDIT_INTERNAL | EDIT_MINOR | EDIT_AUTOSUMMARY
-		);
+		$pageUpdater = MediaWikiServices::getInstance()->getWikiPageFactory()
+			->newFromTitle( $titleFactory->newFromText( $pageTitle ) )->newPageUpdater( $user );
+		$pageUpdater->setContent( SlotRecord::MAIN,
+			new TextContent( $pageContent ) );
+		$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Configuration file updated' ),
+			EDIT_INTERNAL | EDIT_MINOR | EDIT_AUTOSUMMARY );
 		$saveStatus = $pageUpdater->getStatus();
-		if ( $saveStatus !== false ) {
+
+		if ( $saveStatus->isOK() ) {
 			// If successful, return a success status
-			return [ 'status' => 'success', 'message' => $jsonData['content'] ];
+			return [ 'status' => 'success',
+				'message' => $jsonData['content'] ];
 		} else {
 			// If not successful, return an error status
 			return [ 'status' => 'error' ];
@@ -52,23 +52,17 @@ class UpdateLocalConfigurationHandler extends SimpleHandler {
 	 * Returns the appropriate body validator based on the content type.
 	 *
 	 * @param string $contentType The content type of the request body.
-	 * @return BodyValidatorInterface The body validator instance.
+	 *
+	 * @return JsonBodyValidator|UnsupportedContentTypeBodyValidator The appropriate body validator.
 	 */
 	public function getBodyValidator( $contentType ) {
 		if ( $contentType === 'application/json' ) {
-			return new JsonBodyValidator(
-				[
-					'title' => [
-						ParamValidator::PARAM_TYPE => 'string',
-						ParamValidator::PARAM_REQUIRED => true,
-					],
-					'content' => [
-						ParamValidator::PARAM_TYPE => 'string',
-						ParamValidator::PARAM_REQUIRED => true,
-					],
-				]
-			);
+			return new JsonBodyValidator( [ 'title' => [ ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true, ],
+				'content' => [ ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true, ], ] );
 		}
+
 		return new UnsupportedContentTypeBodyValidator( $contentType );
 	}
 }

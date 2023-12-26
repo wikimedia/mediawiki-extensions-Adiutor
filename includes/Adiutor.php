@@ -9,12 +9,10 @@
 
 namespace MediaWiki\Extension\Adiutor;
 
-use ChangeTags;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use TextContent;
-use User;
 
 class Adiutor {
 	/**
@@ -28,27 +26,25 @@ class Adiutor {
 	 * After saving each page, the save status is stored in the $saveStatus variable.
 	 */
 	public static function onExtensionLoad() {
-		$tagName = 'Adiutor';
-		ChangeTags::defineTag( $tagName );
+		$services = MediaWikiServices::getInstance();
+		$titleFactory = $services->getTitleFactory();
+		$userFactory = $services->getUserFactory();
+		$user = $userFactory->newAnonymous( 0 );
 
-		$configurationPages = [ 'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::PAGE_PROTECTION_CONFIGURATION,
-			'MediaWiki:AdiutorCreateSpeedyDeletion.json' => LocalizationConfiguration::SPEEDY_DELETION_REQUEST_CONFIGURATION,
+		$configurationPages = [ 'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::REQUEST_PAGE_PROTECTION_CONFIGURATION,
+			'MediaWiki:AdiutorCreateSpeedyDeletion.json' => LocalizationConfiguration::CREATE_SPEEDY_DELETION_REQUEST_CONFIGURATION,
 			'MediaWiki:AdiutorDeletionPropose.json' => LocalizationConfiguration::DELETION_PROPOSE_CONFIGURATION,
 			'MediaWiki:AdiutorRequestPageMove.json' => LocalizationConfiguration::PAGE_MOVE_CONFIGURATION,
 			'MediaWiki:AdiutorArticleTagging.json' => LocalizationConfiguration::ARTICLE_TAGGING_CONFIGURATION, ];
-
-		$user = User::newFromId( 0 );
-		$services = MediaWikiServices::getInstance();
-		$titleFactory = $services->getTitleFactory();
 
 		foreach ( $configurationPages as $pageTitle => $content ) {
 			$title = $titleFactory->newFromText( $pageTitle );
 			$pageContent = json_encode( $content,
 				JSON_PRETTY_PRINT );
+
 			// Check if the page already exists
 			if ( !$title->exists() ) {
-				$pageUpdater = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title )
-					->newPageUpdater( $user );
+				$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
 				$pageUpdater->setContent( SlotRecord::MAIN,
 					new TextContent( $pageContent ) );
 				$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ),

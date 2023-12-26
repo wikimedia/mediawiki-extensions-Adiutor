@@ -23,18 +23,20 @@ class AdiutorSettings extends SpecialPage {
 	/**
 	 * Returns the description of the AdiutorSettings object.
 	 *
-	 * @return string The description of the AdiutorSettings object.
+	 * @return Message The description of the AdiutorSettings object.
 	 */
-	public function getDescription() {
+	public function getDescription() : Message {
 		return Message::newFromKey( 'adiutor-settings' );
 	}
 
 	/**
 	 * Shows the page to the user.
 	 *
-	 * @param string $sub The subpage string argument (if any).
+	 * @param string $subPage The subpage string argument (if any).
+	 *
+	 * @throws PermissionsError
 	 */
-	public function execute( $sub ) {
+	public function execute( $subPage ) {
 		$user = $this->getUser();
 		if ( !$user->isAllowed( 'editinterface' ) ) {
 			throw new PermissionsError( 'editinterface' );
@@ -47,7 +49,7 @@ class AdiutorSettings extends SpecialPage {
 	/**
 	 * @inheritDoc
 	 */
-	protected function getGroupName() {
+	protected function getGroupName() : string {
 		return 'other';
 	}
 }
