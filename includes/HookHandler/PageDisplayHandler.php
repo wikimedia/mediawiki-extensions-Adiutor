@@ -55,24 +55,38 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 		}
 		$out->addHtml( '<div id="adiutor-container"></div>' );
 		$out->addModules( 'ext.Adiutor' );
-		$configPages = [ [ 'title' => 'MediaWiki:AdiutorRequestPageProtection.json',
-			'configuration' => 'AdiutorRequestPageProtection', ],
-			[ 'title' => 'MediaWiki:AdiutorCreateSpeedyDeletion.json',
-				'configuration' => 'AdiutorCreateSpeedyDeletion', ],
-			[ 'title' => 'MediaWiki:AdiutorDeletionPropose.json',
-				'configuration' => 'AdiutorDeletionPropose', ],
-			[ 'title' => 'MediaWiki:AdiutorRequestPageMove.json',
-				'configuration' => 'AdiutorRequestPageMove', ],
-			[ 'title' => 'MediaWiki:AdiutorArticleTagging.json',
-				'configuration' => 'AdiutorArticleTagging', ], ];
+		$configPages = [
+			[
+				'title' => 'MediaWiki:AdiutorRequestPageProtection.json',
+				'configuration' => 'AdiutorRequestPageProtection',
+			],
+			[
+				'title' => 'MediaWiki:AdiutorCreateSpeedyDeletion.json',
+				'configuration' => 'AdiutorCreateSpeedyDeletion',
+			],
+			[
+				'title' => 'MediaWiki:AdiutorDeletionPropose.json',
+				'configuration' => 'AdiutorDeletionPropose',
+			],
+			[
+				'title' => 'MediaWiki:AdiutorRequestPageMove.json',
+				'configuration' => 'AdiutorRequestPageMove',
+			],
+			[
+				'title' => 'MediaWiki:AdiutorArticleTagging.json',
+				'configuration' => 'AdiutorArticleTagging',
+			],
+		];
 
 		foreach ( $configPages as $configPage ) {
 			$title = Title::newFromText( $configPage['title'] );
 			$rev = $services->getRevisionLookup()->getRevisionByTitle( $title );
-			$content = $rev->getContent( SlotRecord::MAIN,
-				RevisionRecord::FOR_PUBLIC );
-			$configuration = FormatJson::decode( $content->getText(),
-				FormatJson::FORCE_ASSOC );
+			$content =
+				$rev->getContent( SlotRecord::MAIN,
+					RevisionRecord::FOR_PUBLIC );
+			$configuration =
+				FormatJson::decode( $content->getText(),
+					FormatJson::FORCE_ASSOC );
 			$out->addJsConfigVars( [ $configPage['configuration'] => $configuration ] );
 		}
 	}

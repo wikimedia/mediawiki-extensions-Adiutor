@@ -36,11 +36,13 @@ class BetaFeaturePreferencesHandler {
 			$url = 'https://mediawiki.org/wiki/';
 			$infoLink = $url . 'Extension:Adiutor';
 			$discussionLink = $url . 'Extension_talk:Adiutor';
-			$betaPrefs['adiutor-beta-feature-enable'] = [ 'label-message' => 'adiutor-title',
+			$betaPrefs['adiutor-beta-feature-enable'] = [
+				'label-message' => 'adiutor-title',
 				'desc-message' => 'adiutor-desc',
 				'info-link' => $infoLink,
 				'discussion-link' => $discussionLink,
-				'requirements' => [ 'javascript' => true ], ];
+				'requirements' => [ 'javascript' => true ],
+			];
 		}
 	}
 }

@@ -25,13 +25,15 @@ class UpdateLocalConfigurationHandler extends SimpleHandler {
 	public function run() : array {
 		$jsonData = $this->getValidatedBody();
 		$pageTitle = $jsonData['title'];
-		$pageContent = json_encode( $jsonData['content'],
-			JSON_PRETTY_PRINT );
+		$pageContent =
+			json_encode( $jsonData['content'],
+				JSON_PRETTY_PRINT );
 		$user = $this->getAuthority()->getUser();
 		$pageUpdater = MediaWikiServices::getInstance();
 		$titleFactory = $pageUpdater->getTitleFactory();
-		$pageUpdater = MediaWikiServices::getInstance()->getWikiPageFactory()
-			->newFromTitle( $titleFactory->newFromText( $pageTitle ) )->newPageUpdater( $user );
+		$pageUpdater =
+			MediaWikiServices::getInstance()->getWikiPageFactory()
+				->newFromTitle( $titleFactory->newFromText( $pageTitle ) )->newPageUpdater( $user );
 		$pageUpdater->setContent( SlotRecord::MAIN,
 			new TextContent( $pageContent ) );
 		$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Configuration file updated' ),
@@ -40,8 +42,10 @@ class UpdateLocalConfigurationHandler extends SimpleHandler {
 
 		if ( $saveStatus->isOK() ) {
 			// If successful, return a success status
-			return [ 'status' => 'success',
-				'message' => $jsonData['content'] ];
+			return [
+				'status' => 'success',
+				'message' => $jsonData['content'],
+			];
 		} else {
 			// If not successful, return an error status
 			return [ 'status' => 'error' ];
@@ -57,10 +61,16 @@ class UpdateLocalConfigurationHandler extends SimpleHandler {
 	 */
 	public function getBodyValidator( $contentType ) {
 		if ( $contentType === 'application/json' ) {
-			return new JsonBodyValidator( [ 'title' => [ ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true, ],
-				'content' => [ ParamValidator::PARAM_TYPE => 'string',
-					ParamValidator::PARAM_REQUIRED => true, ], ] );
+			return new JsonBodyValidator( [
+				'title' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+				],
+				'content' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+				],
+			] );
 		}
 
 		return new UnsupportedContentTypeBodyValidator( $contentType );

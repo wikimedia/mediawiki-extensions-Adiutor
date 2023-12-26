@@ -31,16 +31,19 @@ class Adiutor {
 		$userFactory = $services->getUserFactory();
 		$user = $userFactory->newAnonymous( 0 );
 
-		$configurationPages = [ 'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::REQUEST_PAGE_PROTECTION_CONFIGURATION,
+		$configurationPages = [
+			'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::REQUEST_PAGE_PROTECTION_CONFIGURATION,
 			'MediaWiki:AdiutorCreateSpeedyDeletion.json' => LocalizationConfiguration::CREATE_SPEEDY_DELETION_REQUEST_CONFIGURATION,
 			'MediaWiki:AdiutorDeletionPropose.json' => LocalizationConfiguration::DELETION_PROPOSE_CONFIGURATION,
 			'MediaWiki:AdiutorRequestPageMove.json' => LocalizationConfiguration::PAGE_MOVE_CONFIGURATION,
-			'MediaWiki:AdiutorArticleTagging.json' => LocalizationConfiguration::ARTICLE_TAGGING_CONFIGURATION, ];
+			'MediaWiki:AdiutorArticleTagging.json' => LocalizationConfiguration::ARTICLE_TAGGING_CONFIGURATION,
+		];
 
 		foreach ( $configurationPages as $pageTitle => $content ) {
 			$title = $titleFactory->newFromText( $pageTitle );
-			$pageContent = json_encode( $content,
-				JSON_PRETTY_PRINT );
+			$pageContent =
+				json_encode( $content,
+					JSON_PRETTY_PRINT );
 
 			// Check if the page already exists
 			if ( !$title->exists() ) {
