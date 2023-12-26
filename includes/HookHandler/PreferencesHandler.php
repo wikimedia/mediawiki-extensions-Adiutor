@@ -13,17 +13,17 @@ class PreferencesHandler implements GetPreferencesHook {
 	/**
 	 * @var PermissionManager
 	 */
-	private $permissionManager;
+	private PermissionManager $permissionManager;
 
 	/**
 	 * @var UserOptionsLookup
 	 */
-	private $userOptionsLookup;
+	private UserOptionsLookup $userOptionsLookup;
 
 	/**
 	 * @var UserGroupManager
 	 */
-	private $userGroupManager;
+	private UserGroupManager $userGroupManager;
 
 	/**
 	 * @param PermissionManager $permissionManager
@@ -65,7 +65,7 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param array &$modifiedOptions
 	 * @param array $originalOptions
 	 */
-	public function onSaveUserOptions( $user, &$modifiedOptions, $originalOptions ) {
+	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
 		$betaFeatureIsEnabled =
 			$this->isTruthy( $originalOptions,
 				'adiutor-beta-feature-enable' );
@@ -74,9 +74,7 @@ class PreferencesHandler implements GetPreferencesHook {
 		$betaFeatureWillEnable =
 			$this->isTruthy( $modifiedOptions,
 				'adiutor-beta-feature-enable' );
-		$betaFeatureWillDisable =
-			$this->isFalsey( $modifiedOptions,
-				'adiutor-beta-feature-enable' );
+		$betaFeatureWillDisable = $this->isFalsey( $modifiedOptions );
 
 		$autoEnrollIsEnabled =
 			$this->isTruthy( $originalOptions,
@@ -99,17 +97,16 @@ class PreferencesHandler implements GetPreferencesHook {
 	 *
 	 * @return bool The option is set and truthy
 	 */
-	private function isTruthy( $options, $option ) : bool {
+	private function isTruthy( array $options, string $option ) : bool {
 		return !empty( $options[$option] );
 	}
 
 	/**
 	 * @param array $options
-	 * @param string $option
 	 *
 	 * @return bool The option is set and falsey
 	 */
-	private function isFalsey( $options, $option ) : bool {
-		return isset( $options[$option] ) && !$options[$option];
+	private function isFalsey( array $options ) : bool {
+		return isset( $options['adiutor-beta-feature-enable'] ) && !$options['adiutor-beta-feature-enable'];
 	}
 }

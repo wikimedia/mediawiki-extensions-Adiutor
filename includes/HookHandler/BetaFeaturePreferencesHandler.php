@@ -10,12 +10,12 @@ class BetaFeaturePreferencesHandler {
 	/**
 	 * @var Config
 	 */
-	private $config;
+	private Config $config;
 
 	/**
 	 * @var PermissionManager
 	 */
-	private $permissionManager;
+	private PermissionManager $permissionManager;
 
 	/**
 	 * @param Config $config

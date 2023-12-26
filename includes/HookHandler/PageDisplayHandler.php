@@ -16,12 +16,12 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	/**
 	 * @var PermissionManager
 	 */
-	private $permissionManager;
+	private PermissionManager $permissionManager;
 
 	/**
 	 * @var UserOptionsLookup
 	 */
-	private $userOptionsLookup;
+	private UserOptionsLookup $userOptionsLookup;
 
 	/**
 	 * @param PermissionManager $permissionManager
