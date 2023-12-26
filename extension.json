@@ -1,47 +1,49 @@
 {
-  "name": "Adiutor",
-  "author": "Vikipolimer",
-  "url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
-  "descriptionmsg": "adiutor-desc",
-  "version": "0.0.1",
-  "license-name": "GPL-2.0-or-later",
-  "type": "other",
-  "config": {
-    "AdiutorEnable": {
-      "description": "Enable the adiutor features",
-      "value": true
-    }
-  },
-  "MessagesDirs": {
-    "Adiutor": [
-      "i18n"
-    ]
-  },
-  "requires": {
-    "MediaWiki": ">=1.41"
-  },
-  "ExtensionMessagesFiles": {
-    "AdiutorAlias": "Adiutor.i18n.alias.php"
-  },
-  "AutoloadNamespaces": {
-    "MediaWiki\\Extension\\Adiutor\\": "includes/"
-  },
-  "DefaultUserOptions": {
-    "adiutor-switch": 0
-  },
-  "SpecialPages": {
-    "AdiutorSettings": {
-      "class": "MediaWiki\\Extension\\Adiutor\\AdiutorSettings"
-    }
-  },
-  "Hooks": {
-    "BeforePageDisplay": "pageDisplay",
-    "GetPreferences": "preferences",
-    "GetBetaFeaturePreferences": "betaFeature",
-    "SaveUserOptions": "preferences",
-    "ListDefinedTags": "listDefinedTags"
-  },
-  "HookHandlers": {
+	"name": "Adiutor",
+	"author": "Vikipolimer",
+	"url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
+	"descriptionmsg": "adiutor-desc",
+	"version": "0.0.1",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"config": {
+		"AdiutorEnable": {
+			"description": "Enable the adiutor features",
+			"value": true
+		}
+	},
+	"MessagesDirs": {
+		"Adiutor": [
+			"i18n"
+		]
+	},
+	"requires": {
+		"MediaWiki": ">=1.41"
+	},
+	"ExtensionMessagesFiles": {
+		"AdiutorAlias": "Adiutor.i18n.alias.php"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\Adiutor\\": "includes/"
+	},
+	"DefaultUserOptions": {
+		"adiutor-switch": 0
+	},
+	"SpecialPages": {
+		"AdiutorSettings": {
+			"class": "MediaWiki\\Extension\\Adiutor\\AdiutorSettings"
+		}
+	},
+	"Hooks": {
+		"BeforePageDisplay": "pageDisplay",
+		"GetPreferences": "preferences",
+		"GetBetaFeaturePreferences": "betaFeature",
+		"SaveUserOptions": "preferences",
+		"ListDefinedTags": "listDefinedTags",
+		"ChangeTagsListActive": "changeTagsListActive",
+    "ChangeTagsAllowedAdd": "changeTagsAllowedAdd"
+	},
+	"HookHandlers": {
     "preferences": {
       "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PreferencesHandler",
       "services": [
@@ -65,273 +67,284 @@
       ]
     },
     "listDefinedTags": {
-      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ListDefinedTagsHandler",
+      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ChangeTagsHandler",
+      "services": [
+        "MainConfig"
+      ]
+    },
+    "changeTagsListActive": {
+      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ChangeTagsHandler",
+      "services": [
+        "MainConfig"
+      ]
+    },
+    "changeTagsAllowedAdd": {
+      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ChangeTagsHandler",
       "services": [
         "MainConfig"
       ]
     }
   },
-  "ExtensionFunctions": [
-    "MediaWiki\\Extension\\Adiutor\\Adiutor::onExtensionLoad"
-  ],
-  "ResourceFileModulePaths": {
-    "localBasePath": "resources",
-    "remoteExtPath": "Adiutor/resources"
-  },
-  "ResourceModules": {
-    "ext.Adiutor": {
-      "dependencies": [
-        "mediawiki.util",
-        "mediawiki.user",
-        "mediawiki.Title",
-        "mediawiki.api",
-        "@wikimedia/codex",
-        "vue"
-      ],
-      "messages": [
-        "adiutor-title",
-        "adiutor-toggle-adiutor",
-        "adiutor-desc",
-        "adiutor-beta-feature-enabled",
-        "adiutor-create",
-        "adiutor-request",
-        "adiutor-speedy-deletion-policy",
-        "adiutor-delete",
-        "adiutor-other-options",
-        "adiutor-propose",
-        "adiutor-continue",
-        "adiutor-options",
-        "adiutor-settings",
-        "adiutor-rpm-rationale-placeholder",
-        "adiutor-rpm-incomplete-request-details",
-        "adiutor-and",
-        "adiutor-protect-against-rebuilding",
-        "adiutor-protect-against-rebuilding-help",
-        "adiutor-rationale",
-        "adiutor-rationale-placeholder",
-        "adiutor-inform-creator",
-        "adiutor-inform-creator-help",
-        "adiutor-rpp-rationale-placeholder",
-        "adiutor-create-request",
-        "adiutor-protection-type",
-        "adiutor-operation-completed",
-        "adiutor-prd-deletion-rationale",
-        "adiutor-prd-deletion-type",
-        "adiutor-prd-deletion-type-1",
-        "adiutor-prd-deletion-type-2",
-        "adiutor-prd-deletion-type-1-help",
-        "adiutor-prd-deletion-type-2-help",
-        "adiutor-rpp-header-title",
-        "adiutor-prd-header-title",
-        "adiutor-csd-header-title",
-        "adiutor-tag-header-title",
-        "adiutor-csd-header-description",
-        "adiutor-rpp-header-description",
-        "adiutor-prd-header-description",
-        "adiutor-choose-appropriate-tags",
-        "adiutor-new-name",
-        "adiutor-pmr-header-title",
-        "adiutor-pmr-header-description",
-        "adiutor-afd-header-title",
-        "adiutor-afd-header-description",
-        "adiutor-localization-settings-has-been-updated",
-        "adiutor-select-speedy-deletion-reason",
-        "adiutor-tag-header-description",
-        "adiutor-page-move-request",
-        "adiutor-page-protection-request",
-        "adiutor-tag-page",
-        "adiutor-select-a-tag",
-        "adiutor-copyright-infringing-page",
-        "adiutor-no-namespace-reason-for-csd-title",
-        "adiutor-operation-failed",
-        "adiutor-rpp-incomplete-request-details",
-        "adiutor-warning",
-        "adiutor-protection-policy",
-        "adiutor-article-tagging-configuration-title",
-        "adiutor-article-tagging-description",
-        "adiutor-settings-label",
-        "adiutor-use-multiple-issues-template-label",
-        "adiutor-multiple-issues-template-description",
-        "adiutor-multiple-issues-template-label",
-        "adiutor-multiple-issues-template-help-text",
-        "adiutor-uncategorized-template-label",
-        "adiutor-uncategorized-template-help-text",
-        "adiutor-summaries-label",
-        "adiutor-api-post-summary-label",
-        "adiutor-add-new-tag-label",
-        "adiutor-label-column",
-        "adiutor-action-column",
-        "adiutor-delete-button",
-        "adiutor-create-speedy-deletion-configuration-title",
-        "adiutor-create-speedy-deletion-configuration-description",
-        "adiutor-parameters",
-        "adiutor-parameters-description",
-        "adiutor-parameters-page-name",
-        "adiutor-parameters-new-page-name",
-        "adiutor-parameters-protection-duration",
-        "adiutor-parameters-protection-rationale",
-        "adiutor-parameters-day",
-        "adiutor-parameters-month",
-        "adiutor-parameters-year",
-        "adiutor-parameters-requester",
-        "adiutor-parameters-rationale",
-        "adiutor-parameters-reason-data",
-        "adiutor-parameters-reason-value",
-        "adiutor-speedy-deletion-policy-link",
-        "adiutor-speedy-deletion-policy-page-shortcut",
-        "adiutor-csd-notification-template",
-        "adiutor-copy-vio-reason-value",
-        "adiutor-csd-template-start-single-reason",
-        "adiutor-csd-template-start-multiple-reason",
-        "adiutor-single-reason-summary",
-        "adiutor-multiple-reason-summary",
-        "adiutor-api-post-summary-for-talk-page",
-        "adiutor-api-post-summary-for-log",
-        "adiutor-name-space",
-        "adiutor-add-new",
-        "adiutor-protection-durations",
-        "adiutor-protection-types",
-        "adiutor-save-configurations",
-        "adiutor-postfix-reason-usage",
-        "adiutor-multiple-reason-separation",
-        "adiutor-close",
-        "adiutor-in-page-request-templating-configuration",
-        "adiutor-single-reason-template",
-        "adiutor-single-reason-template-description",
-        "adiutor-multiple-reason-template",
-        "adiutor-multiple-reason-template-description",
-        "adiutor-output",
-        "adiutor-summaries",
-        "adiutor-speedy-deletion-reasons",
-        "adiutor-name",
-        "adiutor-action",
-        "adiutor-deletion-reasons-for",
-        "adiutor-value",
-        "adiutor-data",
-        "adiutor-label",
-        "adiutor-help",
-        "adiutor-tag-labels",
-        "adiutor-tags-for",
-        "adiutor-tag-template",
-        "adiutor-tag-description",
-        "adiutor-add-sub-item",
-        "adiutor-sub-items-for",
-        "adiutor-required",
-        "adiutor-parameter",
-        "adiutor-type",
-        "adiutor-proposed-deletion-configuration",
-        "adiutor-proposed-deletion-description",
-        "adiutor-prod-notification-template",
-        "adiutor-proposed-deletion-template",
-        "adiutor-proposed-deletion-unsourced-blps-template",
-        "adiutor-api-post-summary",
-        "adiutor-api-post-summary-for-creator",
-        "adiutor-proposed-deletion-template-description",
-        "adiutor-proposed-deletion-blps-template",
-        "adiutor-proposed-deletion-blps-template-description",
-        "adiutor-request-page-move-configuration",
-        "adiutor-request-page-move-description",
-        "adiutor-noticeboard",
-        "adiutor-content-pattern",
-        "adiutor-content-pattern-description",
-        "adiutor-create-new-section",
-        "adiutor-new-section-description",
-        "adiutor-new-section-title",
-        "adiutor-use-exist-section",
-        "adiutor-use-exist-section-description",
-        "adiutor-section-id",
-        "adiutor-section-id-description",
-        "adiutor-no-section-description",
-        "adiutor-text-modification-direction",
-        "adiutor-request-page-protection-configuration",
-        "adiutor-request-page-protection-description",
-        "adiutor-create-speedy-deletion",
-        "adiutor-request-page-protection",
-        "adiutor-request-page-move",
-        "adiutor-proposed-deletion",
-        "adiutor-article-tagging",
-        "adiutor-request-speedy-deletion",
-        "adiutor-propose-deletion",
-        "adiutor-request-protection",
-        "adiutor-tag-article",
-        "adiutor-configurations-saving",
-        "adiutor-try-again",
-        "adiutor-csd-use-reason-value",
-        "adiutor-csd-use-reason-data",
-        "adiutor-csd-use-reason-value-description",
-        "adiutor-csd-use-reason-data-description",
-        "adiutor-csd-use-vertical-bar",
-        "adiutor-csd-use-vertical-bar-description",
-        "adiutor-csd-default",
-        "adiutor-csd-default-description",
-        "adiutor-prepend-text-on-the-page",
-        "adiutor-prepend-text-on-the-page-description",
-        "adiutor-append-text-on-the-page",
-        "adiutor-append-text-on-the-page-description",
-        "adiutor-module-enabled",
-        "adiutor-module-enabled-description",
-        "adiutor-test-mode",
-        "adiutor-test-mode-description",
-        "adiutor-namespaces",
-        "adiutor-namespaces-description",
-        "prefs-moderate",
-        "prefs-Adiutor",
-        "adiutor-new-name-placeholder",
-        "adiutor-search-tag-placeholder",
-        "adiutor-no-tag-found",
-        "adiutor-prd-rationale-placeholder",
-        "adiutor-proposed-deletion-policy",
-        "adiutor-proposed-deletion-policy-shortcut",
-        "adiutor-proposed-deletion-blpprod-policy",
-        "adiutor-proposed-deletion-blpprod-policy-shortcut"
-      ],
-      "styles": [
-        "./ext.Adiutor.styles/styles.less"
-      ],
-      "packageFiles": [
-        "ext.Adiutor/init.js",
-        "ext.Adiutor/components/adiutorApp.vue",
-        "ext.Adiutor/components/deletionPropose.vue",
-        "ext.Adiutor/components/articleForDeletion.vue",
-        "ext.Adiutor/components/createSpeedyDeletion.vue",
-        "ext.Adiutor/components/createSpeedyDeletionOptions.vue",
-        "ext.Adiutor/components/articleTagging.vue",
-        "ext.Adiutor/components/articleTaggingOptions.vue",
-        "ext.Adiutor/components/requestPageMove.vue",
-        "ext.Adiutor/components/requestPageProtection.vue",
-        "ext.Adiutor/components/requestPageProtectionOptions.vue",
-        "ext.Adiutor/components/requestPageMoveOptions.vue",
-        "ext.Adiutor/components/deletionProposeOptions.vue",
-        "ext.Adiutor/components/adiutorSettings.vue",
-        "ext.Adiutor/icons.json",
-        {
-          "name": "ext.Adiutor/icons.json",
-          "callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
-          "callbackParam": [
-            "cdxIconAdd",
-            "cdxIconClose"
-          ]
-        }
-      ],
-      "targets": [
-        "desktop",
-        "mobile"
-      ]
-    },
-    "ext.Adiutor.styles": {
-      "styles": "ext.Adiutor.styles/styles.css",
-      "targets": [
-        "desktop",
-        "mobile"
-      ]
-    }
-  },
-  "RestRoutes": [
-    {
-      "path": "/adiutor/v0/updatelocalconfiguration",
-      "method": "POST",
-      "class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\UpdateLocalConfigurationHandler"
-    }
-  ],
-  "manifest_version": 2
+	"ExtensionFunctions": [
+		"MediaWiki\\Extension\\Adiutor\\Adiutor::onExtensionLoad"
+	],
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "Adiutor/resources"
+	},
+	"ResourceModules": {
+		"ext.Adiutor": {
+			"dependencies": [
+				"mediawiki.util",
+				"mediawiki.user",
+				"mediawiki.Title",
+				"mediawiki.api",
+				"@wikimedia/codex",
+				"vue"
+			],
+			"messages": [
+				"adiutor-title",
+				"adiutor-toggle-adiutor",
+				"adiutor-desc",
+				"adiutor-beta-feature-enabled",
+				"adiutor-create",
+				"adiutor-request",
+				"adiutor-speedy-deletion-policy",
+				"adiutor-delete",
+				"adiutor-other-options",
+				"adiutor-propose",
+				"adiutor-continue",
+				"adiutor-options",
+				"adiutor-settings",
+				"adiutor-rpm-rationale-placeholder",
+				"adiutor-rpm-incomplete-request-details",
+				"adiutor-and",
+				"adiutor-protect-against-rebuilding",
+				"adiutor-protect-against-rebuilding-help",
+				"adiutor-rationale",
+				"adiutor-rationale-placeholder",
+				"adiutor-inform-creator",
+				"adiutor-inform-creator-help",
+				"adiutor-rpp-rationale-placeholder",
+				"adiutor-create-request",
+				"adiutor-protection-type",
+				"adiutor-operation-completed",
+				"adiutor-prd-deletion-rationale",
+				"adiutor-prd-deletion-type",
+				"adiutor-prd-deletion-type-1",
+				"adiutor-prd-deletion-type-2",
+				"adiutor-prd-deletion-type-1-help",
+				"adiutor-prd-deletion-type-2-help",
+				"adiutor-rpp-header-title",
+				"adiutor-prd-header-title",
+				"adiutor-csd-header-title",
+				"adiutor-tag-header-title",
+				"adiutor-csd-header-description",
+				"adiutor-rpp-header-description",
+				"adiutor-prd-header-description",
+				"adiutor-choose-appropriate-tags",
+				"adiutor-new-name",
+				"adiutor-pmr-header-title",
+				"adiutor-pmr-header-description",
+				"adiutor-afd-header-title",
+				"adiutor-afd-header-description",
+				"adiutor-localization-settings-has-been-updated",
+				"adiutor-select-speedy-deletion-reason",
+				"adiutor-tag-header-description",
+				"adiutor-page-move-request",
+				"adiutor-page-protection-request",
+				"adiutor-tag-page",
+				"adiutor-select-a-tag",
+				"adiutor-copyright-infringing-page",
+				"adiutor-no-namespace-reason-for-csd-title",
+				"adiutor-operation-failed",
+				"adiutor-rpp-incomplete-request-details",
+				"adiutor-warning",
+				"adiutor-protection-policy",
+				"adiutor-article-tagging-configuration-title",
+				"adiutor-article-tagging-description",
+				"adiutor-settings-label",
+				"adiutor-use-multiple-issues-template-label",
+				"adiutor-multiple-issues-template-description",
+				"adiutor-multiple-issues-template-label",
+				"adiutor-multiple-issues-template-help-text",
+				"adiutor-uncategorized-template-label",
+				"adiutor-uncategorized-template-help-text",
+				"adiutor-summaries-label",
+				"adiutor-api-post-summary-label",
+				"adiutor-add-new-tag-label",
+				"adiutor-label-column",
+				"adiutor-action-column",
+				"adiutor-delete-button",
+				"adiutor-create-speedy-deletion-configuration-title",
+				"adiutor-create-speedy-deletion-configuration-description",
+				"adiutor-parameters",
+				"adiutor-parameters-description",
+				"adiutor-parameters-page-name",
+				"adiutor-parameters-new-page-name",
+				"adiutor-parameters-protection-duration",
+				"adiutor-parameters-protection-rationale",
+				"adiutor-parameters-day",
+				"adiutor-parameters-month",
+				"adiutor-parameters-year",
+				"adiutor-parameters-requester",
+				"adiutor-parameters-rationale",
+				"adiutor-parameters-reason-data",
+				"adiutor-parameters-reason-value",
+				"adiutor-speedy-deletion-policy-link",
+				"adiutor-speedy-deletion-policy-page-shortcut",
+				"adiutor-csd-notification-template",
+				"adiutor-copy-vio-reason-value",
+				"adiutor-csd-template-start-single-reason",
+				"adiutor-csd-template-start-multiple-reason",
+				"adiutor-single-reason-summary",
+				"adiutor-multiple-reason-summary",
+				"adiutor-api-post-summary-for-talk-page",
+				"adiutor-api-post-summary-for-log",
+				"adiutor-name-space",
+				"adiutor-add-new",
+				"adiutor-protection-durations",
+				"adiutor-protection-types",
+				"adiutor-save-configurations",
+				"adiutor-postfix-reason-usage",
+				"adiutor-multiple-reason-separation",
+				"adiutor-close",
+				"adiutor-in-page-request-templating-configuration",
+				"adiutor-single-reason-template",
+				"adiutor-single-reason-template-description",
+				"adiutor-multiple-reason-template",
+				"adiutor-multiple-reason-template-description",
+				"adiutor-output",
+				"adiutor-summaries",
+				"adiutor-speedy-deletion-reasons",
+				"adiutor-name",
+				"adiutor-action",
+				"adiutor-deletion-reasons-for",
+				"adiutor-value",
+				"adiutor-data",
+				"adiutor-label",
+				"adiutor-help",
+				"adiutor-tag-labels",
+				"adiutor-tags-for",
+				"adiutor-tag-template",
+				"adiutor-tag-description",
+				"adiutor-add-sub-item",
+				"adiutor-sub-items-for",
+				"adiutor-required",
+				"adiutor-parameter",
+				"adiutor-type",
+				"adiutor-proposed-deletion-configuration",
+				"adiutor-proposed-deletion-description",
+				"adiutor-prod-notification-template",
+				"adiutor-proposed-deletion-template",
+				"adiutor-proposed-deletion-unsourced-blps-template",
+				"adiutor-api-post-summary",
+				"adiutor-api-post-summary-for-creator",
+				"adiutor-proposed-deletion-template-description",
+				"adiutor-proposed-deletion-blps-template",
+				"adiutor-proposed-deletion-blps-template-description",
+				"adiutor-request-page-move-configuration",
+				"adiutor-request-page-move-description",
+				"adiutor-noticeboard",
+				"adiutor-content-pattern",
+				"adiutor-content-pattern-description",
+				"adiutor-create-new-section",
+				"adiutor-new-section-description",
+				"adiutor-new-section-title",
+				"adiutor-use-exist-section",
+				"adiutor-use-exist-section-description",
+				"adiutor-section-id",
+				"adiutor-section-id-description",
+				"adiutor-no-section-description",
+				"adiutor-text-modification-direction",
+				"adiutor-request-page-protection-configuration",
+				"adiutor-request-page-protection-description",
+				"adiutor-create-speedy-deletion",
+				"adiutor-request-page-protection",
+				"adiutor-request-page-move",
+				"adiutor-proposed-deletion",
+				"adiutor-article-tagging",
+				"adiutor-request-speedy-deletion",
+				"adiutor-propose-deletion",
+				"adiutor-request-protection",
+				"adiutor-tag-article",
+				"adiutor-configurations-saving",
+				"adiutor-try-again",
+				"adiutor-csd-use-reason-value",
+				"adiutor-csd-use-reason-data",
+				"adiutor-csd-use-reason-value-description",
+				"adiutor-csd-use-reason-data-description",
+				"adiutor-csd-use-vertical-bar",
+				"adiutor-csd-use-vertical-bar-description",
+				"adiutor-csd-default",
+				"adiutor-csd-default-description",
+				"adiutor-prepend-text-on-the-page",
+				"adiutor-prepend-text-on-the-page-description",
+				"adiutor-append-text-on-the-page",
+				"adiutor-append-text-on-the-page-description",
+				"adiutor-module-enabled",
+				"adiutor-module-enabled-description",
+				"adiutor-test-mode",
+				"adiutor-test-mode-description",
+				"adiutor-namespaces",
+				"adiutor-namespaces-description",
+				"prefs-moderate",
+				"prefs-Adiutor",
+				"adiutor-new-name-placeholder",
+				"adiutor-search-tag-placeholder",
+				"adiutor-no-tag-found",
+				"adiutor-prd-rationale-placeholder",
+				"adiutor-proposed-deletion-policy",
+				"adiutor-proposed-deletion-policy-shortcut",
+				"adiutor-proposed-deletion-blpprod-policy",
+				"adiutor-proposed-deletion-blpprod-policy-shortcut"
+			],
+			"styles": [
+				"./ext.Adiutor.styles/styles.less"
+			],
+			"packageFiles": [
+				"ext.Adiutor/init.js",
+				"ext.Adiutor/components/adiutorApp.vue",
+				"ext.Adiutor/components/deletionPropose.vue",
+				"ext.Adiutor/components/createSpeedyDeletion.vue",
+				"ext.Adiutor/components/createSpeedyDeletionOptions.vue",
+				"ext.Adiutor/components/articleTagging.vue",
+				"ext.Adiutor/components/articleTaggingOptions.vue",
+				"ext.Adiutor/components/requestPageMove.vue",
+				"ext.Adiutor/components/requestPageProtection.vue",
+				"ext.Adiutor/components/requestPageProtectionOptions.vue",
+				"ext.Adiutor/components/requestPageMoveOptions.vue",
+				"ext.Adiutor/components/deletionProposeOptions.vue",
+				"ext.Adiutor/components/adiutorSettings.vue",
+				"ext.Adiutor/icons.json",
+				{
+					"name": "ext.Adiutor/icons.json",
+					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
+					"callbackParam": [
+						"cdxIconAdd",
+						"cdxIconClose"
+					]
+				}
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.Adiutor.styles": {
+			"styles": "ext.Adiutor.styles/styles.css",
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		}
+	},
+	"RestRoutes": [
+		{
+			"path": "/adiutor/v0/updatelocalconfiguration",
+			"method": "POST",
+			"class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\UpdateLocalConfigurationHandler"
+		}
+	],
+	"manifest_version": 2
 }

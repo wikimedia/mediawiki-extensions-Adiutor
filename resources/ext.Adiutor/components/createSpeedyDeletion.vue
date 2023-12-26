@@ -159,7 +159,6 @@ module.exports = defineComponent( {
 				title: mw.config.get( 'wgPageName' ),
 				prependtext: csdReason + '\n',
 				summary: csdSummary,
-				tags: 'Adiutor',
 				format: 'json'
 			} ).done( function () {
 				openCsdDialog.value = false;
@@ -223,7 +222,7 @@ module.exports = defineComponent( {
 					title: 'User_talk:' + articleAuthor,
 					appendtext: '\n' + notificationMessage,
 					summary: csdSummary,
-					tags: 'Adiutor',
+					tags: 'adiutor',
 					format: 'json'
 				} );
 			} catch ( error ) {

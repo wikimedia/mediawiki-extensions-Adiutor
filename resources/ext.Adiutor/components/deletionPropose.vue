@@ -149,7 +149,6 @@ module.exports = defineComponent( {
 					title: mwConfig.wgPageName,
 					prependtext: PRDText + '\n',
 					summary: replaceParameter( apiPostSummary, '1', mwConfig.wgPageName.replace( /_/g, ' ' ) ),
-					tags: 'Adiutor',
 					format: 'json'
 				} );
 				mw.notify( 'Article proposed for deletion', {
@@ -175,7 +174,7 @@ module.exports = defineComponent( {
 					title: 'User_talk:' + Author,
 					appendtext: '\n' + message,
 					summary: replaceParameter( apiPostSummaryforCreator, '1', mw.config.get( 'wgPageName' ).replace( /_/g, ' ' ) ),
-					tags: 'Adiutor',
+					tags: 'adiutor',
 					format: 'json'
 				} );
 			} catch ( error ) {

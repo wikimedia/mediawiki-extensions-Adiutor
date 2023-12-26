@@ -100,7 +100,7 @@ module.exports = defineComponent( {
 				action: 'edit',
 				title: noticeBoardTitle,
 				summary: replaceParameter( apiPostSummary, '1', pageTitle ),
-				tags: 'Adiutor',
+				tags: 'adiutor',
 				format: 'json'
 			};
 

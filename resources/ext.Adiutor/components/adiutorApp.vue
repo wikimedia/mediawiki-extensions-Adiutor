@@ -11,7 +11,6 @@ const requestPageMove = require( './requestPageMove.vue' );
 const articleTagging = require( './articleTagging.vue' );
 const createSpeedyDeletion = require( './createSpeedyDeletion.vue' );
 const deletionPropose = require( './deletionPropose.vue' );
-const articleForDeletion = require( './articleForDeletion.vue' );
 
 // Configuration objects
 const csdConfiguration = mw.config.get( 'AdiutorCreateSpeedyDeletion' );
@@ -76,7 +75,6 @@ module.exports = {
 		requestPageMove,
 		createSpeedyDeletion,
 		deletionPropose,
-		articleForDeletion,
 		articleTagging
 	},
 	data() {
@@ -97,7 +95,6 @@ module.exports = {
 	created() {
 		const speedyDeletionRequestLink = document.querySelector( '#t-request-speedy-deletion' );
 		const proposeDeletionLink = document.querySelector( '#t-propose-deletion' );
-		const articleForDeletionLink = document.querySelector( '#t-article-for-deletion' );
 		const requestProtectionLink = document.querySelector( '#t-request-protection' );
 		const requestPageMoveLink = document.querySelector( '#t-request-page-move' );
 		const tagArticleLink = document.querySelector( '#t-tag-article' );
@@ -109,11 +106,6 @@ module.exports = {
 		if ( proposeDeletionLink ) {
 			proposeDeletionLink.addEventListener( 'click', () => {
 				this.showComponent( 'deletionPropose' );
-			} );
-		}
-		if ( articleForDeletionLink ) {
-			articleForDeletionLink.addEventListener( 'click', () => {
-				this.showComponent( 'articleForDeletion' );
 			} );
 		}
 		if ( requestProtectionLink ) {
