@@ -22,7 +22,7 @@ class Adiutor {
 	 * Each page is checked if it already exists, and if not, a new page is created with the specified content.
 	 * The content is encoded as JSON and saved as the main slot content of the page.
 	 * The method uses MediaWiki's PageUpdater to create and save the pages.
-	 * The user used for creating the pages is User::newFromId(0), which represents the system user.
+	 * The user used for creating the pages is $userFactory::newAnonymous(0), which is the default anonymous user.
 	 * After saving each page, the save status is stored in the $saveStatus variable.
 	 */
 	public static function onExtensionLoad() {
@@ -52,7 +52,6 @@ class Adiutor {
 					new TextContent( $pageContent ) );
 				$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ),
 					EDIT_INTERNAL | EDIT_MINOR | EDIT_AUTOSUMMARY );
-				$saveStatus = $pageUpdater->getStatus();
 			}
 		}
 	}
