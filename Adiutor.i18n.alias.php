@@ -1,4 +1,5 @@
 <?php
+/** @noinspection ALL */
 $specialPageAliases = [];
 /* English */
 $specialPageAliases['en'] = [ 'AdiutorSettings' => [ 'Adiutor settings' ], ];

@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 /**
  * This file contains the LocalizationConfiguration class, which defines various configuration constants

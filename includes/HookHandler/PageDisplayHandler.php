@@ -10,6 +10,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserOptionsLookup;
+use TextContent;
 use Title;
 
 class PageDisplayHandler implements BeforePageDisplayHook {
@@ -78,16 +79,49 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 			],
 		];
 
+		// Define an empty array to collect configuration data
+		$configData = [];
+
 		foreach ( $configPages as $configPage ) {
+			if ( !isset( $configPage['title'], $configPage['configuration'] ) ) {
+				// Skip this iteration if required keys are not set in $configPage
+				continue;
+			}
+
 			$title = Title::newFromText( $configPage['title'] );
+			if ( !$title ) {
+				// Skip this title if it is invalid
+				continue;
+			}
+
 			$rev = $services->getRevisionLookup()->getRevisionByTitle( $title );
+
+			if ( !$rev ) {
+				// Handle the case where the revision is not found
+				$configData[$configPage['configuration']] = [];
+				continue;
+			}
+
 			$content =
 				$rev->getContent( SlotRecord::MAIN,
-					RevisionRecord::FOR_PUBLIC );
-			$configuration =
-				FormatJson::decode( $content->getText(),
-					FormatJson::FORCE_ASSOC );
-			$out->addJsConfigVars( [ $configPage['configuration'] => $configuration ] );
+					RevisionRecord::RAW );
+
+			if ( $content ) {
+				// Use instanceof to check the content's type instead of method_exists
+				if ( $content instanceof TextContent ) {
+					// Decode the content if it's instanceof TextContent
+					$configuration = FormatJson::decode( $content->getText() );
+					$configData[$configPage['configuration']] = $configuration;
+				} else {
+					// If content is not TextContent, use an empty array
+					$configData[$configPage['configuration']] = [];
+				}
+			} else {
+				// If content is not retrieved, use an empty array
+				$configData[$configPage['configuration']] = [];
+			}
 		}
+		// Add all the configuration data at once to avoid multiple calls to addJsConfigVars
+		$out->addJsConfigVars( $configData );
 	}
 }

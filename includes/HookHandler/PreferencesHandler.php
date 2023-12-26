@@ -67,21 +67,21 @@ class PreferencesHandler implements GetPreferencesHook {
 	 */
 	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
 		$betaFeatureIsEnabled =
-			$this->isTruthy( $originalOptions,
+			$this->isTrue( $originalOptions,
 				'adiutor-beta-feature-enable' );
 		$betaFeatureIsDisabled = !$betaFeatureIsEnabled;
 
 		$betaFeatureWillEnable =
-			$this->isTruthy( $modifiedOptions,
+			$this->isTrue( $modifiedOptions,
 				'adiutor-beta-feature-enable' );
-		$betaFeatureWillDisable = $this->isFalsey( $modifiedOptions );
+		$betaFeatureWillDisable = $this->isFalse( $modifiedOptions );
 
 		$autoEnrollIsEnabled =
-			$this->isTruthy( $originalOptions,
+			$this->isTrue( $originalOptions,
 				'betafeatures-auto-enroll' );
 		$autoEnrollIsDisabled = !$autoEnrollIsEnabled;
 		$autoEnrollWillEnable =
-			$this->isTruthy( $modifiedOptions,
+			$this->isTrue( $modifiedOptions,
 				'betafeatures-auto-enroll' );
 
 		if ( ( $betaFeatureIsEnabled && $betaFeatureWillDisable ) ||
@@ -95,18 +95,18 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param array $options
 	 * @param string $option
 	 *
-	 * @return bool The option is set and truthy
+	 * @return bool The option is set and true
 	 */
-	private function isTruthy( array $options, string $option ) : bool {
+	private function isTrue( array $options, string $option ) : bool {
 		return !empty( $options[$option] );
 	}
 
 	/**
 	 * @param array $options
 	 *
-	 * @return bool The option is set and falsey
+	 * @return bool The option is set and false
 	 */
-	private function isFalsey( array $options ) : bool {
+	private function isFalse( array $options ) : bool {
 		return isset( $options['adiutor-beta-feature-enable'] ) && !$options['adiutor-beta-feature-enable'];
 	}
 }
