@@ -131,7 +131,7 @@
 	"adiutor-tag-labels": "Label for the section or field where labels for tags are displayed or entered.",
 	"adiutor-tags-for": "Label indicating the tags applied or to be applied to an item or content.",
 	"adiutor-tag-template": "Label for the template used in tagging actions.",
-	"adiutor-description": "General label for the description field in various forms or templates.",
+	"adiutor-tag-description": "Description of the tag template, explaining its use and purpose.",
 	"adiutor-add-sub-item": "Label for the option to add a sub-item under a main item in a list or form.",
 	"adiutor-sub-items-for": "Label indicating the sub-items under a main item in a list or form.",
 	"adiutor-required": "Label indicating that a field or entry is required in a form or template.",

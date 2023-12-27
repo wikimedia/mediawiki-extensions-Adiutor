@@ -142,7 +142,7 @@
       </caption>
       <tr>
         <th>{{ $i18n( 'adiutor-tag-template' ) }}</th>
-        <th>{{ $i18n( 'adiutor-description' ) }}</th>
+        <th>{{ $i18n( 'adiutor-tag-description' ) }}</th>
         <th style="text-align: right;">
           {{ $i18n( 'adiutor-action' ) }}
         </th>
