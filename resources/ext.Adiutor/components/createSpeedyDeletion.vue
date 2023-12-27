@@ -62,7 +62,7 @@
           </cdx-checkbox>
           <div v-if="showCopyVioInput">
             <cdx-label class="adt-label">
-              <strong>{{ $i18n( 'adiutor-copyright-infringing-page' ) }} {{ copyVioInput }}</strong>
+              <strong>{{ $i18n( 'adiutor-copyright-infringing-page' ) }}</strong>
             </cdx-label>
             <cdx-text-input v-model="copyVioInput" aria-label="TextInput default demo"></cdx-text-input>
           </div>
@@ -244,9 +244,9 @@ module.exports = defineComponent( {
         let csdReason;
         let csdSummary;
         let saltCSDSummary = '';
-        // let copyVioURL = '';
+        let copyVioURL;
         if ( copyVioInput.value !== '' ) {
-          // copyVioURL = '|url=' + copyVioInput.value;
+          copyVioURL = '|url=' + copyVioInput.value;
         }
         if ( selectedReasons.length > 1 ) {
           let saltCSDReason = csdTemplateStartMultipleReason;
@@ -273,9 +273,9 @@ module.exports = defineComponent( {
           csdSummary = replaceParameter( multipleReasonSummary, '2', saltCSDSummary );
         } else {
           if ( postfixReasonUsage === 'data' ) {
-            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].data + '}}';
+            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].data + copyVioURL + '}}';
           } else if ( postfixReasonUsage === 'value' ) {
-            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].value + '}}';
+            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].value + copyVioURL + '}}';
           }
           csdSummary = replaceParameter( singleReasonSummary, '2', selectedReasons[ 0 ].data );
         }
