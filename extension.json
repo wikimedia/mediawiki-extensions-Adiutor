@@ -304,7 +304,6 @@
 			],
 			"packageFiles": [
 				"ext.Adiutor/init.js",
-				"ext.Adiutor/components/adiutorApp.vue",
 				"ext.Adiutor/components/deletionPropose.vue",
 				"ext.Adiutor/components/createSpeedyDeletion.vue",
 				"ext.Adiutor/components/createSpeedyDeletionOptions.vue",
