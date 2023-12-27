@@ -7,6 +7,6 @@
 		MODE: 3
 	} );
 
-	Vue.createMwApp( adiutorApp ).mount( '#adiutor-container' );
-	Vue.createMwApp( adiutorSettings ).mount( '#adiutor-settings' );
+	Vue.createMwApp( adiutorApp ).mount( '#adiutor-teleport-target' );
+	Vue.createMwApp( adiutorSettings ).mount( '#adiutor-settings-teleport-target' );
 }() );

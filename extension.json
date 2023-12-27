@@ -41,50 +41,50 @@
 		"SaveUserOptions": "preferences",
 		"ListDefinedTags": "listDefinedTags",
 		"ChangeTagsListActive": "changeTagsListActive",
-    "ChangeTagsAllowedAdd": "changeTagsAllowedAdd"
+		"ChangeTagsAllowedAdd": "changeTagsAllowedAdd"
 	},
 	"HookHandlers": {
-    "preferences": {
-      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PreferencesHandler",
-      "services": [
-        "PermissionManager",
-        "UserOptionsLookup",
-        "UserGroupManager"
-      ]
-    },
-    "betaFeature": {
-      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\BetaFeaturePreferencesHandler",
-      "services": [
-        "MainConfig",
-        "PermissionManager"
-      ]
-    },
-    "pageDisplay": {
-      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PageDisplayHandler",
-      "services": [
-        "PermissionManager",
-        "UserOptionsLookup"
-      ]
-    },
-    "listDefinedTags": {
-      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ChangeTagsHandler",
-      "services": [
-        "MainConfig"
-      ]
-    },
-    "changeTagsListActive": {
-      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ChangeTagsHandler",
-      "services": [
-        "MainConfig"
-      ]
-    },
-    "changeTagsAllowedAdd": {
-      "class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ChangeTagsHandler",
-      "services": [
-        "MainConfig"
-      ]
-    }
-  },
+		"preferences": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PreferencesHandler",
+			"services": [
+				"PermissionManager",
+				"UserOptionsLookup",
+				"UserGroupManager"
+			]
+		},
+		"betaFeature": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\BetaFeaturePreferencesHandler",
+			"services": [
+				"MainConfig",
+				"PermissionManager"
+			]
+		},
+		"pageDisplay": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PageDisplayHandler",
+			"services": [
+				"PermissionManager",
+				"UserOptionsLookup"
+			]
+		},
+		"listDefinedTags": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ChangeTagsHandler",
+			"services": [
+				"MainConfig"
+			]
+		},
+		"changeTagsListActive": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ChangeTagsHandler",
+			"services": [
+				"MainConfig"
+			]
+		},
+		"changeTagsAllowedAdd": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\ChangeTagsHandler",
+			"services": [
+				"MainConfig"
+			]
+		}
+	},
 	"ExtensionFunctions": [
 		"MediaWiki\\Extension\\Adiutor\\Adiutor::onExtensionLoad"
 	],

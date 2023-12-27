@@ -1,10 +1,11 @@
+<!--suppress ALL -->
 <template>
   <cdx-dialog
       v-model:open="openTagDialog"
       :primary-action="primaryAction"
       :show-dividers="true"
       :title="$i18n( 'adiutor-tag-header-title' )"
-      class="tag-dialog"
+      class="adiutor-article-tagging-dialog"
       close-button-label="Close"
       @default="openTagDialog = true"
       @primary="tagArticle">
@@ -12,11 +13,14 @@
       <p>{{ $i18n('adiutor-tag-header-description') }}</p>
       <cdx-text-input
           v-model="searchTag"
+          :clearable="true"
+          :end-icon="cdxIconInfoFilled"
           :placeholder="$i18n( 'adiutor-search-tag-placeholder' )"
+          :start-icon="cdxIconSearch"
           aria-label="New page name"
-          class="tag-search"></cdx-text-input>
+          class="tag-search"
+          input-type="search"></cdx-text-input>
     </div>
-
     <div class="tag-reasons-body">
       <cdx-field
           v-for="label in filteredTagList"
@@ -69,6 +73,7 @@
 <script>
 const {defineComponent, ref, computed} = require('vue');
 const {CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage} = require('@wikimedia/codex');
+const {cdxIconSearch, cdxIconInfoFilled} = require('../icons.json');
 module.exports = defineComponent({
   name: 'CreateSpeedyDeletion',
   components: {
@@ -205,49 +210,46 @@ module.exports = defineComponent({
       searchTag,
       toggleTag,
       filteredTagList,
-      tagArticle
+      tagArticle,
+      cdxIconSearch,
+      cdxIconInfoFilled
     };
   }
 });
 </script>
 
 <style lang="css">
-.tag-dialog {
-  max-width: 40em;
-}
-
-.tag-dialog .tag-reasons-body {
-  padding: 20px;
-}
-
-.tag-dialog .cdx-dialog {
+.adiutor-article-tagging-dialog {
   max-width: 720px;
-  padding-top: 10px;
-  padding-bottom: 0;
-}
-
-.tag-dialog .tag-search {
-  width: 200px
-}
-
-.tag-dialog .cdx-dialog__body {
   flex-grow: 1;
   margin-top: 0;
   padding: 0;
   overflow-y: auto;
 }
 
-.tag-dialog .cdx-dialog--dividers .cdx-dialog__body {
+.adiutor-article-tagging-dialog .tag-reasons-body {
+  padding: 20px;
+}
+
+.adiutor-article-tagging-dialog .tag-search {
+  width: 200px
+}
+
+.adiutor-article-tagging-dialog .cdx-dialog__body {
+  padding: 0;
+}
+
+.adiutor-article-tagging-dialog .cdx-dialog--dividers .cdx-dialog__body {
   padding-top: 0;
 }
 
-.tag-dialog .tag-reason-field {
+.adiutor-article-tagging-dialog .tag-reason-field {
   display: flex;
   flex-direction: column;
   width: 50%;
 }
 
-.tag-dialog .cdx-dialog__header {
+.adiutor-article-tagging-dialog .cdx-dialog__header {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -257,12 +259,12 @@ module.exports = defineComponent({
   font-weight: 700;
 }
 
-.tag-dialog cdx-label {
+.adiutor-article-tagging-dialog cdx-label {
   margin-bottom: 10px;
   display: block;
 }
 
-.tag-dialog .header {
+.adiutor-article-tagging-dialog .header {
   background-color: #eaf3ff;
   display: block;
   align-items: baseline;
@@ -275,16 +277,16 @@ module.exports = defineComponent({
   background-size: 205px;
 }
 
-.tag-dialog .cdx-dialog__footer {
+.adiutor-article-tagging-dialog .cdx-dialog__footer {
   padding: 20px !important;
   border-top: 1px solid #a2a9b1;
 }
 
-.tag-dialog .header p {
+.adiutor-article-tagging-dialog .header p {
   width: 70%;
 }
 
-.tag-dialog h2 {
+.adiutor-article-tagging-dialog h2 {
   margin: 0;
   padding: 0;
   font-size: 1.125em !important

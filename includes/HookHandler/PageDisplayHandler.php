@@ -10,6 +10,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserOptionsLookup;
+use TemplateParser;
 use TextContent;
 use Title;
 
@@ -25,12 +26,20 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	private UserOptionsLookup $userOptionsLookup;
 
 	/**
+	 * @var TemplateParser
+	 */
+	private TemplateParser $templateParser;
+
+	/**
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
-	public function __construct( PermissionManager $permissionManager, UserOptionsLookup $userOptionsLookup ) {
+	public function __construct(
+		PermissionManager $permissionManager, UserOptionsLookup $userOptionsLookup
+	) {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->templateParser = new TemplateParser( __DIR__ . '/../templates' );
 	}
 
 	/**
@@ -54,8 +63,12 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 			'edit' ) ) {
 			return;
 		}
-		$out->addHtml( '<div id="adiutor-container"></div>' );
+		$templateVars = [];
+		$out->addModuleStyles( [ 'ext.Adiutor.styles' ] );
 		$out->addModules( 'ext.Adiutor' );
+		$out->addHTML( $this->templateParser->processTemplate( 'Adiutor',
+			$templateVars ) );
+
 		$configPages = [
 			[
 				'title' => 'MediaWiki:AdiutorRequestPageProtection.json',

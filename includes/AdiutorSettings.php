@@ -11,12 +11,20 @@ namespace MediaWiki\Extension\Adiutor;
 use Message;
 use PermissionsError;
 use SpecialPage;
+use TemplateParser;
 
 class AdiutorSettings extends SpecialPage {
+
+	/**
+	 * @var TemplateParser
+	 */
+	private TemplateParser $templateParser;
+
 	/**
 	 * Initialize the special page.
 	 */
 	public function __construct() {
+		$this->templateParser = new TemplateParser( __DIR__ . '/./templates' );
 		parent::__construct( 'AdiutorSettings' );
 	}
 
@@ -43,7 +51,11 @@ class AdiutorSettings extends SpecialPage {
 		}
 		$out = $this->getOutput();
 		$out->setPageTitle( Message::newFromKey( 'adiutor-settings' ) );
-		$out->addHtml( '<div id="adiutor-settings"></div>' );
+		$templateVars = [];
+		$out->addModuleStyles( [ 'ext.Adiutor.styles' ] );
+		$out->addModules( 'ext.Adiutor' );
+		$out->addHTML( $this->templateParser->processTemplate( 'Adiutor',
+			$templateVars ) );
 	}
 
 	/**
