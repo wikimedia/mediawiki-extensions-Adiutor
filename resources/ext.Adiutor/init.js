@@ -1,37 +1,45 @@
 ( function () {
 	const Vue = require( 'vue' );
-	const adiutorSettings = require( './components/adiutorSettings.vue' );
-	const requestPageProtection = require( './components/requestPageProtection.vue' );
-	const requestPageMove = require( './components/requestPageMove.vue' );
-	const articleTagging = require( './components/articleTagging.vue' );
-	const createSpeedyDeletion = require( './components/createSpeedyDeletion.vue' );
-	const deletionPropose = require( './components/deletionPropose.vue' );
-	const csdConfiguration = mw.config.get( 'AdiutorCreateSpeedyDeletion' );
-	const rppConfiguration = mw.config.get( 'AdiutorRequestPageProtection' );
-	const rpmConfiguration = mw.config.get( 'AdiutorRequestPageMove' );
-	const dprConfiguration = mw.config.get( 'AdiutorDeletionPropose' );
-	const tagConfiguration = mw.config.get( 'AdiutorArticleTagging' );
+	const components = {
+		adiutorSettings: require( './components/adiutorSettings.vue' ),
+		requestPageProtection: require( './components/requestPageProtection.vue' ),
+		requestPageMove: require( './components/requestPageMove.vue' ),
+		articleTagging: require( './components/articleTagging.vue' ),
+		createSpeedyDeletion: require( './components/createSpeedyDeletion.vue' ),
+		deletionPropose: require( './components/deletionPropose.vue' )
+	};
+
+	const configurations = {
+		csd: mw.config.get( 'AdiutorCreateSpeedyDeletion' ),
+		rpp: mw.config.get( 'AdiutorRequestPageProtection' ),
+		rpm: mw.config.get( 'AdiutorRequestPageMove' ),
+		dpr: mw.config.get( 'AdiutorDeletionPropose' ),
+		tag: mw.config.get( 'AdiutorArticleTagging' )
+	};
+
 	const userGroups = mw.config.get( 'wgUserGroups' );
 	const isSpecialPage = mw.config.get( 'wgCanonicalSpecialPageName' );
 	const isMainPage = mw.config.get( 'wgIsMainPage' );
 	const portletLinks = [];
 
 	/**
-	 * Adds a portlet link based on the provided configuration and permission.
+	 * Adds a portlet link.
 	 *
 	 * @param {Object} config - The configuration object.
-	 * @param {string} permission - The permission required to display the link.
 	 * @param {string} linkId - The ID of the link.
 	 * @param {string} linkLabel - The label of the link.
 	 * @param {string} linkKey - The key of the link.
 	 */
 
-	function addPortletLink( config, permission, linkId, linkLabel, linkKey ) {
+	function addPortletLink( config, linkId, linkLabel, linkKey ) {
 		if ( config && config.moduleEnabled ) {
-			if ( !config.testMode || ( userGroups && userGroups.indexOf( permission ) !== -1 ) ) {
+			if ( !config.testMode || ( userGroups && userGroups.includes( 'interface-admin' ) ) ) {
 				// Messages that can be used here:
-				// * adiutor-csd-header-title
-				// * adiutor-csd-header-title-action-label
+				// * adiutor-request-speedy-deletion
+				// * adiutor-request-protection
+				// * adiutor-request-page-move
+				// * adiutor-propose-deletion
+				// * adiutor-tag-article
 				portletLinks.push( {
 					id: linkId,
 					label: mw.msg( linkLabel ),
@@ -44,11 +52,11 @@
 	}
 
 	if ( !isSpecialPage && !isMainPage ) {
-		addPortletLink( csdConfiguration, 'interface-admin', 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion' );
-		addPortletLink( rppConfiguration, 'interface-admin', 't-request-protection', 'adiutor-request-protection', 'requestPageProtection' );
-		addPortletLink( rpmConfiguration, 'interface-admin', 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove' );
-		addPortletLink( dprConfiguration, 'interface-admin', 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose' );
-		addPortletLink( tagConfiguration, 'interface-admin', 't-tag-article', 'adiutor-tag-article', 'articleTagging' );
+		addPortletLink( configurations.csd, 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion' );
+		addPortletLink( configurations.rpp, 't-request-protection', 'adiutor-request-protection', 'requestPageProtection' );
+		addPortletLink( configurations.rpm, 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove' );
+		addPortletLink( configurations.dpr, 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose' );
+		addPortletLink( configurations.tag, 't-tag-article', 'adiutor-tag-article', 'articleTagging' );
 	}
 
 	const currentNamespace = mw.config.get( 'wgNamespaceNumber' );
@@ -60,37 +68,20 @@
 		}
 	} );
 
-	const speedyDeletionRequestLink = document.querySelector( '#t-request-speedy-deletion' );
-	const proposeDeletionLink = document.querySelector( '#t-propose-deletion' );
-	const requestProtectionLink = document.querySelector( '#t-request-protection' );
-	const requestPageMoveLink = document.querySelector( '#t-request-page-move' );
-	const tagArticleLink = document.querySelector( '#t-tag-article' );
-	if ( speedyDeletionRequestLink ) {
-		speedyDeletionRequestLink.addEventListener( 'click', () => {
-			Vue.createMwApp( createSpeedyDeletion ).mount( '#mw-teleport-target' );
-		} );
+	function attachEventListener( link, component ) {
+		const element = document.querySelector( link );
+		if ( element ) {
+			element.addEventListener( 'click', () => {
+				Vue.createMwApp( components[ component ] ).mount( '#mw-teleport-target' );
+			} );
+		}
 	}
-	if ( proposeDeletionLink ) {
-		proposeDeletionLink.addEventListener( 'click', () => {
-			Vue.createMwApp( deletionPropose ).mount( '#mw-teleport-target' );
-		} );
-	}
-	if ( requestProtectionLink ) {
-		requestProtectionLink.addEventListener( 'click', () => {
-			Vue.createMwApp( requestPageProtection ).mount( '#mw-teleport-target' );
-		} );
-	}
-	if ( requestPageMoveLink ) {
-		requestPageMoveLink.addEventListener( 'click', () => {
 
-			Vue.createMwApp( requestPageMove ).mount( '#mw-teleport-target' );
-		} );
-	}
-	if ( tagArticleLink ) {
-		tagArticleLink.addEventListener( 'click', () => {
+	attachEventListener( '#t-request-speedy-deletion', 'createSpeedyDeletion' );
+	attachEventListener( '#t-propose-deletion', 'deletionPropose' );
+	attachEventListener( '#t-request-protection', 'requestPageProtection' );
+	attachEventListener( '#t-request-page-move', 'requestPageMove' );
+	attachEventListener( '#t-tag-article', 'articleTagging' );
 
-			Vue.createMwApp( articleTagging ).mount( '#mw-teleport-target' );
-		} );
-	}
-	Vue.createMwApp( adiutorSettings ).mount( '#adiutor-settings-teleport-target' );
+	Vue.createMwApp( components.adiutorSettings ).mount( '#adiutor-settings-teleport-target' );
 }() );
