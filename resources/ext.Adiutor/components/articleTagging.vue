@@ -1,4 +1,3 @@
-<!--suppress ALL -->
 <template>
   <cdx-dialog
       v-model:open="openTagDialog"
@@ -10,7 +9,7 @@
       @default="openTagDialog = true"
       @primary="tagArticle">
     <div class="header">
-      <p>{{ $i18n('adiutor-tag-header-description') }}</p>
+      <p>{{ $i18n( 'adiutor-tag-header-description' ) }}</p>
       <cdx-text-input
           v-model="searchTag"
           :clearable="true"
@@ -64,17 +63,17 @@
           v-if="!filteredTagList.length"
           inline
           type="warning">
-        <p>{{ $i18n('adiutor-no-tag-found') }}</p>
+        <p>{{ $i18n( 'adiutor-no-tag-found' ) }}</p>
       </cdx-message>
     </div>
   </cdx-dialog>
 </template>
 
 <script>
-const {defineComponent, ref, computed} = require('vue');
-const {CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage} = require('@wikimedia/codex');
-const {cdxIconSearch, cdxIconInfoFilled} = require('../icons.json');
-module.exports = defineComponent({
+const { defineComponent, ref, computed } = require( 'vue' );
+const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
+const { cdxIconSearch, cdxIconInfoFilled } = require( '../icons.json' );
+module.exports = defineComponent( {
   name: 'CreateSpeedyDeletion',
   components: {
     CdxDialog,
@@ -86,39 +85,39 @@ module.exports = defineComponent({
   },
   setup() {
     const api = new mw.Api();
-    const checkboxValue = ref(['']);
-    const openTagDialog = ref(true);
-    const tagConfiguration = mw.config.get('AdiutorArticleTagging');
+    const checkboxValue = ref( [ '' ] );
+    const openTagDialog = ref( true );
+    const tagConfiguration = mw.config.get( 'AdiutorArticleTagging' );
     const tagList = tagConfiguration.tagList;
     const useMultipleIssuesTemplate = tagConfiguration.useMultipleIssuesTemplate;
     const multipleIssuesTemplate = tagConfiguration.multipleIssuesTemplate;
     const uncategorizedTemplate = tagConfiguration.uncategorizedTemplate;
     const apiPostSummary = tagConfiguration.apiPostSummary;
-    const searchTag = ref('');
+    const searchTag = ref( '' );
     const primaryAction = {
       icon: 'cdxIconTag',
-      label: mw.msg('adiutor-tag-page'),
+      label: mw.msg( 'adiutor-tag-page' ),
       actionType: 'progressive'
     };
-    const filteredTagList = computed(() => {
+    const filteredTagList = computed( () => {
       const searchTerm = searchTag.value.toLowerCase();
-      return tagList.map((label) => {
+      return tagList.map( ( label ) => {
         const filteredTags = label.tags
-            .filter((tag) =>
-                tag.tag.toLowerCase().includes(searchTerm) ||
-                tag.description.toLowerCase().includes(searchTerm)
+            .filter( ( tag ) =>
+                tag.tag.toLowerCase().includes( searchTerm ) ||
+                tag.description.toLowerCase().includes( searchTerm )
             )
-            .map((tag) => Object.assign({}, tag));
-        return Object.assign({}, label, {tags: filteredTags});
-      }).filter((label) => label.tags.length > 0);
-    });
+            .map( ( tag ) => Object.assign( {}, tag ) );
+        return Object.assign( {}, label, { tags: filteredTags } );
+      } ).filter( ( label ) => label.tags.length > 0 );
+    } );
 
-    function toggleTag(tag) {
-      const {value} = checkboxValue;
-      const tagIncluded = value.includes(tag);
+    function toggleTag( tag ) {
+      const { value } = checkboxValue;
+      const tagIncluded = value.includes( tag );
       checkboxValue.value = tagIncluded ?
-          value.filter((selectedTag) => selectedTag !== tag) :
-          value.concat(tag);
+          value.filter( ( selectedTag ) => selectedTag !== tag ) :
+          value.concat( tag );
     }
 
     function tagArticle() {
@@ -127,80 +126,80 @@ module.exports = defineComponent({
       const templateInfo = {};
       let preparedTagsString;
 
-      selectedTags.forEach(function (tag) {
-        if (tag.items && tag.items.length > 0) {
-          tag.items.forEach(function (subItem) {
-            if (tag.tag) {
-              let template = `{{${tag.tag}`;
-              if (subItem.parameter) {
-                if (!templateInfo[tag.tag]) {
-                  templateInfo[tag.tag] = {};
+      selectedTags.forEach( function ( tag ) {
+        if ( tag.items && tag.items.length > 0 ) {
+          tag.items.forEach( function ( subItem ) {
+            if ( tag.tag ) {
+              let template = `{{${ tag.tag }`;
+              if ( subItem.parameter ) {
+                if ( !templateInfo[ tag.tag ] ) {
+                  templateInfo[ tag.tag ] = {};
                 }
-                if (!templateInfo[tag.tag][subItem.parameter]) {
-                  templateInfo[tag.tag][subItem.parameter] = getInputValue(subItem.name);
+                if ( !templateInfo[ tag.tag ][ subItem.parameter ] ) {
+                  templateInfo[ tag.tag ][ subItem.parameter ] = getInputValue( subItem.name );
                 }
-                template += `|${subItem.parameter}=${templateInfo[tag.tag][subItem.parameter]}`;
+                template += `|${ subItem.parameter }=${ templateInfo[ tag.tag ][ subItem.parameter ] }`;
               }
               template += '}}';
-              preparedTemplates.push(template);
+              preparedTemplates.push( template );
             }
-          });
+          } );
         } else {
-          if (tag.tag) {
-            preparedTemplates.push(`{{${tag.tag}}}`);
+          if ( tag.tag ) {
+            preparedTemplates.push( `{{${ tag.tag }}}` );
           }
         }
-      });
+      } );
 
-      if (useMultipleIssuesTemplate && preparedTemplates.length > 1) {
-        preparedTagsString = `{{${multipleIssuesTemplate}|\n${preparedTemplates.join('\n')}\n}}`;
+      if ( useMultipleIssuesTemplate && preparedTemplates.length > 1 ) {
+        preparedTagsString = `{{${ multipleIssuesTemplate }|\n${ preparedTemplates.join( '\n' ) }\n}}`;
       } else {
-        preparedTagsString = preparedTemplates.join('\n');
+        preparedTagsString = preparedTemplates.join( '\n' );
       }
 
-      if (selectedTags.length > 0) {
-        tagPage(preparedTagsString);
+      if ( selectedTags.length > 0 ) {
+        tagPage( preparedTagsString );
         openTagDialog.value = false;
 
       } else {
-        mw.notify(mw.msg('adiutor-select-a-tag'), {
-          title: mw.msg('adiutor-operation-failed'),
+        mw.notify( mw.msg( 'adiutor-select-a-tag' ), {
+          title: mw.msg( 'adiutor-operation-failed' ),
           type: 'error'
-        });
+        } );
       }
     }
 
-    function getInputValue(inputName) {
-      const inputElement = document.querySelector('input[name="' + inputName + '"]');
-      if (inputElement) {
+    function getInputValue( inputName ) {
+      const inputElement = document.querySelector( 'input[name="' + inputName + '"]' );
+      if ( inputElement ) {
         return inputElement.value;
       } else {
         return '';
       }
     }
 
-    function tagPage(preparedTagsString) {
+    function tagPage( preparedTagsString ) {
       const editParams = {
         action: 'edit',
-        title: mw.config.get('wgPageName'),
+        title: mw.config.get( 'wgPageName' ),
         summary: apiPostSummary,
         tags: 'adiutor',
         format: 'json'
       };
       let removedContent = '';
-      const modifiedTags = preparedTagsString.replace('{{' + uncategorizedTemplate + '}}', function (match) {
+      const modifiedTags = preparedTagsString.replace( '{{' + uncategorizedTemplate + '}}', function ( match ) {
         removedContent = match;
         return '';
-      });
-      if (removedContent) {
-        editParams.prependtext = modifiedTags.split(',').join('\n') + '\n';
+      } );
+      if ( removedContent ) {
+        editParams.prependtext = modifiedTags.split( ',' ).join( '\n' ) + '\n';
         editParams.appendtext = '\n' + removedContent;
       } else {
-        editParams.prependtext = modifiedTags.split(',').join('\n') + '\n';
+        editParams.prependtext = modifiedTags.split( ',' ).join( '\n' ) + '\n';
       }
-      api.postWithToken('csrf', editParams).done(function () {
+      api.postWithToken( 'csrf', editParams ).done( function () {
         location.reload();
-      });
+      } );
     }
 
     return {
@@ -215,7 +214,7 @@ module.exports = defineComponent({
       cdxIconInfoFilled
     };
   }
-});
+} );
 </script>
 
 <style lang="css">

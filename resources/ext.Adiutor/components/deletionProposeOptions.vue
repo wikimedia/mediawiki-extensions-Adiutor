@@ -139,12 +139,12 @@
 	<cdx-field>
 		<cdx-field>
 			<strong>{{ $i18n( 'adiutor-summaries' ) }}</strong>
-			<cdx-label input-id="apiPostSummaryforLog">
+			<cdx-label input-id="apiPostSummaryForLog">
 				{{ $i18n( 'adiutor-api-post-summary-for-log' ) }}
 			</cdx-label>
 			<cdx-text-input
-				id="apiPostSummaryforLog"
-				v-model="apiPostSummaryforLog"
+				id="apiPostSummaryForLog"
+				v-model="apiPostSummaryForLog"
 				aria-label="{{ $i18n('adiutor-api-post-summary-for-log') }}"></cdx-text-input>
 			<cdx-label input-id="apiPostSummary">
 				{{ $i18n( 'adiutor-api-post-summary' ) }}
@@ -153,12 +153,12 @@
 				id="apiPostSummary"
 				v-model="apiPostSummary"
 				aria-label="{{ $i18n('adiutor-api-post-summary-for-talk-page') }}"></cdx-text-input>
-			<cdx-label input-id="apiPostSummaryforCreator">
+			<cdx-label input-id="apiPostSummaryForCreator">
 				{{ $i18n( 'adiutor-api-post-summary-for-creator' ) }}
 			</cdx-label>
 			<cdx-text-input
-				id="apiPostSummaryforCreator"
-				v-model="apiPostSummaryforCreator"
+				id="apiPostSummaryForCreator"
+				v-model="apiPostSummaryForCreator"
 				aria-label="{{ $i18n('adiutor-api-post-summary-for-creator') }}"></cdx-text-input>
 		</cdx-field>
 	</cdx-field>
@@ -182,9 +182,9 @@ module.exports = defineComponent( {
 		const standardProposeTemplate = ref( dprConfiguration.standardProposeTemplate );
 		const livingPersonProposeTemplate = ref( dprConfiguration.livingPersonProposeTemplate );
 		const apiPostSummary = ref( dprConfiguration.apiPostSummary );
-		const apiPostSummaryforCreator = ref( dprConfiguration.apiPostSummaryforCreator );
+		const apiPostSummaryForCreator = ref( dprConfiguration.apiPostSummaryForCreator );
 		const prodNotificationTemplate = ref( dprConfiguration.prodNotificationTemplate );
-		const apiPostSummaryforLog = ref( dprConfiguration.apiPostSummaryforLog );
+		const apiPostSummaryForLog = ref( dprConfiguration.apiPostSummaryForLog );
 		const moduleEnabled = ref( dprConfiguration.moduleEnabled );
 		const testMode = ref( dprConfiguration.testMode );
 		const namespaces = ref( dprConfiguration.namespaces );
@@ -197,9 +197,9 @@ module.exports = defineComponent( {
 			standardProposeTemplate,
 			livingPersonProposeTemplate,
 			apiPostSummary,
-			apiPostSummaryforCreator,
+			apiPostSummaryForCreator,
 			prodNotificationTemplate,
-			apiPostSummaryforLog,
+			apiPostSummaryForLog,
 			moduleEnabled,
 			testMode,
 			namespaces,
@@ -233,9 +233,9 @@ module.exports = defineComponent( {
 					standardProposeTemplate: this.standardProposeTemplate,
 					livingPersonProposeTemplate: this.livingPersonProposeTemplate,
 					apiPostSummary: this.apiPostSummary,
-					apiPostSummaryforCreator: this.apiPostSummaryforCreator,
+					apiPostSummaryForCreator: this.apiPostSummaryForCreator,
 					prodNotificationTemplate: this.prodNotificationTemplate,
-					apiPostSummaryforLog: this.apiPostSummaryforLog,
+					apiPostSummaryForLog: this.apiPostSummaryForLog,
 					moduleEnabled: this.moduleEnabled,
 					testMode: this.testMode,
 					namespaces: this.namespaces,
