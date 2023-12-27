@@ -56,7 +56,7 @@
               :key="'checkbox-' + reasonItem.value"
               v-model="checkboxValue"
               :input-value="reasonItem.value"
-              @click="toggleCopyVioInputBasedOnCheckbox"
+              @change="toggleCopyVioInputBasedOnCheckbox"
           >
             {{ reasonItem.label }}
           </cdx-checkbox>
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-const { defineComponent, ref } = require( 'vue' );
+const { defineComponent, ref, nextTick } = require( 'vue' );
 const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
 const csdConfiguration = mw.config.get( 'AdiutorCreateSpeedyDeletion' );
 const speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
@@ -112,22 +112,22 @@ module.exports = defineComponent( {
   },
   setup() {
     const api = new mw.Api();
-    const checkboxValue = ref( [ '' ] );
+    const checkboxValue = ref( [] );
     const copyVioInput = ref( '' );
     const recreationProrection = ref( false );
     const informCreator = ref( true );
     const openCsdDialog = ref( true );
     const showCopyVioInput = ref( false );
-    const toggleCopyVioInputBasedOnCheckbox = () => {
-      const selectedReasons = speedyDeletionReasons.reduce( ( selected, category ) => {
-        const selectedInCategory = category.reasons.filter( ( reason ) => {
-          return checkboxValue.value.includes( reason.value );
-        } );
-        selected.push( ...selectedInCategory );
-        return selected;
-      }, [] );
 
-      showCopyVioInput.value = !!selectedReasons.some( ( reason ) => reason.value === copyVioReasonValue );
+    /**
+     * Toggles the visibility of the copy violation input based on the checkbox value.
+     */
+    const toggleCopyVioInputBasedOnCheckbox = () => {
+      const wasChecked = showCopyVioInput.value;
+      showCopyVioInput.value = !wasChecked;
+      nextTick( () => {
+        showCopyVioInput.value = checkboxValue.value.includes( copyVioReasonValue );
+      } );
     };
 
     const primaryAction = {
