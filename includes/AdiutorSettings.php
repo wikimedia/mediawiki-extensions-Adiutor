@@ -24,7 +24,7 @@ class AdiutorSettings extends SpecialPage {
 	 * Initialize the special page.
 	 */
 	public function __construct() {
-		$this->templateParser = new TemplateParser( __DIR__ . '/./templates' );
+		$this->templateParser = new TemplateParser( __DIR__ . '/./Templates' );
 		parent::__construct( 'AdiutorSettings' );
 	}
 

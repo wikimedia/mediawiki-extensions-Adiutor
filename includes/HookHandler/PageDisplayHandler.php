@@ -39,7 +39,7 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	) {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->templateParser = new TemplateParser( __DIR__ . '/../templates' );
+		$this->templateParser = new TemplateParser( __DIR__ . '/../Templates' );
 	}
 
 	/**
