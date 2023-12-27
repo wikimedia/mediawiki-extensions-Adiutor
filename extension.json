@@ -298,7 +298,9 @@
 				"adiutor-proposed-deletion-policy",
 				"adiutor-proposed-deletion-policy-shortcut",
 				"adiutor-proposed-deletion-blpprod-policy",
-				"adiutor-proposed-deletion-blpprod-policy-shortcut"
+				"adiutor-proposed-deletion-blpprod-policy-shortcut",
+				"adiutor-copy-vio-reason-value-description",
+				"adiutor-copy-vio-reason-value-help-text"
 			],
 			"styles": [
 				"./ext.Adiutor.styles/styles.less"

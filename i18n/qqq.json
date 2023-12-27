@@ -201,5 +201,7 @@
 	"adiutor-proposed-deletion-policy": "Label for the link to the policy regarding proposed deletions.",
 	"adiutor-proposed-deletion-policy-shortcut": "Label for the shortcut to the page outlining the proposed deletion policy.",
 	"adiutor-proposed-deletion-blpprod-policy": "Label for the link to the policy regarding proposed deletions of biographies of living persons.",
-	"adiutor-proposed-deletion-blpprod-policy-shortcut": "Label for the shortcut to the page outlining the proposed deletion policy for biographies of living persons."
+	"adiutor-proposed-deletion-blpprod-policy-shortcut": "Label for the shortcut to the page outlining the proposed deletion policy for biographies of living persons.",
+	"adiutor-copy-vio-reason-value-description": "Description of the parameter specifying the reason related to copyvio in deletion requests.",
+	"adiutor-copy-vio-reason-value-help-text": "Help text for the parameter specifying the reason related to copyvio in deletion requests."
 }

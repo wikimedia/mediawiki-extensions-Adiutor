@@ -32,8 +32,6 @@
           v-model="textareaValue"
           :placeholder="$i18n( 'adiutor-prd-rationale-placeholder' )"></cdx-text-area>
     </cdx-field>
-
-    <!-- Footer section with notification option and submit button. -->
     <div class="footer">
       <cdx-checkbox v-model="informCreator" :inline="true">
         {{ $i18n( 'adiutor-inform-creator' ) }}

@@ -1,32 +1,32 @@
 <template>
-	<cdx-dialog
-		v-model:open="openRpmDialog"
-		:primary-action="primaryAction"
-		:show-dividers="true"
-		:title="$i18n( 'adiutor-pmr-header-title' )"
-		class="rpm-dialog"
-		close-button-label="Close"
-		@default="openRpmDialog = true"
-		@primary="requestPageMove">
-		<div class="header">
-			<p>{{ $i18n( 'adiutor-pmr-header-description' ) }}</p>
-		</div>
-		<cdx-field class="rpm-dialog-body">
-			<cdx-label class="rpm-label">
-				<strong>{{ $i18n( 'adiutor-new-name' ) }}</strong>
-			</cdx-label>
-			<cdx-text-input
-				v-model="newPageName"
-				:placeholder="$i18n( 'adiutor-new-name-placeholder' )"
-				aria-label="New page name"></cdx-text-input>
-			<cdx-label class="rpm-label">
-				<strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
-			</cdx-label>
-			<cdx-text-area
-				v-model="rationaleInput"
-				:placeholder="$i18n( 'adiutor-rpm-rationale-placeholder' )"></cdx-text-area>
-		</cdx-field>
-	</cdx-dialog>
+  <cdx-dialog
+      v-model:open="openRpmDialog"
+      :primary-action="primaryAction"
+      :show-dividers="true"
+      :title="$i18n( 'adiutor-pmr-header-title' )"
+      class="rpm-dialog"
+      close-button-label="Close"
+      @default="openRpmDialog = true"
+      @primary="requestPageMove">
+    <div class="header">
+      <p>{{ $i18n( 'adiutor-pmr-header-description' ) }}</p>
+    </div>
+    <cdx-field class="rpm-dialog-body">
+      <cdx-label class="rpm-label">
+        <strong>{{ $i18n( 'adiutor-new-name' ) }}</strong>
+      </cdx-label>
+      <cdx-text-input
+          v-model="newPageName"
+          :placeholder="$i18n( 'adiutor-new-name-placeholder' )"
+          aria-label="New page name"></cdx-text-input>
+      <cdx-label class="rpm-label">
+        <strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
+      </cdx-label>
+      <cdx-text-area
+          v-model="rationaleInput"
+          :placeholder="$i18n( 'adiutor-rpm-rationale-placeholder' )"></cdx-text-area>
+    </cdx-field>
+  </cdx-dialog>
 </template>
 
 <script>

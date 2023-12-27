@@ -135,9 +135,7 @@
             class="add-new-button"
             weight="quiet"
             @click="addNewTag( labelIndex )">
-          {{
-            $i18n( 'adiutor-add-new-tag-label' )
-          }}
+          {{ $i18n( 'adiutor-add-new-tag-label' ) }}
         </cdx-button>
       </caption>
       <tr>
