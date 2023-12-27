@@ -6,11 +6,6 @@
 	const articleTagging = require( './components/articleTagging.vue' );
 	const createSpeedyDeletion = require( './components/createSpeedyDeletion.vue' );
 	const deletionPropose = require( './components/deletionPropose.vue' );
-
-	Vue.configureCompat( {
-		MODE: 3
-	} );
-
 	const csdConfiguration = mw.config.get( 'AdiutorCreateSpeedyDeletion' );
 	const rppConfiguration = mw.config.get( 'AdiutorRequestPageProtection' );
 	const rpmConfiguration = mw.config.get( 'AdiutorRequestPageMove' );
@@ -19,7 +14,6 @@
 	const userGroups = mw.config.get( 'wgUserGroups' );
 	const isSpecialPage = mw.config.get( 'wgCanonicalSpecialPageName' );
 	const isMainPage = mw.config.get( 'wgIsMainPage' );
-
 	const portletLinks = [];
 
 	/**
