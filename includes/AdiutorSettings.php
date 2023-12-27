@@ -54,7 +54,7 @@ class AdiutorSettings extends SpecialPage {
 		$templateVars = [];
 		$out->addModuleStyles( [ 'ext.Adiutor.styles' ] );
 		$out->addModules( 'ext.Adiutor' );
-		$out->addHTML( $this->templateParser->processTemplate( 'Adiutor',
+		$out->addHTML( $this->templateParser->processTemplate( 'AdiutorSettings',
 			$templateVars ) );
 	}
 
