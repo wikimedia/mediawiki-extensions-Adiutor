@@ -10,8 +10,16 @@
       @default="openCsdDialog = true"
       @primary="createSpeedyDeletionRequest">
     <div class="header">
-      <p>{{ $i18n( 'adiutor-csd-header-description' ) }}</p>
+      <p>{{ $i18n('adiutor-csd-header-description') }}</p>
     </div>
+    <cdx-message v-if="deletionLogs.length" class="csd-deletion-log-message" dismiss-button-label="Close" inline
+                 type="warning">
+      {{ $i18n('adiutor-this-page-deleted-before', deletionLogs.length) }}
+      <small>(<a
+          :href="'/wiki/Special:Log?type=delete&user=&page=' + encodeURIComponent(pageName)">{{
+          $i18n('adiutor-deletion-log')
+        }}</a>)</small>
+    </cdx-message>
     <div class="csd-reasons-body">
       <div class="csd-reason-field">
         <cdx-field v-for="namespaceReason in namespaceDeletionReasons" :is-fieldset="true">
@@ -30,19 +38,19 @@
             {{ namespaceReason.help }}
           </template>
           <cdx-label class="adt-label">
-            <strong>{{ $i18n( 'adiutor-other-options' ) }}</strong>
+            <strong>{{ $i18n('adiutor-other-options') }}</strong>
           </cdx-label>
           <cdx-checkbox v-model="recreationProrection">
-            {{ $i18n( 'adiutor-protect-against-rebuilding' ) }}
+            {{ $i18n('adiutor-protect-against-rebuilding') }}
           </cdx-checkbox>
           <cdx-checkbox v-model="informCreator">
-            {{ $i18n( 'adiutor-inform-creator' ) }}
+            {{ $i18n('adiutor-inform-creator') }}
           </cdx-checkbox>
         </cdx-field>
         <cdx-field v-if="!namespaceDeletionReasons.length" :is-fieldset="true">
           <cdx-message inline type="warning">
-            <p>{{ $i18n( 'adiutor-warning' ) }}</p>
-            <small>{{ $i18n( 'adiutor-no-namespace-reason-for-csd-title' ) }}</small>
+            <p>{{ $i18n('adiutor-warning') }}</p>
+            <small>{{ $i18n('adiutor-no-namespace-reason-for-csd-title') }}</small>
           </cdx-message>
         </cdx-field>
       </div>
@@ -62,7 +70,7 @@
           </cdx-checkbox>
           <div v-if="showCopyVioInput">
             <cdx-label class="adt-label">
-              <strong>{{ $i18n( 'adiutor-copyright-infringing-page' ) }}</strong>
+              <strong>{{ $i18n('adiutor-copyright-infringing-page') }}</strong>
             </cdx-label>
             <cdx-text-input v-model="copyVioInput" aria-label="TextInput default demo"></cdx-text-input>
           </div>
@@ -73,9 +81,9 @@
 </template>
 
 <script>
-const { defineComponent, ref, nextTick } = require( 'vue' );
-const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
-const csdConfiguration = mw.config.get( 'AdiutorCreateSpeedyDeletion' );
+const {defineComponent, ref, nextTick, onMounted} = require('vue');
+const {CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage} = require('@wikimedia/codex');
+const csdConfiguration = mw.config.get('AdiutorCreateSpeedyDeletion');
 const speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
 const copyVioReasonValue = csdConfiguration.copyVioReasonValue;
 const postfixReasonUsage = csdConfiguration.postfixReasonUsage;
@@ -88,19 +96,23 @@ const multipleReasonSummary = csdConfiguration.multipleReasonSummary;
 const speedyDeletionPolicyPageShortcut = csdConfiguration.speedyDeletionPolicyPageShortcut;
 const csdNotificationTemplate = csdConfiguration.csdNotificationTemplate;
 const namespaceDeletionReasons = [];
-for ( const reason of speedyDeletionReasons ) {
-  if ( reason.namespace === mw.config.get( 'wgNamespaceNumber' ) ) {
-    namespaceDeletionReasons.push( reason );
+for (const reason of speedyDeletionReasons) {
+  if (reason.namespace === mw.config.get('wgNamespaceNumber')) {
+    if (mw.config.get('wgIsRedirect')) {
+      namespaceDeletionReasons.push(speedyDeletionReasons.find(reason => reason.namespace === 'redirect'));
+    } else {
+      namespaceDeletionReasons.push(reason);
+    }
   }
 }
 const generalDeletionReasons = [];
-for ( const reason of speedyDeletionReasons ) {
-  if ( reason.namespace === 'general' ) {
-    generalDeletionReasons.push( reason );
+for (const reason of speedyDeletionReasons) {
+  if (reason.namespace === 'general') {
+    generalDeletionReasons.push(reason);
   }
 }
 
-module.exports = defineComponent( {
+module.exports = defineComponent({
   name: 'CreateSpeedyDeletion',
   components: {
     CdxDialog,
@@ -112,32 +124,33 @@ module.exports = defineComponent( {
   },
   setup() {
     const api = new mw.Api();
-    const checkboxValue = ref( [] );
-    const copyVioInput = ref( '' );
-    const recreationProrection = ref( false );
-    const informCreator = ref( true );
-    const openCsdDialog = ref( true );
-    const showCopyVioInput = ref( false );
-
+    const checkboxValue = ref([]);
+    const copyVioInput = ref('');
+    const recreationProrection = ref(false);
+    const informCreator = ref(true);
+    const openCsdDialog = ref(true);
+    const showCopyVioInput = ref(false);
+    const deletionLogs = ref([]);
+    const pageName = mw.config.get('wgPageName');
     /**
      * Toggles the visibility of the copy violation input based on the checkbox value.
      */
     const toggleCopyVioInputBasedOnCheckbox = () => {
       const wasChecked = showCopyVioInput.value;
       showCopyVioInput.value = !wasChecked;
-      nextTick( () => {
-        showCopyVioInput.value = checkboxValue.value.includes( copyVioReasonValue );
-      } );
+      nextTick(() => {
+        showCopyVioInput.value = checkboxValue.value.includes(copyVioReasonValue);
+      });
     };
 
     const primaryAction = {
       icon: 'cdxIconTag',
-      label: mw.msg( 'adiutor-request' ),
+      label: mw.msg('adiutor-request'),
       actionType: 'progressive'
     };
 
     const defaultAction = {
-      label: mw.msg( 'adiutor-speedy-deletion-policy' )
+      label: mw.msg('adiutor-speedy-deletion-policy')
     };
 
     /**
@@ -146,27 +159,27 @@ module.exports = defineComponent( {
      * @param {string} csdReason - The reason for the speedy deletion.
      * @param {string} csdSummary - The summary of the speedy deletion.
      */
-    const createApiRequest = async ( csdReason, csdSummary ) => {
+    const createApiRequest = async (csdReason, csdSummary) => {
       // API request to tag the article for speedy deletion
-      api.postWithToken( 'csrf', {
+      api.postWithToken('csrf', {
         action: 'edit',
-        title: mw.config.get( 'wgPageName' ),
+        title: mw.config.get('wgPageName'),
         prependtext: csdReason + '\n',
         summary: csdSummary,
         format: 'json'
-      } ).done( function () {
+      }).done(function () {
         openCsdDialog.value = false;
-        mw.notify( 'Article tagged for speedy deletion', {
-          title: mw.msg( 'adiutor-operation-completed' ),
+        mw.notify('Article tagged for speedy deletion', {
+          title: mw.msg('adiutor-operation-completed'),
           type: 'success'
-        } );
+        });
         window.location.reload();
-      } ).fail( function ( error ) {
-        mw.notify( 'Failed to tag article for speedy deletion: ' + error, {
-          title: mw.msg( 'adiutor-operation-failed' ),
+      }).fail(function (error) {
+        mw.notify('Failed to tag article for speedy deletion: ' + error, {
+          title: mw.msg('adiutor-operation-failed'),
           type: 'error'
-        } );
-      } );
+        });
+      });
     };
 
     /**
@@ -176,11 +189,11 @@ module.exports = defineComponent( {
      * @param {Object} replacements - An object containing the replacements for the placeholders.
      * @return {string} - The input string with placeholders replaced by their corresponding replacements.
      */
-    const replacePlaceholders = ( input, replacements ) => {
-      return input.replace( /\$(\d+)/g, function ( match, group ) {
-        const replacement = replacements[ '$' + group ];
+    const replacePlaceholders = (input, replacements) => {
+      return input.replace(/\$(\d+)/g, function (match, group) {
+        const replacement = replacements['$' + group];
         return replacement !== undefined ? replacement : match;
-      } );
+      });
     };
 
     /**
@@ -191,11 +204,11 @@ module.exports = defineComponent( {
      * @param {string} newValue - The new value to replace the parameter with.
      * @return {string} - The modified input string with the parameter replaced.
      */
-    function replaceParameter( input, parameterName, newValue ) {
+    function replaceParameter(input, parameterName, newValue) {
       // eslint-disable-next-line security/detect-non-literal-regexp
-      const regex = new RegExp( '\\$' + parameterName, 'g' );
-      if ( input.includes( '$' + parameterName ) ) {
-        return input.replace( regex, newValue );
+      const regex = new RegExp('\\$' + parameterName, 'g');
+      if (input.includes('$' + parameterName)) {
+        return input.replace(regex, newValue);
       } else {
         return input;
       }
@@ -209,18 +222,18 @@ module.exports = defineComponent( {
      * @param {string} summary
      * @return {Promise<void>} - A promise that resolves when the message is sent successfully.
      */
-    const sendMessageToAuthor = async ( articleAuthor, notificationMessage, summary ) => {
+    const sendMessageToAuthor = async (articleAuthor, notificationMessage, summary) => {
       try {
-        await api.postWithToken( 'csrf', {
+        await api.postWithToken('csrf', {
           action: 'edit',
           title: 'User_talk:' + articleAuthor,
           appendtext: '\n' + notificationMessage,
           summary: summary,
           tags: 'adiutor',
           format: 'json'
-        } );
-      } catch ( error ) {
-        handleError( error );
+        });
+      } catch (error) {
+        handleError(error);
       }
     };
 
@@ -232,104 +245,132 @@ module.exports = defineComponent( {
      * If there are no selected reasons, it displays an error notification.
      */
     const createSpeedyDeletionRequest = async () => {
-      const selectedReasons = speedyDeletionReasons.reduce( ( selected, category ) => {
-        const selectedInCategory = category.reasons.filter( ( reason ) => {
-          return checkboxValue.value.includes( reason.value );
-        } );
-        selected.push( ...selectedInCategory );
+      const selectedReasons = speedyDeletionReasons.reduce((selected, category) => {
+        const selectedInCategory = category.reasons.filter((reason) => {
+          return checkboxValue.value.includes(reason.value);
+        });
+        selected.push(...selectedInCategory);
         return selected;
-      }, [] );
+      }, []);
 
-      if ( selectedReasons.length ) {
+      if (selectedReasons.length) {
         let csdReason;
         let csdSummary;
         let saltCSDSummary = '';
         let copyVioURL;
-        if ( copyVioInput.value !== '' ) {
+        if (copyVioInput.value !== '') {
           copyVioURL = '|url=' + copyVioInput.value;
         }
-        if ( selectedReasons.length > 1 ) {
+        if (selectedReasons.length > 1) {
           let saltCSDReason = csdTemplateStartMultipleReason;
-          if ( multipleReasonSeparation === 'vertical_bar' ) {
-            for ( let i = 0; i < selectedReasons.length; i++ ) {
-              saltCSDReason += '|' + selectedReasons[ i ].value;
+          if (multipleReasonSeparation === 'vertical_bar') {
+            for (let i = 0; i < selectedReasons.length; i++) {
+              saltCSDReason += '|' + selectedReasons[i].value;
             }
             csdReason = saltCSDReason + '}}';
-          } else if ( multipleReasonSeparation === 'default' ) {
-            for ( let i = 0; i < selectedReasons.length; i++ ) {
-              if ( i > 0 ) {
-                saltCSDReason += ( i < selectedReasons.length - 1 ) ? ', ' : ' ' + mw.msg( 'adiutor-and' ) + ' ';
+          } else if (multipleReasonSeparation === 'default') {
+            for (let i = 0; i < selectedReasons.length; i++) {
+              if (i > 0) {
+                saltCSDReason += (i < selectedReasons.length - 1) ? ', ' : ' ' + mw.msg('adiutor-and') + ' ';
               }
-              saltCSDReason += '|[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[ i ].value + ']]';
+              saltCSDReason += '|[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[i].value + ']]';
             }
             csdReason = saltCSDReason + '}}';
           }
-          for ( let i = 0; i < selectedReasons.length; i++ ) {
-            if ( i > 0 ) {
-              saltCSDSummary += ( i < selectedReasons.length - 1 ) ? ', ' : ' ' + mw.msg( 'adiutor-and' ) + ' ';
+          for (let i = 0; i < selectedReasons.length; i++) {
+            if (i > 0) {
+              saltCSDSummary += (i < selectedReasons.length - 1) ? ', ' : ' ' + mw.msg('adiutor-and') + ' ';
             }
-            saltCSDSummary += '[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[ i ].value + ']]';
+            saltCSDSummary += '[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[i].value + ']]';
           }
-          csdSummary = replaceParameter( multipleReasonSummary, '2', saltCSDSummary );
+          csdSummary = replaceParameter(multipleReasonSummary, '2', saltCSDSummary);
         } else {
-          if ( postfixReasonUsage === 'data' ) {
-            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].data + copyVioURL + '}}';
-          } else if ( postfixReasonUsage === 'value' ) {
-            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].value + copyVioURL + '}}';
+          if (postfixReasonUsage === 'data') {
+            csdReason = csdTemplateStartSingleReason + selectedReasons[0].data + copyVioURL + '}}';
+          } else if (postfixReasonUsage === 'value') {
+            csdReason = csdTemplateStartSingleReason + selectedReasons[0].value + copyVioURL + '}}';
           }
-          csdSummary = replaceParameter( singleReasonSummary, '2', selectedReasons[ 0 ].data );
+          csdSummary = replaceParameter(singleReasonSummary, '2', selectedReasons[0].data);
         }
 
-        await createApiRequest( csdReason, csdSummary );
-        if ( informCreator.value ) {
+        await createApiRequest(csdReason, csdSummary);
+        if (informCreator.value) {
           try {
             const creatorData = await getCreator();
-            const articleAuthor = creatorData.query.pages[ mw.config.get( 'wgArticleId' ) ].revisions[ 0 ].user;
-            if ( !mw.util.isIPAddress( articleAuthor ) ) {
+            const articleAuthor = creatorData.query.pages[mw.config.get('wgArticleId')].revisions[0].user;
+            if (!mw.util.isIPAddress(articleAuthor)) {
               const placeholdersForNotification = {
-                $1: mw.config.get( 'wgPageName' ),
+                $1: mw.config.get('wgPageName'),
                 $2: csdSummary,
                 $3: csdReason
               };
-              const message = replacePlaceholders( csdNotificationTemplate, placeholdersForNotification );
-              await sendMessageToAuthor( articleAuthor, message, csdSummary );
+              const message = replacePlaceholders(csdNotificationTemplate, placeholdersForNotification);
+              await sendMessageToAuthor(articleAuthor, message, csdSummary);
             }
-          } catch ( error ) {
-            handleError( error );
+          } catch (error) {
+            handleError(error);
           }
         }
       } else {
-        mw.notify( mw.message( 'adiutor-select-speedy-deletion-reason' ).text(), {
-          title: mw.msg( 'adiutor-warning' ),
+        mw.notify(mw.message('adiutor-select-speedy-deletion-reason').text(), {
+          title: mw.msg('adiutor-warning'),
           type: 'error'
-        } );
+        });
       }
     };
-
-    function handleError() {
-      // Implement error handling
-    }
 
     /**
      * Retrieves the creator of the page.
      * @return {jQuery.Promise} A promise that resolves with the creator's information.
      */
     function getCreator() {
-      return api.get( {
+      return api.get({
         action: 'query',
         prop: 'revisions',
         rvlimit: 1,
-        rvprop: [ 'user' ],
+        rvprop: ['user'],
         rvdir: 'newer',
-        titles: mw.config.get( 'wgPageName' )
-      } );
+        titles: mw.config.get('wgPageName')
+      });
     }
+
+    /**
+     * Retrieves deletion logs for a specific page.
+     * @async
+     * @function getDeletionLogs
+     * @returns {Promise<void>}
+     */
+    async function getDeletionLogs() {
+      try {
+        const response = await api.get({
+          action: 'query',
+          list: 'logevents',
+          leprop: ['type', 'title', 'user', 'timestamp'],
+          letype: 'delete',
+          lelimit: 500,
+          letitle: pageName
+        });
+        deletionLogs.value = response.query.logevents || [];
+      } catch (error) {
+        handleError(error);
+      }
+    }
+
+    function handleError() {
+      // Implement error handling
+    }
+
+    onMounted(() => {
+      getDeletionLogs();
+    });
 
     return {
       checkboxValue,
       namespaceDeletionReasons,
       generalDeletionReasons,
+      pageName,
       openCsdDialog,
+      deletionLogs,
       primaryAction,
       defaultAction,
       copyVioInput,
@@ -340,7 +381,7 @@ module.exports = defineComponent( {
       createSpeedyDeletionRequest
     };
   }
-} );
+});
 </script>
 
 <style lang="css">
@@ -411,6 +452,11 @@ module.exports = defineComponent( {
 
 .csd-dialog .header p {
   width: 70%;
+}
+
+.csd-deletion-log-message {
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 .csd-dialog h2 {

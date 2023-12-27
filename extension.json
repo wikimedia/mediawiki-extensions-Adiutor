@@ -300,7 +300,9 @@
 				"adiutor-proposed-deletion-blpprod-policy",
 				"adiutor-proposed-deletion-blpprod-policy-shortcut",
 				"adiutor-copy-vio-reason-value-description",
-				"adiutor-copy-vio-reason-value-help-text"
+				"adiutor-copy-vio-reason-value-help-text",
+				"adiutor-this-page-deleted-before",
+				"adiutor-deletion-log"
 			],
 			"styles": [
 				"./ext.Adiutor.styles/styles.less"

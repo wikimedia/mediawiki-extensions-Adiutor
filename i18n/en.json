@@ -203,5 +203,7 @@
 	"adiutor-proposed-deletion-blpprod-policy": "Proposed deletion of unsourced BLPs policy",
 	"adiutor-proposed-deletion-blpprod-policy-shortcut": "Proposed deletion of unsourced BLPs policy shortcut",
 	"adiutor-copy-vio-reason-value-description": "Enter a reason value that will trigger the display of the copyright-infringing page input.",
-	"adiutor-copy-vio-reason-value-help-text": "Please remember that the template should have a 'url=' parameter."
+	"adiutor-copy-vio-reason-value-help-text": "Please remember that the template should have a 'url=' parameter.",
+	"adiutor-this-page-deleted-before": "This page has been deleted $1 times before!",
+	"adiutor-deletion-log": "Deletion log"
 }
