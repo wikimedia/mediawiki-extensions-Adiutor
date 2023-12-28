@@ -51,10 +51,11 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 		$extensionRegistry = ExtensionRegistry::getInstance();
 		$user = $out->getUser();
 		$isBetaFeatureLoaded = $extensionRegistry->isLoaded( 'BetaFeatures' );
-		if ( ( $isBetaFeatureLoaded && !$this->userOptionsLookup->getOption( $user,
-				'adiutor-beta-feature-enable' ) ) ) {
+		if ( !$isBetaFeatureLoaded || !$this->userOptionsLookup->getOption( $user,
+				'adiutor-beta-feature-enable' ) ) {
 			return;
 		}
+
 		if ( !$this->userOptionsLookup->getOption( $user,
 			'adiutor-switch' ) ) {
 			return;
