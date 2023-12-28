@@ -48,7 +48,7 @@ class PreferencesHandler implements GetPreferencesHook {
 		}
 
 		$isBetaFeatureLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
-		if ( $isBetaFeatureLoaded && !$this->userOptionsLookup->getOption( $user,
+		if ( !$isBetaFeatureLoaded || !$this->userOptionsLookup->getOption( $user,
 				'adiutor-beta-feature-enable' ) ) {
 			return;
 		}
