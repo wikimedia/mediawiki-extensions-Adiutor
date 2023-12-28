@@ -261,7 +261,7 @@ module.exports = defineComponent( {
         let csdReason;
         let csdSummary;
         let saltCSDSummary = '';
-        let copyVioURL;
+        let copyVioURL = '';
         if ( copyVioInput.value !== '' ) {
           copyVioURL = '|url=' + copyVioInput.value;
         }
@@ -290,9 +290,9 @@ module.exports = defineComponent( {
           csdSummary = replaceParameter( multipleReasonSummary, '2', saltCSDSummary );
         } else {
           if ( postfixReasonUsage === 'data' ) {
-            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].data + copyVioURL + '}}';
+            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].data + ( copyVioInput.value ? copyVioURL : '' ) + '}}';
           } else if ( postfixReasonUsage === 'value' ) {
-            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].value + copyVioURL + '}}';
+            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].value + ( copyVioInput.value ? copyVioURL : '' ) + '}}';
           }
           csdSummary = replaceParameter( singleReasonSummary, '2', selectedReasons[ 0 ].data );
         }
