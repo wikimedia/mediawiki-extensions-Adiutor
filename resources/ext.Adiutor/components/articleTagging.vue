@@ -112,20 +112,22 @@ module.exports = defineComponent( {
       } ).filter( ( label ) => label.tags.length > 0 );
     } );
 
+    const selectedTags = [];
+
     function toggleTag( tag ) {
-      const { value } = checkboxValue;
-      const tagIncluded = value.includes( tag );
-      checkboxValue.value = tagIncluded ?
-          value.filter( ( selectedTag ) => selectedTag !== tag ) :
-          value.concat( tag );
+      if ( !selectedTags.includes( tag ) ) {
+        // If the tag is not in the array, add it
+        selectedTags.push( tag );
+      } else {
+        // If the tag is already in the array, remove it
+        selectedTags.splice( selectedTags.indexOf( tag ), 1 );
+      }
     }
 
     function tagArticle() {
-      const selectedTags = checkboxValue.value;
       const preparedTemplates = [];
       const templateInfo = {};
       let preparedTagsString;
-
       selectedTags.forEach( function ( tag ) {
         if ( tag.items && tag.items.length > 0 ) {
           tag.items.forEach( function ( subItem ) {
