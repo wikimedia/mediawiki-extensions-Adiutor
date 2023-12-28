@@ -9,7 +9,7 @@
       @default="openTagDialog = true"
       @primary="tagArticle">
     <div class="header">
-      <p>{{ $i18n( 'adiutor-tag-header-description' ) }} </p>
+      <p>{{ $i18n( 'adiutor-tag-header-description' ) }}</p>
       <cdx-text-input
           v-model="searchTag"
           :clearable="true"
