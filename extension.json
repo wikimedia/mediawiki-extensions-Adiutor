@@ -139,8 +139,10 @@
 			],
 			"messages": [
 				"adiutor-title",
+				"adiutor-beta-feature-title",
 				"adiutor-toggle-adiutor",
 				"adiutor-desc",
+				"adiutor-beta-feature-description",
 				"adiutor-beta-feature-enabled",
 				"adiutor-create",
 				"adiutor-request",
