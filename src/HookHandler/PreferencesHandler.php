@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\Adiutor\HookHandler;
 
 use ExtensionRegistry;
+use MediaWiki\Extension\Adiutor\Utils\Utils;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\User\UserGroupManager;
@@ -42,18 +43,20 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @inheritDoc
 	 */
 	public function onGetPreferences( $user, &$preferences ) : void {
+		$extensionRegistry = ExtensionRegistry::getInstance();
+
 		if ( !$this->permissionManager->userHasRight( $user,
 			'edit' ) ) {
 			return;
 		}
 
-		$isBetaFeatureLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
-		if ( !$isBetaFeatureLoaded || !$this->userOptionsLookup->getOption( $user,
-				'adiutor-beta-feature-enable' ) ) {
+		if ( !Utils::isEnabledForUser( $this->userOptionsLookup,
+			$user,
+			$extensionRegistry ) ) {
 			return;
 		}
 
-		$preferences['adiutor-switch'] = [
+		$preferences['adiutor-enable'] = [
 			'type' => 'toggle',
 			'label-message' => 'adiutor-toggle-adiutor',
 			'section' => 'moderate/adiutor',
@@ -87,7 +90,7 @@ class PreferencesHandler implements GetPreferencesHook {
 		if ( ( $betaFeatureIsEnabled && $betaFeatureWillDisable ) ||
 			( $betaFeatureIsDisabled && $betaFeatureWillEnable ) ||
 			( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable ) ) {
-			$modifiedOptions['adiutor-switch'] = false;
+			$modifiedOptions['adiutor-enable'] = false;
 		}
 	}
 

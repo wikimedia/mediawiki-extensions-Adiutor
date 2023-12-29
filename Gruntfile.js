@@ -13,7 +13,7 @@ module.exports = function ( grunt ) {
 			},
 			all: [
 				'**/*.{js,json}',
-				'!resources/ext.Adiutor/icons.json',
+				'!resources/ext.adiutor/icons.json',
 				'!node_modules/**',
 				'!vendor/**'
 			]

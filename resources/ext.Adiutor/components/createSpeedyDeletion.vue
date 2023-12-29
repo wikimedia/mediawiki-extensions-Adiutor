@@ -443,7 +443,7 @@ module.exports = defineComponent( {
   justify-content: space-between;
   height: 10em;
   padding: 20px;
-  background-image: url(../../ext.Adiutor.images/csd-background.png);
+  background-image: url(../../ext.adiutor.images/csd-background.png);
   background-position: right 10px;
   background-repeat: no-repeat;
   background-size: 205px;

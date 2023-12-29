@@ -204,7 +204,7 @@ module.exports = defineComponent( {
   justify-content: space-between;
   height: 9em;
   padding: 20px;
-  background-image: url(../../ext.Adiutor.images/rpm-background.png);
+  background-image: url(../../ext.adiutor.images/rpm-background.png);
   background-position: right -30px;
   background-repeat: no-repeat;
   background-size: 200px;

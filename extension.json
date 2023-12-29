@@ -24,10 +24,10 @@
 		"AdiutorAlias": "Adiutor.i18n.alias.php"
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\Adiutor\\": "includes/"
+		"MediaWiki\\Extension\\Adiutor\\": "src/"
 	},
 	"DefaultUserOptions": {
-		"adiutor-switch": 0
+		"adiutor-enable": 0
 	},
 	"SpecialPages": {
 		"AdiutorSettings": {
@@ -41,7 +41,8 @@
 		"SaveUserOptions": "preferences",
 		"ListDefinedTags": "listDefinedTags",
 		"ChangeTagsListActive": "changeTagsListActive",
-		"ChangeTagsAllowedAdd": "changeTagsAllowedAdd"
+		"ChangeTagsAllowedAdd": "changeTagsAllowedAdd",
+		"PageSaveComplete": "pageSaveComplete"
 	},
 	"HookHandlers": {
 		"preferences": {
@@ -63,7 +64,9 @@
 			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PageDisplayHandler",
 			"services": [
 				"PermissionManager",
-				"UserOptionsLookup"
+				"UserOptionsLookup",
+				"RevisionLookup",
+				"MainWANObjectCache"
 			]
 		},
 		"listDefinedTags": {
@@ -83,6 +86,12 @@
 			"services": [
 				"MainConfig"
 			]
+		},
+		"pageSaveComplete": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PageSaveCompleteHandler",
+			"services": [
+				"MainConfig"
+			]
 		}
 	},
 	"ExtensionFunctions": [
@@ -93,7 +102,33 @@
 		"remoteExtPath": "Adiutor/resources"
 	},
 	"ResourceModules": {
-		"ext.Adiutor": {
+		"ext.adiutor": {
+			"packageFiles": [
+				"ext.adiutor/init.js",
+				"ext.adiutor/components/deletionPropose.vue",
+				"ext.adiutor/components/createSpeedyDeletion.vue",
+				"ext.adiutor/components/createSpeedyDeletionOptions.vue",
+				"ext.adiutor/components/articleTagging.vue",
+				"ext.adiutor/components/articleTaggingOptions.vue",
+				"ext.adiutor/components/requestPageMove.vue",
+				"ext.adiutor/components/requestPageProtection.vue",
+				"ext.adiutor/components/requestPageProtectionOptions.vue",
+				"ext.adiutor/components/requestPageMoveOptions.vue",
+				"ext.adiutor/components/deletionProposeOptions.vue",
+				"ext.adiutor/components/adiutorSettings.vue",
+				"ext.adiutor/icons.json",
+				{
+					"name": "ext.adiutor/icons.json",
+					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
+					"callbackParam": [
+						"cdxIconAdd",
+						"cdxIconClose"
+					]
+				}
+			],
+			"styles": [
+				"./ext.adiutor.styles/styles.less"
+			],
 			"dependencies": [
 				"mediawiki.util",
 				"mediawiki.user",
@@ -303,51 +338,21 @@
 				"adiutor-copy-vio-reason-value-help-text",
 				"adiutor-this-page-deleted-before",
 				"adiutor-deletion-log"
-			],
-			"styles": [
-				"./ext.Adiutor.styles/styles.less"
-			],
-			"packageFiles": [
-				"ext.Adiutor/init.js",
-				"ext.Adiutor/components/deletionPropose.vue",
-				"ext.Adiutor/components/createSpeedyDeletion.vue",
-				"ext.Adiutor/components/createSpeedyDeletionOptions.vue",
-				"ext.Adiutor/components/articleTagging.vue",
-				"ext.Adiutor/components/articleTaggingOptions.vue",
-				"ext.Adiutor/components/requestPageMove.vue",
-				"ext.Adiutor/components/requestPageProtection.vue",
-				"ext.Adiutor/components/requestPageProtectionOptions.vue",
-				"ext.Adiutor/components/requestPageMoveOptions.vue",
-				"ext.Adiutor/components/deletionProposeOptions.vue",
-				"ext.Adiutor/components/adiutorSettings.vue",
-				"ext.Adiutor/icons.json",
-				{
-					"name": "ext.Adiutor/icons.json",
-					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
-					"callbackParam": [
-						"cdxIconAdd",
-						"cdxIconClose"
-					]
-				}
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
-		"ext.Adiutor.styles": {
-			"styles": "ext.Adiutor.styles/styles.css",
-			"targets": [
-				"desktop",
-				"mobile"
-			]
+		"ext.adiutor.styles": {
+			"styles": "ext.adiutor.styles/styles.less"
 		}
 	},
 	"RestRoutes": [
 		{
 			"path": "/adiutor/v0/updatelocalconfiguration",
 			"method": "POST",
-			"class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\UpdateLocalConfigurationHandler"
+			"class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\UpdateLocalConfigurationHandler",
+			"services": [
+				"PermissionManager",
+				"MainConfig"
+			]
 		}
 	],
 	"manifest_version": 2

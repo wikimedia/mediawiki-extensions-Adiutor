@@ -13,6 +13,7 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use TextContent;
+use User;
 
 class Adiutor {
 	/**
@@ -28,8 +29,19 @@ class Adiutor {
 	public static function onExtensionLoad() {
 		$services = MediaWikiServices::getInstance();
 		$titleFactory = $services->getTitleFactory();
-		$userFactory = $services->getUserFactory();
-		$user = $userFactory->newAnonymous( 0 );
+		$systemUserName = 'Adiutor bot';
+		$user =
+			User::newSystemUser( $systemUserName,
+				[ 'steal' => true ] );
+		if ( !$user ) {
+			return;
+		}
+
+		global $wgReservedUsernames;
+		if ( !in_array( $systemUserName,
+			(array) $wgReservedUsernames ) ) {
+			$wgReservedUsernames[] = $systemUserName;
+		}
 
 		$configurationPages = [
 			'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::REQUEST_PAGE_PROTECTION_CONFIGURATION,
@@ -51,7 +63,7 @@ class Adiutor {
 				$pageUpdater->setContent( SlotRecord::MAIN,
 					new TextContent( $pageContent ) );
 				$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ),
-					EDIT_INTERNAL | EDIT_MINOR | EDIT_AUTOSUMMARY );
+					EDIT_INTERNAL | EDIT_AUTOSUMMARY );
 			}
 		}
 	}

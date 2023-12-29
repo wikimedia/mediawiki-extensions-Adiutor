@@ -13,26 +13,48 @@ use User;
 class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideOnSaveUserOptionsNoAccessChange() {
-		return [ 'Enabled to begin with, then not set' => [ [ 'adiutor-switch' => true, ],
-			[], ],
-			'Enabled to begin with, then both option set to truthy' => [ [ 'adiutor-switch' => true, ],
-				[ 'adiutor-switch' => '1', ], ],
-			'Disabled to begin with, then not set' => [ [ 'adiutor-switch' => false, ],
-				[], ],
-			'Disabled to begin with, then set to falsey' => [ [ 'adiutor-switch' => 0, ],
-				[ 'adiutor-switch' => false, ], ],
-			'No options set to begin with, then no options set' => [ [],
-				[], ], ];
+		return [
+			'Enabled to begin with, then not set' => [
+				[ 'adiutor-enable' => true, ],
+				[],
+			],
+			'Enabled to begin with, then both option set to truthy' => [
+				[ 'adiutor-enable' => true, ],
+				[ 'adiutor-enable' => '1', ],
+			],
+			'Disabled to begin with, then not set' => [
+				[ 'adiutor-enable' => false, ],
+				[],
+			],
+			'Disabled to begin with, then set to falsey' => [
+				[ 'adiutor-enable' => 0, ],
+				[ 'adiutor-enable' => false, ],
+			],
+			'No options set to begin with, then no options set' => [
+				[],
+				[],
+			],
+		];
 	}
 
 	public static function provideOnSaveUserOptionsRestoreDefaultPreferences() {
-		return [ 'Disable beta feature' => [ [ 'adiutor-beta-feature-enable' => true ],
-			[ 'adiutor-beta-feature-enable' => false ], ],
-			'Enable beta feature' => [ [ 'adiutor-beta-feature-enable' => false ],
-				[ 'adiutor-beta-feature-enable' => true ], ],
-			'Enable auto enroll' => [ [ 'adiutor-beta-feature-enable' => false,
-				'betafeatures-auto-enroll' => false ],
-				[ 'betafeatures-auto-enroll' => true ], ], ];
+		return [
+			'Disable beta feature' => [
+				[ 'adiutor-beta-feature-enable' => true ],
+				[ 'adiutor-beta-feature-enable' => false ],
+			],
+			'Enable beta feature' => [
+				[ 'adiutor-beta-feature-enable' => false ],
+				[ 'adiutor-beta-feature-enable' => true ],
+			],
+			'Enable auto enroll' => [
+				[
+					'adiutor-beta-feature-enable' => false,
+					'betafeatures-auto-enroll' => false,
+				],
+				[ 'betafeatures-auto-enroll' => true ],
+			],
+		];
 	}
 
 	/**
@@ -49,9 +71,11 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function getPreferencesHandler( array $options = [] ) : PreferencesHandler {
 		return new PreferencesHandler( ...
-			array_values( array_merge( [ 'permissionManager' => $this->createMock( PermissionManager::class ),
+			array_values( array_merge( [
+				'permissionManager' => $this->createMock( PermissionManager::class ),
 				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
-				'userGroupManager' => $this->createMock( UserGroupManager::class ), ],
+				'userGroupManager' => $this->createMock( UserGroupManager::class ),
+			],
 				$options ) ) );
 	}
 
@@ -63,7 +87,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 			$modifiedOptions,
 			$originalOptions );
 
-		$this->assertFalse( $modifiedOptions['adiutor-switch'] );
+		$this->assertFalse( $modifiedOptions['adiutor-enable'] );
 	}
 
 	public function testOnGetPreferences() {
@@ -77,7 +101,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$preferences = [];
 		$handler->onGetPreferences( $user,
 			$preferences );
-		$this->assertArrayHasKey( 'adiutor-switch',
+		$this->assertArrayHasKey( 'adiutor-enable',
 			$preferences );
 	}
 }

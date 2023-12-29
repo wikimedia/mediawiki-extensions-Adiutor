@@ -6,9 +6,9 @@
 /vendor
 /node_modules
 /.eslintcache
-includes/.DS_Store
+src/.DS_Store
 resources/localization/.DS_Store
-modules/ext.Adiutor/.DS_Store
+modules/ext.adiutor/.DS_Store
 modules/.DS_Store
 resources/.DS_Store
 .DS_Store

@@ -301,7 +301,7 @@ module.exports = defineComponent( {
   justify-content: space-between;
   height: 10em;
   padding: 20px;
-  background-image: url(../../ext.Adiutor.images/prd-background.png);
+  background-image: url(../../ext.adiutor.images/prd-background.png);
   background-position: 95% 10px;
   background-repeat: no-repeat;
   background-size: 215px;

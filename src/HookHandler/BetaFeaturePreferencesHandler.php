@@ -33,9 +33,9 @@ class BetaFeaturePreferencesHandler {
 	public function onGetBetaFeaturePreferences( User $user, array &$betaPrefs ) {
 		if ( $this->permissionManager->userHasRight( $user,
 			'edit' ) ) {
-			$url = 'https://mediawiki.org/wiki/';
-			$infoLink = $url . 'Extension:Adiutor';
-			$discussionLink = $url . 'Extension_talk:Adiutor';
+			$url = 'https://meta.wikimedia.org/wiki/';
+			$infoLink = $url . 'Adiutor';
+			$discussionLink = $url . 'Talk:Adiutor';
 			$betaPrefs['adiutor-beta-feature-enable'] = [
 				'label-message' => 'adiutor-title',
 				'desc-message' => 'adiutor-desc',

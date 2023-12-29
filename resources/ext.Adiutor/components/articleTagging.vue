@@ -272,7 +272,7 @@ module.exports = defineComponent( {
   justify-content: space-between;
   height: 10em;
   padding: 20px;
-  background-image: url(../../ext.Adiutor.images/tag-background.png);
+  background-image: url(../../ext.adiutor.images/tag-background.png);
   background-position: right 25px;
   background-repeat: no-repeat;
   background-size: 205px;
