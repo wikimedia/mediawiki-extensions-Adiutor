@@ -86,7 +86,6 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 			'edit' ) ) {
 			return;
 		}
-		$out->addModuleStyles( [ 'ext.adiutor.styles' ] );
 		$out->addModules( 'ext.adiutor' );
 		$out->addHTML( $this->templateParser->processTemplate( 'Adiutor',
 			[] ) );
