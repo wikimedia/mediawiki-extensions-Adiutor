@@ -1,4 +1,10 @@
 <?php
+/**
+ * Class AdiutorMaintenance
+ *
+ * This class is responsible for creating and saving configuration pages for the Adiutor extension
+ * if they do not already exist. It extends the Maintenance class.
+ */
 
 namespace MediaWiki\Extension\Adiutor;
 
@@ -11,7 +17,6 @@ use User;
 
 class AdiutorMaintenance extends Maintenance {
 
-	private const FLAG_PAGE_TITLE = 'MediaWiki:AdiutorSetupComplete.json';
 	private array $configurationPages = [
 		'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::REQUEST_PAGE_PROTECTION_CONFIGURATION,
 		'MediaWiki:AdiutorCreateSpeedyDeletion.json' => LocalizationConfiguration::CREATE_SPEEDY_DELETION_REQUEST_CONFIGURATION,
@@ -28,7 +33,6 @@ class AdiutorMaintenance extends Maintenance {
 	public function execute() {
 		$services = MediaWikiServices::getInstance();
 		$titleFactory = $services->getTitleFactory();
-		$flagTitle = $titleFactory->newFromText( self::FLAG_PAGE_TITLE );
 		$systemUserName = 'Adiutor bot';
 		$user =
 			User::newSystemUser( $systemUserName,
@@ -43,10 +47,6 @@ class AdiutorMaintenance extends Maintenance {
 			$wgReservedUsernames[] = $systemUserName;
 		}
 
-		if ( $flagTitle->exists() ) {
-			return;
-		}
-
 		foreach ( $this->configurationPages as $pageTitle => $content ) {
 			$this->createPage( $titleFactory,
 				$pageTitle,
@@ -54,13 +54,6 @@ class AdiutorMaintenance extends Maintenance {
 				$user,
 				$services );
 		}
-
-		// Create the flag page to indicate that setup has been completed
-		$this->createPage( $titleFactory,
-			self::FLAG_PAGE_TITLE,
-			[ "SetupCompleted" => true ],
-			$user,
-			$services );
 	}
 
 	private function createPage( $titleFactory, $pageTitle, $content, $user, $services ) {
