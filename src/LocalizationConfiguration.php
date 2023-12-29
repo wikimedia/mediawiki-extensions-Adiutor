@@ -1,7 +1,7 @@
 <?php /** @noinspection ALL */
 
 /**
- * @see Adiutor
+ * @see AdiutorMaintenance
  * @package MediaWiki\Extension\Adiutor
  */
 
