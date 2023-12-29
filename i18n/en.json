@@ -207,5 +207,7 @@
 	"adiutor-copy-vio-reason-value-description": "Enter a reason value that will trigger the display of the copyright-infringing page input.",
 	"adiutor-copy-vio-reason-value-help-text": "Please remember that the template should have a 'url=' parameter.",
 	"adiutor-this-page-deleted-before": "This page has been deleted $1 times before!",
-	"adiutor-deletion-log": "Deletion log"
+	"adiutor-deletion-log": "Deletion log",
+	"tag-adiutor": "Adiutor",
+	"tag-adiutor-description": "This edit has been made using the Adiutor extension."
 }

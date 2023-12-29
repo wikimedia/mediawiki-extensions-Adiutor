@@ -339,7 +339,9 @@
 				"adiutor-copy-vio-reason-value-description",
 				"adiutor-copy-vio-reason-value-help-text",
 				"adiutor-this-page-deleted-before",
-				"adiutor-deletion-log"
+				"adiutor-deletion-log",
+				"tag-adiutor",
+				"tag-adiutor-description"
 			]
 		},
 		"ext.adiutor.styles": {

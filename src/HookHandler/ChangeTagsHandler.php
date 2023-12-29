@@ -7,7 +7,8 @@ use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
 use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
 
 class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook, ChangeTagsAllowedAddHook {
-	private string $tagName = 'adiutor';
+	// Make the tag name a class constant
+	private const TAG_NAME = 'adiutor';
 
 	/**
 	 * Hook to define a change tag.
@@ -15,11 +16,7 @@ class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook
 	 * @param string[] &$tags Tags array
 	 */
 	public function onListDefinedTags( &$tags ) {
-		if ( !in_array( $this->tagName,
-			$tags,
-			true ) ) {
-			$tags[] = $this->tagName;
-		}
+		$tags[] = self::TAG_NAME;
 	}
 
 	/**
@@ -28,11 +25,7 @@ class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook
 	 * @param string[] &$tags Active tags array
 	 */
 	public function onChangeTagsListActive( &$tags ) {
-		if ( !in_array( $this->tagName,
-			$tags,
-			true ) ) {
-			$tags[] = $this->tagName;
-		}
+		$tags[] = self::TAG_NAME;
 	}
 
 	/**
@@ -43,11 +36,13 @@ class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook
 	 * @param mixed $user The user who is performing the action, type hint removed.
 	 */
 	public function onChangeTagsAllowedAdd( &$allowedTags, $addTags, $user ) {
-		// Allow "adiutor" tag to be manually added, check permissions as needed
-		if ( !in_array( $this->tagName,
-			$allowedTags,
-			true ) ) {
-			$allowedTags[] = $this->tagName;
+		// If the adiutor tag is amongst those being added, add it to the list of allowed tags
+		if ( in_array( self::TAG_NAME,
+				$addTags,
+				true ) && !in_array( self::TAG_NAME,
+				$allowedTags,
+				true ) ) {
+			$allowedTags[] = self::TAG_NAME;
 		}
 	}
 }
