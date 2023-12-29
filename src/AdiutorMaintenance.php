@@ -1,17 +1,4 @@
 <?php
-/**
- * This method is called when the Adiutor extension is loaded.
- * It creates and saves configuration pages for the extension if they do not already exist.
- * The configuration pages are defined in the $configurationPages array.
- * Each page is checked if it already exists, and if not, a new page is created with the specified content.
- * The content is encoded as JSON and saved as the main slot content of the page.
- * The method uses MediaWiki's PageUpdater to create and save the pages.
- * The user used for creating the pages is $userFactory::newAnonymous(0), which is the default anonymous user.
- * After saving each page, the save status is stored in the $saveStatus variable.
- * The LocalizationConfiguration class contains constants for deletion propose configuration,
- * page protection configuration, speedy deletion request configuration, page move configuration,
- * revision deletion configuration, and article tagging configuration.
- */
 
 namespace MediaWiki\Extension\Adiutor;
 
@@ -24,6 +11,15 @@ use User;
 
 class AdiutorMaintenance extends Maintenance {
 
+	private const FLAG_PAGE_TITLE = 'MediaWiki:AdiutorSetupComplete.json';
+	private array $configurationPages = [
+		'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::REQUEST_PAGE_PROTECTION_CONFIGURATION,
+		'MediaWiki:AdiutorCreateSpeedyDeletion.json' => LocalizationConfiguration::CREATE_SPEEDY_DELETION_REQUEST_CONFIGURATION,
+		'MediaWiki:AdiutorDeletionPropose.json' => LocalizationConfiguration::DELETION_PROPOSE_CONFIGURATION,
+		'MediaWiki:AdiutorRequestPageMove.json' => LocalizationConfiguration::PAGE_MOVE_CONFIGURATION,
+		'MediaWiki:AdiutorArticleTagging.json' => LocalizationConfiguration::ARTICLE_TAGGING_CONFIGURATION,
+	];
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Creates and saves configuration pages for the Adiutor extension if they do not already exist.' );
@@ -32,6 +28,7 @@ class AdiutorMaintenance extends Maintenance {
 	public function execute() {
 		$services = MediaWikiServices::getInstance();
 		$titleFactory = $services->getTitleFactory();
+		$flagTitle = $titleFactory->newFromText( self::FLAG_PAGE_TITLE );
 		$systemUserName = 'Adiutor bot';
 		$user =
 			User::newSystemUser( $systemUserName,
@@ -46,36 +43,45 @@ class AdiutorMaintenance extends Maintenance {
 			$wgReservedUsernames[] = $systemUserName;
 		}
 
-		$configurationPages = [
-			'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::REQUEST_PAGE_PROTECTION_CONFIGURATION,
-			'MediaWiki:AdiutorCreateSpeedyDeletion.json' => LocalizationConfiguration::CREATE_SPEEDY_DELETION_REQUEST_CONFIGURATION,
-			'MediaWiki:AdiutorDeletionPropose.json' => LocalizationConfiguration::DELETION_PROPOSE_CONFIGURATION,
-			'MediaWiki:AdiutorRequestPageMove.json' => LocalizationConfiguration::PAGE_MOVE_CONFIGURATION,
-			'MediaWiki:AdiutorArticleTagging.json' => LocalizationConfiguration::ARTICLE_TAGGING_CONFIGURATION,
-		];
+		if ( $flagTitle->exists() ) {
+			return;
+		}
 
-		foreach ( $configurationPages as $pageTitle => $content ) {
-			$title = $titleFactory->newFromText( $pageTitle );
+		foreach ( $this->configurationPages as $pageTitle => $content ) {
+			$this->createPage( $titleFactory,
+				$pageTitle,
+				$content,
+				$user,
+				$services );
+		}
+
+		// Create the flag page to indicate that setup has been completed
+		$this->createPage( $titleFactory,
+			self::FLAG_PAGE_TITLE,
+			[ "SetupCompleted" => true ],
+			$user,
+			$services );
+	}
+
+	private function createPage( $titleFactory, $pageTitle, $content, $user, $services ) {
+		$title = $titleFactory->newFromText( $pageTitle );
+		if ( !$title->exists() ) {
 			$pageContent =
 				json_encode( $content,
 					JSON_PRETTY_PRINT );
-
-			// Check if the page already exists
-			if ( !$title->exists() ) {
-				$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
-				$pageUpdater->setContent( SlotRecord::MAIN,
-					new TextContent( $pageContent ) );
-				$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ),
-					EDIT_INTERNAL | EDIT_AUTOSUMMARY );
-				$saveStatus = $pageUpdater->getStatus();
-				if ( !$saveStatus->isGood() ) {
-					wfLogWarning( 'Adiutor: Failed to create configuration page',
-						[
-							'pageTitle' => $pageTitle,
-							'pageContent' => $pageContent,
-							'saveStatus' => $saveStatus,
-						] );
-				}
+			$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
+			$pageUpdater->setContent( SlotRecord::MAIN,
+				new TextContent( $pageContent ) );
+			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ),
+				EDIT_INTERNAL | EDIT_AUTOSUMMARY );
+			$saveStatus = $pageUpdater->getStatus();
+			if ( !$saveStatus->isGood() ) {
+				wfLogWarning( 'Adiutor: Failed to create configuration page',
+					[
+						'pageTitle' => $pageTitle,
+						'pageContent' => $pageContent,
+						'saveStatus' => $saveStatus,
+					] );
 			}
 		}
 	}
