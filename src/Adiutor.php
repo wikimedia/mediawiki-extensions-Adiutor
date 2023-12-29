@@ -25,6 +25,9 @@ class Adiutor {
 	 * The method uses MediaWiki's PageUpdater to create and save the pages.
 	 * The user used for creating the pages is $userFactory::newAnonymous(0), which is the default anonymous user.
 	 * After saving each page, the save status is stored in the $saveStatus variable.
+	 * The LocalizationConfiguration class contains constants for deletion propose configuration,
+	 * page protection configuration, speedy deletion request configuration, page move configuration,
+	 * revision deletion configuration, and article tagging configuration.
 	 */
 	public static function onExtensionLoad() {
 		$services = MediaWikiServices::getInstance();

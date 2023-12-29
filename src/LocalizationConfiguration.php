@@ -1,13 +1,7 @@
 <?php /** @noinspection ALL */
 
 /**
- * This file contains the LocalizationConfiguration class, which defines various configuration constants
- * for the Adiutor extension in MediaWiki.
- *
- * The LocalizationConfiguration class contains constants for deletion propose configuration,
- * page protection configuration, speedy deletion request configuration, page move configuration,
- * revision deletion configuration, and article tagging configuration.
- *
+ * @see Adiutor
  * @package MediaWiki\Extension\Adiutor
  */
 
