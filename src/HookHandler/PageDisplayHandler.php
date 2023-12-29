@@ -6,11 +6,13 @@ use ExtensionRegistry;
 use FormatJson;
 use MediaWiki\Extension\Adiutor\Utils\Utils;
 use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserOptionsLookup;
+use Psr\Log\LoggerInterface;
 use TemplateParser;
 use TextContent;
 use Title;
@@ -42,6 +44,8 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	 */
 	private WANObjectCache $wanObjectCache;
 
+	private LoggerInterface $logger;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
@@ -57,6 +61,7 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 		$this->revisionLookup = $revisionLookup;
 		$this->wanObjectCache = $wanObjectCache;
 		$this->templateParser = new TemplateParser( __DIR__ . '/../Templates' );
+		$this->logger = LoggerFactory::getInstance( 'Adiutor' );
 	}
 
 	/**
@@ -115,26 +120,45 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 					];
 					foreach ( $configPages as $configPage ) {
 						if ( !isset( $configPage['title'], $configPage['configuration'] ) ) {
+							$this->logger->warning( 'Configuration page data is incomplete',
+								[ 'configPage' => $configPage ] );
 							continue;
 						}
 						$title = Title::newFromText( $configPage['title'] );
 						if ( !$title ) {
+							$this->logger->warning( 'Configuration page title is invalid',
+								[ 'configPageTitle' => $configPage['title'] ] );
 							continue;
 						}
 						$rev = $this->revisionLookup->getRevisionByTitle( $title );
 						if ( !$rev ) {
+							$this->logger->warning( 'Configuration page not found',
+								[ 'configPageTitle' => $configPage['title'] ] );
 							$configData[$configPage['configuration']] = [];
 							continue;
 						}
 						$content =
 							$rev->getContent( SlotRecord::MAIN,
 								RevisionRecord::RAW );
-						if ( $content instanceof TextContent ) {
-							$configuration = FormatJson::decode( $content->getText() );
-							$configData[$configPage['configuration']] = $configuration;
-						} else {
+						if ( !( $content instanceof TextContent ) ) {
+							$this->logger->warning( 'Configuration page content is not TextContent',
+								[
+									'configPageTitle' => $configPage['title'],
+									'contentType' => get_class( $content ),
+								] );
 							$configData[$configPage['configuration']] = [];
+							continue;
 						}
+						$jsonContent =
+							FormatJson::decode( $content->getText(),
+								true );
+						if ( !is_array( $jsonContent ) ) {
+							$this->logger->warning( 'Configuration page content is not valid JSON',
+								[ 'configPageTitle' => $configPage['title'] ] );
+							$configData[$configPage['configuration']] = [];
+							continue;
+						}
+						$configData[$configPage['configuration']] = $jsonContent;
 					}
 
 					return $configData;
