@@ -67,6 +67,15 @@ class Adiutor {
 					new TextContent( $pageContent ) );
 				$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ),
 					EDIT_INTERNAL | EDIT_AUTOSUMMARY );
+				$saveStatus = $pageUpdater->getStatus();
+				if ( !$saveStatus->isGood() ) {
+					wfLogWarning( 'Adiutor: Failed to create configuration page',
+						[
+							'pageTitle' => $pageTitle,
+							'pageContent' => $pageContent,
+							'saveStatus' => $saveStatus,
+						] );
+				}
 			}
 		}
 	}
