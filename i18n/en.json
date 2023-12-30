@@ -209,5 +209,15 @@
 	"adiutor-this-page-deleted-before": "This page has been deleted $1 times before!",
 	"adiutor-deletion-log": "Deletion log",
 	"tag-adiutor": "Adiutor",
-	"tag-adiutor-description": "This edit has been made using the Adiutor extension."
+	"tag-adiutor-description": "This edit has been made using the Adiutor extension.",
+	"adiutor-csd-enable-label": "Enable speedy deletion requests",
+	"adiutor-csd-enable-help": "When this checkbox is activated, the speedy deletion request module will be enabled.",
+	"adiutor-rpp-enable-label": "Enable protection requests",
+	"adiutor-rpp-enable-help": "When this checkbox is activated, the protection request module will be enabled.",
+	"adiutor-rpm-enable-label": "Enable page move requests",
+	"adiutor-rpm-enable-help": "When this checkbox is activated, the page move request module will be enabled.",
+	"adiutor-prod-enable-label": "Enable propose deletion",
+	"adiutor-prod-enable-help": "When this checkbox is activated, the propose deletion module will be enabled.",
+	"adiutor-tag-enable-label": "Enable article tagging",
+	"adiutor-tag-enable-help": "When this checkbox is activated, the article tagging module will be enabled."
 }

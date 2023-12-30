@@ -411,6 +411,47 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="less">
+#adiutor-options-props {
+  border-collapse: collapse;
+  width: 100%;
+
+  caption {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #eaecf0;
+    color: #000f;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-weight: 900;
+  }
+
+  td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #fff;
+    color: #000f;
+  }
+
+  .add-new-button {
+    float: right;
+    margin-right: 10px;
+  }
+}
+
 cdx-label {
   font-weight: 900;
   margin-top: 10px;

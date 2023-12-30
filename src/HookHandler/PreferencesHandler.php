@@ -61,6 +61,42 @@ class PreferencesHandler implements GetPreferencesHook {
 			'label-message' => 'adiutor-toggle-adiutor',
 			'section' => 'moderate/adiutor',
 		];
+
+		$preferences['adiutor-csd-enable'] = [
+			'type' => 'check',
+			'label-message' => 'adiutor-csd-enable-label',
+			'section' => 'moderate/adiutor',
+			'help-message' => 'adiutor-csd-enable-help',
+		];
+
+		// Request protection
+		$preferences['adiutor-rpp-enable'] = [
+			'type' => 'check',
+			'label-message' => 'adiutor-rpp-enable-label',
+			'section' => 'moderate/adiutor',
+			'help-message' => 'adiutor-rpp-enable-help',
+		];
+
+		$preferences['adiutor-rpm-enable'] = [
+			'type' => 'check',
+			'label-message' => 'adiutor-rpm-enable-label',
+			'section' => 'moderate/adiutor',
+			'help-message' => 'adiutor-rpm-enable-help',
+		];
+
+		$preferences['adiutor-prod-enable'] = [
+			'type' => 'check',
+			'label-message' => 'adiutor-prod-enable-label',
+			'section' => 'moderate/adiutor',
+			'help-message' => 'adiutor-prod-enable-help',
+		];
+
+		$preferences['adiutor-tag-enable'] = [
+			'type' => 'check',
+			'label-message' => 'adiutor-tag-enable-label',
+			'section' => 'moderate/adiutor',
+			'help-message' => 'adiutor-tag-enable-help',
+		];
 	}
 
 	/**

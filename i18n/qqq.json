@@ -209,5 +209,15 @@
 	"adiutor-this-page-deleted-before": "Label for the message indicating that the page has been deleted before.",
 	"adiutor-deletion-log": "Label for the link to the logs.",
 	"tag-adiutor": "Label for the tag used by Adiutor.",
-	"tag-adiutor-description": "Description of the tag used by Adiutor."
+	"tag-adiutor-description": "Description of the tag used by Adiutor.",
+	"adiutor-csd-enable-label": "Label for the preferences option to enable the CSD module.",
+	"adiutor-csd-enable-help": "Help text for the preferences option to enable the CSD module.",
+	"adiutor-rpp-enable-label": "Label for the preferences option to enable the protection request module.",
+	"adiutor-rpp-enable-help": "Help text for the preferences option to enable the protection request module.",
+	"adiutor-rpm-enable-label": "Label for the preferences option to enable the page move request module.",
+	"adiutor-rpm-enable-help": "Help text for the preferences option to enable the page move request module.",
+	"adiutor-prod-enable-label": "Label for the preferences option to enable the propose deletion module.",
+	"adiutor-prod-enable-help": "Help text for the preferences option to enable the propose deletion module.",
+	"adiutor-tag-enable-label": "Label for the preferences option to enable the article tagging module.",
+	"adiutor-tag-enable-help": "Help text for the preferences option to enable the article tagging module."
 }

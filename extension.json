@@ -27,7 +27,12 @@
 		"MediaWiki\\Extension\\Adiutor\\": "src/"
 	},
 	"DefaultUserOptions": {
-		"adiutor-enable": 0
+		"adiutor-enable": 0,
+		"adiutor-csd-enable": 1,
+		"adiutor-rpp-enable": 1,
+		"adiutor-rpm-enable": 1,
+		"adiutor-prod-enable": 1,
+		"adiutor-tag-enable": 1
 	},
 	"SpecialPages": {
 		"AdiutorSettings": {
@@ -125,9 +130,6 @@
 						"cdxIconClose"
 					]
 				}
-			],
-			"styles": [
-				"./ext.adiutor.styles/styles.less"
 			],
 			"dependencies": [
 				"mediawiki.util",
@@ -341,11 +343,18 @@
 				"adiutor-this-page-deleted-before",
 				"adiutor-deletion-log",
 				"tag-adiutor",
-				"tag-adiutor-description"
+				"tag-adiutor-description",
+				"adiutor-csd-enable-label",
+				"adiutor-csd-enable-help",
+				"adiutor-rpp-enable-label",
+				"adiutor-rpp-enable-help",
+				"adiutor-rpm-enable-label",
+				"adiutor-rpm-enable-help",
+				"adiutor-prod-enable-label",
+				"adiutor-prod-enable-help",
+				"adiutor-tag-enable-label",
+				"adiutor-tag-enable-help"
 			]
-		},
-		"ext.adiutor.styles": {
-			"styles": "ext.adiutor.styles/styles.less"
 		}
 	},
 	"RestRoutes": [
