@@ -48,11 +48,4 @@ class AdiutorSettings extends SpecialPage {
 		$out->addHTML( $this->templateParser->processTemplate( 'AdiutorSettings',
 			[] ) );
 	}
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function getGroupName() : string {
-		return 'other';
-	}
 }
