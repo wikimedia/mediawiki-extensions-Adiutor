@@ -52,11 +52,21 @@
 	}
 
 	if ( !isSpecialPage && !isMainPage ) {
-		addPortletLink( configurations.csd, 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion' );
-		addPortletLink( configurations.rpp, 't-request-protection', 'adiutor-request-protection', 'requestPageProtection' );
-		addPortletLink( configurations.rpm, 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove' );
-		addPortletLink( configurations.dpr, 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose' );
-		addPortletLink( configurations.tag, 't-tag-article', 'adiutor-tag-article', 'articleTagging' );
+		if ( mw.user.options.get( 'adiutor-csd-enable' ) ) {
+			addPortletLink( configurations.csd, 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion' );
+		}
+		if ( mw.user.options.get( 'adiutor-rpp-enable' ) ) {
+			addPortletLink( configurations.rpp, 't-request-protection', 'adiutor-request-protection', 'requestPageProtection' );
+		}
+		if ( mw.user.options.get( 'adiutor-rpm-enable' ) ) {
+			addPortletLink( configurations.rpm, 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove' );
+		}
+		if ( mw.user.options.get( 'adiutor-prod-enable' ) ) {
+			addPortletLink( configurations.dpr, 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose' );
+		}
+		if ( mw.user.options.get( 'adiutor-tag-enable' ) ) {
+			addPortletLink( configurations.tag, 't-tag-article', 'adiutor-tag-article', 'articleTagging' );
+		}
 	}
 
 	const currentNamespace = mw.config.get( 'wgNamespaceNumber' );
