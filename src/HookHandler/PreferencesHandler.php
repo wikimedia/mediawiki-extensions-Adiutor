@@ -11,16 +11,16 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 
 class PreferencesHandler implements GetPreferencesHook {
+
+	private const PREF_ADIUTOR_ENABLE = 'adiutor-enable';
 	/**
 	 * @var PermissionManager
 	 */
 	private PermissionManager $permissionManager;
-
 	/**
 	 * @var UserOptionsLookup
 	 */
 	private UserOptionsLookup $userOptionsLookup;
-
 	/**
 	 * @var UserGroupManager
 	 */
@@ -56,47 +56,60 @@ class PreferencesHandler implements GetPreferencesHook {
 			return;
 		}
 
-		$preferences['adiutor-enable'] = [
-			'type' => 'toggle',
-			'label-message' => 'adiutor-toggle-adiutor',
-			'section' => 'moderate/adiutor',
+		// Define Adiutor's preferences
+		$prefDefinitions = [
+			self::PREF_ADIUTOR_ENABLE => [
+				'type' => 'toggle',
+				'label-message' => 'adiutor-toggle-adiutor',
+				'section' => 'moderate/adiutor',
+			],
+			'adiutor-csd-enable' => [
+				'type' => 'check',
+				'label-message' => 'adiutor-csd-enable-label',
+				'section' => 'moderate/adiutor',
+				'help-message' => 'adiutor-csd-enable-help',
+			],
+			'adiutor-rpp-enable' => [
+				'type' => 'check',
+				'label-message' => 'adiutor-rpp-enable-label',
+				'section' => 'moderate/adiutor',
+				'help-message' => 'adiutor-rpp-enable-help',
+			],
+			'adiutor-rpm-enable' => [
+				'type' => 'check',
+				'label-message' => 'adiutor-rpm-enable-label',
+				'section' => 'moderate/adiutor',
+				'help-message' => 'adiutor-rpm-enable-help',
+			],
+			'adiutor-prod-enable' => [
+				'type' => 'toggle',
+				'label-message' => 'adiutor-prod-enable-label',
+				'section' => 'moderate/adiutor',
+				'help-message' => 'adiutor-prod-enable-help',
+			],
+			'adiutor-tag-enable' => [
+				'type' => 'toggle',
+				'label-message' => 'adiutor-tag-enable-label',
+				'section' => 'moderate/adiutor',
+				'help-message' => 'adiutor-tag-enable-help',
+			],
 		];
 
-		$preferences['adiutor-csd-enable'] = [
-			'type' => 'check',
-			'label-message' => 'adiutor-csd-enable-label',
-			'section' => 'moderate/adiutor',
-			'help-message' => 'adiutor-csd-enable-help',
-		];
+		foreach ( $prefDefinitions as $key => $definition ) {
+			$preferences[$key] = $definition;
+		}
 
-		// Request protection
-		$preferences['adiutor-rpp-enable'] = [
-			'type' => 'check',
-			'label-message' => 'adiutor-rpp-enable-label',
-			'section' => 'moderate/adiutor',
-			'help-message' => 'adiutor-rpp-enable-help',
-		];
+		$adiutorEnabled =
+			$this->userOptionsLookup->getOption( $user,
+				'adiutor-enable' );
 
-		$preferences['adiutor-rpm-enable'] = [
-			'type' => 'check',
-			'label-message' => 'adiutor-rpm-enable-label',
-			'section' => 'moderate/adiutor',
-			'help-message' => 'adiutor-rpm-enable-help',
-		];
-
-		$preferences['adiutor-prod-enable'] = [
-			'type' => 'check',
-			'label-message' => 'adiutor-prod-enable-label',
-			'section' => 'moderate/adiutor',
-			'help-message' => 'adiutor-prod-enable-help',
-		];
-
-		$preferences['adiutor-tag-enable'] = [
-			'type' => 'check',
-			'label-message' => 'adiutor-tag-enable-label',
-			'section' => 'moderate/adiutor',
-			'help-message' => 'adiutor-tag-enable-help',
-		];
+		if ( !$adiutorEnabled ) {
+			$preferences['adiutor-csd-enable']['disabled'] = true;
+			$preferences['adiutor-rpp-enable']['disabled'] = true;
+			$preferences['adiutor-rpm-enable']['disabled'] = true;
+			$preferences['adiutor-prod-enable']['disabled'] = true;
+			$preferences['adiutor-tag-enable']['disabled'] = true;
+		}
 	}
 
 	/**
