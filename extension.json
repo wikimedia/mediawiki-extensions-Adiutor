@@ -127,7 +127,8 @@
 					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
 					"callbackParam": [
 						"cdxIconAdd",
-						"cdxIconClose"
+						"cdxIconClose",
+						"cdxIconSearch"
 					]
 				}
 			],
