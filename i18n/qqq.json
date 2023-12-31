@@ -105,8 +105,6 @@
 	"adiutor-csd-template-start-multiple-reason": "Label for the template used in speedy deletion requests with multiple reasons.",
 	"adiutor-single-reason-summary": "Label for the summary field in cases where a single reason is provided for an action.",
 	"adiutor-multiple-reason-summary": "Label for the summary field in cases where multiple reasons are provided for an action.",
-	"adiutor-api-post-summary-for-talk-page": "Label for the summary field specifically for API posts related to talk pages.",
-	"adiutor-api-post-summary-for-log": "Label for the summary field specifically for logging API posts.",
 	"adiutor-name-space": "Label for the parameter or setting specifying the namespace in which an action takes place.",
 	"adiutor-add-new": "Label for the option to add a new item or entry in a list or table.",
 	"adiutor-postfix-reason-usage": "Label for the usage instructions of the postfix reason in various templates or forms.",

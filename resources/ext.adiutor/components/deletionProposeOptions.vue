@@ -135,13 +135,6 @@
   <cdx-field>
     <cdx-field>
       <strong>{{ $i18n( 'adiutor-summaries' ) }}</strong>
-      <cdx-label input-id="apiPostSummaryForLog">
-        {{ $i18n( 'adiutor-api-post-summary-for-log' ) }}
-      </cdx-label>
-      <cdx-text-input
-          id="apiPostSummaryForLog"
-          v-model="apiPostSummaryForLog"
-          aria-label="{{ $i18n('adiutor-api-post-summary-for-log') }}"></cdx-text-input>
       <cdx-label input-id="apiPostSummary">
         {{ $i18n( 'adiutor-api-post-summary' ) }}
       </cdx-label>
@@ -180,7 +173,6 @@ module.exports = defineComponent( {
     const apiPostSummary = ref( dprConfiguration.apiPostSummary );
     const apiPostSummaryForCreator = ref( dprConfiguration.apiPostSummaryForCreator );
     const prodNotificationTemplate = ref( dprConfiguration.prodNotificationTemplate );
-    const apiPostSummaryForLog = ref( dprConfiguration.apiPostSummaryForLog );
     const moduleEnabled = ref( dprConfiguration.moduleEnabled );
     const testMode = ref( dprConfiguration.testMode );
     const namespaces = ref( dprConfiguration.namespaces );
@@ -195,7 +187,6 @@ module.exports = defineComponent( {
       apiPostSummary,
       apiPostSummaryForCreator,
       prodNotificationTemplate,
-      apiPostSummaryForLog,
       moduleEnabled,
       testMode,
       namespaces,
@@ -233,7 +224,6 @@ module.exports = defineComponent( {
         apiPostSummary: this.apiPostSummary,
         apiPostSummaryForCreator: this.apiPostSummaryForCreator,
         prodNotificationTemplate: this.prodNotificationTemplate,
-        apiPostSummaryForLog: this.apiPostSummaryForLog,
         moduleEnabled: this.moduleEnabled,
         testMode: this.testMode,
         namespaces: this.namespaces,

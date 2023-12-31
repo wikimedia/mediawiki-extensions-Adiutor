@@ -170,20 +170,6 @@
           id="multipleReasonSummary"
           v-model="multipleReasonSummary"
           aria-label="{{ $i18n('adiutor-multiple-reason-summary') }}"></cdx-text-input>
-      <cdx-label input-id="apiPostSummaryForTalkPage">
-        {{ $i18n( 'adiutor-api-post-summary-for-talk-page' ) }}
-      </cdx-label>
-      <cdx-text-input
-          id="apiPostSummaryForTalkPage"
-          v-model="apiPostSummaryForTalkPage"
-          aria-label="{{ $i18n('adiutor-api-post-summary-for-talk-page') }}"></cdx-text-input>
-      <cdx-label input-id="apiPostSummaryForLog">
-        {{ $i18n( 'adiutor-api-post-summary-for-log' ) }}
-      </cdx-label>
-      <cdx-text-input
-          id="apiPostSummaryForLog"
-          v-model="apiPostSummaryForLog"
-          aria-label="{{ $i18n('adiutor-api-post-summary-for-log') }}"></cdx-text-input>
     </cdx-field>
   </cdx-field>
   <cdx-field>
@@ -300,8 +286,6 @@ module.exports = defineComponent( {
     const csdTemplateStartMultipleReason = ref( csdConfiguration.csdTemplateStartMultipleReason );
     const speedyDeletionPolicyLink = ref( csdConfiguration.speedyDeletionPolicyLink );
     const speedyDeletionPolicyPageShortcut = ref( csdConfiguration.speedyDeletionPolicyPageShortcut );
-    const apiPostSummaryForTalkPage = ref( csdConfiguration.apiPostSummaryForTalkPage );
-    const apiPostSummaryForLog = ref( csdConfiguration.apiPostSummaryForLog );
     const csdNotificationTemplate = ref( csdConfiguration.csdNotificationTemplate );
     const singleReasonSummary = ref( csdConfiguration.singleReasonSummary );
     const multipleReasonSummary = ref( csdConfiguration.multipleReasonSummary );
@@ -350,8 +334,6 @@ module.exports = defineComponent( {
       csdTemplateStartMultipleReason,
       speedyDeletionPolicyLink,
       speedyDeletionPolicyPageShortcut,
-      apiPostSummaryForTalkPage,
-      apiPostSummaryForLog,
       csdNotificationTemplate,
       singleReasonSummary,
       multipleReasonSummary,
@@ -444,8 +426,6 @@ module.exports = defineComponent( {
         multipleReasonSeparation: this.multipleReasonSeparation,
         speedyDeletionPolicyLink: this.speedyDeletionPolicyLink,
         speedyDeletionPolicyPageShortcut: this.speedyDeletionPolicyPageShortcut,
-        apiPostSummaryForTalkPage: this.apiPostSummaryForTalkPage,
-        apiPostSummaryForLog: this.apiPostSummaryForLog,
         csdNotificationTemplate: this.csdNotificationTemplate,
         singleReasonSummary: this.singleReasonSummary,
         multipleReasonSummary: this.multipleReasonSummary,
