@@ -6,12 +6,6 @@
 	"version": "0.0.1",
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
-	"config": {
-		"AdiutorEnable": {
-			"description": "Enable the adiutor features",
-			"value": true
-		}
-	},
 	"MessagesDirs": {
 		"Adiutor": [
 			"i18n"
@@ -360,7 +354,7 @@
 	},
 	"RestRoutes": [
 		{
-			"path": "/adiutor/v0/updatelocalconfiguration",
+			"path": "/adiutor/v0/configuration/update",
 			"method": "POST",
 			"class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\UpdateLocalConfigurationHandler",
 			"services": [

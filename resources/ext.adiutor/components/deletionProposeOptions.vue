@@ -70,9 +70,7 @@
     </cdx-field>
     <cdx-field>
       <cdx-label input-id="proposedDeletionPolicyShortcut">
-        {{
-          $i18n( 'adiutor-proposed-deletion-policy-shortcut' )
-        }}
+        {{ $i18n( 'adiutor-proposed-deletion-policy-shortcut' ) }}
       </cdx-label>
       <cdx-text-input
           id="proposedDeletionPolicyShortcut"
@@ -81,9 +79,7 @@
     </cdx-field>
     <cdx-field>
       <cdx-label input-id="proposedDeletionOfBiographiesOfLivingPeoplePolicy">
-        {{
-          $i18n( 'adiutor-proposed-deletion-blpprod-policy' )
-        }}
+        {{ $i18n( 'adiutor-proposed-deletion-blpprod-policy' ) }}
       </cdx-label>
       <cdx-text-input
           id="proposedDeletionOfBiographiesOfLivingPeoplePolicy"
@@ -92,9 +88,7 @@
     </cdx-field>
     <cdx-field>
       <cdx-label input-id="proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut">
-        {{
-          $i18n( 'adiutor-proposed-deletion-blpprod-policy-shortcut' )
-        }}
+        {{ $i18n( 'adiutor-proposed-deletion-blpprod-policy-shortcut' ) }}
       </cdx-label>
       <cdx-text-input
           id="proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut"
@@ -118,9 +112,7 @@
     </cdx-field>
     <cdx-field>
       <cdx-label input-id="livingPersonProposeTemplate">
-        {{
-          $i18n( 'adiutor-proposed-deletion-blps-template' )
-        }}
+        {{ $i18n( 'adiutor-proposed-deletion-blps-template' ) }}
       </cdx-label>
       <cdx-text-input
           id="livingPersonProposeTemplate"
@@ -251,7 +243,7 @@ module.exports = defineComponent( {
       };
 
       // Define the API endpoint URL
-      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/updatelocalconfiguration';
+      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/configuration/update';
 
       try {
         // Send a POST request to the API with the data

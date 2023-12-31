@@ -48,9 +48,7 @@
     <cdx-field :is-fieldset="true">
       <cdx-toggle-switch v-model="useMultipleIssuesTemplate">
         <cdx-label input-id="useMultipleIssuesTemplate">
-          {{
-            $i18n( 'adiutor-use-multiple-issues-template-label' )
-          }}
+          {{ $i18n( 'adiutor-use-multiple-issues-template-label' ) }}
         </cdx-label>
         <template #description>
           {{ $i18n( 'adiutor-multiple-issues-template-description' ) }}
@@ -119,9 +117,7 @@
         </td>
         <td style="text-align: right;">
           <cdx-button action="destructive" @click="deleteLabel( label )">
-            {{
-              $i18n( 'adiutor-delete-button' )
-            }}
+            {{ $i18n( 'adiutor-delete-button' ) }}
           </cdx-button>
         </td>
       </tr>
@@ -157,14 +153,10 @@
         </td>
         <td style="text-align: right;">
           <cdx-button action="destructive" @click="deleteTag( labelIndex, tagIndex )">
-            {{
-              $i18n( 'adiutor-delete' )
-            }}
+            {{ $i18n( 'adiutor-delete' ) }}
           </cdx-button>
           <cdx-button @click="addNewSubitem( labelIndex, tagIndex )">
-            {{
-              $i18n( 'adiutor-add-sub-item' )
-            }}
+            {{ $i18n( 'adiutor-add-sub-item' ) }}
           </cdx-button>
         </td>
       </tr>
@@ -178,9 +170,7 @@
                     class="add-new-button"
                     weight="quiet"
                     @click="addNewSubitem( labelIndex, tagIndex )">
-                  {{
-                    $i18n( 'adiutor-add-new-tag-label' )
-                  }}
+                  {{ $i18n( 'adiutor-add-new-tag-label' ) }}
                 </cdx-button>
               </caption>
               <tr>
@@ -236,9 +226,7 @@
                   <cdx-button
                       action="destructive"
                       @click="deleteSubitem( labelIndex, tagIndex, subitemIndex )">
-                    {{
-                      $i18n( 'adiutor-delete-button' )
-                    }}
+                    {{ $i18n( 'adiutor-delete-button' ) }}
                   </cdx-button>
                 </td>
               </tr>
@@ -379,7 +367,7 @@ module.exports = defineComponent( {
       };
 
       // Define the API endpoint URL
-      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/updatelocalconfiguration';
+      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/configuration/update';
 
       try {
         // Send a POST request to the API with the data

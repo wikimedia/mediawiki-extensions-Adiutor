@@ -64,9 +64,7 @@
         v-model="speedyDeletionPolicyLink"
         aria-label="{{ $i18n('adiutor-speedy-deletion-policy-link') }}"></cdx-text-input>
     <cdx-label input-id="speedyDeletionPolicyPageShortcut">
-      {{
-        $i18n( 'adiutor-speedy-deletion-policy-page-shortcut' )
-      }}
+      {{ $i18n( 'adiutor-speedy-deletion-policy-page-shortcut' ) }}
     </cdx-label>
     <cdx-text-input
         id="speedyDeletionPolicyPageShortcut"
@@ -173,9 +171,7 @@
           v-model="multipleReasonSummary"
           aria-label="{{ $i18n('adiutor-multiple-reason-summary') }}"></cdx-text-input>
       <cdx-label input-id="apiPostSummaryForTalkPage">
-        {{
-          $i18n( 'adiutor-api-post-summary-for-talk-page' )
-        }}
+        {{ $i18n( 'adiutor-api-post-summary-for-talk-page' ) }}
       </cdx-label>
       <cdx-text-input
           id="apiPostSummaryForTalkPage"
@@ -239,9 +235,7 @@
             class="add-new-button"
             weight="quiet"
             @click="addNewReason( namespaceIndex )">
-          {{
-            $i18n( 'adiutor-add-new' )
-          }}
+          {{ $i18n( 'adiutor-add-new' ) }}
         </cdx-button>
       </caption>
       <tr>
@@ -269,9 +263,7 @@
         </td>
         <td>
           <cdx-button action="destructive" @click="deleteReason( namespaceIndex, reasonIndex )">
-            {{
-              $i18n( 'adiutor-delete' )
-            }}
+            {{ $i18n( 'adiutor-delete' ) }}
           </cdx-button>
         </td>
       </tr>
@@ -463,7 +455,7 @@ module.exports = defineComponent( {
       };
 
       // Define the API endpoint URL
-      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/updatelocalconfiguration';
+      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/configuration/update';
 
       try {
         // Send a POST request to the API with the data

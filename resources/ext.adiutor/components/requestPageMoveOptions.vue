@@ -251,7 +251,7 @@ module.exports = defineComponent( {
       };
 
       // Define the API endpoint URL
-      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/updatelocalconfiguration';
+      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/configuration/update';
 
       try {
         // Send a POST request to the API with the data
