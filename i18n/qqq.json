@@ -219,5 +219,6 @@
 	"adiutor-prod-enable-label": "Label for the preferences option to enable the propose deletion module.",
 	"adiutor-prod-enable-help": "Help text for the preferences option to enable the propose deletion module.",
 	"adiutor-tag-enable-label": "Label for the preferences option to enable the article tagging module.",
-	"adiutor-tag-enable-help": "Help text for the preferences option to enable the article tagging module."
+	"adiutor-tag-enable-help": "Help text for the preferences option to enable the article tagging module.",
+	"adiutor-interface-admin-required": "Label for the message indicating that the user must be an interface administrator to use this feature."
 }

@@ -227,75 +227,56 @@ module.exports = defineComponent( {
   methods: {
 
     async saveConfiguration() {
-      // Change the button label and disable it during the save operation
+      if ( !mw.config.get( 'wgUserGroups' ).includes( 'interface-admin' ) ) {
+        mw.notify( mw.message( 'adiutor-interface-admin-required' ).text(), { type: 'error' } );
+        return;
+      }
       this.saveButtonLabel = mw.message( 'adiutor-configurations-saving' ).text();
       this.saveButtonAction = 'default';
       this.saveButtonDisabled = true;
 
-      // Prepare the data to be sent in the HTTP request
+      const api = new mw.Api();
+      const editToken = mw.user.tokens.get( 'csrfToken' );
+      const contentToSave = JSON.stringify( {
+        noticeBoardTitle: this.noticeBoardTitle,
+        addNewSection: this.addNewSection,
+        sectionTitle: this.sectionTitle,
+        useExistSection: this.useExistSection,
+        sectionId: this.sectionId,
+        textModificationDirection: this.textModificationDirection,
+        contentPattern: this.contentPattern,
+        apiPostSummary: this.apiPostSummary,
+        moduleEnabled: this.moduleEnabled,
+        testMode: this.testMode,
+        namespaces: this.namespaces
+      }, null, 2 );
+
       const data = {
+        action: 'edit',
         title: 'MediaWiki:AdiutorRequestPageMove.json',
-        content: {
-          noticeBoardTitle: this.noticeBoardTitle,
-          addNewSection: this.addNewSection,
-          sectionTitle: this.sectionTitle,
-          useExistSection: this.useExistSection,
-          sectionId: this.sectionId,
-          textModificationDirection: this.textModificationDirection,
-          contentPattern: this.contentPattern,
-          apiPostSummary: this.apiPostSummary,
-          moduleEnabled: this.moduleEnabled,
-          testMode: this.testMode,
-          namespaces: this.namespaces
-        }
+        text: contentToSave,
+        token: editToken,
+        format: 'json'
       };
 
-      // Define the API endpoint URL
-      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/configuration/update';
-
-      try {
-        // Send a POST request to the API with the data
-        const response = await fetch( apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify( data )
-        } );
-
-        if ( !response.ok ) {
-          // Handle HTTP error if the response status is not OK
-          throw new Error( `HTTP error! Status: ${ response.status }` );
-        }
-
-        // Parse the response data as JSON
-        const responseData = await response.json();
-
-        if ( responseData.status === 'success' ) {
-          // Display a success notification if the update was successful
+      api.post( data ).done( ( response ) => {
+        if ( response.edit && response.edit.result === 'Success' ) {
           mw.notify( mw.message( 'adiutor-localization-settings-has-been-updated' ).text(), {
             title: mw.msg( 'adiutor-operation-completed' ),
             type: 'success'
           } );
-          // Revert the button label and enable it after a delay (2 seconds)
           this.saveButtonLabel = mw.message( 'adiutor-save-configurations' ).text();
           this.saveButtonAction = 'progressive';
           this.saveButtonDisabled = false;
         } else {
-          // Log an error message if the update was not successful
-          this.saveButtonLabel = mw.message( 'adiutor-configurations-saving' ).text();
-          this.saveButtonAction = 'destructive';
-          this.saveButtonDisabled = false;
+          throw new Error( mw.msg( 'adiutor-operation-failed' ) );
         }
-      } catch ( error ) {
-        mw.notify( error.message, {
-          title: mw.msg( 'adiutor-operation-failed' ),
-          type: 'error'
-        } );
+      } ).fail( ( error ) => {
+        mw.notify( error, { type: 'error' } );
         this.saveButtonLabel = mw.message( 'adiutor-try-again' ).text();
         this.saveButtonAction = 'destructive';
         this.saveButtonDisabled = false;
-      }
+      } );
     }
 
   }

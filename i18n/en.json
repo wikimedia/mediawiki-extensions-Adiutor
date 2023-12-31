@@ -219,5 +219,6 @@
 	"adiutor-prod-enable-label": "Enable propose deletion",
 	"adiutor-prod-enable-help": "When this checkbox is activated, the propose deletion module will be enabled.",
 	"adiutor-tag-enable-label": "Enable article tagging",
-	"adiutor-tag-enable-help": "When this checkbox is activated, the article tagging module will be enabled."
+	"adiutor-tag-enable-help": "When this checkbox is activated, the article tagging module will be enabled.",
+	"adiutor-interface-admin-required": "This action requires the interface-admin right."
 }

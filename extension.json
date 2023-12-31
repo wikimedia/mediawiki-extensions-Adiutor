@@ -348,20 +348,10 @@
 				"adiutor-prod-enable-label",
 				"adiutor-prod-enable-help",
 				"adiutor-tag-enable-label",
-				"adiutor-tag-enable-help"
+				"adiutor-tag-enable-help",
+				"adiutor-interface-admin-required"
 			]
 		}
 	},
-	"RestRoutes": [
-		{
-			"path": "/adiutor/v0/configuration/update",
-			"method": "POST",
-			"class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\UpdateLocalConfigurationHandler",
-			"services": [
-				"PermissionManager",
-				"MainConfig"
-			]
-		}
-	],
 	"manifest_version": 2
 }

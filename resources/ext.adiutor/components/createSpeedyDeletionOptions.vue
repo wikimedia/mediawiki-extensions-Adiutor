@@ -426,80 +426,61 @@ module.exports = defineComponent( {
     },
 
     async saveConfiguration() {
-      // Change the button label and disable it during the save operation
+      if ( !mw.config.get( 'wgUserGroups' ).includes( 'interface-admin' ) ) {
+        mw.notify( mw.message( 'adiutor-interface-admin-required' ).text(), { type: 'error' } );
+        return;
+      }
       this.saveButtonLabel = mw.message( 'adiutor-configurations-saving' ).text();
       this.saveButtonAction = 'default';
       this.saveButtonDisabled = true;
 
-      // Prepare the data to be sent in the HTTP request
+      const api = new mw.Api();
+      const editToken = mw.user.tokens.get( 'csrfToken' );
+      const contentToSave = JSON.stringify( {
+        speedyDeletionReasons: this.speedyDeletionReasons,
+        csdTemplateStartSingleReason: this.csdTemplateStartSingleReason,
+        csdTemplateStartMultipleReason: this.csdTemplateStartMultipleReason,
+        postfixReasonUsage: this.postfixReasonUsage,
+        multipleReasonSeparation: this.multipleReasonSeparation,
+        speedyDeletionPolicyLink: this.speedyDeletionPolicyLink,
+        speedyDeletionPolicyPageShortcut: this.speedyDeletionPolicyPageShortcut,
+        apiPostSummaryForTalkPage: this.apiPostSummaryForTalkPage,
+        apiPostSummaryForLog: this.apiPostSummaryForLog,
+        csdNotificationTemplate: this.csdNotificationTemplate,
+        singleReasonSummary: this.singleReasonSummary,
+        multipleReasonSummary: this.multipleReasonSummary,
+        copyVioReasonValue: this.copyVioReasonValue,
+        moduleEnabled: this.moduleEnabled,
+        testMode: this.testMode,
+        namespaces: this.namespaces
+      }, null, 2 );
+
       const data = {
+        action: 'edit',
         title: 'MediaWiki:AdiutorCreateSpeedyDeletion.json',
-        content: {
-          speedyDeletionReasons: this.speedyDeletionReasons,
-          csdTemplateStartSingleReason: this.csdTemplateStartSingleReason,
-          csdTemplateStartMultipleReason: this.csdTemplateStartMultipleReason,
-          postfixReasonUsage: this.postfixReasonUsage,
-          multipleReasonSeparation: this.multipleReasonSeparation,
-          speedyDeletionPolicyLink: this.speedyDeletionPolicyLink,
-          speedyDeletionPolicyPageShortcut: this.speedyDeletionPolicyPageShortcut,
-          apiPostSummaryForTalkPage: this.apiPostSummaryForTalkPage,
-          apiPostSummaryForLog: this.apiPostSummaryForLog,
-          csdNotificationTemplate: this.csdNotificationTemplate,
-          singleReasonSummary: this.singleReasonSummary,
-          multipleReasonSummary: this.multipleReasonSummary,
-          copyVioReasonValue: this.copyVioReasonValue,
-          moduleEnabled: this.moduleEnabled,
-          testMode: this.testMode,
-          namespaces: this.namespaces
-        }
+        text: contentToSave,
+        token: editToken,
+        format: 'json'
       };
 
-      // Define the API endpoint URL
-      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/configuration/update';
-
-      try {
-        // Send a POST request to the API with the data
-        const response = await fetch( apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify( data )
-        } );
-
-        if ( !response.ok ) {
-          // Handle HTTP error if the response status is not OK
-          throw new Error( `HTTP error! Status: ${ response.status }` );
-        }
-
-        // Parse the response data as JSON
-        const responseData = await response.json();
-
-        if ( responseData.status === 'success' ) {
-          // Display a success notification if the update was successful
+      api.post( data ).done( ( response ) => {
+        if ( response.edit && response.edit.result === 'Success' ) {
           mw.notify( mw.message( 'adiutor-localization-settings-has-been-updated' ).text(), {
             title: mw.msg( 'adiutor-operation-completed' ),
             type: 'success'
           } );
-          // Revert the button label and enable it after a delay (2 seconds)
           this.saveButtonLabel = mw.message( 'adiutor-save-configurations' ).text();
           this.saveButtonAction = 'progressive';
           this.saveButtonDisabled = false;
         } else {
-          // Log an error message if the update was not successful
-          this.saveButtonLabel = mw.message( 'adiutor-try-again' ).text();
-          this.saveButtonAction = 'destructive';
-          this.saveButtonDisabled = false;
+          throw new Error( mw.msg( 'adiutor-operation-failed' ) );
         }
-      } catch ( error ) {
-        mw.notify( error.message, {
-          title: mw.msg( 'adiutor-operation-failed' ),
-          type: 'error'
-        } );
+      } ).fail( ( error ) => {
+        mw.notify( error, { type: 'error' } );
         this.saveButtonLabel = mw.message( 'adiutor-try-again' ).text();
         this.saveButtonAction = 'destructive';
         this.saveButtonDisabled = false;
-      }
+      } );
     }
 
   }
