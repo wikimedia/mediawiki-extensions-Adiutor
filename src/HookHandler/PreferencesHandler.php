@@ -61,36 +61,36 @@ class PreferencesHandler implements GetPreferencesHook {
 			self::PREF_ADIUTOR_ENABLE => [
 				'type' => 'toggle',
 				'label-message' => 'adiutor-toggle-adiutor',
-				'section' => 'moderate/adiutor',
+				'section' => 'moderation/adiutor',
 			],
 			'adiutor-csd-enable' => [
 				'type' => 'check',
 				'label-message' => 'adiutor-csd-enable-label',
-				'section' => 'moderate/adiutor',
+				'section' => 'moderation/adiutor',
 				'help-message' => 'adiutor-csd-enable-help',
 			],
 			'adiutor-rpp-enable' => [
 				'type' => 'check',
 				'label-message' => 'adiutor-rpp-enable-label',
-				'section' => 'moderate/adiutor',
+				'section' => 'moderation/adiutor',
 				'help-message' => 'adiutor-rpp-enable-help',
 			],
 			'adiutor-rpm-enable' => [
 				'type' => 'check',
 				'label-message' => 'adiutor-rpm-enable-label',
-				'section' => 'moderate/adiutor',
+				'section' => 'moderation/adiutor',
 				'help-message' => 'adiutor-rpm-enable-help',
 			],
 			'adiutor-prod-enable' => [
 				'type' => 'toggle',
 				'label-message' => 'adiutor-prod-enable-label',
-				'section' => 'moderate/adiutor',
+				'section' => 'moderation/adiutor',
 				'help-message' => 'adiutor-prod-enable-help',
 			],
 			'adiutor-tag-enable' => [
 				'type' => 'toggle',
 				'label-message' => 'adiutor-tag-enable-label',
-				'section' => 'moderate/adiutor',
+				'section' => 'moderation/adiutor',
 				'help-message' => 'adiutor-tag-enable-help',
 			],
 		];

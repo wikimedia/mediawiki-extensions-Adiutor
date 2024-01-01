@@ -192,7 +192,7 @@
 	"adiutor-test-mode-description": "Description of the option to enable test mode.",
 	"adiutor-namespaces": "Label for the namespaces parameter.",
 	"adiutor-namespaces-description": "Description of the namespaces parameter.",
-	"prefs-moderate": "Label for the moderate preferences on the Special:Preferences.",
+	"prefs-moderation": "Label for the moderate preferences on the Special:Preferences.",
 	"prefs-adiutor": "Label for the Adiutor preferences on the Special:Preferences#mw-prefsection-moderate.",
 	"adiutor-new-name-placeholder": "Placeholder for the new name field in the page move request action window.",
 	"adiutor-search-tag-placeholder": "Placeholder for the search tag field in the article tagging dialog.",

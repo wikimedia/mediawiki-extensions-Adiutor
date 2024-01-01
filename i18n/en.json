@@ -192,7 +192,7 @@
 	"adiutor-test-mode-description": "When this switched on, this module can only be tested by interface administrators.",
 	"adiutor-namespaces": "Namespaces",
 	"adiutor-namespaces-description": "You can specify the namespaces where this module will be active.",
-	"prefs-moderate": "Moderation",
+	"prefs-moderation": "Moderation",
 	"prefs-adiutor": "Adiutor",
 	"adiutor-new-name-placeholder": "New name",
 	"adiutor-search-tag-placeholder": "Search tag...",
