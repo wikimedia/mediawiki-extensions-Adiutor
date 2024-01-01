@@ -236,7 +236,7 @@ const {
   CdxRadio,
   CdxTextArea
 } = require( '@wikimedia/codex' );
-const rppConfiguration = mw.config.get( 'AdiutorRequestPageProtection' );
+const rppConfiguration = mw.config.get( 'adiutorRequestPageProtection' );
 module.exports = defineComponent( {
   name: 'RequestPageProtectionOptions',
   components: {

@@ -51,7 +51,7 @@
 const { defineComponent, ref } = require( 'vue' );
 const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextArea, CdxRadio } = require( '@wikimedia/codex' );
 
-const prdConfiguration = mw.config.get( 'AdiutorDeletionPropose' );
+const prdConfiguration = mw.config.get( 'adiutorDeletionPropose' );
 const {
   standardProposeTemplate,
   livingPersonProposeTemplate,

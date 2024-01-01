@@ -268,7 +268,7 @@ const {
   CdxRadio,
   CdxButton
 } = require( '@wikimedia/codex' );
-const csdConfiguration = mw.config.get( 'AdiutorCreateSpeedyDeletion' );
+const csdConfiguration = mw.config.get( 'adiutorCreateSpeedyDeletion' );
 module.exports = defineComponent( {
   name: 'CreateSpeedyDeletionOptions',
   components: {

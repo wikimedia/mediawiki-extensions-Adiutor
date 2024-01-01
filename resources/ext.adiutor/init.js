@@ -10,11 +10,11 @@
 	};
 
 	const configurations = {
-		csd: mw.config.get( 'AdiutorCreateSpeedyDeletion' ),
-		rpp: mw.config.get( 'AdiutorRequestPageProtection' ),
-		rpm: mw.config.get( 'AdiutorRequestPageMove' ),
-		dpr: mw.config.get( 'AdiutorDeletionPropose' ),
-		tag: mw.config.get( 'AdiutorArticleTagging' )
+		csd: mw.config.get( 'adiutorCreateSpeedyDeletion' ),
+		rpp: mw.config.get( 'adiutorRequestPageProtection' ),
+		rpm: mw.config.get( 'adiutorRequestPageMove' ),
+		dpr: mw.config.get( 'adiutorDeletionPropose' ),
+		tag: mw.config.get( 'adiutorArticleTagging' )
 	};
 
 	const userGroups = mw.config.get( 'wgUserGroups' );

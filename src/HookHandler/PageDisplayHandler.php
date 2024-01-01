@@ -98,23 +98,23 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 					$configPages = [
 						[
 							'title' => 'MediaWiki:AdiutorRequestPageProtection.json',
-							'configuration' => 'AdiutorRequestPageProtection',
+							'configuration' => 'adiutorRequestPageProtection',
 						],
 						[
 							'title' => 'MediaWiki:AdiutorCreateSpeedyDeletion.json',
-							'configuration' => 'AdiutorCreateSpeedyDeletion',
+							'configuration' => 'adiutorCreateSpeedyDeletion',
 						],
 						[
 							'title' => 'MediaWiki:AdiutorDeletionPropose.json',
-							'configuration' => 'AdiutorDeletionPropose',
+							'configuration' => 'adiutorDeletionPropose',
 						],
 						[
 							'title' => 'MediaWiki:AdiutorRequestPageMove.json',
-							'configuration' => 'AdiutorRequestPageMove',
+							'configuration' => 'adiutorRequestPageMove',
 						],
 						[
 							'title' => 'MediaWiki:AdiutorArticleTagging.json',
-							'configuration' => 'AdiutorArticleTagging',
+							'configuration' => 'adiutorArticleTagging',
 						],
 					];
 					foreach ( $configPages as $configPage ) {

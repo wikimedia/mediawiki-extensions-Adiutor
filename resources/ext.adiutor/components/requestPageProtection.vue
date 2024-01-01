@@ -35,7 +35,7 @@
 <script>
 const { defineComponent, ref } = require( 'vue' );
 const { CdxField, CdxDialog, CdxLabel, CdxTextArea, CdxSelect } = require( '@wikimedia/codex' );
-const rppConfiguration = mw.config.get( 'AdiutorRequestPageProtection' );
+const rppConfiguration = mw.config.get( 'adiutorRequestPageProtection' );
 const noticeBoardTitle = rppConfiguration.noticeBoardTitle;
 const noticeBoardLink = noticeBoardTitle.replace( / /g, '_' );
 const addNewSection = rppConfiguration.addNewSection;

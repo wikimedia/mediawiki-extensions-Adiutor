@@ -164,7 +164,7 @@ const {
   CdxRadio,
   CdxTextArea
 } = require( '@wikimedia/codex' );
-const rpmConfiguration = mw.config.get( 'AdiutorRequestPageMove' );
+const rpmConfiguration = mw.config.get( 'adiutorRequestPageMove' );
 module.exports = defineComponent( {
   name: 'RequestPageMove',
   components: {
