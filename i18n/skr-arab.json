@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saraiki"
+		]
+	},
+	"adiutor-create": "بݨاؤ",
+	"adiutor-other-options": "ٻئے اختیارات",
+	"adiutor-continue": "جاری رکھو",
+	"adiutor-new-name": "نواں ناں",
+	"adiutor-and": "اتے",
+	"adiutor-settings-label": "ترتیباں",
+	"adiutor-add-new-tag-label": "نواں شامل کرو",
+	"adiutor-label-column": "لیبل",
+	"adiutor-action-column": "عمل",
+	"adiutor-delete-button": "مٹاؤ",
+	"adiutor-parameters": "پیرامیٹر",
+	"adiutor-parameters-page-name": "ورقے دا ناں",
+	"adiutor-parameters-day": "ݙینہ",
+	"adiutor-parameters-month": "مہیناں",
+	"adiutor-parameters-year": "سال",
+	"adiutor-name-space": "ناں جاہ",
+	"adiutor-add-new": "نواں شامل کرو",
+	"adiutor-close": "بند کرو",
+	"adiutor-summaries": "خلاصے",
+	"adiutor-name": "ناں",
+	"adiutor-action": "عمل",
+	"adiutor-value": "قدر",
+	"adiutor-data": "ڈیٹا",
+	"adiutor-label": "لیبل",
+	"adiutor-help": "مدد",
+	"adiutor-tag-description": "تفصیل",
+	"adiutor-required": "لوڑ ہے",
+	"adiutor-parameter": "پیرامیٹر",
+	"adiutor-type": "قسم",
+	"adiutor-configurations-saving": "بچیندا پئے۔۔۔",
+	"adiutor-csd-default": "پہلے کنوں طے تھیا ہویا",
+	"adiutor-namespaces": "ناں جاہیں",
+	"adiutor-new-name-placeholder": "نواں ناں"
+}

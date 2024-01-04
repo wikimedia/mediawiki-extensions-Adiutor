@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda",
+			"Vikipolimer"
+		]
+	},
+	"adiutor-toggle-adiutor": "İçerik görevlerini yönetmek, önceliklendirmek ve sürdürmek için Adiutor'u kullanın",
+	"adiutor-create": "Oluştur",
+	"adiutor-request": "Talep et",
+	"adiutor-protection-policy": "Koruma politikası",
+	"adiutor-speedy-deletion-policy": "Hızlı silme politikası",
+	"adiutor-delete": "Sil",
+	"adiutor-other-options": "Diğer seçenekler",
+	"adiutor-propose": "Öner",
+	"adiutor-continue": "Devam et",
+	"adiutor-options": "Seçenekler",
+	"adiutor-protect-against-rebuilding": "Yeniden oluşturma koruması",
+	"adiutor-rationale": "Gerekçe",
+	"adiutor-inform-creator": "Sayfayı oluşturan kullanıcıyı bilgilendir.",
+	"adiutor-inform-creator-help": "Seçildiği takdirde sayfayı oluşturan kullanıcının tartışma sayfasına bir bildirim şablonu yerleştirilecektir.",
+	"adiutor-rpp-rationale-placeholder": "Lütfen koruma gerekçesi yazın.",
+	"adiutor-rpm-rationale-placeholder": "Lütfen bir gerekçe yazın",
+	"adiutor-afd-special-page-title": "Silinmeye aday sayfalar",
+	"adiutor-create-request": "Talep oluştur",
+	"adiutor-protection-type": "Koruma türü",
+	"adiutor-choose-appropriate-tags": "Uygun etiketleri seçin",
+	"adiutor-prd-deletion-rationale": "Bekletmeli silme gerekçesi",
+	"adiutor-prd-deletion-type": "Bekletmeli silme türü",
+	"adiutor-prd-deletion-type-1": "BS (Bekletmeli Silme)",
+	"adiutor-prd-deletion-type-2": "YİB BS (Kaynaksız YİB'lerin bekletmeli silinmesi)",
+	"adiutor-prd-deletion-type-1-help": "$1 uyarınca bekletmeli silme önerisi",
+	"adiutor-rpp-header-title": "Sayfa koruma talebi",
+	"adiutor-rpp-incomplete-request-details": "Lütfen bir süre ve tür seçtiğinizden ve bir gerekçe belirttiğinizden emin olun.",
+	"adiutor-rpm-incomplete-request-details": "Lütfen yeni bir ad girdiğinizden ve gerekçe belirttiğinizden emin olun.",
+	"adiutor-prd-header-title": "Silme önerisi",
+	"adiutor-csd-header-title": "Hızlı silme talebi",
+	"adiutor-tag-header-title": "Madde etiketleme",
+	"adiutor-new-name": "Yeni ad",
+	"adiutor-pmr-header-title": "Sayfa taşıma talebi"
+}

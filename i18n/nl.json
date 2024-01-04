@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"adiutor-toggle-adiutor": "Adiutor gebruiken om inhoudstaken te modereren, te beoordelen en te onderhouden",
+	"adiutor-desc": "Adiutor is een MediaWiki-uitbreiding voor het modereren, beoordelen en onderhouden van inhoudstaken op Wikipedia. Het implementeert methoden voor inhoudstriage, waarbij verzoeken of inhoud op basis van urgentie en belang worden ingedeeld. De gebruikersinterface vereenvoudigt complexe processen, waardoor het onderhoud van Wikipedia voor gebruikers van alle niveaus toegankelijker en efficiënter wordt.",
+	"adiutor-beta-feature-description": "Adiutor is een MediaWiki-uitbreiding voor het modereren, beoordelen en onderhouden van inhoudstaken op Wikipedia. Het implementeert methoden voor inhoudstriage, waarbij verzoeken of inhoud op basis van urgentie en belang worden ingedeeld. De gebruikersinterface vereenvoudigt complexe processen, waardoor het onderhoud van Wikipedia voor gebruikers van alle niveaus toegankelijker en efficiënter wordt.",
+	"adiutor-beta-feature-enabled": "Adiutor is nu ingeschakeld als bètafunctie.",
+	"adiutor-create": "Aanmaken",
+	"adiutor-request": "Aanvragen",
+	"adiutor-protection-policy": "Beveiligingsbeleid",
+	"adiutor-speedy-deletion-policy": "Beleid spoedige verwijdering",
+	"adiutor-delete": "Verwijderen",
+	"adiutor-other-options": "Andere opties",
+	"adiutor-propose": "Voorstellen",
+	"adiutor-continue": "Doorgaan",
+	"adiutor-options": "Opties",
+	"adiutor-protect-against-rebuilding": "Beveiliging tegen opnieuw aanmaken aanvragen",
+	"adiutor-protect-against-rebuilding-help": "Indien geselecteerd wordt een tag {{salt}} toegevoegd aan de tag voor snelle verwijdering, waarbij de moderator wordt gevraagd om beveiliging tegen aanmaak toe te passen. Selecteer alleen als deze pagina steeds weer wordt aangemaakt.",
+	"adiutor-rationale": "Motivering",
+	"adiutor-rationale-placeholder": "Waarom nomineert u deze pagina voor verwijdering?",
+	"adiutor-inform-creator": "Informeer de gebruiker die de pagina heeft gemaakt.",
+	"adiutor-inform-creator-help": "Indien geselecteerd wordt een meldingssjabloon geplaatst op de overlegpagina van de gebruiker die de pagina heeft gemaakt.",
+	"adiutor-rpp-rationale-placeholder": "Leg uit waarom de beveiliging nodig is",
+	"adiutor-rpm-rationale-placeholder": "Leg uit waarom dit nodig is",
+	"adiutor-afd-special-page-title": "Te verwijderen artikelen",
+	"adiutor-create-request": "Aanvraag maken",
+	"adiutor-protection-type": "Beveiligingstype",
+	"adiutor-choose-appropriate-tags": "Kies geschikte tags",
+	"adiutor-prd-deletion-rationale": "Motivering voor de voorgestelde verwijdering",
+	"adiutor-prd-deletion-type": "Typo van de voorgestelde verwijdering",
+	"adiutor-prd-deletion-type-1": "PROD (voorgestelde verwijdering)"
+}
