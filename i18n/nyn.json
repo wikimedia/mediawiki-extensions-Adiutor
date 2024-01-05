@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ahiise2"
+		]
+	},
+	"adiutor-create": "Hangaho",
+	"adiutor-other-options": "Emihanda endi",
+	"adiutor-create-request": "Hanga okushaba",
+	"adiutor-operation-completed": "Omurimo gumaririire!",
+	"adiutor-operation-failed": "Omurimo gurohamire!",
+	"adiutor-and": "na",
+	"adiutor-parameters-day": "ekiro",
+	"adiutor-parameters-month": "okwezi",
+	"adiutor-parameters-year": "omwaka",
+	"adiutor-name-space": "Eiziina ry'omutaano",
+	"adiutor-output": "Ekirikurugamu:",
+	"adiutor-name": "Eiziina",
+	"adiutor-value": "Omuhendo:",
+	"adiutor-configurations-saving": "Nikibiikwa...",
+	"adiutor-try-again": "Gyezaho ogundi murundi"
+}

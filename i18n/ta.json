@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fahimrazick"
+		]
+	},
+	"adiutor-create": "ஆக்கு",
+	"adiutor-request": "கோரிக்கை",
+	"adiutor-protection-policy": "பாதுகாப்புக் கொள்கை",
+	"adiutor-speedy-deletion-policy": "விரைவான நீக்கற் கொள்கை",
+	"adiutor-create-request": "கோரிக்கையை ஆக்கு",
+	"adiutor-prd-deletion-type": "முன்மொழியப்பட்ட நீக்கல் வகை",
+	"adiutor-pmr-header-title": "பக்க நகர்வுக் கோரிக்கை",
+	"adiutor-select-speedy-deletion-reason": "நீர் ஒரு விரைவான நீக்கற் காரணத்தையாவது தெரிவு செய்தாக வேண்டும்.",
+	"adiutor-settings-label": "அமைப்புகள்",
+	"adiutor-use-multiple-issues-template-label": "பல சிக்கல் வார்ப்புருவைப் பயன்படுத்து:",
+	"adiutor-add-new-tag-label": "புதியதைச் சேர்",
+	"adiutor-label-column": "அடையாளச் சீட்டு",
+	"adiutor-delete-button": "நீக்கு",
+	"adiutor-parameters-page-name": "பக்கப் பெயர்",
+	"adiutor-parameters-new-page-name": "புதிய பக்கத்தின் பெயர்",
+	"adiutor-parameters-month": "மாதம்",
+	"adiutor-parameters-year": "ஆண்டு",
+	"adiutor-parameters-reason-data": "காரணத் தரவு",
+	"adiutor-parameters-reason-value": "காரண மதிப்பு",
+	"adiutor-copy-vio-reason-value": "பதிப்புரிமை மீறற் காரண மதிப்பு",
+	"adiutor-multiple-reason-summary": "பல காரணச் சுருக்கம்",
+	"adiutor-name-space": "பெயர்வெளி",
+	"adiutor-add-new": "புதியதைச் சேர்",
+	"adiutor-name": "பெயர்",
+	"adiutor-value": "மதிப்பு",
+	"adiutor-label": "அடையாளச் சீட்டு",
+	"adiutor-help": "உதவி",
+	"adiutor-tags-for": "குறிச்சொற்கள்",
+	"adiutor-tag-description": "விளக்கம்",
+	"adiutor-parameter": "அளபுரு",
+	"adiutor-configurations-saving": "சேமிக்கிறது...",
+	"adiutor-new-name-placeholder": "புதிய பெயர்",
+	"adiutor-search-tag-placeholder": "தேடற் குறிச்சொல்..."
+}

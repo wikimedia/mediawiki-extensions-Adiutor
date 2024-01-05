@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"adiutor-protection-policy": "Politica di protezione",
+	"adiutor-pmr-header-title": "Richiesta di spostamento della pagina",
+	"adiutor-page-protection-request": "Richiesta di protezione della pagina",
+	"adiutor-operation-completed": "Operazione completata!",
+	"adiutor-parameters-month": "mese",
+	"adiutor-parameters-year": "anno",
+	"adiutor-name-space": "Namespace",
+	"adiutor-name": "Nome",
+	"adiutor-value": "Valore",
+	"adiutor-section-id": "ID sezione:",
+	"adiutor-configurations-saving": "Salvataggio..."
+}

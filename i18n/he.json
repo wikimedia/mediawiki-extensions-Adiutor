@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"adiutor-title": "אדיוטור",
+	"adiutor-beta-feature-title": "אדיוטור",
+	"adiutor-toggle-adiutor": "אדיוטור משמש לפיקוח על משימות תוכן, מיונן וניהולן",
+	"adiutor-desc": "אדיוטור היא הרחבת מדיה־ויקי שמשמשת לפיקוח על משימות תוכן בוויקיפדיה, מיונן וניהולן. היא מממשת שיטות מיון תוכן ומתעדפת וממיינת בקשות ותוכן לפי דחיפות וחשיבות. ממשק המשתמש שלה מפשט תהליך מורכבים והופך את התחזוקה של ויקיפדיה לנגישה ויעילה יותר למשתמשים מכל רמת כישור.",
+	"adiutor-beta-feature-enabled": "אדיוטור מופעל עכשיו בתור אפשרות בטא.",
+	"adiutor-create": "יצירה",
+	"adiutor-request": "בקשה",
+	"adiutor-protection-policy": "מדיניות הגנה",
+	"adiutor-speedy-deletion-policy": "מדיניות מחיקה מהירה",
+	"adiutor-delete": "מחיקה",
+	"adiutor-other-options": "אפשרויות אחרות",
+	"adiutor-propose": "הצעה",
+	"adiutor-continue": "המשך",
+	"adiutor-options": "אפשרויות",
+	"adiutor-protect-against-rebuilding": "בקשת הגנה מפני יצירה חוזרת",
+	"adiutor-protect-against-rebuilding-help": "כשזה נבחר, לתבנית מחיקה מהירה תתווסף תבנית שמבקשת מהמפעיל להחיל הגנה מפני יצירה. יש לבחור את זה רק אם הדף הזה נוצר שוב ושוב.",
+	"adiutor-rationale": "נימוק",
+	"adiutor-rationale-placeholder": "למה {{GENDER:|אתה מציע|את מציעה}} מחיקה מהירה של הדף הזה?",
+	"adiutor-inform-creator": "להודיע למשתמש שיצר את הדף.",
+	"adiutor-inform-creator-help": "אם זה נבחר, תבנית ההודעה תוצב בדף שיחת המשתמש שיצר את הדף."
+}

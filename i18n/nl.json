@@ -30,6 +30,9 @@
 	"adiutor-protection-type": "Beveiligingstype",
 	"adiutor-choose-appropriate-tags": "Kies geschikte tags",
 	"adiutor-prd-deletion-rationale": "Motivering voor de voorgestelde verwijdering",
-	"adiutor-prd-deletion-type": "Typo van de voorgestelde verwijdering",
-	"adiutor-prd-deletion-type-1": "PROD (voorgestelde verwijdering)"
+	"adiutor-prd-deletion-type": "Type van de voorgestelde verwijdering",
+	"adiutor-prd-deletion-type-1": "PROD (voorgestelde verwijdering)",
+	"adiutor-prd-deletion-type-1-help": "Voorgestelde verwijdering volgens $1",
+	"adiutor-prd-deletion-type-2-help": "Voorgestelde verwijdering van biografieën van levende personen zonder enige bronvermelding, volgens de in $1 vermelde richtlijnen.",
+	"adiutor-rpp-header-title": "Verzoek om paginabeveiliging"
 }
