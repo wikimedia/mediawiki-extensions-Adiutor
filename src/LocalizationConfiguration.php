@@ -1177,5 +1177,4 @@ class LocalizationConfiguration {
 		],
 	];
 
-
 }

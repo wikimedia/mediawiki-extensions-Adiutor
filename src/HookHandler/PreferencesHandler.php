@@ -42,73 +42,82 @@ class PreferencesHandler implements GetPreferencesHook {
 	/**
 	 * @inheritDoc
 	 */
-	public function onGetPreferences( $user, &$preferences ) : void {
+	public function onGetPreferences( $user, &$preferences ): void {
 		$extensionRegistry = ExtensionRegistry::getInstance();
 
-		if ( !$this->permissionManager->userHasRight( $user,
-			'edit' ) ) {
+		if ( !$this->permissionManager->userHasRight( $user, 'edit' ) ) {
 			return;
 		}
 
-		if ( !Utils::isEnabledForUser( $this->userOptionsLookup,
-			$user,
-			$extensionRegistry ) ) {
-			return;
-		}
+		// Check if BetaFeatures is installed and if the user has activated Adiutor Beta Feature
+		$betaFeaturesInstalled = $extensionRegistry->isLoaded( 'BetaFeatures' );
+		$adiutorBetaFeatureEnable = $this->userOptionsLookup->getOption( $user, 'adiutor-beta-feature-enable' );
 
-		// Define Adiutor's preferences
-		$prefDefinitions = [
-			self::PREF_ADIUTOR_ENABLE => [
+		// If BetaFeatures is not installed or the Adiutor Beta Feature is enabled, show adiutor-enable preference
+		if ( !$betaFeaturesInstalled || $adiutorBetaFeatureEnable ) {
+			$preferences[self::PREF_ADIUTOR_ENABLE] = [
 				'type' => 'toggle',
 				'label-message' => 'adiutor-toggle-adiutor',
-				'section' => 'moderation/adiutor',
-			],
-			'adiutor-csd-enable' => [
-				'type' => 'check',
-				'label-message' => 'adiutor-csd-enable-label',
-				'section' => 'moderation/adiutor',
-				'help-message' => 'adiutor-csd-enable-help',
-			],
-			'adiutor-rpp-enable' => [
-				'type' => 'check',
-				'label-message' => 'adiutor-rpp-enable-label',
-				'section' => 'moderation/adiutor',
-				'help-message' => 'adiutor-rpp-enable-help',
-			],
-			'adiutor-rpm-enable' => [
-				'type' => 'check',
-				'label-message' => 'adiutor-rpm-enable-label',
-				'section' => 'moderation/adiutor',
-				'help-message' => 'adiutor-rpm-enable-help',
-			],
-			'adiutor-prod-enable' => [
-				'type' => 'toggle',
-				'label-message' => 'adiutor-prod-enable-label',
-				'section' => 'moderation/adiutor',
-				'help-message' => 'adiutor-prod-enable-help',
-			],
-			'adiutor-tag-enable' => [
-				'type' => 'toggle',
-				'label-message' => 'adiutor-tag-enable-label',
-				'section' => 'moderation/adiutor',
-				'help-message' => 'adiutor-tag-enable-help',
-			],
-		];
-
-		foreach ( $prefDefinitions as $key => $definition ) {
-			$preferences[$key] = $definition;
+				'section' => 'moderation/adiutor'
+			];
 		}
 
-		$adiutorEnabled =
-			$this->userOptionsLookup->getOption( $user,
-				'adiutor-enable' );
+		$adiutorEnabled = Utils::isEnabledForUser(
+			$this->userOptionsLookup,
+			$user,
+			$extensionRegistry
+		);
 
-		if ( !$adiutorEnabled ) {
-			$preferences['adiutor-csd-enable']['disabled'] = true;
-			$preferences['adiutor-rpp-enable']['disabled'] = true;
-			$preferences['adiutor-rpm-enable']['disabled'] = true;
-			$preferences['adiutor-prod-enable']['disabled'] = true;
-			$preferences['adiutor-tag-enable']['disabled'] = true;
+		if ( $adiutorEnabled ) {
+			// Define other Adiutor's preferences
+			$prefDefinitions = [
+				'adiutor-csd-enable' => [
+					'type' => 'check',
+					'label-message' => 'adiutor-csd-enable-label',
+					'section' => 'moderation/adiutor',
+					'help-message' => 'adiutor-csd-enable-help',
+				],
+				'adiutor-rpp-enable' => [
+					'type' => 'check',
+					'label-message' => 'adiutor-rpp-enable-label',
+					'section' => 'moderation/adiutor',
+					'help-message' => 'adiutor-rpp-enable-help',
+				],
+				'adiutor-rpm-enable' => [
+					'type' => 'check',
+					'label-message' => 'adiutor-rpm-enable-label',
+					'section' => 'moderation/adiutor',
+					'help-message' => 'adiutor-rpm-enable-help',
+				],
+				'adiutor-prod-enable' => [
+					'type' => 'toggle',
+					'label-message' => 'adiutor-prod-enable-label',
+					'section' => 'moderation/adiutor',
+					'help-message' => 'adiutor-prod-enable-help',
+				],
+				'adiutor-tag-enable' => [
+					'type' => 'toggle',
+					'label-message' => 'adiutor-tag-enable-label',
+					'section' => 'moderation/adiutor',
+					'help-message' => 'adiutor-tag-enable-help',
+				],
+			];
+
+			foreach ( $prefDefinitions as $key => $definition ) {
+				$preferences[$key] = $definition;
+			}
+
+			$adiutorEnabled =
+				$this->userOptionsLookup->getOption( $user,
+					'adiutor-enable' );
+
+			if ( !$adiutorEnabled ) {
+				$preferences['adiutor-csd-enable']['disabled'] = true;
+				$preferences['adiutor-rpp-enable']['disabled'] = true;
+				$preferences['adiutor-rpm-enable']['disabled'] = true;
+				$preferences['adiutor-prod-enable']['disabled'] = true;
+				$preferences['adiutor-tag-enable']['disabled'] = true;
+			}
 		}
 	}
 
@@ -136,6 +145,10 @@ class PreferencesHandler implements GetPreferencesHook {
 			$this->isTrue( $modifiedOptions,
 				'betafeatures-auto-enroll' );
 
+		if ( !isset( $modifiedOptions[self::PREF_ADIUTOR_ENABLE] ) && isset( $originalOptions[self::PREF_ADIUTOR_ENABLE] ) ) {
+			$modifiedOptions[self::PREF_ADIUTOR_ENABLE] = $originalOptions[self::PREF_ADIUTOR_ENABLE];
+		}
+
 		if ( ( $betaFeatureIsEnabled && $betaFeatureWillDisable ) ||
 			( $betaFeatureIsDisabled && $betaFeatureWillEnable ) ||
 			( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable ) ) {
@@ -149,7 +162,7 @@ class PreferencesHandler implements GetPreferencesHook {
 	 *
 	 * @return bool The option is set and true
 	 */
-	private function isTrue( array $options, string $option ) : bool {
+	private function isTrue( array $options, string $option ): bool {
 		return !empty( $options[$option] );
 	}
 
@@ -158,7 +171,7 @@ class PreferencesHandler implements GetPreferencesHook {
 	 *
 	 * @return bool The option is set and false
 	 */
-	private function isFalse( array $options ) : bool {
+	private function isFalse( array $options ): bool {
 		return isset( $options['adiutor-beta-feature-enable'] ) && !$options['adiutor-beta-feature-enable'];
 	}
 }

@@ -67,8 +67,7 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	/**
 	 * @inheritDoc
 	 */
-
-	public function onBeforePageDisplay( $out, $skin ) : void {
+	public function onBeforePageDisplay( $out, $skin ): void {
 		$extensionRegistry = ExtensionRegistry::getInstance();
 		$user = $out->getUser();
 
@@ -118,9 +117,8 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 						],
 					];
 					foreach ( $configPages as $configPage ) {
-						if ( !isset( $configPage['title'], $configPage['configuration'] ) ) {
-							$this->logger->warning( 'Configuration page data is incomplete',
-								[ 'configPage' => $configPage ] );
+						if ( !isset( $configPage['title'] ) || !isset( $configPage['configuration'] ) ) {
+							$this->logger->warning( 'Configuration page data is incomplete', [ 'configPage' => $configPage ] );
 							continue;
 						}
 						$title = Title::newFromText( $configPage['title'] );

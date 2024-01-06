@@ -32,7 +32,7 @@ class AdiutorSettings extends SpecialPage {
 	 *
 	 * @return Message The description of the AdiutorSettings object.
 	 */
-	public function getDescription() : Message {
+	public function getDescription(): Message {
 		return $this->msg( 'adiutor-settings' );
 	}
 

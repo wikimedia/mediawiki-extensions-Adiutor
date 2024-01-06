@@ -43,7 +43,7 @@ class AdiutorMaintenance extends Maintenance {
 
 		global $wgReservedUsernames;
 		if ( !in_array( $systemUserName,
-			(array) $wgReservedUsernames ) ) {
+			(array)$wgReservedUsernames ) ) {
 			$wgReservedUsernames[] = $systemUserName;
 		}
 
@@ -56,6 +56,16 @@ class AdiutorMaintenance extends Maintenance {
 		}
 	}
 
+	/**
+	 * Creates a new page with the given title, content, user, and services.
+	 *
+	 * @param TitleFactory $titleFactory The factory for creating page titles.
+	 * @param string $pageTitle The title of the new page.
+	 * @param string $content The content of the new page.
+	 * @param User $user The user creating the page.
+	 * @param Services $services The services required for creating the page.
+	 * @return void
+	 */
 	private function createPage( $titleFactory, $pageTitle, $content, $user, $services ) {
 		$title = $titleFactory->newFromText( $pageTitle );
 		if ( !$title->exists() ) {
