@@ -3,6 +3,10 @@
 namespace MediaWiki\Extension\Adiutor\HookHandler;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\EditResult;
+use User;
+use WikiPage;
 
 class PageSaveCompleteHandler {
 
@@ -16,10 +20,11 @@ class PageSaveCompleteHandler {
 	 * @param int $flags Flags indicating additional information about the save operation.
 	 * @param RevisionRecord $revisionRecord The RevisionRecord object representing the saved revision.
 	 * @param EditResult $editResult The EditResult object representing the result of the save operation.
+	 *
 	 * @return void
 	 */
 	public static function onPageSaveComplete(
-		$wikiPage, $user, $summary, $flags, $revisionRecord, $editResult
+		WikiPage $wikiPage, User $user, string $summary, int $flags, RevisionRecord $revisionRecord, EditResult $editResult
 	) {
 		$wanObjectCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $wanObjectCache->makeKey( 'Adiutor', 'config-data' );

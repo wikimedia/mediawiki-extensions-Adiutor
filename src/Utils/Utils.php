@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\Adiutor\Utils;
 
 use ExtensionRegistry;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 
 class Utils {
@@ -11,12 +12,15 @@ class Utils {
 	 * Checks if a feature is enabled for a specific user.
 	 *
 	 * @param UserOptionsLookup $userOptionsLookup The UserOptionsLookup instance.
-	 * @param int $user The ID of the user to check.
+	 * @param UserIdentity $user The ID of the user to check.
 	 * @param ExtensionRegistry $extensionRegistry The ExtensionRegistry instance.
+	 *
 	 * @return bool Returns true if the feature is enabled for the user, false otherwise.
 	 */
 	public static function isEnabledForUser(
-		UserOptionsLookup $userOptionsLookup, $user, ExtensionRegistry $extensionRegistry
+		UserOptionsLookup $userOptionsLookup,
+		UserIdentity $user,
+		ExtensionRegistry $extensionRegistry
 	): bool {
 		$isBetaFeatureLoaded = $extensionRegistry->isLoaded( 'BetaFeatures' );
 

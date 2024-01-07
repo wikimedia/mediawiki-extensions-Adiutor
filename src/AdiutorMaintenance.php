@@ -13,6 +13,7 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use TextContent;
+use TitleFactory;
 use User;
 
 class AdiutorMaintenance extends Maintenance {
@@ -61,12 +62,13 @@ class AdiutorMaintenance extends Maintenance {
 	 *
 	 * @param TitleFactory $titleFactory The factory for creating page titles.
 	 * @param string $pageTitle The title of the new page.
-	 * @param string $content The content of the new page.
+	 * @param array $content The content of the new page.
 	 * @param User $user The user creating the page.
-	 * @param Services $services The services required for creating the page.
+	 * @param MediaWikiServices $services The services required for creating the page.
+	 *
 	 * @return void
 	 */
-	private function createPage( $titleFactory, $pageTitle, $content, $user, $services ) {
+	private function createPage( TitleFactory $titleFactory, string $pageTitle, array $content, User $user, MediaWikiServices $services ) {
 		$title = $titleFactory->newFromText( $pageTitle );
 		if ( !$title->exists() ) {
 			$pageContent =
