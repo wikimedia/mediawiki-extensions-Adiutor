@@ -218,5 +218,9 @@
 	"adiutor-prod-enable-help": "When this checkbox is activated, the propose deletion module will be enabled.",
 	"adiutor-tag-enable-label": "Enable article tagging",
 	"adiutor-tag-enable-help": "When this checkbox is activated, the article tagging module will be enabled.",
-	"adiutor-interface-admin-required": "This action requires the interface-admin right."
+	"adiutor-interface-admin-required": "This action requires the interface-admin right.",
+	"adiutor-notification-header-csd-requested": "Speedy deletion requested by $1",
+	"adiutor-notification-body-csd-requested": "Speedy deletion has been requested for $1 per our policy.",
+	"echo-category-title-moderation": "Moderation",
+	"echo-pref-tooltip-moderation": "Notify me about the moderations that concern me."
 }

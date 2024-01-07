@@ -226,18 +226,29 @@ module.exports = defineComponent( {
      * @param {string} summary
      * @return {Promise<void>} - A promise that resolves when the message is sent successfully.
      */
-    const sendMessageToAuthor = async ( articleAuthor, notificationMessage, summary ) => {
+    const notifyAuthor = async ( articleAuthor, notificationMessage, summary ) => {
+      const data = {
+        title: mw.config.get( 'wgPageName' ),
+        content: {
+          author: articleAuthor,
+          reason: summary,
+          title: mw.config.get( 'wgPageName' ),
+        },
+      };
+      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/notifier';
       try {
-        await api.postWithToken( 'csrf', {
-          action: 'edit',
-          title: 'User_talk:' + articleAuthor,
-          appendtext: '\n' + notificationMessage,
-          summary: summary,
-          tags: 'adiutor',
-          format: 'json'
+        await fetch( apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify( data )
         } );
       } catch ( error ) {
-        handleError( error );
+        mw.notify( error.message, {
+          title: mw.msg( 'adiutor-operation-failed' ),
+          type: 'error'
+        } );
       }
     };
 
@@ -309,7 +320,7 @@ module.exports = defineComponent( {
                 $3: csdReason
               };
               const message = replacePlaceholders( csdNotificationTemplate, placeholdersForNotification );
-              await sendMessageToAuthor( articleAuthor, message, csdSummary );
+              await notifyAuthor( articleAuthor, message, csdSummary );
             }
           } catch ( error ) {
             handleError( error );

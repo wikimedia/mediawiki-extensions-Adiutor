@@ -41,7 +41,8 @@
 		"ListDefinedTags": "listDefinedTags",
 		"ChangeTagsListActive": "changeTagsListActive",
 		"ChangeTagsAllowedAdd": "changeTagsAllowedAdd",
-		"PageSaveComplete": "pageSaveComplete"
+		"PageSaveComplete": "pageSaveComplete",
+		"BeforeCreateEchoEvent": "createEchoEvent"
 	},
 	"HookHandlers": {
 		"preferences": {
@@ -88,6 +89,12 @@
 		},
 		"pageSaveComplete": {
 			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\PageSaveCompleteHandler",
+			"services": [
+				"MainConfig"
+			]
+		},
+		"createEchoEvent": {
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandler\\CreateEchoEventHandler",
 			"services": [
 				"MainConfig"
 			]
@@ -347,9 +354,24 @@
 				"adiutor-prod-enable-help",
 				"adiutor-tag-enable-label",
 				"adiutor-tag-enable-help",
-				"adiutor-interface-admin-required"
+				"adiutor-interface-admin-required",
+				"adiutor-notification-header-csd-requested",
+				"adiutor-notification-body-csd-requested",
+				"echo-category-title-moderation",
+				"echo-pref-tooltip-moderation"
 			]
 		}
 	},
+	"RestRoutes": [
+		{
+			"path": "/adiutor/v0/notifier",
+			"method": "POST",
+			"class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\NotifierHandler",
+			"services": [
+				"UserFactory",
+				"MainConfig"
+			]
+		}
+	],
 	"manifest_version": 2
 }
