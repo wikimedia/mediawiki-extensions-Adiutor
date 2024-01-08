@@ -369,6 +369,7 @@
 			"class": "MediaWiki\\Extension\\Adiutor\\Rest\\Handler\\NotifierHandler",
 			"services": [
 				"UserFactory",
+				"RevisionLookup",
 				"MainConfig"
 			]
 		}

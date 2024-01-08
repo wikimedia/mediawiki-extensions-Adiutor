@@ -16,10 +16,12 @@ class CreateEchoEventHandler implements BeforeCreateEchoEventHook {
 	 *
 	 * @param array &$notifications array of Echo notifications
 	 * @param array &$notificationCategories array of Echo notification categories
-	 * @param array &$icons array of icon details
+	 * @param array &$notificationIcons array of icon details
 	 */
 	public function onBeforeCreateEchoEvent(
-		array &$notifications, array &$notificationCategories, array &$icons
+		array &$notifications,
+		array &$notificationCategories,
+		array &$notificationIcons
 	) {
 		$notificationCategories['moderation'] = [
 			'priority' => 3,
@@ -44,14 +46,14 @@ class CreateEchoEventHandler implements BeforeCreateEchoEventHook {
 			],
 		];
 
-		$icons['adiutor-notification-icon'] = [
+		$notificationIcons['adiutor-notification-icon'] = [
 			'path' => [
 				'ltr' => 'Adiutor/resources/ext.adiutor.images/adiutor-notification-icon-ltr.svg',
 				'rtl' => 'Adiutor/resources/ext.adiutor.images/adiutor-notification-icon-rtl.svg'
 			]
 		];
 
-		$icons['adiutor-notification-icon-ltr'] = [
+		$notificationIcons['adiutor-notification-icon-ltr'] = [
 			'path' => 'Adiutor/resources/ext.adiutor.images/adiutor-notification-icon-ltr.svg'
 		];
 	}
