@@ -1,6 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
+			"McDutchie",
 			"Vikipolimer"
 		]
 	},
@@ -30,11 +32,11 @@
 	"adiutor-afd-special-page-title": "This message will be displayed on the article for deletion request action window.",
 	"adiutor-create-request": "This message will be displayed on the action window.",
 	"adiutor-protection-type": "This message will be displayed on the protection request action window.",
-	"adiutor-choose-appropriate-tags": "This message will be displayed on the choose appropriate tags action window.",
+	"adiutor-choose-appropriate-tags": "This message will be displayed on the \"choose appropriate tags\" action window. The word \"Tags\" refers to templates that mark a page as having an issue.",
 	"adiutor-prd-deletion-rationale": "This message will be displayed on the window while proposing article for deletion",
 	"adiutor-prd-deletion-type": "This message will be displayed on the window while proposing article for deletion",
 	"adiutor-prd-deletion-type-1": "This message will be displayed on the window while proposing article for deletion",
-	"adiutor-prd-deletion-type-2": "This message will be displayed on the window while proposing article for deletion",
+	"adiutor-prd-deletion-type-2": "This message will be displayed on the window while proposing article for deletion.\n\n* [[:w:WP:BLP|BLP]] = Biography of a Living Person\n* [[:w:WP:PROD|PROD]] = PROposed Deletion",
 	"adiutor-prd-deletion-type-1-help": "This message will be displayed on the window while proposing article for deletion",
 	"adiutor-prd-deletion-type-2-help": "This message will be displayed on the window while proposing article for deletion",
 	"adiutor-rpp-header-title": "This message will be displayed on the protection request action window.",

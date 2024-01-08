@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gogchannel"
+		]
+	},
+	"adiutor-delete": "削除",
+	"adiutor-warning": "警告",
+	"adiutor-add-new-tag-label": "新規作成",
+	"adiutor-delete-button": "削除",
+	"adiutor-name-space": "名前空間",
+	"adiutor-close": "閉じる",
+	"adiutor-tag-description": "概要",
+	"adiutor-configurations-saving": "保存中...",
+	"adiutor-namespaces": "名前空間"
+}

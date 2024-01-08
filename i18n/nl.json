@@ -32,7 +32,12 @@
 	"adiutor-prd-deletion-rationale": "Motivering voor de voorgestelde verwijdering",
 	"adiutor-prd-deletion-type": "Type van de voorgestelde verwijdering",
 	"adiutor-prd-deletion-type-1": "PROD (voorgestelde verwijdering)",
+	"adiutor-prd-deletion-type-2": "BLP PROD (voorgestelde verwijdering van Biografie van een Levende Persoon zonder bronvermeldingen)",
 	"adiutor-prd-deletion-type-1-help": "Voorgestelde verwijdering volgens $1",
 	"adiutor-prd-deletion-type-2-help": "Voorgestelde verwijdering van biografieën van levende personen zonder enige bronvermelding, volgens de in $1 vermelde richtlijnen.",
-	"adiutor-rpp-header-title": "Verzoek om paginabeveiliging"
+	"adiutor-rpp-header-title": "Verzoek om paginabeveiliging",
+	"adiutor-rpp-incomplete-request-details": "Zorg ervoor dat u een duur en een type hebt uitgekozen en een onderbouwing hebt gegeven.",
+	"adiutor-rpm-incomplete-request-details": "Zorg ervoor dat u een nieuwe naam hebt ingevoerd en een onderbouwing hebt opgegeven.",
+	"adiutor-prd-header-title": "Verwijderingsvoorstel",
+	"adiutor-csd-header-title": "Verzoek om spoedige verwijdering"
 }

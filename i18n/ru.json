@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac"
+		]
+	},
+	"adiutor-create": "Создать",
+	"adiutor-request": "Запрос",
+	"adiutor-speedy-deletion-policy": "Политика быстрого удаления",
+	"adiutor-delete": "Удалить",
+	"adiutor-other-options": "Другие настройки",
+	"adiutor-options": "Настройки",
+	"adiutor-afd-special-page-title": "Статьи для удаления",
+	"adiutor-page-move-request": "Запрос на перемещение страницы",
+	"adiutor-and": "и",
+	"adiutor-warning": "Предупреждение",
+	"adiutor-multiple-issues-template-label": "Шаблон нескольких причин:",
+	"adiutor-label-column": "Метка",
+	"adiutor-action-column": "Действие",
+	"adiutor-delete-button": "Удалить",
+	"adiutor-parameters": "Параметры",
+	"adiutor-parameters-day": "день",
+	"adiutor-parameters-month": "месяц",
+	"adiutor-parameters-year": "год",
+	"adiutor-name-space": "Пространство имён",
+	"adiutor-close": "Закрыть",
+	"adiutor-single-reason-template": "Шаблон одной причины:",
+	"adiutor-multiple-reason-template": "Шаблон нескольких причин:",
+	"adiutor-action": "Действие",
+	"adiutor-data": "Данные",
+	"adiutor-help": "Справка",
+	"adiutor-tag-description": "Описание",
+	"adiutor-type": "Тип",
+	"adiutor-try-again": "Попробовать ещё раз",
+	"adiutor-csd-use-reason-data": "Использовать данные причины",
+	"prefs-moderation": "Модерация"
+}

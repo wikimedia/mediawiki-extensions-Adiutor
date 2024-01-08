@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"adiutor-toggle-adiutor": "Usar o Adiutor para a moderação, triagem e manutenção de tarefas de conteúdo",
+	"adiutor-desc": "O Adiutor é uma extensão do MediaWiki para a moderação, triagem e manutenção de tarefas de conteúdo da Wikipédia. A extensão implementa métodos de triagem e prioriza e categoriza pedidos e conteúdos com base na sua urgência e importância. A interface da extensão simplifica processos complexos, tornando a manutenção da Wikipédia mais acessível e eficiente para utilizadores de todos os níveis de experiência.",
+	"adiutor-beta-feature-description": "O Adiutor é uma extensão do MediaWiki para a moderação, triagem e manutenção de tarefas de conteúdo da Wikipédia. A extensão implementa métodos de triagem e prioriza e categoriza pedidos e conteúdos com base na sua urgência e importância. A interface da extensão simplifica processos complexos, tornando a manutenção da Wikipédia mais acessível e eficiente para utilizadores de todos os níveis de experiência.",
+	"adiutor-beta-feature-enabled": "O Adiutor está agora ativado como funcionalidade beta.",
+	"adiutor-create": "Criar",
+	"adiutor-request": "Pedir",
+	"adiutor-protection-policy": "Normas de proteção",
+	"adiutor-speedy-deletion-policy": "Normas de eliminação rápida",
+	"adiutor-delete": "Eliminar",
+	"adiutor-other-options": "Outras opções",
+	"adiutor-propose": "Propor",
+	"adiutor-continue": "Continuar",
+	"adiutor-options": "Opções",
+	"adiutor-protect-against-rebuilding": "Pedir proteção contra nova criação",
+	"adiutor-protect-against-rebuilding-help": "Quando selecionada, uma etiqueta {{salt}} é adicionada à etiqueta de eliminação rápida, a pedir ao administrador que aplique proteção contra criação. Selecionar só se esta página é criada persistentemente.",
+	"adiutor-rationale": "Justificação",
+	"adiutor-rationale-placeholder": "Porque está a nomear esta página para eliminação?{{GENDER:|}}",
+	"adiutor-inform-creator": "Informar o utilizador que criou a página.",
+	"adiutor-inform-creator-help": "Se selecionada, será colocada uma predefinição de notificação na página de discussão do utilizador que criou a página.",
+	"adiutor-rpp-rationale-placeholder": "Indique, por favor, uma justificação para a proteção",
+	"adiutor-rpm-rationale-placeholder": "Indique, por favor, uma justificação",
+	"adiutor-afd-special-page-title": "Artigos para eliminar",
+	"adiutor-create-request": "Criar pedido",
+	"adiutor-protection-type": "Tipo de proteção",
+	"adiutor-choose-appropriate-tags": "Escolher as etiquetas apropriadas",
+	"adiutor-prd-deletion-rationale": "Justificação da eliminação proposta",
+	"adiutor-prd-deletion-type": "Tipo de eliminação proposta"
+}

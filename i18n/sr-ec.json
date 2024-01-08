@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Milicevic01"
+		]
+	},
+	"adiutor-create": "Направи",
+	"adiutor-new-name": "Ново име",
+	"adiutor-settings-label": "Подешавања",
+	"adiutor-delete-button": "Обриши",
+	"adiutor-parameters-day": "дан",
+	"adiutor-parameters-month": "месец",
+	"adiutor-parameters-year": "година",
+	"adiutor-name-space": "Именски простор",
+	"adiutor-close": "Затвори",
+	"adiutor-value": "Вредност",
+	"adiutor-help": "Помоћ",
+	"adiutor-tag-description": "Опис",
+	"adiutor-configurations-saving": "Чување...",
+	"adiutor-namespaces": "Именски простори"
+}
