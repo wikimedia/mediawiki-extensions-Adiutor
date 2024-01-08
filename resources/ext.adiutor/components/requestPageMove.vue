@@ -32,7 +32,7 @@
 <script>
 const { defineComponent, ref } = require( 'vue' );
 const { CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxTextArea } = require( '@wikimedia/codex' );
-const rpmConfiguration = mw.config.get( 'adiutorRequestPageMove' );
+const rpmConfiguration = mw.config.get( 'wgAdiutorRequestPageMove' );
 const noticeBoardTitle = rpmConfiguration.noticeBoardTitle;
 const noticeBoardLink = noticeBoardTitle.replace( / /g, '_' );
 const addNewSection = rpmConfiguration.addNewSection;

@@ -87,7 +87,7 @@
 <script>
 const { defineComponent, ref, nextTick, onMounted } = require( 'vue' );
 const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
-const csdConfiguration = mw.config.get( 'adiutorCreateSpeedyDeletion' );
+const csdConfiguration = mw.config.get( 'wgAdiutorCreateSpeedyDeletion' );
 const speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
 const copyVioReasonValue = csdConfiguration.copyVioReasonValue;
 const postfixReasonUsage = csdConfiguration.postfixReasonUsage;

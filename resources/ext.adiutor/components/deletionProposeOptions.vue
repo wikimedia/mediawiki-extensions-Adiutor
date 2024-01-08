@@ -156,7 +156,7 @@
 <script>
 const { defineComponent, ref } = require( 'vue' );
 const { CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxField, CdxButton } = require( '@wikimedia/codex' );
-const dprConfiguration = mw.config.get( 'adiutorDeletionPropose' );
+const dprConfiguration = mw.config.get( 'wgAdiutorDeletionPropose' );
 module.exports = defineComponent( {
   name: 'DeletionProposeOptions',
   components: {

@@ -241,7 +241,7 @@
 <script>
 const { defineComponent, ref } = require( 'vue' );
 const { CdxTextInput, CdxChipInput, CdxField, CdxToggleSwitch, CdxButton } = require( '@wikimedia/codex' );
-const tagConfiguration = mw.config.get( 'adiutorArticleTagging' );
+const tagConfiguration = mw.config.get( 'wgAdiutorArticleTagging' );
 module.exports = defineComponent( {
   name: 'ArticleTaggingOptions',
   components: {
