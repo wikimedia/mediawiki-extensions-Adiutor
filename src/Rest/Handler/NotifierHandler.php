@@ -33,8 +33,14 @@ class NotifierHandler extends SimpleHandler {
 	/**
 	 * @throws HttpError
 	 */
-	protected function run(): Response {
+	public function run(): Response {
 		$jsonData = $this->getValidatedBody();
+
+		if ( !is_array( $jsonData ) || !isset( $jsonData['content'] ) ) {
+			// Handle the error appropriately, for example:
+			throw new HttpError( 400, 'Invalid or missing content in the request body' );
+		}
+
 		$content = $jsonData['content'];
 
 		$agent = RequestContext::getMain()->getUser();
