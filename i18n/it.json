@@ -14,5 +14,7 @@
 	"adiutor-name": "Nome",
 	"adiutor-value": "Valore",
 	"adiutor-section-id": "ID sezione:",
-	"adiutor-configurations-saving": "Salvataggio..."
+	"adiutor-configurations-saving": "Salvataggio...",
+	"adiutor-notification-header-csd-requested": "Cancellazione immediata richiesta da $1",
+	"echo-category-title-moderation": "Moderazione"
 }
