@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Extension\Adiutor\Test\Unit\HookHandler;
 
+use ExtensionRegistry;
 use MediaWiki\Extension\Adiutor\HookHandler\PreferencesHandler;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
-use PHPUnit\Framework\MockObject\Exception;
 use User;
 
 class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
@@ -30,12 +30,12 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testOnSaveUserOptionsNoAccessChange( $originalOptions, $modifiedOptions, $expectedOptions ) {
 		$user = $this->createMock( UserIdentity::class );
-		$handler = $this->GetPreferencesHandler( [] );
+		$handler = $this->GetPreferencesHandler();
 		$handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
 		$this->assertSame( $expectedOptions, $modifiedOptions );
 	}
 
-	public static function provideOnSaveUserOptionsNoAccessChange() {
+	public static function provideOnSaveUserOptionsNoAccessChange(): array {
 		return [
 			'Enabled to begin with, then not set' => [
 				[ 'adiutor-enable' => true ],
@@ -65,7 +65,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public static function provideOnSaveUserOptionsRestoreDefaultPreferences() {
+	public static function provideOnSaveUserOptionsRestoreDefaultPreferences(): array {
 		return [
 			'Enabled to begin with, then not set' => [
 				[
@@ -117,19 +117,43 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Extension\Adiutor\HookHandler\PreferencesHandler::onGetPreferences
-	 * @throws Exception
 	 */
 	public function testOnGetPreferences() {
 		$user = $this->createMock( User::class );
 
 		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )->willReturn( true );
+		$permissionManager->method( 'userHasRight' )->willReturnCallback(
+			static function ( $user, $right ) {
+				return $right === 'edit';
+			}
+		);
 
-		$handler = $this->getPreferencesHandler( [
-			'permissionManager' => $permissionManager,
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )->willReturnMap( [
+			[ $user, 'adiutor-beta-feature-enable', null, false ]
 		] );
 
-		$preferences = [];
+		$extensionRegistry = $this->createMock( ExtensionRegistry::class );
+		$extensionRegistry->method( 'isLoaded' )->willReturnCallback(
+			static function ( $extension ) {
+				// Simulate that BetaFeatures extension is not loaded
+				return $extension !== 'BetaFeatures';
+			}
+		);
+
+		$handler = $this->GetPreferencesHandler( [
+			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
+			'userGroupManager' => $this->createMock( UserGroupManager::class ),
+		] );
+
+		$preferences = [
+			'adiutor-enable' => [
+				'type' => 'toggle',
+				'label-message' => 'foo',
+			],
+		];
+
 		$handler->onGetPreferences( $user, $preferences );
 
 		$this->assertArrayHasKey( 'adiutor-enable', $preferences );

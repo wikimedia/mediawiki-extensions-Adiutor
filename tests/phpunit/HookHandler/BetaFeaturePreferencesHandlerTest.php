@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\Adiutor\Test\Integration\HookHandler;
 
 use MediaWiki\Permissions\PermissionManager;
 use MediaWikiIntegrationTestCase;
-use PHPUnit\Framework\MockObject\Exception;
 use User;
 
 class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
@@ -12,7 +11,6 @@ class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	 * Test the behavior of onGetBetaFeaturePreferences hook.
 	 *
 	 * @covers \MediaWiki\Extension\Adiutor\HookHandler\BetaFeaturePreferencesHandler::onGetBetaFeaturePreferences
-	 * @throws Exception
 	 * @throws \Exception
 	 */
 	public function testOnGetBetaFeaturePreferences() {
