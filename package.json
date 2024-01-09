@@ -1,5 +1,5 @@
 {
-	"name": "Adiutor",
+	"name": "adiutor",
 	"private": true,
 	"scripts": {
 		"test": "grunt test && npm run test:jest",
