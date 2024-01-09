@@ -10,6 +10,7 @@ namespace MediaWiki\Extension\Adiutor;
 
 use Maintenance;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use TextContent;
@@ -25,6 +26,10 @@ class AdiutorMaintenance extends Maintenance {
 		'MediaWiki:AdiutorRequestPageMove.json' => LocalizationConfiguration::PAGE_MOVE_CONFIGURATION,
 		'MediaWiki:AdiutorArticleTagging.json' => LocalizationConfiguration::ARTICLE_TAGGING_CONFIGURATION,
 	];
+
+	public function getConfigurationPages(): array {
+		return $this->configurationPages;
+	}
 
 	public function __construct() {
 		parent::__construct();
@@ -68,25 +73,22 @@ class AdiutorMaintenance extends Maintenance {
 	 *
 	 * @return void
 	 */
-	private function createPage( TitleFactory $titleFactory, string $pageTitle, array $content, User $user, MediaWikiServices $services ) {
+	public function createPage( TitleFactory $titleFactory, string $pageTitle, array $content, User $user, MediaWikiServices $services ) {
 		$title = $titleFactory->newFromText( $pageTitle );
 		if ( !$title->exists() ) {
 			$pageContent =
-				json_encode( $content,
-					JSON_PRETTY_PRINT );
+				json_encode( $content, JSON_PRETTY_PRINT );
 			$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
-			$pageUpdater->setContent( SlotRecord::MAIN,
-				new TextContent( $pageContent ) );
-			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ),
-				EDIT_INTERNAL | EDIT_AUTOSUMMARY );
+			$pageUpdater->setContent( SlotRecord::MAIN, new TextContent( $pageContent ) );
+			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ), EDIT_INTERNAL | EDIT_AUTOSUMMARY );
 			$saveStatus = $pageUpdater->getStatus();
 			if ( !$saveStatus->isGood() ) {
-				wfLogWarning( 'Adiutor: Failed to create configuration page',
-					[
-						'pageTitle' => $pageTitle,
-						'pageContent' => $pageContent,
-						'saveStatus' => $saveStatus,
-					] );
+				$logger = LoggerFactory::getInstance( 'Adiutor' );
+				$logger->warning( 'Failed to create configuration page', [
+					'pageTitle' => $pageTitle,
+					'pageContent' => $pageContent,
+					'saveStatus' => $saveStatus,
+				] );
 			}
 		}
 	}
