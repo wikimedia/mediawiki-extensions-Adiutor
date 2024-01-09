@@ -2,5 +2,6 @@
 	"extends": "stylelint-config-wikimedia",
 	"rules": {
 		"selector-max-id": null
-	}
+	},
+	"ignoreFiles": ["coverage/lcov-report/**/*.css"]
 }
