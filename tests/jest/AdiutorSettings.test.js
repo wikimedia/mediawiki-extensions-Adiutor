@@ -1,13 +1,10 @@
-// Mock the `mw` object globally before importing Vue components
-
+// Mock global.mw object used for accessing MediaWiki's global variables and services.
 global.mw = {
 	msg: jest.fn( ( key ) => `Mock message for ${ key }` ),
 	config: {
 		get: jest.fn( ( key ) => {
 			if ( key === 'wgAdiutorCreateSpeedyDeletion' ) {
-				// Return a mock configuration object or the actual expected configuration
 				return {
-					// Include all properties accessed within your component, with mock or default values
 					speedyDeletionReasons: [],
 					csdTemplateStartSingleReason: '',
 					csdTemplateStartMultipleReason: '',
@@ -25,7 +22,6 @@ global.mw = {
 			}
 			if ( key === 'wgAdiutorRequestPageProtection' ) {
 				return {
-					// Include all properties accessed within your component, with mock or default values
 					requestProtectionReasons: [],
 					requestProtectionTemplate: '',
 					requestProtectionPolicyLink: '',
@@ -39,7 +35,6 @@ global.mw = {
 			}
 			if ( key === 'wgAdiutorRequestPageMove' ) {
 				return {
-					// Include all properties accessed within your component, with mock or default values
 					requestMoveReasons: [],
 					requestMoveTemplate: '',
 					requestMovePolicyLink: '',
@@ -53,7 +48,6 @@ global.mw = {
 			}
 			if ( key === 'wgAdiutorDeletionPropose' ) {
 				return {
-					// Include all properties accessed within your component, with mock or default values
 					deletionProposeReasons: [],
 					deletionProposeTemplate: '',
 					deletionProposePolicyLink: '',
@@ -78,7 +72,6 @@ global.mw = {
 					namespaces: []
 				};
 			}
-			// Mock other configuration keys as needed
 			return null;
 		} )
 	},
@@ -93,10 +86,13 @@ global.mw = {
 const { mount } = require( '@vue/test-utils' );
 const AdiutorSettings = require( '../../resources/ext.adiutor/components/adiutorSettings.vue' );
 
+// Begin the test suite for the `AdiutorSettings` Vue component.
 describe( 'AdiutorSettings', () => {
 	let wrapper;
 
+	// `beforeEach` is run before each individual test, this is where common setup is performed.
 	beforeEach( () => {
+		// Mount the component with stubs for the Vue subcomponents and props
 		wrapper = mount( AdiutorSettings, {
 			global: {
 				stubs: {
@@ -106,9 +102,7 @@ describe( 'AdiutorSettings', () => {
 					deletionProposeOptions: true,
 					articleTaggingOptions: true
 				},
-				provide: {
-					// Provide other injected values if there are any
-				}
+				provide: {}
 			},
 			props: {
 				framed: true
@@ -116,36 +110,38 @@ describe( 'AdiutorSettings', () => {
 		} );
 	} );
 
+	// Test case to verify that the default active tab is "csd" (create speedy deletion)
 	it( 'sets the default active tab to "csd"', () => {
 		expect( wrapper.vm.currentTab ).toBe( 'csd' );
 	} );
 
+	// Test case to verify that the default active tab is "rpp" (request page protection)
 	it( 'sets the default active tab to "rpp"', () => {
-		// Modify the default active tab to 'rpp' if needed
-		// For example, if the component allows changing the default tab
 		wrapper.setData( { currentTab: 'rpp' } );
 		expect( wrapper.vm.currentTab ).toBe( 'rpp' );
 	} );
 
+	// Test case to verify that the default active tab is "rpm" (request page move)
 	it( 'sets the default active tab to "rpm"', () => {
-		// Modify the default active tab to 'rpm' if needed
 		wrapper.setData( { currentTab: 'rpm' } );
 		expect( wrapper.vm.currentTab ).toBe( 'rpm' );
 	} );
 
+	// Test case to verify that the default active tab is "dpr" (proposed deletion)
 	it( 'sets the default active tab to "dpr"', () => {
-		// Modify the default active tab to 'dpr' if needed
 		wrapper.setData( { currentTab: 'dpr' } );
 		expect( wrapper.vm.currentTab ).toBe( 'dpr' );
 	} );
 
+	// Test case to verify that the default active tab is "tag" (article tagging)
 	it( 'sets the default active tab to "tag"', () => {
-		// Modify the default active tab to 'tag' if needed
 		wrapper.setData( { currentTab: 'tag' } );
 		expect( wrapper.vm.currentTab ).toBe( 'tag' );
 	} );
 
+	// `afterEach` is run after each test, this is where common teardown is performed.
 	afterEach( () => {
+		// Unmount the wrapper after each test to clean up
 		wrapper.unmount();
 	} );
 } );
