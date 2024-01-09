@@ -106,11 +106,16 @@ module.exports = defineComponent( {
         }
         apiParams[ textModificationDirection === 'appendtext' ? 'appendtext' : textModificationDirection === 'prependtext' ? 'prependtext' : 'text' ] = preparedContent + '\n';
       }
-
-      api.postWithToken( 'csrf', apiParams ).done( function () {
+      try {
+        await api.postWithToken( 'csrf', apiParams );
         window.location = '/wiki/' + noticeBoardLink;
         openRpmDialog.value = false;
-      } );
+      } catch ( error ) {
+        mw.notify( 'adiutor-rpm-failed', {
+          title: mw.msg( 'adiutor-operation-failed' ),
+          type: 'error'
+        } );
+      }
     };
 
     const requestPageMove = async () => {
