@@ -5,8 +5,8 @@
 		]
 	},
 	"adiutor-toggle-adiutor": "Adiutor gebruiken om inhoudstaken te modereren, te beoordelen en te onderhouden",
-	"adiutor-desc": "Adiutor is een MediaWiki-uitbreiding voor het modereren, beoordelen en onderhouden van inhoudstaken op Wikipedia. Het implementeert methoden voor inhoudstriage, waarbij verzoeken of inhoud op basis van urgentie en belang worden ingedeeld. De gebruikersinterface vereenvoudigt complexe processen, waardoor het onderhoud van Wikipedia voor gebruikers van alle niveaus toegankelijker en efficiënter wordt.",
-	"adiutor-beta-feature-description": "Adiutor is een MediaWiki-uitbreiding voor het modereren, beoordelen en onderhouden van inhoudstaken op Wikipedia. Het implementeert methoden voor inhoudstriage, waarbij verzoeken of inhoud op basis van urgentie en belang worden ingedeeld. De gebruikersinterface vereenvoudigt complexe processen, waardoor het onderhoud van Wikipedia voor gebruikers van alle niveaus toegankelijker en efficiënter wordt.",
+	"adiutor-desc": "Adiutor is een MediaWiki-uitbreiding voor het modereren, beoordelen en onderhouden van inhoudstaken op Wikipedia. Het implementeert methoden voor inhoudstriage en deelt verzoeken en inhoud op basis van urgentie en belang in. De gebruikersinterface vereenvoudigt complexe processen, waardoor het onderhoud van Wikipedia voor gebruikers van alle niveaus toegankelijker en efficiënter wordt.",
+	"adiutor-beta-feature-description": "Adiutor is een MediaWiki-uitbreiding voor het modereren, beoordelen en onderhouden van inhoudstaken op Wikipedia. Het implementeert methoden voor inhoudstriage en deelt verzoeken en inhoud op basis van urgentie en belang in. De gebruikersinterface vereenvoudigt complexe processen, waardoor het onderhoud van Wikipedia voor gebruikers van alle niveaus toegankelijker en efficiënter wordt.",
 	"adiutor-beta-feature-enabled": "Adiutor is nu ingeschakeld als bètafunctie.",
 	"adiutor-create": "Aanmaken",
 	"adiutor-request": "Aanvragen",
@@ -39,5 +39,11 @@
 	"adiutor-rpp-incomplete-request-details": "Zorg ervoor dat u een duur en een type hebt uitgekozen en een onderbouwing hebt gegeven.",
 	"adiutor-rpm-incomplete-request-details": "Zorg ervoor dat u een nieuwe naam hebt ingevoerd en een onderbouwing hebt opgegeven.",
 	"adiutor-prd-header-title": "Verwijderingsvoorstel",
-	"adiutor-csd-header-title": "Verzoek om spoedige verwijdering"
+	"adiutor-csd-header-title": "Verzoek om spoedige verwijdering",
+	"adiutor-tag-header-title": "Artikeltags",
+	"adiutor-csd-header-description": "Kies uit de onderstaande opties de juiste reden voor het verwijderen van deze pagina. Als de reden voor het verzoek tot snelle verwijdering niet voldoet aan de criteria voor snelle verwijdering wordt de pagina mogelijk niet verwijderd.",
+	"adiutor-rpp-header-description": "Deze module is bedoeld voor het aanvragen van de beveiliging van een pagina, bestand of sjabloon. Lees het beveiligingsbeleid door.",
+	"adiutor-prd-header-description": "Het voorstel suggereert dat het artikel onbetwistbaar kan worden verwijderd, ook al voldoet het niet aan de strengere vereisten voor snelle verwijdering.",
+	"adiutor-new-name": "Nieuwe naam",
+	"adiutor-pmr-header-title": "Verzoek om paginahernoeming"
 }

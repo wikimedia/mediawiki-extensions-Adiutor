@@ -128,6 +128,7 @@
 	"adiutor-request-page-protection": "Sayfa koruması talep et",
 	"adiutor-request-page-move": "Sayfa taşımayı talep et",
 	"adiutor-proposed-deletion": "Silme önerisi",
+	"adiutor-article-tagging": "Madde etiketleme",
 	"adiutor-request-speedy-deletion": "Hızlı silme isteğinde bulun",
 	"adiutor-propose-deletion": "Silme önerisi",
 	"adiutor-request-protection": "Koruma talep et",
@@ -163,7 +164,13 @@
 	"adiutor-rpp-enable-help": "Bu onay kutusu etkinleştirildiğinde koruma isteği modülü etkinleştirilecektir.",
 	"adiutor-rpm-enable-label": "Sayfa taşıma isteklerini etkinleştir",
 	"adiutor-rpm-enable-help": "Bu onay kutusu etkinleştirildiğinde sayfa taşıma isteği modülü etkinleştirilecektir.",
+	"adiutor-prod-enable-label": "Bekletmeli silmeyi etkinleştir",
+	"adiutor-prod-enable-help": "Bu onay kutusu etkinleştirildiğinde bekletmeli silme modülü etkinleştirilecektir.",
 	"adiutor-tag-enable-label": "Madde etiketlemeyi etkinleştir",
 	"adiutor-tag-enable-help": "Bu onay kutusu etkinleştirildiğinde madde etiketleme modülü etkinleştirilecektir.",
-	"adiutor-interface-admin-required": "Bu eylem, arayüz yöneticisi hakkı gerektirir."
+	"adiutor-interface-admin-required": "Bu eylem, arayüz yöneticisi hakkı gerektirir.",
+	"adiutor-notification-header-csd-requested": "$1 tarafından hızlı silme talep edildi",
+	"adiutor-notification-body-csd-requested": "Hızlı silme politikamız gereğince $1 maddesi için hızlı silme talep edildi.",
+	"echo-category-title-moderation": "Moderasyon",
+	"echo-pref-tooltip-moderation": "Beni ilgilendiren moderasyonları bana bildir."
 }
