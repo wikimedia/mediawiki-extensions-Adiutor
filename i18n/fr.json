@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iketsi"
+		]
+	},
+	"adiutor-create": "Créer",
+	"adiutor-request": "Requête",
+	"adiutor-delete": "Supprimer",
+	"adiutor-propose": "Proposer",
+	"adiutor-continue": "Continuer",
+	"adiutor-options": "Options",
+	"adiutor-and": "et",
+	"adiutor-settings-label": "Paramètres",
+	"adiutor-label-column": "Libellé",
+	"adiutor-action-column": "Action",
+	"adiutor-delete-button": "Supprimer",
+	"adiutor-parameters-page-name": "nom de la page",
+	"adiutor-parameters-new-page-name": "nouveau nom de page",
+	"adiutor-parameters-protection-duration": "durée de protection",
+	"adiutor-parameters-protection-type": "type de protection",
+	"adiutor-parameters-protection-rationale": "justification de la protection",
+	"adiutor-parameters-day": "jour",
+	"adiutor-parameters-month": "mois",
+	"adiutor-parameters-year": "année",
+	"adiutor-value": "Valeur",
+	"adiutor-data": "Données",
+	"adiutor-label": "Libellé",
+	"adiutor-help": "Aide",
+	"adiutor-type": "Type",
+	"adiutor-configurations-saving": "Enregistrement en cours...",
+	"adiutor-csd-default": "Par défaut"
+}
