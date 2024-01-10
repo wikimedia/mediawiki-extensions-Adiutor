@@ -1,3 +1,8 @@
+/**
+ * requestPageMove.test.js
+ * This file contains tests for the RequestPageProtection Vue component.
+ */
+
 // Mock global.mw object used for accessing MediaWiki's global variables and services.
 global.mw = {
 	config: {
