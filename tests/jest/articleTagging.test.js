@@ -2,8 +2,8 @@
  * articleTagging.test.js
  * This file contains tests for the articleTagging Vue component.
  */
-
-// Mock global.mw object
+const { mount } = require( '@vue/test-utils' );
+// Mock global.mw object used for accessing MediaWiki's global variables and services.
 global.mw = {
 	config: {
 		get: jest.fn( ( key ) => {
@@ -32,7 +32,6 @@ global.mw = {
 	msg: jest.fn( () => 'translated message' )
 };
 
-const { mount } = require( '@vue/test-utils' );
 const ArticleTagging = require( '../../resources/ext.adiutor/components/articleTagging.vue' );
 
 // Begin the test suite for the `ArticleTagging` Vue component.

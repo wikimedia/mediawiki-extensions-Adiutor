@@ -1,3 +1,8 @@
+/**
+ * adiutorSettings.test.js
+ * This file contains tests for the adiutorSettings Vue component.
+ */
+const { mount } = require( '@vue/test-utils' );
 // Mock global.mw object used for accessing MediaWiki's global variables and services.
 global.mw = {
 	msg: jest.fn( ( key ) => `Mock message for ${ key }` ),
@@ -75,7 +80,9 @@ global.mw = {
 			return null;
 		} )
 	},
-	Api: jest.fn( () => ( { post: jest.fn().mockResolvedValue( {} ) } ) ),
+	Api: jest.fn( () => ( {
+		postWithToken: jest.fn( () => Promise.resolve() )
+	} ) ),
 	user: {
 		tokens: {
 			get: jest.fn().mockReturnValue( 'mock-edit-token' )
@@ -83,7 +90,7 @@ global.mw = {
 	},
 	notify: jest.fn()
 };
-const { mount } = require( '@vue/test-utils' );
+
 const AdiutorSettings = require( '../../resources/ext.adiutor/components/adiutorSettings.vue' );
 
 // Begin the test suite for the `AdiutorSettings` Vue component.

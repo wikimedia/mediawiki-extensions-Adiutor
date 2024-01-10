@@ -2,7 +2,7 @@
  * requestPageMove.test.js
  * This file contains tests for the RequestPageProtection Vue component.
  */
-
+const { mount } = require( '@vue/test-utils' );
 // Mock global.mw object used for accessing MediaWiki's global variables and services.
 global.mw = {
 	config: {
@@ -34,7 +34,6 @@ global.mw = {
 	msg: jest.fn( () => 'translated message' )
 };
 
-const { mount } = require( '@vue/test-utils' );
 const RequestPageMove = require( '../../resources/ext.adiutor/components/requestPageMove.vue' );
 
 // Begin the test suite for the `RequestPageMove` Vue component.
