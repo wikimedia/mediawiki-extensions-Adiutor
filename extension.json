@@ -358,7 +358,8 @@
 				"adiutor-notification-header-csd-requested",
 				"adiutor-notification-body-csd-requested",
 				"echo-category-title-moderation",
-				"echo-pref-tooltip-moderation"
+				"echo-pref-tooltip-moderation",
+				"adiutor-please-select-a-tag"
 			]
 		}
 	},

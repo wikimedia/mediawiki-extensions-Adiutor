@@ -224,5 +224,6 @@
 	"adiutor-notification-header-csd-requested": "This message will be displayed on the notification window.",
 	"adiutor-notification-body-csd-requested": "This message will be displayed on the notification window.",
 	"echo-category-title-moderation": "This message will be displayed on the notification window.",
-	"echo-pref-tooltip-moderation": "This message will be displayed on the notification window."
+	"echo-pref-tooltip-moderation": "This message will be displayed on the notification window.",
+	"adiutor-please-select-a-tag": "This message will be displayed on the notification window."
 }

@@ -74,7 +74,7 @@ const { defineComponent, ref, computed } = require( 'vue' );
 const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
 const { cdxIconSearch, cdxIconInfoFilled } = require( '../icons.json' );
 module.exports = defineComponent( {
-  name: 'CreateSpeedyDeletion',
+  name: 'ArticleTagging',
   components: {
     CdxDialog,
     CdxCheckbox,
@@ -84,7 +84,6 @@ module.exports = defineComponent( {
     CdxMessage
   },
   setup() {
-    const api = new mw.Api();
     const checkboxValue = ref( [ '' ] );
     const openTagDialog = ref( true );
     const tagConfiguration = mw.config.get( 'wgAdiutorArticleTagging' );
@@ -124,7 +123,39 @@ module.exports = defineComponent( {
       }
     }
 
-    function tagArticle() {
+    const createApiRequest = async ( preparedTagsString ) => {
+      const api = new mw.Api();
+      const editParams = {
+        action: 'edit',
+        title: mw.config.get( 'wgPageName' ),
+        summary: apiPostSummary,
+        tags: 'adiutor',
+        format: 'json'
+      };
+      let removedContent = '';
+      const modifiedTags = preparedTagsString.replace( '{{' + uncategorizedTemplate + '}}', function ( match ) {
+        removedContent = match;
+        return '';
+      } );
+      if ( removedContent ) {
+        editParams.prependtext = modifiedTags.split( ',' ).join( '\n' ) + '\n';
+        editParams.appendtext = '\n' + removedContent;
+      } else {
+        editParams.prependtext = modifiedTags.split( ',' ).join( '\n' ) + '\n';
+      }
+      try {
+        await api.postWithToken( 'csrf', editParams );
+          openTagDialog.value = false;
+          location.reload();
+      } catch ( error ) {
+        mw.notify( mw.msg( 'adiutor-tag-failed' ), {
+          title: mw.msg( 'adiutor-operation-failed' ),
+          type: 'error'
+        } );
+      }
+    };
+
+    const tagArticle = async () => {
       const preparedTemplates = [];
       const templateInfo = {};
       let preparedTagsString;
@@ -159,17 +190,15 @@ module.exports = defineComponent( {
         preparedTagsString = preparedTemplates.join( '\n' );
       }
 
-      if ( selectedTags.length > 0 ) {
-        tagPage( preparedTagsString );
-        openTagDialog.value = false;
-
-      } else {
-        mw.notify( mw.msg( 'adiutor-select-a-tag' ), {
+      if ( !selectedTags.length > 0 ) {
+        mw.notify( mw.msg( 'adiutor-please-select-a-tag' ), {
           title: mw.msg( 'adiutor-operation-failed' ),
           type: 'error'
         } );
+      } else {
+        await createApiRequest( preparedTagsString );
       }
-    }
+    };
 
     function getInputValue( inputName ) {
       const inputElement = document.querySelector( 'input[name="' + inputName + '"]' );
@@ -180,30 +209,6 @@ module.exports = defineComponent( {
       }
     }
 
-    function tagPage( preparedTagsString ) {
-      const editParams = {
-        action: 'edit',
-        title: mw.config.get( 'wgPageName' ),
-        summary: apiPostSummary,
-        tags: 'adiutor',
-        format: 'json'
-      };
-      let removedContent = '';
-      const modifiedTags = preparedTagsString.replace( '{{' + uncategorizedTemplate + '}}', function ( match ) {
-        removedContent = match;
-        return '';
-      } );
-      if ( removedContent ) {
-        editParams.prependtext = modifiedTags.split( ',' ).join( '\n' ) + '\n';
-        editParams.appendtext = '\n' + removedContent;
-      } else {
-        editParams.prependtext = modifiedTags.split( ',' ).join( '\n' ) + '\n';
-      }
-      api.postWithToken( 'csrf', editParams ).done( function () {
-        location.reload();
-      } );
-    }
-
     return {
       checkboxValue,
       openTagDialog,
@@ -211,9 +216,9 @@ module.exports = defineComponent( {
       searchTag,
       toggleTag,
       filteredTagList,
-      tagArticle,
       cdxIconSearch,
-      cdxIconInfoFilled
+      cdxIconInfoFilled,
+      tagArticle
     };
   }
 } );

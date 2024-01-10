@@ -232,8 +232,8 @@ module.exports = defineComponent( {
         content: {
           author: articleAuthor,
           reason: summary,
-          title: mw.config.get( 'wgPageName' ),
-        },
+          title: mw.config.get( 'wgPageName' )
+        }
       };
       const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/notifier';
       try {

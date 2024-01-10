@@ -29,10 +29,10 @@ const config = {
 
     // A map from regular expressions to module names or to arrays of module
     // names that allow to stub out resources with a single module
-    moduleNameMapper: {
-        'icons.json': '@wikimedia/codex-icons',
-        'codex.js': '@wikimedia/codex'
-    },
+    // moduleNameMapper: {
+    //    'icons.json': '@wikimedia/codex-icons',
+    //    'codex.js': '@wikimedia/codex'
+    //
 
     // The paths to modules that run some code to configure or set up the
     // testing environment before each test
