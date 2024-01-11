@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Okras"
 		]
 	},
 	"adiutor-create": "Создать",
@@ -9,12 +10,16 @@
 	"adiutor-speedy-deletion-policy": "Политика быстрого удаления",
 	"adiutor-delete": "Удалить",
 	"adiutor-other-options": "Другие настройки",
+	"adiutor-continue": "Продолжить",
 	"adiutor-options": "Настройки",
 	"adiutor-afd-special-page-title": "Статьи для удаления",
 	"adiutor-page-move-request": "Запрос на перемещение страницы",
+	"adiutor-page-protection-request": "Запрос на защиту страницы",
 	"adiutor-and": "и",
 	"adiutor-warning": "Предупреждение",
+	"adiutor-settings-label": "Настройки",
 	"adiutor-multiple-issues-template-label": "Шаблон нескольких причин:",
+	"adiutor-uncategorized-template-label": "Некатегоризованные шаблоны:",
 	"adiutor-label-column": "Метка",
 	"adiutor-action-column": "Действие",
 	"adiutor-delete-button": "Удалить",
@@ -22,16 +27,26 @@
 	"adiutor-parameters-day": "день",
 	"adiutor-parameters-month": "месяц",
 	"adiutor-parameters-year": "год",
+	"adiutor-parameters-requester": "запросивший",
 	"adiutor-name-space": "Пространство имён",
 	"adiutor-close": "Закрыть",
+	"adiutor-protection-types": "Типы защиты",
 	"adiutor-single-reason-template": "Шаблон одной причины:",
 	"adiutor-multiple-reason-template": "Шаблон нескольких причин:",
 	"adiutor-action": "Действие",
+	"adiutor-value": "Значение",
 	"adiutor-data": "Данные",
 	"adiutor-help": "Справка",
 	"adiutor-tag-description": "Описание",
+	"adiutor-parameter": "Параметр",
 	"adiutor-type": "Тип",
+	"adiutor-configurations-saving": "Сохраняется…",
 	"adiutor-try-again": "Попробовать ещё раз",
 	"adiutor-csd-use-reason-data": "Использовать данные причины",
-	"prefs-moderation": "Модерация"
+	"adiutor-csd-default": "По умолчанию",
+	"adiutor-test-mode": "Тестовый режим",
+	"adiutor-namespaces": "Пространства имён",
+	"prefs-moderation": "Модерация",
+	"adiutor-deletion-log": "Журнал удалений",
+	"echo-category-title-moderation": "Модерация"
 }
