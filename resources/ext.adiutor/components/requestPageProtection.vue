@@ -38,7 +38,6 @@ const { CdxField, CdxDialog, CdxLabel, CdxTextArea, CdxSelect } = require( '@wik
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const rppConfiguration = mw.config.get( 'wgAdiutorRequestPageProtection' );
 const noticeBoardTitle = rppConfiguration.noticeBoardTitle;
-const noticeBoardLink = noticeBoardTitle.replace( / /g, '_' );
 const addNewSection = rppConfiguration.addNewSection;
 const sectionTitle = rppConfiguration.sectionTitle;
 const useExistSection = rppConfiguration.useExistSection;
@@ -93,7 +92,7 @@ module.exports = defineComponent( {
       }
       try {
         await api.postWithToken( 'csrf', apiParams );
-        window.location = '/wiki/' + noticeBoardLink;
+        window.location = mw.util.getUrl( noticeBoardTitle );
         openRppDialog.value = false;
       } catch ( error ) {
         mw.notify( error, {

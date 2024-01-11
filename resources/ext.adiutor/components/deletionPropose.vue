@@ -144,7 +144,7 @@ module.exports = defineComponent( {
         } );
         location.reload();
       } catch ( error ) {
-        handleError( error );
+        AdiutorUtility.handleError( error );
       }
     };
 
@@ -165,16 +165,9 @@ module.exports = defineComponent( {
           format: 'json'
         } );
       } catch ( error ) {
-        handleError( error );
+        AdiutorUtility.handleError( error );
       }
     };
-
-    function handleError( error ) {
-      mw.notify( error, {
-        title: mw.msg( 'adiutor-operation-failed' ),
-        type: 'error'
-      } );
-    }
 
     /**
      * Function to propose deletion.

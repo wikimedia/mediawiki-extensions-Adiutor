@@ -324,7 +324,7 @@ module.exports = defineComponent( {
         description: mw.message( 'adiutor-csd-default-description' ).text(),
         value: 'default',
         parameter: '$2',
-        output: '[[WP:CSD#A1]] and [[WP:CSD#G1]]}}'
+        output: '|[[WP:CSD#A1]] and [[WP:CSD#G1]]}}'
       }
     ];
 

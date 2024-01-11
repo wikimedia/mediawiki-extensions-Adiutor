@@ -35,7 +35,6 @@ const { CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxTextArea } = require( '@
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const rpmConfiguration = mw.config.get( 'wgAdiutorRequestPageMove' );
 const noticeBoardTitle = rpmConfiguration.noticeBoardTitle;
-const noticeBoardLink = noticeBoardTitle.replace( / /g, '_' );
 const addNewSection = rpmConfiguration.addNewSection;
 const sectionTitle = rpmConfiguration.sectionTitle;
 const useExistSection = rpmConfiguration.useExistSection;
@@ -85,7 +84,7 @@ module.exports = defineComponent( {
       }
       try {
         await api.postWithToken( 'csrf', apiParams );
-        window.location = '/wiki/' + noticeBoardLink;
+        window.location = mw.util.getUrl( noticeBoardTitle );
         openRpmDialog.value = false;
       } catch ( error ) {
         mw.notify( 'adiutor-rpm-failed', {

@@ -20,7 +20,7 @@
 	"adiutor-continue": "Continue",
 	"adiutor-options": "Options",
 	"adiutor-protect-against-rebuilding": "Request recreation protection",
-	"adiutor-protect-against-rebuilding-help": "When chosen, the {{salt}} tag prompts administrators to apply creation protection if the page is consistently recreated.",
+	"adiutor-protect-against-rebuilding-help": "When chosen, the re-creation protection tag prompts administrators to apply creation protection if the page is consistently recreated.",
 	"adiutor-rationale": "Rationale",
 	"adiutor-rationale-placeholder": "Why are {{GENDER:|you}} nominating this page for deletion?",
 	"adiutor-inform-creator": "Inform the user who created the page.",

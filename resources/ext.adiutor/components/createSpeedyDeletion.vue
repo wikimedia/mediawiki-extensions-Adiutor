@@ -97,18 +97,10 @@
 const { defineComponent, ref, nextTick, onMounted } = require( 'vue' );
 const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
+const createSpeedyDeletionMiddleware = require( '../middlewares/speedyDeletionMiddleware.js' );
 const csdConfiguration = mw.config.get( 'wgAdiutorCreateSpeedyDeletion' );
 const speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
 const copyVioReasonValue = csdConfiguration.copyVioReasonValue;
-const postfixReasonUsage = csdConfiguration.postfixReasonUsage;
-const multipleReasonSeparation = csdConfiguration.multipleReasonSeparation;
-const csdTemplateStartSingleReason = csdConfiguration.csdTemplateStartSingleReason;
-const csdTemplateStartMultipleReason = csdConfiguration.csdTemplateStartMultipleReason;
-const singleReasonSummary = csdConfiguration.singleReasonSummary;
-const multipleReasonSummary = csdConfiguration.multipleReasonSummary;
-// const speedyDeletionPolicyLink = csdConfiguration.speedyDeletionPolicyLink;
-const speedyDeletionPolicyPageShortcut = csdConfiguration.speedyDeletionPolicyPageShortcut;
-const csdNotificationTemplate = csdConfiguration.csdNotificationTemplate;
 const namespaceDeletionReasons = [];
 for ( const reason of speedyDeletionReasons ) {
   if ( reason.namespace === mw.config.get( 'wgNamespaceNumber' ) ) {
@@ -137,7 +129,6 @@ module.exports = defineComponent( {
     CdxMessage
   },
   setup() {
-    const api = new mw.Api();
     const checkboxValue = ref( [] );
     const copyVioInput = ref( '' );
     const recreationProrection = ref( false );
@@ -146,6 +137,7 @@ module.exports = defineComponent( {
     const showCopyVioInput = ref( false );
     const deletionLogs = ref( [] );
     const pageName = mw.config.get( 'wgPageName' );
+
     /**
      * Toggles the visibility of the copy violation input based on the checkbox value.
      */
@@ -168,196 +160,23 @@ module.exports = defineComponent( {
     };
 
     /**
-     * Creates an API request to tag an article for speedy deletion.
-     *
-     * @param {string} csdReason - The reason for the speedy deletion.
-     * @param {string} csdSummary - The summary of the speedy deletion.
-     */
-    const createApiRequest = async ( csdReason, csdSummary ) => {
-      // API request to tag the article for speedy deletion
-      api.postWithToken( 'csrf', {
-        action: 'edit',
-        title: mw.config.get( 'wgPageName' ),
-        prependtext: csdReason + '\n',
-        summary: csdSummary,
-        format: 'json'
-      } ).done( function () {
-        openCsdDialog.value = false;
-        mw.notify( 'Article tagged for speedy deletion', {
-          title: mw.msg( 'adiutor-operation-completed' ),
-          type: 'success'
-        } );
-        window.location.reload();
-      } ).fail( function ( error ) {
-        mw.notify( 'Failed to tag article for speedy deletion: ' + error, {
-          title: mw.msg( 'adiutor-operation-failed' ),
-          type: 'error'
-        } );
-      } );
-    };
-
-    /**
-     * Sends a notification message to the author of an article.
-     *
-     * @param {string} articleAuthor - The username of the article author.
-     * @param {string} notificationMessage - The message to be sent as a notification.
-     * @param {string} summary
-     * @return {Promise<void>} - A promise that resolves when the message is sent successfully.
-     */
-    const notifyAuthor = async ( articleAuthor, notificationMessage, summary ) => {
-      const data = {
-        title: mw.config.get( 'wgPageName' ),
-        content: {
-          author: articleAuthor,
-          reason: summary,
-          title: mw.config.get( 'wgPageName' )
-        }
-      };
-      const apiUrl = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/rest.php/adiutor/v0/notifier';
-      try {
-        await fetch( apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify( data )
-        } );
-      } catch ( error ) {
-        mw.notify( error.message, {
-          title: mw.msg( 'adiutor-operation-failed' ),
-          type: 'error'
-        } );
-      }
-    };
-
-    /**
-     * Creates a speedy deletion request based on the selected reasons.
-     * If there are selected reasons, it constructs the csdReason and csdSummary based on the selectedReasons array.
-     * It then calls the createApiRequest function with the csdReason and csdSummary.
-     * If informCreator is true, it fetches the creator of the article and sends a notification message to the creator.
-     * If there are no selected reasons, it displays an error notification.
-     */
-    const createSpeedyDeletionRequest = async () => {
-      const selectedReasons = speedyDeletionReasons.reduce( ( selected, category ) => {
-        const selectedInCategory = category.reasons.filter( ( reason ) => {
-          return checkboxValue.value.includes( reason.value );
-        } );
-        selected.push( ...selectedInCategory );
-        return selected;
-      }, [] );
-
-      if ( selectedReasons.length ) {
-        let csdReason;
-        let csdSummary;
-        let saltCSDSummary = '';
-        let copyVioURL = '';
-        if ( copyVioInput.value !== '' ) {
-          copyVioURL = '|url=' + copyVioInput.value;
-        }
-        if ( selectedReasons.length > 1 ) {
-          let saltCSDReason = csdTemplateStartMultipleReason;
-          if ( multipleReasonSeparation === 'vertical_bar' ) {
-            for ( let i = 0; i < selectedReasons.length; i++ ) {
-              saltCSDReason += '|' + selectedReasons[ i ].value;
-            }
-            csdReason = saltCSDReason + '}}';
-          } else if ( multipleReasonSeparation === 'default' ) {
-            for ( let i = 0; i < selectedReasons.length; i++ ) {
-              if ( i > 0 ) {
-                saltCSDReason += ( i < selectedReasons.length - 1 ) ? ', ' : ' ' + mw.msg( 'adiutor-and' ) + ' ';
-              }
-              saltCSDReason += '|[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[ i ].value + ']]';
-            }
-            csdReason = saltCSDReason + '}}';
-          }
-          for ( let i = 0; i < selectedReasons.length; i++ ) {
-            if ( i > 0 ) {
-              saltCSDSummary += ( i < selectedReasons.length - 1 ) ? ', ' : ' ' + mw.msg( 'adiutor-and' ) + ' ';
-            }
-            saltCSDSummary += '[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[ i ].value + ']]';
-          }
-          csdSummary = AdiutorUtility.replaceParameter( multipleReasonSummary, '2', saltCSDSummary );
-        } else {
-          if ( postfixReasonUsage === 'data' ) {
-            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].data + ( copyVioInput.value ? copyVioURL : '' ) + '}}';
-          } else if ( postfixReasonUsage === 'value' ) {
-            csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].value + ( copyVioInput.value ? copyVioURL : '' ) + '}}';
-          }
-          csdSummary = AdiutorUtility.replaceParameter( singleReasonSummary, '2', selectedReasons[ 0 ].data );
-        }
-
-        await createApiRequest( csdReason, csdSummary );
-        if ( informCreator.value ) {
-          try {
-            const creatorData = await getCreator();
-            const articleAuthor = creatorData.query.pages[ mw.config.get( 'wgArticleId' ) ].revisions[ 0 ].user;
-            if ( !mw.util.isIPAddress( articleAuthor ) ) {
-              const placeholdersForNotification = {
-                $1: mw.config.get( 'wgPageName' ),
-                $2: csdSummary,
-                $3: csdReason
-              };
-              const message = AdiutorUtility.replacePlaceholders( csdNotificationTemplate, placeholdersForNotification );
-              await notifyAuthor( articleAuthor, message, csdSummary );
-            }
-          } catch ( error ) {
-            handleError( error );
-          }
-        }
-      } else {
-        mw.notify( mw.message( 'adiutor-select-speedy-deletion-reason' ).text(), {
-          title: mw.msg( 'adiutor-warning' ),
-          type: 'error'
-        } );
-      }
-    };
-
-    /**
-     * Retrieves the creator of the page.
-     * @return {jQuery.Promise} A promise that resolves with the creator's information.
-     */
-    function getCreator() {
-      return api.get( {
-        action: 'query',
-        prop: 'revisions',
-        rvlimit: 1,
-        rvprop: [ 'user' ],
-        rvdir: 'newer',
-        titles: mw.config.get( 'wgPageName' )
-      } );
-    }
-
-    /**
-     * Retrieves deletion logs for a specific page.
-     * @async
-     * @method getDeletionLogs
+     * Creates a speedy deletion request.
      * @return {Promise<void>}
      */
-    async function getDeletionLogs() {
+    const createSpeedyDeletionRequest = async () => {
+      await createSpeedyDeletionMiddleware.createSpeedyDeletionRequest( pageName,
+          checkboxValue.value,
+          copyVioInput,
+          informCreator,
+          csdConfiguration );
+    };
+
+    onMounted( async () => {
       try {
-        const response = await api.get( {
-          action: 'query',
-          list: 'logevents',
-          leprop: [ 'type', 'title', 'user', 'timestamp' ],
-          letype: 'delete',
-          lelimit: 500,
-          letitle: pageName
-        } );
-        deletionLogs.value = response.query.logevents || [];
+        deletionLogs.value = await AdiutorUtility.getDeletionLogs( pageName );
       } catch ( error ) {
-        handleError( error );
+        AdiutorUtility.handleError( error );
       }
-    }
-
-    function handleError( error ) {
-      mw.notify( error, {
-        title: mw.msg( 'adiutor-operation-failed' ),
-        type: 'error'
-      } );
-    }
-
-    onMounted( () => {
-      getDeletionLogs();
     } );
 
     return {
