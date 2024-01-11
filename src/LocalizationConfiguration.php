@@ -126,7 +126,7 @@ class LocalizationConfiguration {
 						'data' => '[[WP:CSD#A3|A3]]: No content',
 						'selected' => false,
 						'label' => 'A3 - No content',
-						'help' => 'Article in a foreign language that exists on another project',
+						'help' => 'Article appears to have no meaningful content',
 					],
 				],
 			],

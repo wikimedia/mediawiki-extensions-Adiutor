@@ -37,18 +37,24 @@
               :input-value="reason.value"
           >
             {{ reason.label }}
+            <template #description>
+              {{ reason.help }}
+            </template>
           </cdx-checkbox>
-          <template #help-text>
-            {{ namespaceReason.help }}
-          </template>
           <cdx-label class="adt-label">
             <strong>{{ $i18n( 'adiutor-other-options' ) }}</strong>
           </cdx-label>
           <cdx-checkbox v-model="recreationProrection">
             {{ $i18n( 'adiutor-protect-against-rebuilding' ) }}
+            <template #description>
+              <small>{{ $i18n( 'adiutor-protect-against-rebuilding-help' ) }}</small>
+            </template>
           </cdx-checkbox>
           <cdx-checkbox v-model="informCreator">
             {{ $i18n( 'adiutor-inform-creator' ) }}
+            <template #description>
+              <small>{{ $i18n( 'adiutor-inform-creator-help' ) }}</small>
+            </template>
           </cdx-checkbox>
         </cdx-field>
         <cdx-field v-if="!namespaceDeletionReasons.length" :is-fieldset="true">
@@ -71,6 +77,9 @@
               @change="toggleCopyVioInputBasedOnCheckbox"
           >
             {{ reasonItem.label }}
+            <template #description>
+              {{ reasonItem.help }}
+            </template>
           </cdx-checkbox>
           <div v-if="showCopyVioInput">
             <cdx-label class="adt-label">
