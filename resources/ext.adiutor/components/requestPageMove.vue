@@ -32,6 +32,7 @@
 <script>
 const { defineComponent, ref } = require( 'vue' );
 const { CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxTextArea } = require( '@wikimedia/codex' );
+const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const rpmConfiguration = mw.config.get( 'wgAdiutorRequestPageMove' );
 const noticeBoardTitle = rpmConfiguration.noticeBoardTitle;
 const noticeBoardLink = noticeBoardTitle.replace( / /g, '_' );
@@ -62,43 +63,19 @@ module.exports = defineComponent( {
       actionType: 'progressive'
     };
 
-    /**
-     * Replaces placeholders in the input string with the corresponding replacements.
-     *
-     * @param {string} input - The input string with placeholders.
-     * @param {Object} replacements - An object containing the replacements for the placeholders.
-     * @return {string} - The input string with the placeholders replaced.
-     */
-    const replacePlaceholders = ( input, replacements ) => {
-      return input.replace( /\$(\d+)/g, function ( match, group ) {
-        const replacement = replacements[ '$' + group ];
-        return replacement !== undefined ? replacement : match;
-      } );
-    };
-
-    function replaceParameter( input, parameterName, newValue ) {
-      // eslint-disable-next-line security/detect-non-literal-regexp
-      const regex = new RegExp( '\\$' + parameterName, 'g' );
-      if ( input.includes( '$' + parameterName ) ) {
-        return input.replace( regex, newValue );
-      } else {
-        return input;
-      }
-    }
-
     const createApiRequest = async ( preparedContent ) => {
       const api = new mw.Api();
       const apiParams = {
         action: 'edit',
         title: noticeBoardTitle,
-        summary: replaceParameter( apiPostSummary, '1', pageTitle ),
+        summary: AdiutorUtility.replaceParameter( apiPostSummary, '1', pageTitle ),
         tags: 'adiutor',
         format: 'json'
       };
 
       if ( addNewSection ) {
         apiParams.section = 'new';
-        apiParams.sectiontitle = replaceParameter( sectionTitle, '1', pageTitle );
+        apiParams.sectiontitle = AdiutorUtility.replaceParameter( sectionTitle, '1', pageTitle );
         apiParams.text = preparedContent;
       } else {
         if ( useExistSection ) {
@@ -125,7 +102,7 @@ module.exports = defineComponent( {
         $2: newPageName.value,
         $3: rationaleInput.value
       };
-      const preparedContent = replacePlaceholders( contentPattern, placeholders );
+      const preparedContent = AdiutorUtility.replacePlaceholders( contentPattern, placeholders );
 
       if ( !newPageName.value || !rationaleInput.value ) {
         mw.notify( 'adiutor-rpm-incomplete-request-details', {

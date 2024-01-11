@@ -96,6 +96,7 @@
 <script>
 const { defineComponent, ref, nextTick, onMounted } = require( 'vue' );
 const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
+const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const csdConfiguration = mw.config.get( 'wgAdiutorCreateSpeedyDeletion' );
 const speedyDeletionReasons = csdConfiguration.speedyDeletionReasons;
 const copyVioReasonValue = csdConfiguration.copyVioReasonValue;
@@ -196,38 +197,6 @@ module.exports = defineComponent( {
     };
 
     /**
-     * Replaces placeholders in the input string with the corresponding replacements.
-     *
-     * @param {string} input - The input string with placeholders.
-     * @param {Object} replacements - An object containing the replacements for the placeholders.
-     * @return {string} - The input string with placeholders replaced by their corresponding replacements.
-     */
-    const replacePlaceholders = ( input, replacements ) => {
-      return input.replace( /\$(\d+)/g, function ( match, group ) {
-        const replacement = replacements[ '$' + group ];
-        return replacement !== undefined ? replacement : match;
-      } );
-    };
-
-    /**
-     * Replaces a parameter in the input string with a new value.
-     *
-     * @param {string} input - The input string.
-     * @param {string} parameterName - The name of the parameter to replace.
-     * @param {string} newValue - The new value to replace the parameter with.
-     * @return {string} - The modified input string with the parameter replaced.
-     */
-    function replaceParameter( input, parameterName, newValue ) {
-      // eslint-disable-next-line security/detect-non-literal-regexp
-      const regex = new RegExp( '\\$' + parameterName, 'g' );
-      if ( input.includes( '$' + parameterName ) ) {
-        return input.replace( regex, newValue );
-      } else {
-        return input;
-      }
-    }
-
-    /**
      * Sends a notification message to the author of an article.
      *
      * @param {string} articleAuthor - The username of the article author.
@@ -307,14 +276,14 @@ module.exports = defineComponent( {
             }
             saltCSDSummary += '[[' + speedyDeletionPolicyPageShortcut + '#' + selectedReasons[ i ].value + ']]';
           }
-          csdSummary = replaceParameter( multipleReasonSummary, '2', saltCSDSummary );
+          csdSummary = AdiutorUtility.replaceParameter( multipleReasonSummary, '2', saltCSDSummary );
         } else {
           if ( postfixReasonUsage === 'data' ) {
             csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].data + ( copyVioInput.value ? copyVioURL : '' ) + '}}';
           } else if ( postfixReasonUsage === 'value' ) {
             csdReason = csdTemplateStartSingleReason + selectedReasons[ 0 ].value + ( copyVioInput.value ? copyVioURL : '' ) + '}}';
           }
-          csdSummary = replaceParameter( singleReasonSummary, '2', selectedReasons[ 0 ].data );
+          csdSummary = AdiutorUtility.replaceParameter( singleReasonSummary, '2', selectedReasons[ 0 ].data );
         }
 
         await createApiRequest( csdReason, csdSummary );
@@ -328,7 +297,7 @@ module.exports = defineComponent( {
                 $2: csdSummary,
                 $3: csdReason
               };
-              const message = replacePlaceholders( csdNotificationTemplate, placeholdersForNotification );
+              const message = AdiutorUtility.replacePlaceholders( csdNotificationTemplate, placeholdersForNotification );
               await notifyAuthor( articleAuthor, message, csdSummary );
             }
           } catch ( error ) {
@@ -380,8 +349,11 @@ module.exports = defineComponent( {
       }
     }
 
-    function handleError() {
-      // Implement error handling
+    function handleError( error ) {
+      mw.notify( error, {
+        title: mw.msg( 'adiutor-operation-failed' ),
+        type: 'error'
+      } );
     }
 
     onMounted( () => {

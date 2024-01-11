@@ -20,6 +20,7 @@
 	"overrides": [
 		{
 			"files": [
+				"**/*.js",
 				"**/*.vue",
 				"tests/jest/*.test.js",
 				"tests/jest/*.spec.js"

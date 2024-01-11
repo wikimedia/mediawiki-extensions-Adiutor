@@ -111,6 +111,7 @@
 		"ext.adiutor": {
 			"packageFiles": [
 				"ext.adiutor/init.js",
+				"ext.adiutor/utilities/adiutorUtility.js",
 				"ext.adiutor/components/deletionPropose.vue",
 				"ext.adiutor/components/createSpeedyDeletion.vue",
 				"ext.adiutor/components/createSpeedyDeletionOptions.vue",

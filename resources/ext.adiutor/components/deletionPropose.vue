@@ -50,7 +50,7 @@
 <script>
 const { defineComponent, ref } = require( 'vue' );
 const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextArea, CdxRadio } = require( '@wikimedia/codex' );
-
+const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const prdConfiguration = mw.config.get( 'wgAdiutorDeletionPropose' );
 const {
   standardProposeTemplate,
@@ -107,20 +107,6 @@ module.exports = defineComponent( {
     }
 
     /**
-     * Replaces placeholders in the input string with the corresponding replacements.
-     *
-     * @param {string} input - The input string with placeholders.
-     * @param {Object} replacements - An object containing the replacements for the placeholders.
-     * @return {string} - The input string with the placeholders replaced.
-     */
-    const replacePlaceholders = ( input, replacements ) => {
-      return input.replace( /\$(\d+)/g, function ( match, group ) {
-        const replacement = replacements[ '$' + group ];
-        return replacement !== undefined ? replacement : match;
-      } );
-    };
-
-    /**
      * Sends a deletion request for the specified option and rationale.
      * @param {string} option - The deletion option ('standardPropose' or 'livingPersonPropose').
      * @param {string} rationale - The rationale for the deletion request.
@@ -135,21 +121,21 @@ module.exports = defineComponent( {
         $1: mwConfig.wgPageName.replace( /_/g, ' ' ),
         $2: rationale,
         $3: date.getDate(),
-        $4: localMonthsNames[ date.getMonth() ],
+        $4: localMonthsNames[ date.getMonth() + 1 ],
         $5: date.getFullYear(),
         $6: mwConfig.wgUserName
       };
       if ( option === 'standardPropose' ) {
-        PRDText = replacePlaceholders( standardProposeTemplate, placeholders );
+        PRDText = AdiutorUtility.replacePlaceholders( standardProposeTemplate, placeholders );
       } else {
-        PRDText = replacePlaceholders( livingPersonProposeTemplate, placeholders );
+        PRDText = AdiutorUtility.replacePlaceholders( livingPersonProposeTemplate, placeholders );
       }
       try {
         await api.postWithToken( 'csrf', {
           action: 'edit',
           title: mwConfig.wgPageName,
           prependtext: PRDText + '\n',
-          summary: replaceParameter( apiPostSummary, '1', mwConfig.wgPageName.replace( /_/g, ' ' ) ),
+          summary: AdiutorUtility.replaceParameter( apiPostSummary, '1', mwConfig.wgPageName.replace( /_/g, ' ' ) ),
           format: 'json'
         } );
         mw.notify( 'Article proposed for deletion', {
@@ -174,7 +160,7 @@ module.exports = defineComponent( {
           action: 'edit',
           title: 'User_talk:' + Author,
           appendtext: '\n' + message,
-          summary: replaceParameter( apiPostSummaryForCreator, '1', mw.config.get( 'wgPageName' ).replace( /_/g, ' ' ) ),
+          summary: AdiutorUtility.replaceParameter( apiPostSummaryForCreator, '1', mw.config.get( 'wgPageName' ).replace( /_/g, ' ' ) ),
           tags: 'adiutor',
           format: 'json'
         } );
@@ -183,9 +169,11 @@ module.exports = defineComponent( {
       }
     };
 
-    function handleError() {
-      // Implement error handling logic here
-      // Could be showing a message to the user, sending to a logging service, etc.
+    function handleError( error ) {
+      mw.notify( error, {
+        title: mw.msg( 'adiutor-operation-failed' ),
+        type: 'error'
+      } );
     }
 
     /**
@@ -207,7 +195,7 @@ module.exports = defineComponent( {
 
           if ( !mw.util.isIPAddress( author ) ) {
             const pageTitle = mw.config.get( 'wgPageName' ).replace( /_/g, ' ' );
-            const notificationMessage = replaceParameter( prodNotificationTemplate, '1', pageTitle );
+            const notificationMessage = AdiutorUtility.replaceParameter( prodNotificationTemplate, '1', pageTitle );
             await sendMessageToAuthor( author, notificationMessage );
           }
         } catch ( error ) {
@@ -217,24 +205,6 @@ module.exports = defineComponent( {
 
       openPrdDialog.value = false;
     };
-
-    /**
-     * Replaces a parameter in the input string with a new value.
-     *
-     * @param {string} input - The input string.
-     * @param {string} parameterName - The name of the parameter to replace.
-     * @param {string} newValue - The new value to replace the parameter with.
-     * @return {string} - The modified input string with the parameter replaced.
-     */
-    function replaceParameter( input, parameterName, newValue ) {
-      // eslint-disable-next-line security/detect-non-literal-regexp
-      const regex = new RegExp( '\\$' + parameterName, 'g' );
-      if ( input.includes( '$' + parameterName ) ) {
-        return input.replace( regex, newValue );
-      } else {
-        return input;
-      }
-    }
 
     return {
       openPrdDialog,
