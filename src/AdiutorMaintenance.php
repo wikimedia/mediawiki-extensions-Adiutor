@@ -39,7 +39,7 @@ class AdiutorMaintenance extends Maintenance {
 	public function execute() {
 		$services = MediaWikiServices::getInstance();
 		$titleFactory = $services->getTitleFactory();
-		$systemUserName = 'Adiutor bot';
+		$systemUserName = 'AdiutorBot';
 		$user =
 			User::newSystemUser( $systemUserName,
 				[ 'steal' => true ] );
