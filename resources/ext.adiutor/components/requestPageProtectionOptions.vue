@@ -236,7 +236,6 @@ const {
   CdxRadio,
   CdxTextArea
 } = require( '@wikimedia/codex' );
-const rppConfiguration = mw.config.get( 'wgAdiutorRequestPageProtection' );
 module.exports = defineComponent( {
   name: 'RequestPageProtectionOptions',
   components: {
@@ -248,6 +247,7 @@ module.exports = defineComponent( {
     CdxRadio, CdxTextArea
   },
   setup() {
+    const rppConfiguration = mw.config.get( 'wgAdiutorRequestPageProtection' );
     const protectionDurations = ref( rppConfiguration.protectionDurations );
     const protectionTypes = ref( rppConfiguration.protectionTypes );
     const noticeBoardTitle = ref( rppConfiguration.noticeBoardTitle );
@@ -359,32 +359,27 @@ module.exports = defineComponent( {
         namespaces: this.namespaces
       }, null, 2 );
 
-      const data = {
-        action: 'edit',
-        title: 'MediaWiki:AdiutorRequestPageProtection.json',
-        text: contentToSave,
-        token: editToken,
-        format: 'json'
-      };
-
-      api.post( data ).done( ( response ) => {
-        if ( response.edit && response.edit.result === 'Success' ) {
-          mw.notify( mw.message( 'adiutor-localization-settings-has-been-updated' ).text(), {
-            title: mw.msg( 'adiutor-operation-completed' ),
-            type: 'success'
-          } );
-          this.saveButtonLabel = mw.message( 'adiutor-save-configurations' ).text();
-          this.saveButtonAction = 'progressive';
-          this.saveButtonDisabled = false;
-        } else {
-          throw new Error( mw.msg( 'adiutor-operation-failed' ) );
-        }
-      } ).fail( ( error ) => {
+      try {
+        await api.postWithToken( 'csrf', {
+          action: 'edit',
+          title: 'MediaWiki:AdiutorRequestPageProtection.json',
+          text: contentToSave,
+          token: editToken,
+          format: 'json'
+        } );
+        mw.notify( mw.message( 'adiutor-localization-settings-has-been-updated' ).text(), {
+          title: mw.msg( 'adiutor-operation-completed' ),
+          type: 'success'
+        } );
+        this.saveButtonLabel = mw.message( 'adiutor-save-configurations' ).text();
+        this.saveButtonAction = 'progressive';
+        this.saveButtonDisabled = false;
+      } catch ( error ) {
         mw.notify( error, { type: 'error' } );
         this.saveButtonLabel = mw.message( 'adiutor-try-again' ).text();
         this.saveButtonAction = 'destructive';
         this.saveButtonDisabled = false;
-      } );
+      }
     }
 
   }

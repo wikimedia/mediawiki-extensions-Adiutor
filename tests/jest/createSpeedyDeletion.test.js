@@ -19,7 +19,7 @@ global.mw = {
 					multipleReasonSummary: '',
 					speedyDeletionPolicyPageShortcut: '',
 					csdNotificationTemplate: '',
-					namespaceDeletionReasons: key
+					namespaceDeletionReasons: []
 				};
 			}
 			return null;

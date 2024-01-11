@@ -7,11 +7,9 @@ const { mount } = require( '@vue/test-utils' );
 global.mw = {
 	config: {
 		get: jest.fn( ( key ) => {
-			// Mock configuration as needed for the tests
 			const configMap = {
 				wgAdiutorArticleTagging: {
 					tagList: [
-						// Mock tag list items as needed for the tests
 						{
 							label: 'Label1',
 							tags: [
