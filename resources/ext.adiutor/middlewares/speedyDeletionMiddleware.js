@@ -153,13 +153,13 @@
 			tags: 'adiutor',
 			format: 'json'
 		} ).done( function () {
-			mw.notify( 'Article tagged for speedy deletion', {
+			mw.notify( mw.message( 'adiutor-speedy-deletion-request-completed' ).text(), {
 				title: mw.msg( 'adiutor-operation-completed' ),
 				type: 'success'
 			} );
 			window.location.reload();
 		} ).fail( function ( error ) {
-			mw.notify( 'Failed to tag article for speedy deletion: ' + error, {
+			mw.notify( error, {
 				title: mw.msg( 'adiutor-operation-failed' ),
 				type: 'error'
 			} );

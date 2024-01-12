@@ -138,7 +138,7 @@ module.exports = defineComponent( {
           summary: AdiutorUtility.replaceParameter( apiPostSummary, '1', mwConfig.wgPageName.replace( /_/g, ' ' ) ),
           format: 'json'
         } );
-        mw.notify( 'Article proposed for deletion', {
+        mw.notify( mw.message( 'adiutor-page-proposed-for-deletion' ).text(), {
           title: mw.msg( 'adiutor-operation-completed' ),
           type: 'success'
         } );

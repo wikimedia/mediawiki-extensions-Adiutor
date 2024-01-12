@@ -361,7 +361,9 @@
 				"adiutor-notification-body-csd-requested",
 				"echo-category-title-moderation",
 				"echo-pref-tooltip-moderation",
-				"adiutor-please-select-a-tag"
+				"adiutor-please-select-a-tag",
+				"adiutor-speedy-deletion-request-completed",
+				"adiutor-page-proposed-for-deletion"
 			]
 		}
 	},

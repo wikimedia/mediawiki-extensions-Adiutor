@@ -225,5 +225,7 @@
 	"adiutor-notification-body-csd-requested": "This message will be displayed on the notification window.",
 	"echo-category-title-moderation": "This message will be displayed on the notification window.",
 	"echo-pref-tooltip-moderation": "This message will be displayed on the notification window.",
-	"adiutor-please-select-a-tag": "This message will be displayed on the notification window."
+	"adiutor-please-select-a-tag": "This message will be displayed on the notification window.",
+	"adiutor-speedy-deletion-request-completed": "When the speedy deletion request is completed, this message will be displayed on the notification window.",
+	"adiutor-page-proposed-for-deletion": "When the page is proposed for deletion, this message will be displayed on the notification window."
 }

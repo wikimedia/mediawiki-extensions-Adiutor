@@ -223,5 +223,7 @@
 	"adiutor-notification-body-csd-requested": "Speedy deletion has been requested for $1 per our policy.",
 	"echo-category-title-moderation": "Moderation",
 	"echo-pref-tooltip-moderation": "Notify me about the moderations that concern me.",
-	"adiutor-please-select-a-tag": "Please select a tag."
+	"adiutor-please-select-a-tag": "Please select a tag.",
+	"adiutor-speedy-deletion-request-completed": "Speedy deletion request completed!",
+	"adiutor-page-proposed-for-deletion": "Page proposed for deletion!"
 }
