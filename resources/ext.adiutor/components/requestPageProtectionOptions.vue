@@ -153,7 +153,7 @@
     </cdx-field>
   </cdx-field>
   <cdx-field>
-    <table id="adiutor-options-props" width="100%">
+    <table id="adiutor-options-props">
       <caption>
         {{ $i18n( 'adiutor-protection-durations' ) }}
         <cdx-button
@@ -188,7 +188,7 @@
     </table>
   </cdx-field>
   <cdx-field>
-    <table id="adiutor-options-props" width="100%">
+    <table id="adiutor-options-props">
       <caption>
         {{ $i18n( 'adiutor-protection-types' ) }}
         <cdx-button

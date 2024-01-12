@@ -180,7 +180,7 @@
       </cdx-field>
     </cdx-field>
   <cdx-field>
-    <table id="adiutor-options-props" width="100%">
+    <table id="adiutor-options-props">
       <caption>
         {{ $i18n( 'adiutor-speedy-deletion-reasons' ) }}
         <cdx-button
@@ -221,7 +221,7 @@
   <cdx-field
       v-for="( reasonNamespace, namespaceIndex ) in speedyDeletionReasons"
       :key="'nestedTable-' + namespaceIndex">
-    <table id="adiutor-options-props" width="100%">
+    <table id="adiutor-options-props">
       <caption>
         {{ $i18n( 'adiutor-deletion-reasons-for' ) }} {{ reasonNamespace.name }}
         <cdx-button

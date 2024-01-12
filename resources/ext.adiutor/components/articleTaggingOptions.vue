@@ -95,7 +95,7 @@
     </cdx-field>
   </cdx-field>
   <cdx-field>
-    <table id="adiutor-options-props" width="100%">
+    <table id="adiutor-options-props">
       <caption>
         {{ $i18n( 'adiutor-tag-labels' ) }}
         <cdx-button
@@ -124,7 +124,7 @@
     </table>
   </cdx-field>
   <cdx-field v-for="( label, labelIndex ) in tagList" :key="'nestedTable-' + labelIndex">
-    <table id="adiutor-options-props" width="100%">
+    <table id="adiutor-options-props">
       <caption>
         {{ $i18n( 'adiutor-tags-for' ) }} {{ label.label }}
         <cdx-button
@@ -163,7 +163,7 @@
       <tr v-for="( tag, tagIndex ) in label.tags" :key="'nestedTable-' + tagIndex">
         <td v-if="tag.items && tag.items.length > 0" colspan="3">
           <cdx-field>
-            <table id="adiutor-options-props" width="100%">
+            <table id="adiutor-options-props">
               <caption>
                 {{ $i18n( 'adiutor-sub-items-for' ) }} {{ tag.tag }}
                 <cdx-button
