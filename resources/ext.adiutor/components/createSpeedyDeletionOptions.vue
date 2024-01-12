@@ -276,6 +276,7 @@ const {
   CdxRadio,
   CdxButton
 } = require( '@wikimedia/codex' );
+const { cdxIconWikiText } = require( '../icons.json' );
 module.exports = defineComponent( {
   name: 'CreateSpeedyDeletionOptions',
   components: {
@@ -338,6 +339,7 @@ module.exports = defineComponent( {
     ];
 
     return {
+      cdxIconWikiText,
       speedyDeletionReasons,
       csdTemplateStartSingleReason,
       csdTemplateStartMultipleReason,
