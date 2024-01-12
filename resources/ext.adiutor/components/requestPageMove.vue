@@ -74,7 +74,12 @@ module.exports = defineComponent( {
 
       if ( addNewSection ) {
         apiParams.section = 'new';
-        apiParams.sectiontitle = AdiutorUtility.replaceParameter( sectionTitle, '1', pageTitle );
+        const placeholders = {
+          $1: pageTitle,
+          $2: newPageName.value,
+          $3: rationaleInput.value
+        };
+        apiParams.sectiontitle = AdiutorUtility.replacePlaceholders( sectionTitle, placeholders );
         apiParams.text = preparedContent;
       } else {
         if ( useExistSection ) {
