@@ -9,13 +9,13 @@
 	 * Filters the selected speedy deletion reasons based on the checkbox values.
 	 *
 	 * @param {Array} speedyDeletionReasons - The array of speedy deletion reasons.
-	 * @param {boolean} checkboxValue - The array of checkbox values.
+	 * @param {Object} selectedDeletionReasons - The array of checkbox values.
 	 * @return {Array} - The filtered array of selected speedy deletion reasons.
 	 */
-	const filterSelectedReasons = ( speedyDeletionReasons, checkboxValue ) => {
+	const filterSelectedReasons = ( speedyDeletionReasons, selectedDeletionReasons ) => {
 		return speedyDeletionReasons.reduce( ( selected, category ) => {
 			const selectedInCategory = category.reasons.filter( ( reason ) => {
-				return checkboxValue.includes( reason.value );
+				return selectedDeletionReasons.includes( reason.value );
 			} );
 			selected.push( ...selectedInCategory );
 			return selected;
@@ -170,19 +170,19 @@
 	 * Creates a speedy deletion request for a given page.
 	 *
 	 * @param {string} pageName - The name of the page to be deleted.
-	 * @param {boolean} checkboxValue - The value of the checkbox indicating the selected reasons for deletion.
+	 * @param {Object} selectedDeletionReasons - The value of the checkbox indicating the selected reasons for deletion.
 	 * @param {string} copyVioInput - The input value for the copyvio reason, if applicable.
 	 * @param {boolean} informCreator - Indicates whether to inform the page creator about the deletion request.
 	 * @param {Object} csdConfiguration - The configuration object containing the available speedy deletion reasons.
 	 * @return {Promise<void>} - A promise that resolves when the deletion request is created and notifications are sent.
 	 */
 	const createSpeedyDeletionRequest = async ( pageName,
-		checkboxValue,
+		selectedDeletionReasons,
 		copyVioInput,
 		informCreator,
 		csdConfiguration ) => {
 
-		const selectedReasons = filterSelectedReasons( csdConfiguration.speedyDeletionReasons, checkboxValue );
+		const selectedReasons = filterSelectedReasons( csdConfiguration.speedyDeletionReasons, selectedDeletionReasons );
 
 		if ( selectedReasons.length === 0 ) {
 			mw.notify( mw.message( 'adiutor-select-speedy-deletion-reason' ).text(), {

@@ -33,7 +33,7 @@
           <cdx-checkbox
               v-for="reason in namespaceReason.reasons"
               :key="reason.value"
-              v-model="checkboxValue"
+              v-model="selectedDeletionReasons"
               :input-value="reason.value"
           >
             {{ reason.label }}
@@ -72,7 +72,7 @@
           <cdx-checkbox
               v-for="reasonItem in generalReason.reasons"
               :key="'checkbox-' + reasonItem.value"
-              v-model="checkboxValue"
+              v-model="selectedDeletionReasons"
               :input-value="reasonItem.value"
               @change="toggleCopyVioInputBasedOnCheckbox"
           >
@@ -129,7 +129,7 @@ module.exports = defineComponent( {
     CdxMessage
   },
   setup() {
-    const checkboxValue = ref( [] );
+    const selectedDeletionReasons = ref( [] );
     const copyVioInput = ref( '' );
     const recreationProrection = ref( false );
     const informCreator = ref( true );
@@ -145,7 +145,7 @@ module.exports = defineComponent( {
       const wasChecked = showCopyVioInput.value;
       showCopyVioInput.value = !wasChecked;
       nextTick( () => {
-        showCopyVioInput.value = checkboxValue.value.includes( copyVioReasonValue );
+        showCopyVioInput.value = selectedDeletionReasons.value.includes( copyVioReasonValue );
       } );
     };
 
@@ -165,7 +165,7 @@ module.exports = defineComponent( {
      */
     const createSpeedyDeletionRequest = async () => {
       await createSpeedyDeletionMiddleware.createSpeedyDeletionRequest( pageName,
-          checkboxValue.value,
+          selectedDeletionReasons.value,
           copyVioInput,
           informCreator,
           csdConfiguration );
@@ -180,7 +180,7 @@ module.exports = defineComponent( {
     } );
 
     return {
-      checkboxValue,
+      selectedDeletionReasons,
       namespaceDeletionReasons,
       generalDeletionReasons,
       pageName,
