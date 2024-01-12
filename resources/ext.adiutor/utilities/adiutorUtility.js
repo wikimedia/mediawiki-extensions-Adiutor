@@ -51,7 +51,7 @@
 			lelimit: 500,
 			letitle: pageName
 		} );
-		return response.query.logevents || [];
+		return response.query["logevents"] || [];
 	};
 
 	/**
