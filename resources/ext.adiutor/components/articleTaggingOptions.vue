@@ -165,7 +165,7 @@
           <cdx-field>
             <table id="adiutor-options-props" width="100%">
               <caption>
-                {{ $i18n( 'adiutor-sub-items-for' ) }} {{ tag.description }}
+                {{ $i18n( 'adiutor-sub-items-for' ) }} {{ tag.tag }}
                 <cdx-button
                     class="add-new-button"
                     weight="quiet"
@@ -240,10 +240,11 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxTextInput, CdxChipInput, CdxField, CdxToggleSwitch, CdxButton } = require( '@wikimedia/codex' );
+const { CdxLabel, CdxTextInput, CdxChipInput, CdxField, CdxToggleSwitch, CdxButton } = require( '@wikimedia/codex' );
 module.exports = defineComponent( {
   name: 'ArticleTaggingOptions',
   components: {
+    CdxLabel,
     CdxTextInput,
     CdxChipInput,
     CdxToggleSwitch,
@@ -434,12 +435,6 @@ module.exports = defineComponent( {
     float: right;
     margin-right: 10px;
   }
-}
-
-cdx-label {
-  font-weight: 900;
-  margin-top: 10px;
-  display: block;
 }
 
 .cdx-field {

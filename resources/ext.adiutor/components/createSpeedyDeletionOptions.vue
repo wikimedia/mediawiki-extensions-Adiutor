@@ -27,7 +27,7 @@
     </ul>
   </cdx-message>
   <cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <cdx-toggle-switch v-model="moduleEnabled">
         <cdx-label input-id="moduleEnabled">
           {{ $i18n( 'adiutor-module-enabled' ) }}
@@ -37,7 +37,7 @@
         </template>
       </cdx-toggle-switch>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <cdx-toggle-switch v-model="testMode">
         <cdx-label input-id="testMode">
           {{ $i18n( 'adiutor-test-mode' ) }}
@@ -47,7 +47,7 @@
         </template>
       </cdx-toggle-switch>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
       <template #label>
         {{ $i18n( 'adiutor-namespaces' ) }}
@@ -56,6 +56,7 @@
         {{ $i18n( 'adiutor-namespaces-description' ) }}
       </template>
     </cdx-field>
+    <cdx-field>
     <cdx-label input-id="speedyDeletionPolicyLink">
       {{ $i18n( 'adiutor-speedy-deletion-policy-link' ) }}
     </cdx-label>
@@ -63,6 +64,8 @@
         id="speedyDeletionPolicyLink"
         v-model="speedyDeletionPolicyLink"
         aria-label="{{ $i18n('adiutor-speedy-deletion-policy-link') }}"></cdx-text-input>
+    </cdx-field>
+    <cdx-field>
     <cdx-label input-id="speedyDeletionPolicyPageShortcut">
       {{ $i18n( 'adiutor-speedy-deletion-policy-page-shortcut' ) }}
     </cdx-label>
@@ -70,6 +73,8 @@
         id="speedyDeletionPolicyPageShortcut"
         v-model="speedyDeletionPolicyPageShortcut"
         aria-label="{{ $i18n('adiutor-speedy-deletion-policy-page-shortcut') }}"></cdx-text-input>
+    </cdx-field>
+    <cdx-field>
     <cdx-label input-id="csdNotificationTemplate">
       {{ $i18n( 'adiutor-csd-notification-template' ) }}
     </cdx-label>
@@ -77,6 +82,7 @@
         id="csdNotificationTemplate"
         v-model="csdNotificationTemplate"
         aria-label="{{ $i18n('adiutor-csd-notification-template') }}"></cdx-text-input>
+    </cdx-field>
     <cdx-field>
       <cdx-text-input v-model="copyVioReasonValue" :start-icon="cdxIconWikiText"></cdx-text-input>
       <template #label>
@@ -104,7 +110,7 @@
         {{ $i18n( 'adiutor-single-reason-template-description' ) }}
       </template>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <template #label>
         {{ $i18n( 'adiutor-postfix-reason-usage' ) }}
       </template>
@@ -134,7 +140,7 @@
         {{ $i18n( 'adiutor-multiple-reason-template-description' ) }}
       </template>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <template #label>
         {{ $i18n( 'adiutor-multiple-reason-separation' ) }}
       </template>
@@ -154,8 +160,7 @@
     </cdx-field>
   </cdx-field>
   <cdx-field>
-    <cdx-field>
-      <strong>{{ $i18n( 'adiutor-summaries' ) }}</strong>
+      <cdx-field>
       <cdx-label input-id="singleReasonSummary">
         {{ $i18n( 'adiutor-single-reason-summary' ) }}
       </cdx-label>
@@ -163,6 +168,8 @@
           id="singleReasonSummary"
           v-model="singleReasonSummary"
           aria-label="{{ $i18n('adiutor-single-reason-summary') }}"></cdx-text-input>
+      </cdx-field>
+      <cdx-field>
       <cdx-label input-id="multipleReasonSummary">
         {{ $i18n( 'adiutor-multiple-reason-summary' ) }}
       </cdx-label>
@@ -170,8 +177,8 @@
           id="multipleReasonSummary"
           v-model="multipleReasonSummary"
           aria-label="{{ $i18n('adiutor-multiple-reason-summary') }}"></cdx-text-input>
+      </cdx-field>
     </cdx-field>
-  </cdx-field>
   <cdx-field>
     <table id="adiutor-options-props" width="100%">
       <caption>
@@ -260,6 +267,7 @@
 <script>
 const { defineComponent, ref } = require( 'vue' );
 const {
+  CdxLabel,
   CdxMessage,
   CdxTextInput,
   CdxChipInput,
@@ -271,6 +279,7 @@ const {
 module.exports = defineComponent( {
   name: 'CreateSpeedyDeletionOptions',
   components: {
+    CdxLabel,
     CdxChipInput,
     CdxTextInput,
     CdxMessage,
@@ -502,17 +511,6 @@ module.exports = defineComponent( {
     float: right;
     margin-right: 10px;
   }
-}
-
-cdx-label {
-  font-weight: 900;
-  margin-top: 10px;
-  display: block;
-}
-
-.cdx-field {
-  margin-top: 10px;
-  display: block;
 }
 
 .top-message {

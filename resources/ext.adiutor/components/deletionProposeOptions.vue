@@ -155,10 +155,11 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxField, CdxButton } = require( '@wikimedia/codex' );
+const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxField, CdxButton } = require( '@wikimedia/codex' );
 module.exports = defineComponent( {
   name: 'DeletionProposeOptions',
   components: {
+    CdxLabel,
     CdxTextInput,
     CdxChipInput,
     CdxToggleSwitch,
@@ -261,16 +262,6 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="less">
-cdx-label {
-  font-weight: 900;
-  margin-top: 10px;
-  display: block;
-}
-
-.cdx-field {
-  margin-top: 10px;
-  display: block;
-}
 
 .top-message {
   margin-top: 10px;

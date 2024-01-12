@@ -29,7 +29,7 @@
     </ul>
   </cdx-message>
   <cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <cdx-toggle-switch v-model="moduleEnabled">
         <cdx-label input-id="moduleEnabled">
           {{ $i18n( 'adiutor-module-enabled' ) }}
@@ -39,7 +39,7 @@
         </template>
       </cdx-toggle-switch>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <cdx-toggle-switch v-model="testMode">
         <cdx-label input-id="testMode">
           {{ $i18n( 'adiutor-test-mode' ) }}
@@ -49,7 +49,7 @@
         </template>
       </cdx-toggle-switch>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
       <template #label>
         {{ $i18n( 'adiutor-namespaces' ) }}
@@ -58,7 +58,7 @@
         {{ $i18n( 'adiutor-namespaces-description' ) }}
       </template>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <cdx-label input-id="noticeBoardTitle">
         {{ $i18n( 'adiutor-noticeboard' ) }}
       </cdx-label>
@@ -67,7 +67,7 @@
           v-model="noticeBoardTitle"
           aria-label="{{ $i18n('adiutor-noticeboard') }}"></cdx-text-input>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <cdx-label input-id="contentPattern">
         {{ $i18n( 'adiutor-content-pattern' ) }}
       </cdx-label>
@@ -79,7 +79,7 @@
         {{ $i18n( 'adiutor-content-pattern-description' ) }}
       </template>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <cdx-toggle-switch v-model="addNewSection">
         <cdx-label input-id="addNewSection">
           {{ $i18n( 'adiutor-create-new-section' ) }}
@@ -89,7 +89,7 @@
         </template>
       </cdx-toggle-switch>
     </cdx-field>
-    <cdx-field v-if="addNewSection" :is-fieldset="true">
+    <cdx-field v-if="addNewSection">
       <cdx-label input-id="sectionTitle">
         {{ $i18n( 'adiutor-new-section-title' ) }}
       </cdx-label>
@@ -98,7 +98,7 @@
           v-model="sectionTitle"
           aria-label="Speedy Deletion Policy"></cdx-text-input>
     </cdx-field>
-    <cdx-field v-if="!addNewSection" :is-fieldset="true">
+    <cdx-field v-if="!addNewSection">
       <cdx-toggle-switch v-model="useExistSection">
         <cdx-label input-id="useExistSection">
           {{ $i18n( 'adiutor-use-exist-section' ) }}
@@ -108,7 +108,7 @@
         </template>
       </cdx-toggle-switch>
     </cdx-field>
-    <cdx-field v-if="useExistSection" :is-fieldset="true">
+    <cdx-field v-if="useExistSection">
       <cdx-label input-id="sectionId">
         {{ $i18n( 'adiutor-section-id' ) }}
       </cdx-label>
@@ -120,7 +120,7 @@
         {{ $i18n( 'adiutor-section-id-description' ) }}
       </template>
     </cdx-field>
-    <cdx-field :is-fieldset="true">
+    <cdx-field>
       <template v-if="!addNewSection && !useExistSection" #description>
         {{ $i18n( 'adiutor-no-section-description' ) }}
       </template>
@@ -227,6 +227,7 @@
 <script>
 const { defineComponent, ref } = require( 'vue' );
 const {
+  CdxLabel,
   CdxMessage,
   CdxTextInput,
   CdxChipInput,
@@ -239,6 +240,7 @@ const {
 module.exports = defineComponent( {
   name: 'RequestPageProtectionOptions',
   components: {
+    CdxLabel,
     CdxTextInput,
     CdxChipInput,
     CdxMessage,
@@ -426,12 +428,6 @@ module.exports = defineComponent( {
     float: right;
     margin-right: 10px;
   }
-}
-
-cdx-label {
-  font-weight: 900;
-  margin-top: 10px;
-  display: block;
 }
 
 .cdx-toggle-switch {
