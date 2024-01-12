@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"adiutor-create": "建立",
+	"adiutor-delete": "刪除",
+	"adiutor-other-options": "其他選項",
+	"adiutor-continue": "繼續",
+	"adiutor-new-name": "新名稱",
+	"adiutor-settings": "Adiutor設定",
+	"adiutor-and": "和",
+	"adiutor-action-column": "操作",
+	"adiutor-parameters": "參數",
+	"adiutor-output": "輸出：",
+	"adiutor-name": "名稱",
+	"adiutor-action": "操作",
+	"adiutor-value": "值",
+	"adiutor-data": "資料",
+	"adiutor-add-sub-item": "新增子項目",
+	"adiutor-required": "必填",
+	"adiutor-type": "類型",
+	"adiutor-new-section-title": "新章節標題：",
+	"adiutor-csd-default": "預設",
+	"adiutor-test-mode": "測試模式",
+	"adiutor-namespaces": "命名空間",
+	"adiutor-prod-enable-label": "啟用建議刪除模組",
+	"adiutor-interface-admin-required": "此操作需要介面管理員權限。"
+}

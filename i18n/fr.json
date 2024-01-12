@@ -11,6 +11,7 @@
 	"adiutor-continue": "Continuer",
 	"adiutor-options": "Options",
 	"adiutor-and": "et",
+	"adiutor-warning": "Avertissement",
 	"adiutor-settings-label": "Paramètres",
 	"adiutor-label-column": "Libellé",
 	"adiutor-action-column": "Action",
@@ -23,11 +24,17 @@
 	"adiutor-parameters-day": "jour",
 	"adiutor-parameters-month": "mois",
 	"adiutor-parameters-year": "année",
+	"adiutor-name-space": "Espace de noms",
+	"adiutor-name": "Nom",
 	"adiutor-value": "Valeur",
 	"adiutor-data": "Données",
 	"adiutor-label": "Libellé",
 	"adiutor-help": "Aide",
+	"adiutor-tag-description": "Description",
+	"adiutor-parameter": "Paramètre",
 	"adiutor-type": "Type",
 	"adiutor-configurations-saving": "Enregistrement en cours...",
-	"adiutor-csd-default": "Par défaut"
+	"adiutor-csd-default": "Par défaut",
+	"adiutor-new-name-placeholder": "Nouveau nom",
+	"adiutor-please-select-a-tag": "Veuillez sélectionner une étiquette."
 }
