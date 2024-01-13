@@ -41,22 +41,7 @@
               {{ reason.help }}
             </template>
           </cdx-checkbox>
-          <cdx-label class="adt-label">
-            <strong>{{ $i18n( 'adiutor-other-options' ) }}</strong>
-          </cdx-label>
-          <cdx-checkbox v-model="recreationProrection">
-            {{ $i18n( 'adiutor-protect-against-rebuilding' ) }}
-            <template #description>
-              <small>{{ $i18n( 'adiutor-protect-against-rebuilding-help' ) }}</small>
-            </template>
-          </cdx-checkbox>
-          <cdx-checkbox v-model="informCreator">
-            {{ $i18n( 'adiutor-inform-creator' ) }}
-            <template #description>
-              <small>{{ $i18n( 'adiutor-inform-creator-help' ) }}</small>
-            </template>
-          </cdx-checkbox>
-        </cdx-field>
+</cdx-field>
         <cdx-field v-if="!namespaceDeletionReasons.length" :is-fieldset="true">
           <cdx-message inline type="warning">
             <p>{{ $i18n( 'adiutor-warning' ) }}</p>
@@ -91,6 +76,18 @@
       </div>
     </div>
     <template #footer-text>
+      <cdx-checkbox v-model="recreationProrection">
+        {{ $i18n( 'adiutor-protect-against-rebuilding' ) }}
+        <template #description>
+          <small>{{ $i18n( 'adiutor-protect-against-rebuilding-help' ) }}</small>
+        </template>
+      </cdx-checkbox>
+      <cdx-checkbox v-model="informCreator">
+          {{ $i18n( 'adiutor-inform-creator' ) }}
+          <template #description>
+            <small>{{ $i18n( 'adiutor-inform-creator-help' ) }}</small>
+          </template>
+      </cdx-checkbox>
       <span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
     </template>
   </cdx-dialog>

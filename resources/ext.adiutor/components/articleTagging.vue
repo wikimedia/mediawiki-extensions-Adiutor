@@ -2,11 +2,12 @@
   <cdx-dialog
       v-model:open="openTagDialog"
       :primary-action="primaryAction"
+      :default-action="defaultAction"
       :show-dividers="true"
       :title="$i18n( 'adiutor-tag-header-title' )"
       class="adiutor-article-tagging-dialog"
       close-button-label="Close"
-      @default="openTagDialog = true"
+      @default="openTagDialog = false"
       @primary="tagArticle">
     <div class="header">
       <p>{{ $i18n( 'adiutor-tag-header-description' ) }}</p>
@@ -93,6 +94,11 @@ module.exports = defineComponent( {
     const uncategorizedTemplate = tagConfiguration.uncategorizedTemplate;
     const apiPostSummary = tagConfiguration.apiPostSummary;
     const searchTag = ref( '' );
+
+    const defaultAction = {
+      label: mw.msg( 'adiutor-cancel' )
+    };
+
     const primaryAction = {
       icon: 'cdxIconTag',
       label: mw.msg( 'adiutor-tag-page' ),
@@ -212,6 +218,7 @@ module.exports = defineComponent( {
     return {
       checkboxValue,
       openTagDialog,
+      defaultAction,
       primaryAction,
       searchTag,
       toggleTag,
@@ -281,11 +288,6 @@ module.exports = defineComponent( {
   background-position: right 25px;
   background-repeat: no-repeat;
   background-size: 205px;
-}
-
-.adiutor-article-tagging-dialog .cdx-dialog__footer {
-  padding: 20px !important;
-  border-top: 1px solid #a2a9b1;
 }
 
 .adiutor-article-tagging-dialog .header p {

@@ -2,11 +2,12 @@
   <cdx-dialog
       v-model:open="openRpmDialog"
       :primary-action="primaryAction"
+      :default-action="defaultAction"
       :show-dividers="true"
       :title="$i18n( 'adiutor-pmr-header-title' )"
       class="rpm-dialog"
       close-button-label="Close"
-      @default="openRpmDialog = true"
+      @default="openRpmDialog = false"
       @primary="requestPageMove">
     <div class="header">
       <p>{{ $i18n( 'adiutor-pmr-header-description' ) }}</p>
@@ -57,9 +58,14 @@ module.exports = defineComponent( {
     const rationaleInput = ref( '' );
     const newPageName = ref( '' );
     const openRpmDialog = ref( true );
+
     const primaryAction = {
       label: mw.msg( 'adiutor-create-request' ),
       actionType: 'progressive'
+    };
+
+    const defaultAction = {
+      label: mw.msg( 'adiutor-cancel' )
     };
 
     const createApiRequest = async ( preparedContent ) => {
@@ -121,6 +127,7 @@ module.exports = defineComponent( {
     return {
       openRpmDialog,
       primaryAction,
+      defaultAction,
       rationaleInput,
       newPageName,
       requestPageMove
@@ -194,11 +201,6 @@ module.exports = defineComponent( {
   background-position: right -30px;
   background-repeat: no-repeat;
   background-size: 200px;
-}
-
-.rpm-dialog .cdx-dialog__footer {
-  padding: 20px !important;
-  border-top: 1px solid #a2a9b1;
 }
 
 .rpm-dialog .header p {
