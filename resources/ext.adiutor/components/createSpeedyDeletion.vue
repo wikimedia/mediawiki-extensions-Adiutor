@@ -141,6 +141,11 @@ module.exports = defineComponent( {
     const deletionLogs = ref( [] );
     const pageName = mw.config.get( 'wgPageName' );
 
+    /**
+     * Returns the module policy message.
+     *
+     * @return {string} The module policy message.
+     */
     const getModulePolicy = () => {
       const policyLink = '<a href="' + mw.util.getUrl( csdConfiguration.speedyDeletionPolicyLink ) + '" target="_blank">' + mw.msg( 'adiutor-speedy-deletion-policy-name-lowercase' ) + '</a>';
       return mw.msg( 'adiutor-please-read-the-x-policy' ).replace( '$1', policyLink );
