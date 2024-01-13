@@ -7,7 +7,7 @@
       :title="$i18n( 'adiutor-csd-header-title' )"
       class="csd-dialog"
       close-button-label="Close"
-      @default="openCsdDialog = true"
+      @default="openCsdDialog = false"
       @primary="createSpeedyDeletionRequest">
     <div class="header">
       <p>{{ $i18n( 'adiutor-csd-header-description' ) }}</p>
@@ -90,6 +90,9 @@
         </cdx-field>
       </div>
     </div>
+    <template #footer-text>
+      <span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
+    </template>
   </cdx-dialog>
 </template>
 
@@ -138,6 +141,11 @@ module.exports = defineComponent( {
     const deletionLogs = ref( [] );
     const pageName = mw.config.get( 'wgPageName' );
 
+    const getModulePolicy = () => {
+      const policyLink = '<a href="' + mw.util.getUrl( csdConfiguration.speedyDeletionPolicyLink ) + '" target="_blank">' + mw.msg( 'adiutor-speedy-deletion-policy-name-lowercase' ) + '</a>';
+      return mw.msg( 'adiutor-please-read-the-x-policy' ).replace( '$1', policyLink );
+    };
+
     /**
      * Toggles the visibility of the copy violation input based on the checkbox value.
      */
@@ -156,7 +164,7 @@ module.exports = defineComponent( {
     };
 
     const defaultAction = {
-      label: mw.msg( 'adiutor-speedy-deletion-policy' )
+      label: mw.msg( 'adiutor-cancel' )
     };
 
     /**
@@ -192,6 +200,7 @@ module.exports = defineComponent( {
       recreationProrection,
       informCreator,
       showCopyVioInput,
+      getModulePolicy,
       toggleCopyVioInputBasedOnCheckbox,
       createSpeedyDeletionRequest
     };
@@ -258,11 +267,6 @@ module.exports = defineComponent( {
   background-position: right 10px;
   background-repeat: no-repeat;
   background-size: 205px;
-}
-
-.csd-dialog .cdx-dialog__footer {
-  padding: 20px !important;
-  border-top: 1px solid #a2a9b1;
 }
 
 .csd-dialog .header p {

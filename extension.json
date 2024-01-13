@@ -124,14 +124,15 @@
 				"ext.adiutor/components/requestPageMoveOptions.vue",
 				"ext.adiutor/components/deletionProposeOptions.vue",
 				"ext.adiutor/components/adiutorSettings.vue",
-				"ext.adiutor/icons.json",
 				{
 					"name": "ext.adiutor/icons.json",
 					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
 					"callbackParam": [
 						"cdxIconAdd",
 						"cdxIconClose",
-						"cdxIconSearch"
+						"cdxIconSearch",
+						"cdxIconLinkExternal",
+						"cdxIconTag"
 					]
 				}
 			],
@@ -363,7 +364,13 @@
 				"echo-pref-tooltip-moderation",
 				"adiutor-please-select-a-tag",
 				"adiutor-speedy-deletion-request-completed",
-				"adiutor-page-proposed-for-deletion"
+				"adiutor-page-proposed-for-deletion",
+				"adiutor-cancel",
+				"adiutor-please-read-the-x-policy",
+				"adiutor-speedy-deletion-policy-name-lowercase",
+				"adiutor-protection-policy-name-lowercase",
+				"adiutor-protection-policy-title",
+				"adiutor-protection-policy-title-help"
 			]
 		}
 	},

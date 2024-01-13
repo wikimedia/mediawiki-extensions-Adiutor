@@ -225,5 +225,11 @@
 	"echo-pref-tooltip-moderation": "Notify me about the moderations that concern me.",
 	"adiutor-please-select-a-tag": "Please select a tag.",
 	"adiutor-speedy-deletion-request-completed": "Speedy deletion request completed!",
-	"adiutor-page-proposed-for-deletion": "Page proposed for deletion!"
+	"adiutor-page-proposed-for-deletion": "Page proposed for deletion!",
+	"adiutor-cancel": "Cancel",
+	"adiutor-please-read-the-x-policy": "Please read the $1 policy.",
+	"adiutor-speedy-deletion-policy-name-lowercase": "speedy deletion",
+	"adiutor-protection-policy-name-lowercase": "protection",
+	"adiutor-protection-policy-title": "Protection policy",
+	"adiutor-protection-policy-title-help": "This is the protection policy page title."
 }

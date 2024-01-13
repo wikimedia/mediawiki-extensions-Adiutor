@@ -84,7 +84,7 @@
         aria-label="{{ $i18n('adiutor-csd-notification-template') }}"></cdx-text-input>
     </cdx-field>
     <cdx-field>
-      <cdx-text-input v-model="copyVioReasonValue" :start-icon="cdxIconWikiText"></cdx-text-input>
+      <cdx-text-input v-model="copyVioReasonValue"></cdx-text-input>
       <template #label>
         {{ $i18n( 'adiutor-copy-vio-reason-value' ) }}
       </template>
@@ -276,7 +276,6 @@ const {
   CdxRadio,
   CdxButton
 } = require( '@wikimedia/codex' );
-const { cdxIconWikiText } = require( '../icons.json' );
 module.exports = defineComponent( {
   name: 'CreateSpeedyDeletionOptions',
   components: {
@@ -339,7 +338,6 @@ module.exports = defineComponent( {
     ];
 
     return {
-      cdxIconWikiText,
       speedyDeletionReasons,
       csdTemplateStartSingleReason,
       csdTemplateStartMultipleReason,

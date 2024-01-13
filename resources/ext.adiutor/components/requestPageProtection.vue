@@ -7,28 +7,33 @@
       :title="$i18n( 'adiutor-rpp-header-title' )"
       class="rpp-dialog"
       close-button-label="Close"
-      @default="openRppDialog = true"
+      @default="openRppDialog = false"
       @primary="requestPageProtection">
     <div class="header">
       <p>{{ $i18n( 'adiutor-rpp-header-description' ) }}</p>
     </div>
     <cdx-field class="rpp-dialog-body">
-      <cdx-label class="adt-label">
-        <strong>{{ $i18n( 'adiutor-protection-type' ) }}</strong>
-      </cdx-label>
-      <cdx-select
-          v-model:selected="durationSelection"
-          :menu-items="protectionDurations"
-          default-label="Choose duration"></cdx-select>
-      <cdx-select
-          v-model:selected="typeSelection"
-          :menu-items="protectionTypes"
-          default-label="Select protection type"></cdx-select>
+      <cdx-field class="flex-box">
+        <cdx-label class="adt-label">
+          <strong>{{ $i18n( 'adiutor-protection-type' ) }}</strong>
+        </cdx-label>
+        <cdx-select
+            v-model:selected="durationSelection"
+            :menu-items="protectionDurations"
+            default-label="Choose duration"></cdx-select>
+        <cdx-select
+            v-model:selected="typeSelection"
+            :menu-items="protectionTypes"
+            default-label="Select protection type"></cdx-select>
+      </cdx-field>
       <cdx-label><strong>{{ $i18n( 'adiutor-rationale' ) }}</strong></cdx-label>
       <cdx-text-area
           v-model="rationaleInput"
           :placeholder="$i18n( 'adiutor-rpp-rationale-placeholder' )"></cdx-text-area>
     </cdx-field>
+    <template #footer-text>
+      <span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
+    </template>
   </cdx-dialog>
 </template>
 
@@ -62,12 +67,17 @@ module.exports = defineComponent( {
     const rationaleInput = ref( '' );
     const openRppDialog = ref( true );
     const primaryAction = {
-      label: mw.msg( 'adiutor-create-request' ),
+      label: mw.msg( 'adiutor-request' ),
       actionType: 'progressive'
     };
 
     const defaultAction = {
-      label: mw.msg( 'adiutor-protection-policy' )
+      label: mw.msg( 'adiutor-cancel' )
+    };
+
+    const getModulePolicy = () => {
+      const policyLink = '<a href="' + mw.util.getUrl( rppConfiguration.policyTitle ) + '" target="_blank">' + mw.msg( 'adiutor-protection-policy-name-lowercase' ) + '</a>';
+      return mw.msg( 'adiutor-please-read-the-x-policy' ).replace( '$1', policyLink );
     };
 
     const createApiRequest = async ( preparedContent ) => {
@@ -123,6 +133,7 @@ module.exports = defineComponent( {
     };
 
     return {
+      getModulePolicy,
       openRppDialog,
       primaryAction,
       defaultAction,
@@ -143,7 +154,7 @@ module.exports = defineComponent( {
 
 <style lang="css">
 .rpp-dialog {
-  max-width: 29.571429em;
+  max-width: 32em;
 }
 
 .rpp-dialog .cdx-dialog {
@@ -206,11 +217,6 @@ module.exports = defineComponent( {
   background-position: right 22px;
   background-repeat: no-repeat;
   background-size: 200px;
-}
-
-.rpp-dialog .cdx-dialog__footer {
-  padding: 20px !important;
-  border-top: 1px solid #a2a9b1;
 }
 
 .rpp-dialog .header p {

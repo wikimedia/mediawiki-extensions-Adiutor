@@ -44,6 +44,7 @@ class LocalizationConfiguration {
 	public const REQUEST_PAGE_PROTECTION_CONFIGURATION = [
 		'moduleEnabled' => false,
 		'testMode' => false,
+		'policyTitle' => 'Wikipedia:Protection policy',
 		'protectionDurations' => [
 			[
 				'value' => 'temporary',

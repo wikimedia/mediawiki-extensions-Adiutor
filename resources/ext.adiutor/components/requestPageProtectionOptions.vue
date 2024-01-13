@@ -59,6 +59,18 @@
       </template>
     </cdx-field>
     <cdx-field>
+    <cdx-label input-id="protectionPolicyTitle">
+      {{ $i18n( 'adiutor-protection-policy-title' ) }}
+    </cdx-label>
+    <cdx-text-input
+        id="policyLink"
+        v-model="policyTitle"
+        aria-label="{{ $i18n('adiutor-protection-policy-title') }}"></cdx-text-input>
+      <template #help-text>
+        {{ $i18n( 'adiutor-protection-policy-title-help' ) }}
+      </template>
+    </cdx-field>
+    <cdx-field>
       <cdx-label input-id="noticeBoardTitle">
         {{ $i18n( 'adiutor-noticeboard' ) }}
       </cdx-label>
@@ -263,6 +275,7 @@ module.exports = defineComponent( {
     const moduleEnabled = ref( rppConfiguration.moduleEnabled );
     const testMode = ref( rppConfiguration.testMode );
     const namespaces = ref( rppConfiguration.namespaces );
+    const policyTitle = ref( rppConfiguration.policyTitle );
     const textModificationDirectionRadios = [
       {
         label: mw.message( 'adiutor-prepend-text-on-the-page' ).text(),
@@ -286,6 +299,7 @@ module.exports = defineComponent( {
       contentPattern,
       textModificationDirection,
       apiPostSummary,
+      policyTitle,
       textModificationDirectionRadios,
       moduleEnabled,
       testMode,
@@ -358,7 +372,8 @@ module.exports = defineComponent( {
         apiPostSummary: this.apiPostSummary,
         moduleEnabled: this.moduleEnabled,
         testMode: this.testMode,
-        namespaces: this.namespaces
+        namespaces: this.namespaces,
+        policyTitle: this.policyTitle
       }, null, 2 );
 
       try {
