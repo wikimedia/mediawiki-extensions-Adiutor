@@ -231,5 +231,22 @@
 	"adiutor-speedy-deletion-policy-name-lowercase": "speedy deletion",
 	"adiutor-protection-policy-name-lowercase": "protection",
 	"adiutor-protection-policy-title": "Protection policy",
-	"adiutor-protection-policy-title-help": "This is the protection policy page title."
+	"adiutor-protection-policy-title-help": "This is the protection policy page title.",
+	"adiutor-report-revision-configuration": "Report revision configuration",
+	"adiutor-report-revision-configuration-description": "This page provides you with the ability to customize the settings of Adiutor's report revision module. When you make adjustments here, it directly updates the configuration stored in the MediaWiki:AdiutorReportRevision.json page on your behalf. You can easily track and review the history of your modifications on that page.",
+	"adiutor-rationales": "Rationales",
+	"adiutor-report-revision": "Report revision",
+	"adiutor-parameters-revision-number": "revision number",
+	"adiutor-parameters-comment": "comment",
+	"adiutor-revision-deletion-policy-title": "Revision deletion policy",
+	"adiutor-revision-deletion-policy-title-help": "This is the revision deletion policy page title.",
+	"adiutor-revision-reporting-warning": "Prior to using this tool to make a request, the user should be informed about Wikipedia rules. In cases involving offensive edits or threats, a request can be made without following the notification procedure.",
+	"adiutor-rev-enable-label": "Enable revision reporting",
+	"adiutor-rev-enable-help": "When this checkbox is activated, the revision reporting module will be enabled.",
+	"adiutor-revision-reporting-header-title": "Revision reporting",
+	"adiutor-revision-deletion-policy-name-lowercase": "revision deletion",
+	"adiutor-comment": "Comment",
+	"adiutor-report": "Report",
+	"adiutor-rev-incomplete-request-details": "Please ensure you have selected a rationale and provided a comment.",
+	"adiutor-revision-reporting-comment-placeholder": "Please write a comment"
 }

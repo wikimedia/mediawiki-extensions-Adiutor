@@ -10,7 +10,7 @@
       @default="openCsdDialog = false"
       @primary="createSpeedyDeletionRequest">
     <div class="header">
-      <p>{{ $i18n( 'adiutor-csd-header-description' ) }}</p>
+      <p>{{ $i18n( "adiutor-csd-header-description" ) }}</p>
     </div>
     <cdx-message
         v-if="deletionLogs.length"
@@ -18,10 +18,10 @@
         dismiss-button-label="Close"
         inline
         type="warning">
-      {{ $i18n( 'adiutor-this-page-deleted-before', deletionLogs.length ) }}
+      {{ $i18n( "adiutor-this-page-deleted-before", deletionLogs.length ) }}
       <small>(<a
           :href="'/wiki/Special:Log?type=delete&user=&page=' + encodeURIComponent( pageName )">{{
-          $i18n( 'adiutor-deletion-log' )
+          $i18n( "adiutor-deletion-log" )
         }}</a>)</small>
     </cdx-message>
     <div class="csd-reasons-body">
@@ -41,11 +41,11 @@
               {{ reason.help }}
             </template>
           </cdx-checkbox>
-</cdx-field>
+        </cdx-field>
         <cdx-field v-if="!namespaceDeletionReasons.length" :is-fieldset="true">
           <cdx-message inline type="warning">
-            <p>{{ $i18n( 'adiutor-warning' ) }}</p>
-            <small>{{ $i18n( 'adiutor-no-namespace-reason-for-csd-title' ) }}</small>
+            <p>{{ $i18n( "adiutor-warning" ) }}</p>
+            <small>{{ $i18n( "adiutor-no-namespace-reason-for-csd-title" ) }}</small>
           </cdx-message>
         </cdx-field>
       </div>
@@ -68,7 +68,7 @@
           </cdx-checkbox>
           <div v-if="showCopyVioInput">
             <cdx-label class="adt-label">
-              <strong>{{ $i18n( 'adiutor-copyright-infringing-page' ) }}</strong>
+              <strong>{{ $i18n( "adiutor-copyright-infringing-page" ) }}</strong>
             </cdx-label>
             <cdx-text-input v-model="copyVioInput" aria-label="TextInput default demo"></cdx-text-input>
           </div>
@@ -77,17 +77,18 @@
     </div>
     <template #footer-text>
       <cdx-checkbox v-model="recreationProrection">
-        {{ $i18n( 'adiutor-protect-against-rebuilding' ) }}
+        {{ $i18n( "adiutor-protect-against-rebuilding" ) }}
         <template #description>
-          <small>{{ $i18n( 'adiutor-protect-against-rebuilding-help' ) }}</small>
+          <small>{{ $i18n( "adiutor-protect-against-rebuilding-help" ) }}</small>
         </template>
       </cdx-checkbox>
       <cdx-checkbox v-model="informCreator">
-          {{ $i18n( 'adiutor-inform-creator' ) }}
-          <template #description>
-            <small>{{ $i18n( 'adiutor-inform-creator-help' ) }}</small>
-          </template>
+        {{ $i18n( "adiutor-inform-creator" ) }}
+        <template #description>
+          <small>{{ $i18n( "adiutor-inform-creator-help" ) }}</small>
+        </template>
       </cdx-checkbox>
+      <!-- eslint-disable vue/no-v-html -->
       <span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
     </template>
   </cdx-dialog>

@@ -25,6 +25,7 @@ class AdiutorMaintenance extends Maintenance {
 		'MediaWiki:AdiutorDeletionPropose.json' => LocalizationConfiguration::DELETION_PROPOSE_CONFIGURATION,
 		'MediaWiki:AdiutorRequestPageMove.json' => LocalizationConfiguration::PAGE_MOVE_CONFIGURATION,
 		'MediaWiki:AdiutorArticleTagging.json' => LocalizationConfiguration::ARTICLE_TAGGING_CONFIGURATION,
+		'MediaWiki:AdiutorReportRevision.json' => LocalizationConfiguration::REPORT_REVISION_CONFIGURATION,
 	];
 
 	public function getConfigurationPages(): array {

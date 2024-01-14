@@ -18,13 +18,18 @@ const requestPageProtectionOptions = require( './requestPageProtectionOptions.vu
 const requestPageMoveOptions = require( './requestPageMoveOptions.vue' );
 const deletionProposeOptions = require( './deletionProposeOptions.vue' );
 const articleTaggingOptions = require( './articleTaggingOptions.vue' );
+const reportRevisionOptions = require( './reportRevisionOptions.vue' );
 module.exports = defineComponent( {
   name: 'AdiutorSettings',
   components: {
     CdxTabs,
     CdxTab,
     createSpeedyDeletionOptions,
-    requestPageProtectionOptions
+    requestPageProtectionOptions,
+    requestPageMoveOptions,
+    deletionProposeOptions,
+    articleTaggingOptions,
+    reportRevisionOptions
   },
   props: {
     framed: {
@@ -54,6 +59,10 @@ module.exports = defineComponent( {
         name: 'tag',
         label: mw.msg( 'adiutor-article-tagging' ),
         component: articleTaggingOptions
+      }, {
+        name: 'rev',
+        label: mw.msg( 'adiutor-report-revision' ),
+        component: reportRevisionOptions
       } ],
       currentTab: 'csd'
     };

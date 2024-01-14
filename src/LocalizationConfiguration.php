@@ -97,6 +97,60 @@ class LocalizationConfiguration {
 		],
 	];
 
+	public const REPORT_REVISION_CONFIGURATION = [
+		'moduleEnabled' => false,
+		'testMode' => false,
+		'policyTitle' => 'Wikipedia:Revision deletion',
+		'reportRationales' => [
+			[
+				'label' => 'Removal of personal information that has not been made public',
+				'value' => 'Removal of personal information that has not been made public',
+			],
+			[
+				'label' => 'Blasphemous and insulting content',
+				'value' => 'Blasphemous and insulting content',
+			],
+			[
+				'label' => 'Removing potentially defamatory information',
+				'value' => 'Removing potentially defamatory information',
+			],
+			[
+				'label' => 'Content unrelated to the article, intended to provoke the community',
+				'value' => 'Content unrelated to the article, intended to provoke the community',
+			],
+			[
+				'label' => 'Removal of copyright infringement',
+				'value' => 'Removal of copyright infringement',
+			],
+		],
+		'noticeBoardTitle' => 'Wikipedia:Revision deletion requests',
+		'addNewSection' => true,
+		'sectionTitle' => 'Revision deletion request for [[$1]]',
+		'useExistSection' => false,
+		'sectionId' => null,
+		'textModificationDirection' => 'appendtext',
+		'contentPattern' => 'Revision: [[Special:Diff/$2]] Rationale: $3 Comment: $4 ~~~~',
+		'apiPostSummary' => 'Created a revision deletion request for [[$1]]',
+		'namespaces' => [
+			[ 'value' => '-1' ],
+			[ 'value' => '0' ],
+			[ 'value' => '1' ],
+			[ 'value' => '2' ],
+			[ 'value' => '3' ],
+			[ 'value' => '4' ],
+			[ 'value' => '5' ],
+			[ 'value' => '6' ],
+			[ 'value' => '7' ],
+			[ 'value' => '14' ],
+			[ 'value' => '10' ],
+			[ 'value' => '11' ],
+			[ 'value' => '100' ],
+			[ 'value' => '101' ],
+			[ 'value' => '102' ],
+			[ 'value' => '103' ],
+		],
+	];
+
 	public const CREATE_SPEEDY_DELETION_REQUEST_CONFIGURATION = [
 		'moduleEnabled' => false,
 		'testMode' => false,

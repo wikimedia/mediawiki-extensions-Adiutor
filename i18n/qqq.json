@@ -233,5 +233,22 @@
 	"adiutor-speedy-deletion-policy-name-lowercase": "This is the lowercase name of the speedy deletion policy.",
 	"adiutor-protection-policy-name-lowercase": "This is the lowercase name of the protection policy.",
 	"adiutor-protection-policy-title": "This is the title of the protection policy.",
-	"adiutor-protection-policy-title-help": "This is the help text for the protection policy title."
+	"adiutor-protection-policy-title-help": "This is the help text for the protection policy title.",
+	"adiutor-report-revision-configuration": "This is the configuration for the revision report.",
+	"adiutor-report-revision-configuration-description": "This is the description of the revision report configuration.",
+	"adiutor-rationales": "This is the label for the rationales parameter.",
+	"adiutor-report-revision": "This is the label for the revision report.",
+	"adiutor-parameters-revision-number": "This is the label for the revision number parameter.",
+	"adiutor-parameters-comment": "This is the label for the comment parameter.",
+	"adiutor-revision-deletion-policy-title": "This is the title of the revision deletion policy.",
+	"adiutor-revision-deletion-policy-title-help": "This is the help text for the revision deletion policy title.",
+	"adiutor-revision-reporting-warning": "This is the warning for the revision reporting.",
+	"adiutor-rev-enable-label": "This is the label for the preferences option to enable the revision reporting module.",
+	"adiutor-rev-enable-help": "This is the help text for the preferences option to enable the revision reporting module.",
+	"adiutor-revision-reporting-header-title": "This is the title of the revision reporting header.",
+	"adiutor-revision-deletion-policy-name-lowercase": "This is the lowercase name of the revision deletion policy.",
+	"adiutor-comment": "This is the label for the comment.",
+	"adiutor-report": "This is the label for the report.",
+	"adiutor-rev-incomplete-request-details": "This is the label for the incomplete request details.",
+	"adiutor-revision-reporting-comment-placeholder": "This is the placeholder for the comment."
 }

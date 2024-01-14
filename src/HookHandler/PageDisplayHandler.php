@@ -137,6 +137,10 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 						'title' => 'MediaWiki:AdiutorArticleTagging.json',
 						'configuration' => 'wgAdiutorArticleTagging',
 					],
+					[
+						'title' => 'MediaWiki:AdiutorReportRevision.json',
+						'configuration' => 'wgAdiutorReportRevision',
+					],
 				];
 				foreach ( $configPages as $configPage ) {
 					if ( !isset( $configPage['title'] ) || !isset( $configPage['configuration'] ) ) {

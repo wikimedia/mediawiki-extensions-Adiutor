@@ -6,7 +6,8 @@
 		requestPageMove: require( './components/requestPageMove.vue' ),
 		articleTagging: require( './components/articleTagging.vue' ),
 		createSpeedyDeletion: require( './components/createSpeedyDeletion.vue' ),
-		deletionPropose: require( './components/deletionPropose.vue' )
+		deletionPropose: require( './components/deletionPropose.vue' ),
+		reportRevision: require( './components/reportRevision.vue' )
 	};
 
 	const configurations = {
@@ -14,7 +15,8 @@
 		rpp: mw.config.get( 'wgAdiutorRequestPageProtection' ),
 		rpm: mw.config.get( 'wgAdiutorRequestPageMove' ),
 		dpr: mw.config.get( 'wgAdiutorDeletionPropose' ),
-		tag: mw.config.get( 'wgAdiutorArticleTagging' )
+		tag: mw.config.get( 'wgAdiutorArticleTagging' ),
+		rev: mw.config.get( 'wgAdiutorReportRevision' )
 	};
 
 	const userGroups = mw.config.get( 'wgUserGroups' );
@@ -67,6 +69,11 @@
 		if ( mw.user.options.get( 'adiutor-tag-enable' ) ) {
 			addPortletLink( configurations.tag, 't-tag-article', 'adiutor-tag-article', 'articleTagging' );
 		}
+		if ( mw.user.options.get( 'adiutor-rev-enable' ) ) {
+			if ( /[?&](?:|diff|oldid)=/.test( window.location.href ) ) {
+				addPortletLink( configurations.rev, 't-report-revision', 'adiutor-report-revision', 'reportRevision' );
+			}
+		}
 	}
 
 	const currentNamespace = mw.config.get( 'wgNamespaceNumber' );
@@ -92,6 +99,7 @@
 	attachEventListener( '#t-request-protection', 'requestPageProtection' );
 	attachEventListener( '#t-request-page-move', 'requestPageMove' );
 	attachEventListener( '#t-tag-article', 'articleTagging' );
+	attachEventListener( '#t-report-revision', 'reportRevision' );
 
 	Vue.createMwApp( components.adiutorSettings ).mount( '#adiutor-settings-teleport-target' );
 }() );

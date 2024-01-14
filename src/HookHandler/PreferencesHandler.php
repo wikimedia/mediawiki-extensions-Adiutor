@@ -101,6 +101,12 @@ class PreferencesHandler implements GetPreferencesHook {
 					'section' => 'moderation/adiutor',
 					'help-message' => 'adiutor-tag-enable-help',
 				],
+				'adiutor-rev-enable' => [
+					'type' => 'toggle',
+					'label-message' => 'adiutor-rev-enable-label',
+					'section' => 'moderation/adiutor',
+					'help-message' => 'adiutor-rev-enable-help',
+				],
 			];
 
 			foreach ( $prefDefinitions as $key => $definition ) {
