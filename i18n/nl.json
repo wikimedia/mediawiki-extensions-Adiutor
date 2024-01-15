@@ -18,7 +18,7 @@
 	"adiutor-continue": "Doorgaan",
 	"adiutor-options": "Opties",
 	"adiutor-protect-against-rebuilding": "Beveiliging tegen opnieuw aanmaken aanvragen",
-	"adiutor-protect-against-rebuilding-help": "Indien gekozen wordt de tag {{salt}} toegevoegd. Daardoor krijgen de moderators het voorstel om beveiliging tegen aanmaak toe te passen als deze pagina steeds weer wordt aangemaakt.",
+	"adiutor-protect-against-rebuilding-help": "Indien gekozen wordt een tag voor beveiliging tegen opnieuw aanmaken toegevoegd. Daardoor krijgen de moderators het voorstel om beveiliging tegen aanmaak toe te passen als deze pagina steeds weer wordt aangemaakt.",
 	"adiutor-rationale": "Motivering",
 	"adiutor-rationale-placeholder": "Waarom nomineert u deze pagina voor verwijdering?",
 	"adiutor-inform-creator": "Informeer de gebruiker die de pagina heeft gemaakt.",

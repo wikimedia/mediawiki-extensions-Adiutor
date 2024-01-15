@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Martin Hipangwa"
+		]
+	},
+	"adiutor-delete": "Dima",
+	"adiutor-continue": "Twikila",
+	"adiutor-afd-special-page-title": "Ouleshwa ovo tava deletwako",
+	"adiutor-choose-appropriate-tags": "Hoololola outag tavawapalele",
+	"adiutor-settings-label": "eesetinga",
+	"adiutor-add-new-tag-label": "Weda ko shipe",
+	"adiutor-parameters-page-name": "edina lepandja",
+	"adiutor-parameters-day": "efiku",
+	"adiutor-parameters-month": "omwedi",
+	"adiutor-parameters-year": "odula",
+	"adiutor-close": "Pata",
+	"adiutor-action": "okutulamoilonga",
+	"adiutor-deletion-reasons-for": "Elalakano lokudima",
+	"adiutor-help": "Ekwafelo",
+	"adiutor-required": "Shapumbiwa",
+	"adiutor-new-name-placeholder": "Edina lipe"
+}

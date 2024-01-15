@@ -17,5 +17,8 @@
 	"adiutor-help": "Помоћ",
 	"adiutor-tag-description": "Опис",
 	"adiutor-configurations-saving": "Чување...",
-	"adiutor-namespaces": "Именски простори"
+	"adiutor-namespaces": "Именски простори",
+	"adiutor-please-select-a-tag": "Молимо изаберите ознаку.",
+	"adiutor-cancel": "Откажи",
+	"adiutor-speedy-deletion-policy-name-lowercase": "брзо брисање"
 }

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gogchannel"
+			"Gogchannel",
+			"MathXplore"
 		]
 	},
 	"adiutor-delete": "削除",
@@ -12,5 +13,8 @@
 	"adiutor-close": "閉じる",
 	"adiutor-tag-description": "概要",
 	"adiutor-configurations-saving": "保存中...",
-	"adiutor-namespaces": "名前空間"
+	"adiutor-namespaces": "名前空間",
+	"adiutor-parameters-comment": "コメント",
+	"adiutor-revision-deletion-policy-name-lowercase": "版指定削除",
+	"adiutor-comment": "コメント"
 }

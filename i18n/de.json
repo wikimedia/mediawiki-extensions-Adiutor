@@ -1,10 +1,12 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Brettchenweber"
+		]
 	},
 	"adiutor-toggle-adiutor": "Verwenden Adiutor, um Inhaltsaufgaben zu moderieren, zu selektieren und zu verwalten",
 	"adiutor-desc": "Adiutor ist eine MediaWiki-Erweiterung zum Moderieren, Sortieren und Verwalten von Inhaltsaufgaben auf Wikipedia. Es implementiert Content-Triage-Methoden und priorisiert und kategorisiert Anfragen und Inhalte nach Dringlichkeit und Wichtigkeit. Seine Benutzeroberfläche vereinfacht komplexe Prozesse und macht die Wikipedia-Pflege für Benutzer aller Erfahrungsstufen zugänglicher und effizienter.",
-	"adiutor-beta-feature-description": "Adiutor ist eine MediaWiki-Erweiterung zum Moderieren, Sortieren und Verwalten von Inhaltsaufgaben auf Wikipedia.  Es implementiert Content-Triage-Methoden und priorisiert und kategorisiert Anfragen und Inhalte nach Dringlichkeit und Wichtigkeit.. Seine Benutzeroberfläche vereinfacht komplexe Prozesse und macht die Wikipedia-Pflege für Benutzer aller Erfahrungsstufen zugänglicher und effizienter.",
+	"adiutor-beta-feature-description": "Adiutor ist eine MediaWiki-Erweiterung zum Moderieren, Sortieren und Verwalten von Inhaltsaufgaben auf Wikipedia. Es implementiert Content-Triage-Methoden und priorisiert und kategorisiert Anfragen und Inhalte nach Dringlichkeit und Wichtigkeit. Seine Benutzeroberfläche vereinfacht komplexe Prozesse und macht die Wikipedia-Pflege für Benutzer aller Erfahrungsstufen zugänglicher und effizienter.",
 	"adiutor-beta-feature-enabled": "Adiutor ist jetzt als Beta-Funktion aktiviert.",
 	"adiutor-create": "Erstellen",
 	"adiutor-request": "Anfragen",
