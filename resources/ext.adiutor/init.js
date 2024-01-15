@@ -30,10 +30,10 @@
 	 * @param {Object} config - The configuration object.
 	 * @param {string} linkId - The ID of the link.
 	 * @param {string} linkLabel - The label of the link.
-	 * @param {string} linkKey - The key of the link.
+	 * @param {string} accessKey - The key of the link.
 	 */
 
-	function addPortletLink( config, linkId, linkLabel, linkKey ) {
+	function addPortletLink( config, linkId, linkLabel, accessKey ) {
 		if ( config && config.moduleEnabled ) {
 			if ( !config.testMode || ( userGroups && userGroups.includes( 'interface-admin' ) ) ) {
 				// Messages that can be used here:
@@ -46,7 +46,7 @@
 					id: linkId,
 					label: mw.msg( linkLabel ),
 					action: mw.msg( linkLabel ),
-					key: linkKey,
+					key: accessKey,
 					namespaces: config.namespaces || []
 				} );
 			}
@@ -55,23 +55,23 @@
 
 	if ( !isSpecialPage && !isMainPage ) {
 		if ( mw.user.options.get( 'adiutor-csd-enable' ) ) {
-			addPortletLink( configurations.csd, 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', 'createSpeedyDeletion' );
+			addPortletLink( configurations.csd, 't-request-speedy-deletion', 'adiutor-request-speedy-deletion', '1' );
 		}
 		if ( mw.user.options.get( 'adiutor-rpp-enable' ) ) {
-			addPortletLink( configurations.rpp, 't-request-protection', 'adiutor-request-protection', 'requestPageProtection' );
+			addPortletLink( configurations.rpp, 't-request-protection', 'adiutor-request-protection', '2' );
 		}
 		if ( mw.user.options.get( 'adiutor-rpm-enable' ) ) {
-			addPortletLink( configurations.rpm, 't-request-page-move', 'adiutor-request-page-move', 'requestPageMove' );
+			addPortletLink( configurations.rpm, 't-request-page-move', 'adiutor-request-page-move', '3' );
 		}
 		if ( mw.user.options.get( 'adiutor-prod-enable' ) ) {
-			addPortletLink( configurations.dpr, 't-propose-deletion', 'adiutor-propose-deletion', 'deletionPropose' );
+			addPortletLink( configurations.dpr, 't-propose-deletion', 'adiutor-propose-deletion', '4' );
 		}
 		if ( mw.user.options.get( 'adiutor-tag-enable' ) ) {
-			addPortletLink( configurations.tag, 't-tag-article', 'adiutor-tag-article', 'articleTagging' );
+			addPortletLink( configurations.tag, 't-tag-article', 'adiutor-tag-article', '5' );
 		}
 		if ( mw.user.options.get( 'adiutor-rev-enable' ) ) {
-			if ( /[?&](?:|diff|oldid)=/.test( window.location.href ) ) {
-				addPortletLink( configurations.rev, 't-report-revision', 'adiutor-report-revision', 'reportRevision' );
+			if ( /[?&](?:|diff)=/.test( window.location.href ) ) {
+				addPortletLink( configurations.rev, 't-report-revision', 'adiutor-report-revision', '6' );
 			}
 		}
 	}
