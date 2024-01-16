@@ -46,5 +46,10 @@
 	"adiutor-prd-header-description": "Le proposition suggere que le articulo pote esser delite sin controversia, mesmo si illo non satisface le criterios plus stricte exigite pro deletion rapide.",
 	"adiutor-new-name": "Nove nomine",
 	"adiutor-pmr-header-title": "Requesta de renomination de pagina",
-	"adiutor-pmr-header-description": "Iste fenestra permitte requestas pro renominar paginas a un altere titulo. Typicamente, usatores autoconfirmate pote realisar renominationes de paginas usante le ligamine de action Renominar sur le paginas."
+	"adiutor-pmr-header-description": "Iste fenestra permitte requestas pro renominar paginas a un altere titulo. Typicamente, usatores autoconfirmate pote realisar renominationes de paginas usante le ligamine de action Renominar sur le paginas.",
+	"adiutor-afd-header-title": "Discussion articulos a deler",
+	"adiutor-afd-header-description": "Le initiation de un discussion sur le deletion de un pagina, mesmo si illo non satisface le criterios plus stricte exigite pro un deletion rapide.",
+	"adiutor-tag-header-description": "Tu etiquetta ora iste articulo. Tu pote seliger del lista infra un etiquetta de mantenentia o de altere typo a adjunger a iste articulo.",
+	"adiutor-page-move-request": "Requesta de renomination de pagina",
+	"adiutor-page-protection-request": "Requesta de protection de pagina"
 }

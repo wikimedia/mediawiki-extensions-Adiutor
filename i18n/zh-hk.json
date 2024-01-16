@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ciaranchen"
+		]
+	},
+	"adiutor-parameters-revision-number": "修訂值",
+	"adiutor-parameters-comment": "評論",
+	"adiutor-revision-reporting-comment-placeholder": "請寫評論"
+}

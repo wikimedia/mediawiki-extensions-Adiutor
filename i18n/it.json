@@ -16,5 +16,9 @@
 	"adiutor-section-id": "ID sezione:",
 	"adiutor-configurations-saving": "Salvataggio...",
 	"adiutor-notification-header-csd-requested": "Cancellazione immediata richiesta da $1",
-	"echo-category-title-moderation": "Moderazione"
+	"echo-category-title-moderation": "Moderazione",
+	"adiutor-cancel": "Annulla",
+	"adiutor-protection-policy-title": "Politica di protezione",
+	"adiutor-parameters-revision-number": "numero versione",
+	"adiutor-parameters-comment": "commento"
 }

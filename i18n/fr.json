@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Iketsi"
 		]
 	},
 	"adiutor-create": "Créer",
 	"adiutor-request": "Requête",
 	"adiutor-delete": "Supprimer",
+	"adiutor-other-options": "Autres options",
 	"adiutor-propose": "Proposer",
 	"adiutor-continue": "Continuer",
 	"adiutor-options": "Options",
