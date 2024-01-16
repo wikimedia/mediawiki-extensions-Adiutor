@@ -24,7 +24,8 @@ class PageSaveCompleteHandler {
 	 * @return void
 	 */
 	public static function onPageSaveComplete(
-		WikiPage $wikiPage, User $user, string $summary, int $flags, RevisionRecord $revisionRecord, EditResult $editResult
+		WikiPage $wikiPage, User $user, string $summary, int $flags,
+		RevisionRecord $revisionRecord, EditResult $editResult
 	) {
 		$wanObjectCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $wanObjectCache->makeKey( 'Adiutor', 'config-data' );
