@@ -84,12 +84,47 @@
 		} );
 	}
 
+	/**
+	 * Saves a configuration object to a specified MediaWiki page in JSON format.
+	 *
+	 * @param {string} title - The title of the page where the configuration should be saved.
+	 * @param {Object} configuration - The configuration object to save.
+	 */
+	async function saveConfiguration( title, configuration ) {
+		if ( !mw.config.get( 'wgUserGroups' ).includes( 'interface-admin' ) ) {
+			mw.notify( mw.message( 'adiutor-interface-admin-required' ).text(), { type: 'error' } );
+			return;
+		}
+
+		const editToken = mw.user.tokens.get( 'csrfToken' );
+		const contentToSave = JSON.stringify( configuration, null, 2 );
+		const summary = mw.message( 'adiutor-configurations-saving' ).text();
+
+		try {
+			await api.postWithToken( 'csrf', {
+				action: 'edit',
+				title: title,
+				text: contentToSave,
+				token: editToken,
+				summary: summary,
+				format: 'json'
+			} );
+			mw.notify( mw.message( 'adiutor-localization-settings-has-been-updated' ).text(), {
+				title: mw.msg( 'adiutor-operation-completed' ),
+				type: 'success'
+			} );
+		} catch ( error ) {
+			mw.notify( error, { type: 'error' } );
+		}
+	}
+
 	module.exports = {
 		getDeletionLogs,
 		replacePlaceholders,
 		replaceParameter,
 		getCreator,
-		handleError
+		handleError,
+		saveConfiguration
 	};
 
 }() );

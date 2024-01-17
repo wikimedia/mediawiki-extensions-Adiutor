@@ -238,17 +238,8 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const {
-  CdxLabel,
-  CdxMessage,
-  CdxTextInput,
-  CdxChipInput,
-  CdxToggleSwitch,
-  CdxButton,
-  CdxField,
-  CdxRadio,
-  CdxTextArea
-} = require( '@wikimedia/codex' );
+const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxButton, CdxField, CdxRadio, CdxTextArea } = require( '@wikimedia/codex' );
+const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'RequestPageProtectionOptions',
   components: {
@@ -349,17 +340,7 @@ module.exports = defineComponent( {
     },
 
     async saveConfiguration() {
-      if ( !mw.config.get( 'wgUserGroups' ).includes( 'interface-admin' ) ) {
-        mw.notify( mw.message( 'adiutor-interface-admin-required' ).text(), { type: 'error' } );
-        return;
-      }
-      this.saveButtonLabel = mw.message( 'adiutor-configurations-saving' ).text();
-      this.saveButtonAction = 'default';
-      this.saveButtonDisabled = true;
-
-      const api = new mw.Api();
-      const editToken = mw.user.tokens.get( 'csrfToken' );
-      const contentToSave = JSON.stringify( {
+      const configuration = {
         protectionDurations: this.protectionDurations,
         protectionTypes: this.protectionTypes,
         noticeBoardTitle: this.noticeBoardTitle,
@@ -374,24 +355,24 @@ module.exports = defineComponent( {
         testMode: this.testMode,
         namespaces: this.namespaces,
         policyTitle: this.policyTitle
-      }, null, 2 );
+      };
+      const title = 'MediaWiki:AdiutorRequestPageProtection.json';
+
+      // Set the button to the saving state
+      this.saveButtonLabel = mw.message( 'adiutor-configurations-saving' ).text();
+      this.saveButtonAction = 'default';
+      this.saveButtonDisabled = true;
 
       try {
-        await api.postWithToken( 'csrf', {
-          action: 'edit',
-          title: 'MediaWiki:AdiutorRequestPageProtection.json',
-          text: contentToSave,
-          token: editToken,
-          format: 'json'
-        } );
-        mw.notify( mw.message( 'adiutor-localization-settings-has-been-updated' ).text(), {
-          title: mw.msg( 'adiutor-operation-completed' ),
-          type: 'success'
-        } );
+        // Call the centralized save function from AdiutorUtility
+        await AdiutorUtility.saveConfiguration( title, configuration );
+
+        // Update the button to show the save completed
         this.saveButtonLabel = mw.message( 'adiutor-save-configurations' ).text();
         this.saveButtonAction = 'progressive';
         this.saveButtonDisabled = false;
       } catch ( error ) {
+        // If an error occurred, display it and update the button accordingly
         mw.notify( error, { type: 'error' } );
         this.saveButtonLabel = mw.message( 'adiutor-try-again' ).text();
         this.saveButtonAction = 'destructive';
