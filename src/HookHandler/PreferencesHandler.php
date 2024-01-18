@@ -151,7 +151,8 @@ class PreferencesHandler implements GetPreferencesHook {
 			$this->isTrue( $modifiedOptions,
 				'betafeatures-auto-enroll' );
 
-		if ( !isset( $modifiedOptions[self::PREF_ADIUTOR_ENABLE] ) && isset( $originalOptions[self::PREF_ADIUTOR_ENABLE] ) ) {
+		if ( !isset( $modifiedOptions[self::PREF_ADIUTOR_ENABLE] ) &&
+			isset( $originalOptions[self::PREF_ADIUTOR_ENABLE] ) ) {
 			$modifiedOptions[self::PREF_ADIUTOR_ENABLE] = $originalOptions[self::PREF_ADIUTOR_ENABLE];
 		}
 
