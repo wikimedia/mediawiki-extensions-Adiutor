@@ -48,5 +48,6 @@
 	"adiutor-namespaces": "Пространства имён",
 	"prefs-moderation": "Модерация",
 	"adiutor-deletion-log": "Журнал удалений",
-	"echo-category-title-moderation": "Модерация"
+	"echo-category-title-moderation": "Модерация",
+	"adiutor-parameters-comment": "комментарий"
 }
