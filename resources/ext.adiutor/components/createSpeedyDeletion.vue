@@ -89,7 +89,7 @@
         </template>
       </cdx-checkbox>
       <!-- eslint-disable vue/no-v-html -->
-      <span v-html="getModulePolicy"></span>
+      <span v-html="getModulePolicy()"></span>
     </template>
   </cdx-dialog>
 </template>
