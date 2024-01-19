@@ -10,7 +10,7 @@
       @default="openTagDialog = false"
       @primary="tagArticle">
     <div class="header">
-      <p>{{ $i18n( 'adiutor-tag-header-description' ) }}</p>
+      <p>{{ $i18n( "adiutor-tag-header-description" ) }}</p>
       <cdx-text-input
           v-model="searchTag"
           :clearable="true"
@@ -64,16 +64,17 @@
           v-if="!filteredTagList.length"
           inline
           type="warning">
-        <p>{{ $i18n( 'adiutor-no-tag-found' ) }}</p>
+        <p>{{ $i18n( "adiutor-no-tag-found" ) }}</p>
       </cdx-message>
     </div>
   </cdx-dialog>
 </template>
 
 <script>
-const { defineComponent, ref, computed } = require( 'vue' );
+const { defineComponent, ref, computed, onMounted } = require( 'vue' );
 const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
 const { cdxIconSearch, cdxIconInfoFilled } = require( '../icons.json' );
+const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'ArticleTagging',
   components: {
@@ -94,16 +95,21 @@ module.exports = defineComponent( {
     const uncategorizedTemplate = tagConfiguration.uncategorizedTemplate;
     const apiPostSummary = tagConfiguration.apiPostSummary;
     const searchTag = ref( '' );
+    const pageHasTags = ref( false );
+    const pageName = mw.config.get( 'wgPageName' );
 
     const defaultAction = {
       label: mw.msg( 'adiutor-cancel' )
     };
 
-    const primaryAction = {
-      icon: 'cdxIconTag',
-      label: mw.msg( 'adiutor-tag-page' ),
-      actionType: 'progressive'
-    };
+    const primaryAction = computed( () => {
+      return {
+        icon: 'cdxIconTag',
+        label: pageHasTags.value ? mw.msg( 'adiutor-update' ) : mw.msg( 'adiutor-tag-page' ),
+        actionType: 'progressive'
+      };
+    } );
+
     const filteredTagList = computed( () => {
       const searchTerm = searchTag.value.toLowerCase();
       return tagList.map( ( label ) => {
@@ -120,12 +126,11 @@ module.exports = defineComponent( {
     const selectedTags = [];
 
     function toggleTag( tag ) {
-      if ( !selectedTags.includes( tag ) ) {
-        // If the tag is not in the array, add it
+      const tagIndex = selectedTags.findIndex( ( selectedTag ) => selectedTag.tag === tag.tag );
+      if ( tagIndex === -1 ) {
         selectedTags.push( tag );
       } else {
-        // If the tag is already in the array, remove it
-        selectedTags.splice( selectedTags.indexOf( tag ), 1 );
+        selectedTags.splice( tagIndex, 1 );
       }
     }
 
@@ -151,8 +156,30 @@ module.exports = defineComponent( {
       }
       try {
         await api.postWithToken( 'csrf', editParams );
-          openTagDialog.value = false;
-          location.reload();
+        openTagDialog.value = false;
+        location.reload();
+      } catch ( error ) {
+        mw.notify( mw.msg( 'adiutor-tag-failed' ), {
+          title: mw.msg( 'adiutor-operation-failed' ),
+          type: 'error'
+        } );
+      }
+    };
+
+    const updateApiRequest = async ( updatedPageContent ) => {
+      const api = new mw.Api();
+      const editParams = {
+        action: 'edit',
+        title: mw.config.get( 'wgPageName' ),
+        summary: apiPostSummary,
+        tags: 'adiutor',
+        format: 'json'
+      };
+      editParams.text = updatedPageContent;
+      try {
+        await api.postWithToken( 'csrf', editParams );
+        openTagDialog.value = false;
+        location.reload();
       } catch ( error ) {
         mw.notify( mw.msg( 'adiutor-tag-failed' ), {
           title: mw.msg( 'adiutor-operation-failed' ),
@@ -165,6 +192,7 @@ module.exports = defineComponent( {
       const preparedTemplates = [];
       const templateInfo = {};
       let preparedTagsString;
+      let updatedPageContent;
       selectedTags.forEach( function ( tag ) {
         if ( tag.items && tag.items.length > 0 ) {
           tag.items.forEach( function ( subItem ) {
@@ -190,10 +218,43 @@ module.exports = defineComponent( {
         }
       } );
 
-      if ( useMultipleIssuesTemplate && preparedTemplates.length > 1 ) {
-        preparedTagsString = `{{${ multipleIssuesTemplate }|\n${ preparedTemplates.join( '\n' ) }\n}}`;
+      if ( useMultipleIssuesTemplate && preparedTemplates.length > 0 ) {
+        const pageContent = await AdiutorUtility.getPageContent( pageName );
+        // eslint-disable-next-line es-x/no-regexp-s-flag,security/detect-non-literal-regexp
+        const matches = pageContent.match( new RegExp( `{{${ multipleIssuesTemplate }\\s*\\|\\s*((?:{{[^{}]*}}(?:\\n|\\s*))*?)}}`, 's' ) );
+        let currentTagsContent = matches ? matches[ 1 ] : '';
+        let currentTags = currentTagsContent.match( /{{[\s\S]*?}}/g ) || [];
+        currentTags = currentTags.map( ( tag ) => tag.trim() );
+        const preparedTagNames = preparedTemplates.map( ( tag ) => {
+          const match = tag.match( /{{([\s\S]*?)}}/ );
+          return match ? match[ 1 ].trim() : '';
+        } );
+
+        // Add new tags
+        preparedTagNames.forEach( ( tagName ) => {
+          if ( !currentTags.includes( `{{${ tagName }}}` ) ) {
+            currentTagsContent += `{{${ tagName }}}\n`;
+          }
+        } );
+
+        currentTags.forEach( ( tag ) => {
+          if ( !preparedTagNames.map( ( tn ) => `{{${ tn }}}` ).includes( tag ) ) {
+            currentTagsContent = currentTagsContent.replace( tag + '\n', '' );
+          }
+        } );
+
+        currentTagsContent = currentTagsContent.trim();
+
+        preparedTagsString = `{{${ multipleIssuesTemplate }|\n${ currentTagsContent }\n}}`;
+        updatedPageContent = matches ? pageContent.replace( matches[ 0 ], preparedTagsString ) : `${ preparedTagsString }\n${ pageContent.trim() }`;
       } else {
-        preparedTagsString = preparedTemplates.join( '\n' );
+        const pageContent = await AdiutorUtility.getPageContent( pageName );
+        if ( typeof pageContent === 'string' ) {
+          const contentWithoutTags = pageContent.replace( /{{[^{}]*}}/g, '' );
+          updatedPageContent = preparedTemplates.join( '\n' ) + '\n\n' + contentWithoutTags.trim();
+        } else {
+          AdiutorUtility.handleError( 'The content of the page is not a string.' );
+        }
       }
 
       if ( !selectedTags.length > 0 ) {
@@ -202,7 +263,11 @@ module.exports = defineComponent( {
           type: 'error'
         } );
       } else {
-        await createApiRequest( preparedTagsString );
+        if ( !pageHasTags.value ) {
+          await createApiRequest( preparedTagsString );
+        } else {
+          await updateApiRequest( updatedPageContent );
+        }
       }
     };
 
@@ -214,6 +279,37 @@ module.exports = defineComponent( {
         return '';
       }
     }
+
+    onMounted( async () => {
+      try {
+        const pageContent = await AdiutorUtility.getPageContent( pageName );
+        const templatesAndParams = await AdiutorUtility.extractTemplateNamesAndParameters( pageContent, useMultipleIssuesTemplate, multipleIssuesTemplate );
+        const templateNamesOnPage = [];
+        templatesAndParams.forEach( ( templateObj ) => {
+          tagList.forEach( ( labelObj ) => {
+            labelObj.tags.forEach( ( tagObj ) => {
+              if ( templateObj.name.toLowerCase() === tagObj.tag.toLowerCase() ) {
+                toggleTag( tagObj );
+                templateNamesOnPage.push( templateObj.name );
+                if ( tagObj.items ) {
+                  tagObj.items.forEach( ( item ) => {
+                    if ( item.parameter && templateObj.parameters[ item.parameter ] ) {
+                      item.value = templateObj.parameters[ item.parameter ];
+                    }
+                  } );
+                }
+              }
+            } );
+          } );
+        } );
+        checkboxValue.value = templateNamesOnPage;
+      } catch ( error ) {
+        AdiutorUtility.handleError( error );
+      }
+      if ( checkboxValue.value.length > 0 ) {
+        pageHasTags.value = true;
+      }
+    } );
 
     return {
       checkboxValue,

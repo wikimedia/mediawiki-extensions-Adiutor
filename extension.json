@@ -389,7 +389,8 @@
 				"adiutor-comment",
 				"adiutor-report",
 				"adiutor-rev-incomplete-request-details",
-				"adiutor-revision-reporting-comment-placeholder"
+				"adiutor-revision-reporting-comment-placeholder",
+				"adiutor-update"
 			]
 		}
 	},

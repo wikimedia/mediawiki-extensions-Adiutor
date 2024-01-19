@@ -118,13 +118,77 @@
 		}
 	}
 
+	/**
+	 * Retrieves the content of a page from the MediaWiki API.
+	 * @param {string} title - The title of the page.
+	 * @return {Promise<string>} - The content of the page.
+	 */
+	async function getPageContent( title ) {
+		let response;
+		try {
+			response = await api.get( {
+				action: 'query',
+				titles: title,
+				prop: 'revisions',
+				rvprop: 'content',
+				format: 'json'
+			} );
+			const pageId = Object.keys( response.query.pages )[ 0 ];
+			return response.query.pages[ pageId ].revisions[ 0 ][ '*' ];
+		} catch ( error ) {
+			handleError( error );
+		}
+	}
+
+	/**
+	 * Extracts template names and parameters from the given content.
+	 *
+	 * @param {string} content - The content to extract templates from.
+	 * @param {boolean} useMultipleIssuesTemplate - Indicates whether to use multiple issues' template.
+	 * @param {string} multipleIssuesTemplate - The multiple issues template to use.
+	 * @return {Array} - An array of objects containing template names and parameters.
+	 */
+	async function extractTemplateNamesAndParameters( content, useMultipleIssuesTemplate, multipleIssuesTemplate ) {
+		const templatesAndParams = [];
+		// eslint-disable-next-line es-x/no-regexp-s-flag,security/detect-unsafe-regex
+		const regex = /{{((?:[^{}]|\{(?!\{).*})*)}}/gs;
+
+		content.replace( regex, ( match, innerContent ) => {
+			const parts = innerContent.split( '|' );
+			const templateName = parts[ 0 ].trim();
+			const parameters = {};
+
+			if ( useMultipleIssuesTemplate && templateName === multipleIssuesTemplate ) {
+				parts.slice( 1 ).forEach( ( part ) => {
+					const nestedTemplate = extractTemplateNamesAndParameters( part, true, multipleIssuesTemplate );
+					templatesAndParams.push( ...nestedTemplate );
+				} );
+			} else {
+				parts.slice( 1 ).forEach( ( part ) => {
+					const [ key, ...valueParts ] = part.split( '=' ).map( ( s ) => s.trim() );
+					const value = valueParts.join( '=' ).trim();
+					if ( key ) {
+						parameters[ key ] = value || '';
+					}
+				} );
+				templatesAndParams.push( { name: templateName, parameters } );
+			}
+
+			return match;
+		} );
+
+		return templatesAndParams;
+	}
+
 	module.exports = {
 		getDeletionLogs,
 		replacePlaceholders,
 		replaceParameter,
 		getCreator,
 		handleError,
-		saveConfiguration
+		saveConfiguration,
+		getPageContent,
+		extractTemplateNamesAndParameters
 	};
 
 }() );

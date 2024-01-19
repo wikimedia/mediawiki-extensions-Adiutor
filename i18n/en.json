@@ -248,5 +248,6 @@
 	"adiutor-comment": "Comment",
 	"adiutor-report": "Report",
 	"adiutor-rev-incomplete-request-details": "Please ensure you have selected a rationale and provided a comment.",
-	"adiutor-revision-reporting-comment-placeholder": "Please write a comment"
+	"adiutor-revision-reporting-comment-placeholder": "Please write a comment",
+	"adiutor-update": "Update"
 }

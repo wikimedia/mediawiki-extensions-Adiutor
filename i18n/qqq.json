@@ -250,5 +250,6 @@
 	"adiutor-comment": "This is the label for the comment.",
 	"adiutor-report": "This is the label for the report.",
 	"adiutor-rev-incomplete-request-details": "This is the label for the incomplete request details.",
-	"adiutor-revision-reporting-comment-placeholder": "This is the placeholder for the comment."
+	"adiutor-revision-reporting-comment-placeholder": "This is the placeholder for the comment.",
+	"adiutor-update": "This is the label for the update."
 }
