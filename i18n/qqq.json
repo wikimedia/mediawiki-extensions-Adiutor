@@ -75,7 +75,7 @@
 	"adiutor-multiple-issues-template-description": "Description of the multiple issues template used for tagging articles with several problems.",
 	"adiutor-multiple-issues-template-label": "Label for the multiple issues template used in article tagging.",
 	"adiutor-multiple-issues-template-help-text": "Help text providing guidance on how to use the multiple issues template.",
-	"adiutor-uncategorized-template-label": "Label for the template used to mark articles as uncategorized.",
+	"adiutor-uncategorized-template-label": "Label for the template used to mark articles as uncategorized.\n\nNote that \"uncategorized\" refers to the articles marked by this template and not to the template itself.",
 	"adiutor-uncategorized-template-help-text": "Help text for the uncategorized template, explaining its use and importance.",
 	"adiutor-summaries-label": "Label for the section where users can write summaries of their actions or changes.",
 	"adiutor-api-post-summary-label": "Label for the field where users can input summaries for API posts.",
