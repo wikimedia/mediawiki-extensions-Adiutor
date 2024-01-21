@@ -141,41 +141,74 @@
 	}
 
 	/**
-	 * Extracts template names and parameters from the given content.
+	 * This function retrieves the parse tree of a given page title from the MediaWiki API.
+	 * The parse tree is a representation of the parsed content of the page.
 	 *
-	 * @param {string} content - The content to extract templates from.
-	 * @param {boolean} useMultipleIssuesTemplate - Indicates whether to use multiple issues' template.
-	 * @param {string} multipleIssuesTemplate - The multiple issues template to use.
-	 * @return {Array} - An array of objects containing template names and parameters.
+	 * @async
+	 * @param {string} title - The title of the page for which to retrieve the parse tree.
+	 * @return {Promise<string>} - A promise that resolves to the parse tree of the page.
+	 * @throws {Error} - If an error occurs during the API request, it is caught and passed to the handleError function.
 	 */
-	async function extractTemplateNamesAndParameters( content, useMultipleIssuesTemplate, multipleIssuesTemplate ) {
+	async function getParseTree( title ) {
+		let response;
+		try {
+			response = await api.get( {
+				action: 'parse',
+				prop: 'parsetree',
+				page: title,
+				format: 'json',
+				formatversion: 2
+			} );
+			return response.parse.parsetree;
+		} catch ( error ) {
+			handleError( error );
+		}
+	}
+
+	/**
+	 * This function extracts templates and their parameters from parsed content.
+	 * It traverses the parsed content, identifies templates and their parameters, and returns an array of objects.
+	 * Each object represents a template and contains the template name and its parameters.
+	 *
+	 * @param {string} parsedContent - The parsed content from which to extract templates and parameters.
+	 * @return {Array} - An array of objects, each representing a template and its parameters.
+	 */
+	async function extractTemplatesFromParsedContent( parsedContent ) {
 		const templatesAndParams = [];
-		// eslint-disable-next-line es-x/no-regexp-s-flag,security/detect-unsafe-regex
-		const regex = /{{((?:[^{}]|\{(?!\{).*})*)}}/gs;
+		const processedTemplates = new Set();
 
-		content.replace( regex, ( match, innerContent ) => {
-			const parts = innerContent.split( '|' );
-			const templateName = parts[ 0 ].trim();
-			const parameters = {};
+		function traverseNode( node ) {
+			const templates = node.querySelectorAll( 'template' );
 
-			if ( useMultipleIssuesTemplate && templateName === multipleIssuesTemplate ) {
-				parts.slice( 1 ).forEach( ( part ) => {
-					const nestedTemplate = extractTemplateNamesAndParameters( part, true, multipleIssuesTemplate );
-					templatesAndParams.push( ...nestedTemplate );
-				} );
-			} else {
-				parts.slice( 1 ).forEach( ( part ) => {
-					const [ key, ...valueParts ] = part.split( '=' ).map( ( s ) => s.trim() );
-					const value = valueParts.join( '=' ).trim();
-					if ( key ) {
-						parameters[ key ] = value || '';
+			templates.forEach( ( template ) => {
+				if ( processedTemplates.has( template ) ) {
+					return;
+				}
+
+				const templateNameNode = template.querySelector( 'title' );
+				const templateName = templateNameNode ? templateNameNode.textContent.trim() : '';
+
+				const parametersNode = template.querySelector( 'part' );
+				const parametersString = parametersNode ? parametersNode.textContent.trim() : '';
+
+				const parameters = {};
+
+				parametersString.split( '\n' ).forEach( ( param ) => {
+					const [ paramName, paramValue ] = param.split( '=' ).map( ( item ) => item.trim() );
+					if ( paramName && paramValue ) {
+						parameters[ paramName ] = paramValue;
 					}
 				} );
-				templatesAndParams.push( { name: templateName, parameters } );
-			}
 
-			return match;
-		} );
+				templatesAndParams.push( { name: templateName, parameters } );
+				processedTemplates.add( template );
+			} );
+
+			Array.from( node.children ).forEach( traverseNode );
+		}
+
+		const parsedXml = new DOMParser().parseFromString( parsedContent, 'application/xml' );
+		traverseNode( parsedXml.querySelector( 'root' ) );
 
 		return templatesAndParams;
 	}
@@ -188,7 +221,8 @@
 		handleError,
 		saveConfiguration,
 		getPageContent,
-		extractTemplateNamesAndParameters
+		getParseTree,
+		extractTemplatesFromParsedContent
 	};
 
 }() );
