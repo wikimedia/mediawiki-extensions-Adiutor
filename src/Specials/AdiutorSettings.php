@@ -1,14 +1,8 @@
 <?php
-
-/**
- * Adiutor Special page.
- *
- * @file
- */
-
-namespace MediaWiki\Extension\Adiutor;
+namespace MediaWiki\Extension\Adiutor\Specials;
 
 use Message;
+use OutputPage;
 use SpecialPage;
 use TemplateParser;
 
@@ -20,11 +14,25 @@ class AdiutorSettings extends SpecialPage {
 	private TemplateParser $templateParser;
 
 	/**
+	 * @var OutputPage|null
+	 */
+	private ?OutputPage $output = null;
+
+	/**
 	 * Initialize the special page.
 	 */
 	public function __construct() {
-		$this->templateParser = new TemplateParser( __DIR__ . '/./Templates' );
+		$this->templateParser = new TemplateParser( __DIR__ . '/../Templates' );
 		parent::__construct( 'AdiutorSettings' );
+	}
+
+	/**
+	 * Set the OutputPage object for testing purposes.
+	 *
+	 * @param OutputPage $outputPage The mocked OutputPage object.
+	 */
+	public function setOutput( OutputPage $outputPage ) {
+		$this->output = $outputPage;
 	}
 
 	/**
@@ -42,7 +50,7 @@ class AdiutorSettings extends SpecialPage {
 	 * @param string $subPage The subpage string argument (if any).
 	 */
 	public function execute( $subPage ) {
-		$out = $this->getOutput();
+		$out = $this->output ?? $this->getOutput();
 		$out->setPageTitle( $this->msg( 'adiutor-settings' ) );
 		$out->addModules( 'ext.adiutor' );
 		$out->addHTML( $this->templateParser->processTemplate( 'AdiutorSettings', [] ) );

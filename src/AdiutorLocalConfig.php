@@ -7,7 +7,7 @@
 
 namespace MediaWiki\Extension\Adiutor;
 
-class LocalizationConfiguration {
+class AdiutorLocalConfig {
 
 	public const DELETION_PROPOSE_CONFIGURATION = [
 		'moduleEnabled' => false,
@@ -41,7 +41,7 @@ class LocalizationConfiguration {
 		],
 	];
 
-	public const REQUEST_PAGE_PROTECTION_CONFIGURATION = [
+	public const PAGE_PROTECTION_REQUEST_CONFIGURATION = [
 		'moduleEnabled' => false,
 		'testMode' => false,
 		'policyTitle' => 'Wikipedia:Protection policy',
@@ -151,7 +151,7 @@ class LocalizationConfiguration {
 		],
 	];
 
-	public const CREATE_SPEEDY_DELETION_REQUEST_CONFIGURATION = [
+	public const SPEEDY_DELETION_REQUEST_CONFIGURATION = [
 		'moduleEnabled' => false,
 		'testMode' => false,
 		'speedyDeletionReasons' => [

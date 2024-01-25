@@ -20,12 +20,12 @@ use User;
 class AdiutorMaintenance extends Maintenance {
 
 	private array $configurationPages = [
-		'MediaWiki:AdiutorRequestPageProtection.json' => LocalizationConfiguration::REQUEST_PAGE_PROTECTION_CONFIGURATION,
-		'MediaWiki:AdiutorCreateSpeedyDeletion.json' => LocalizationConfiguration::CREATE_SPEEDY_DELETION_REQUEST_CONFIGURATION,
-		'MediaWiki:AdiutorDeletionPropose.json' => LocalizationConfiguration::DELETION_PROPOSE_CONFIGURATION,
-		'MediaWiki:AdiutorRequestPageMove.json' => LocalizationConfiguration::PAGE_MOVE_CONFIGURATION,
-		'MediaWiki:AdiutorArticleTagging.json' => LocalizationConfiguration::ARTICLE_TAGGING_CONFIGURATION,
-		'MediaWiki:AdiutorReportRevision.json' => LocalizationConfiguration::REPORT_REVISION_CONFIGURATION,
+		'MediaWiki:AdiutorRequestPageProtection.json' => AdiutorLocalConfig::PAGE_PROTECTION_REQUEST_CONFIGURATION,
+		'MediaWiki:AdiutorCreateSpeedyDeletion.json' => AdiutorLocalConfig::SPEEDY_DELETION_REQUEST_CONFIGURATION,
+		'MediaWiki:AdiutorDeletionPropose.json' => AdiutorLocalConfig::DELETION_PROPOSE_CONFIGURATION,
+		'MediaWiki:AdiutorRequestPageMove.json' => AdiutorLocalConfig::PAGE_MOVE_CONFIGURATION,
+		'MediaWiki:AdiutorArticleTagging.json' => AdiutorLocalConfig::ARTICLE_TAGGING_CONFIGURATION,
+		'MediaWiki:AdiutorReportRevision.json' => AdiutorLocalConfig::REPORT_REVISION_CONFIGURATION,
 	];
 
 	public function getConfigurationPages(): array {
@@ -34,7 +34,7 @@ class AdiutorMaintenance extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Creates and saves configuration pages for the Adiutor extension if they do not already exist.' );
+		$this->addDescription( 'Creates and saves configuration pages for Adiutor if they do not already exist.' );
 	}
 
 	public function execute() {
@@ -74,14 +74,17 @@ class AdiutorMaintenance extends Maintenance {
 	 *
 	 * @return void
 	 */
-	public function createPage( TitleFactory $titleFactory, string $pageTitle, array $content, User $user, MediaWikiServices $services ) {
+	public function createPage( TitleFactory $titleFactory, string $pageTitle, array $content, User $user,
+		MediaWikiServices $services ) {
 		$title = $titleFactory->newFromText( $pageTitle );
 		if ( !$title->exists() ) {
 			$pageContent =
 				json_encode( $content, JSON_PRETTY_PRINT );
 			$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
 			$pageUpdater->setContent( SlotRecord::MAIN, new TextContent( $pageContent ) );
-			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'Initial content for Adiutor localization file' ), EDIT_INTERNAL | EDIT_AUTOSUMMARY );
+			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment(
+				'Initial content for Adiutor localization file' ),
+				EDIT_INTERNAL | EDIT_AUTOSUMMARY );
 			$saveStatus = $pageUpdater->getStatus();
 			if ( !$saveStatus->isGood() ) {
 				$logger = LoggerFactory::getInstance( 'Adiutor' );

@@ -30,7 +30,7 @@
 	},
 	"SpecialPages": {
 		"AdiutorSettings": {
-			"class": "MediaWiki\\Extension\\Adiutor\\AdiutorSettings"
+			"class": "MediaWiki\\Extension\\Adiutor\\Specials\\AdiutorSettings"
 		}
 	},
 	"Hooks": {
