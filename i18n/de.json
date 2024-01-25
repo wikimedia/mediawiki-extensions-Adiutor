@@ -76,5 +76,6 @@
 	"adiutor-namespaces-description": "Du kannst die Namensräume angeben, in denen dieses Modul aktiv sein soll.",
 	"prefs-moderation": "Moderation",
 	"adiutor-new-name-placeholder": "Neuer Name",
-	"tag-adiutor-description": "Diese Bearbeitung wurde mit der Adiutor-Erweiterung vorgenommen."
+	"tag-adiutor-description": "Diese Bearbeitung wurde mit der Adiutor-Erweiterung vorgenommen.",
+	"adiutor-update": "Aktualisieren"
 }

@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kalakpagh",
+			"Munkaila Sulemana"
+		]
+	},
+	"adiutor-speedy-deletion-policy-name-lowercase": "Yomyom yihibu",
+	"adiutor-protection-policy-name-lowercase": "tiliginsim",
+	"adiutor-rationales": "Piligu daliri nima",
+	"adiutor-report-revision": "Labimaliniŋ zaŋ wuhi",
+	"adiutor-parameters-revision-number": "Labimaliniŋ kalinli",
+	"adiutor-parameters-comment": "Yɛltɔɣa",
+	"adiutor-revision-deletion-policy-title": "Labimaliniŋ yihibu zalikpani",
+	"adiutor-revision-deletion-policy-title-help": "Din bɔŋɔ nyɛla labimaliniŋ zalikpani yaɣili",
+	"adiutor-revision-reporting-warning": "Pɔi ka a piligi \"tool\" ŋɔ zaŋ suhi, di to ni yi ti ŋun su yɛltɔɣa ŋɔ lahabali zaŋ jɛndi Wikipedia zalikpana. Yɛl'gola din be chiriŋ maliniŋ ni a ni tooi suhi m-bo ka bi doli din wuhiri lahabali soli ŋɔ.",
+	"adiutor-rev-enable-label": "Piligimi labimaliniŋ lahabali yɛli ti",
+	"adiutor-rev-enable-help": "Di yi niŋ ka gbaŋ ŋɔ ni polo ŋɔ yi piligi tuma, lala labimaliniŋ ŋɔ nyɛla din yɛn piligi tuma.",
+	"adiutor-revision-reporting-header-title": "Labimaliniŋ lahabali yɛli ti",
+	"adiutor-revision-deletion-policy-name-lowercase": "Labimaliniŋ yihibu",
+	"adiutor-comment": "Sabimi",
+	"adiutor-report": "Lahabali yɛli ti",
+	"adiutor-rev-incomplete-request-details": "Pahimi suɣulo mali dihitabili ni a piigi piligu daliri shɛli ka sabi a daliri.",
+	"adiutor-revision-reporting-comment-placeholder": "Pahimi suɣulo sabimi a yɛltɔɣa",
+	"adiutor-update": "Pahima bin pala"
+}

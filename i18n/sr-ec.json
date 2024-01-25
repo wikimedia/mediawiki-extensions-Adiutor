@@ -21,5 +21,10 @@
 	"adiutor-please-select-a-tag": "Молимо изаберите ознаку.",
 	"adiutor-cancel": "Откажи",
 	"adiutor-speedy-deletion-policy-name-lowercase": "брзо брисање",
-	"adiutor-report": "Пријави"
+	"adiutor-rationales": "Разлог",
+	"adiutor-parameters-comment": "коментар",
+	"adiutor-comment": "Коментар",
+	"adiutor-report": "Пријави",
+	"adiutor-revision-reporting-comment-placeholder": "Унесите коментар",
+	"adiutor-update": "Ажурирај"
 }

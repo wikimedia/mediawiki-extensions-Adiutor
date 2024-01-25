@@ -244,5 +244,6 @@
 	"adiutor-comment": "Komentar",
 	"adiutor-report": "Poročilo",
 	"adiutor-rev-incomplete-request-details": "Prepričajte se, da ste izbrali utemeljitev ter navedli komentar.",
-	"adiutor-revision-reporting-comment-placeholder": "Vnesite komentar"
+	"adiutor-revision-reporting-comment-placeholder": "Vnesite komentar",
+	"adiutor-update": "Posodobi"
 }
