@@ -1,12 +1,11 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\HookHandler;
+namespace MediaWiki\Extension\Adiutor\Hooks;
 
 use ExtensionRegistry;
 use MediaWiki\Extension\Adiutor\Utils\Utils;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
-use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 
@@ -21,22 +20,17 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @var UserOptionsLookup
 	 */
 	private UserOptionsLookup $userOptionsLookup;
-	/**
-	 * @var UserGroupManager
-	 */
-	private UserGroupManager $userGroupManager;
 
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserGroupManager $userGroupManager
 	 */
 	public function __construct(
-		PermissionManager $permissionManager, UserOptionsLookup $userOptionsLookup, UserGroupManager $userGroupManager
+		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->userGroupManager = $userGroupManager;
 	}
 
 	/**

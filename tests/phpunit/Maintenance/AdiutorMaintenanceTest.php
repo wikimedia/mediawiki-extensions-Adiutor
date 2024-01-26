@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Extension\Adiutor\Tests;
 
-use MediaWiki\Extension\Adiutor\AdiutorMaintenance;
+use MediaWiki\Extension\Adiutor\Maintenance\AdiutorMaintenance;
 use MediaWikiIntegrationTestCase;
 use Title;
 use TitleFactory;
@@ -12,7 +12,7 @@ use User;
  *
  * @group Adiutor
  * @group Database
- * @covers \MediaWiki\Extension\Adiutor\AdiutorMaintenance
+ * @covers \MediaWiki\Extension\Adiutor\Maintenance\AdiutorMaintenance
  */
 class AdiutorMaintenanceTest extends MediaWikiIntegrationTestCase {
 

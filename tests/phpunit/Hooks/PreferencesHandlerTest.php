@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\Test\Unit\HookHandler;
+namespace MediaWiki\Extension\Adiutor\Test\Unit\Hooks;
 
 use ExtensionRegistry;
-use MediaWiki\Extension\Adiutor\HookHandler\PreferencesHandler;
+use MediaWiki\Extension\Adiutor\Hooks\PreferencesHandler;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -13,19 +13,22 @@ use User;
 
 class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
-	private function GetPreferencesHandler( array $options = [] ): PreferencesHandler {
-		return new PreferencesHandler( ...array_values( array_merge(
-			[
-				'permissionManager' => $this->createMock( PermissionManager::class ),
-				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
-				'userGroupManager' => $this->createMock( UserGroupManager::class ),
-			],
-			$options
-		) ) );
+	private function getPreferencesHandler( array $options = [] ): PreferencesHandler {
+		return new PreferencesHandler(
+			...array_values(
+				array_merge(
+					[
+						'permissionManager' => $this->createMock( PermissionManager::class ),
+						'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
+					],
+					$options
+				)
+			)
+		);
 	}
 
 	/**
-	 * @covers \MediaWiki\Extension\Adiutor\HookHandler\PreferencesHandler::onSaveUserOptions
+	 * @covers \MediaWiki\Extension\Adiutor\Hooks\PreferencesHandler::onSaveUserOptions
 	 * @dataProvider provideOnSaveUserOptionsNoAccessChange
 	 */
 	public function testOnSaveUserOptionsNoAccessChange( $originalOptions, $modifiedOptions, $expectedOptions ) {
@@ -116,7 +119,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Extension\Adiutor\HookHandler\PreferencesHandler::onGetPreferences
+	 * @covers \MediaWiki\Extension\Adiutor\Hooks\PreferencesHandler::onGetPreferences
 	 */
 	public function testOnGetPreferences() {
 		$user = $this->createMock( User::class );

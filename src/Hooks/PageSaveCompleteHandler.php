@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\HookHandler;
+namespace MediaWiki\Extension\Adiutor\Hooks;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\Hook\PageSaveCompleteHook;

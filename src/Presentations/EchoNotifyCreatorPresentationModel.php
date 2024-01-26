@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor;
+namespace MediaWiki\Extension\Adiutor\Presentations;
 
 use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
 use Message;

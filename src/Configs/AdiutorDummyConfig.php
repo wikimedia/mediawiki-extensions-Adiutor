@@ -5,9 +5,9 @@
  * @package MediaWiki\Extension\Adiutor
  */
 
-namespace MediaWiki\Extension\Adiutor;
+namespace MediaWiki\Extension\Adiutor\Configs;
 
-class AdiutorLocalConfig {
+class AdiutorDummyConfig {
 
 	public const DELETION_PROPOSE_CONFIGURATION = [
 		'moduleEnabled' => false,

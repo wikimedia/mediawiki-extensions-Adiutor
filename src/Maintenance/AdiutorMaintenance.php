@@ -6,10 +6,11 @@
  * if they do not already exist. It extends the Maintenance class.
  */
 
-namespace MediaWiki\Extension\Adiutor;
+namespace MediaWiki\Extension\Adiutor\Maintenance;
 
 use Maintenance;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Extension\Adiutor\Configs\AdiutorDummyConfig;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
@@ -20,12 +21,12 @@ use User;
 class AdiutorMaintenance extends Maintenance {
 
 	private array $configurationPages = [
-		'MediaWiki:AdiutorRequestPageProtection.json' => AdiutorLocalConfig::PAGE_PROTECTION_REQUEST_CONFIGURATION,
-		'MediaWiki:AdiutorCreateSpeedyDeletion.json' => AdiutorLocalConfig::SPEEDY_DELETION_REQUEST_CONFIGURATION,
-		'MediaWiki:AdiutorDeletionPropose.json' => AdiutorLocalConfig::DELETION_PROPOSE_CONFIGURATION,
-		'MediaWiki:AdiutorRequestPageMove.json' => AdiutorLocalConfig::PAGE_MOVE_CONFIGURATION,
-		'MediaWiki:AdiutorArticleTagging.json' => AdiutorLocalConfig::ARTICLE_TAGGING_CONFIGURATION,
-		'MediaWiki:AdiutorReportRevision.json' => AdiutorLocalConfig::REPORT_REVISION_CONFIGURATION,
+		'MediaWiki:AdiutorRequestPageProtection.json' => AdiutorDummyConfig::PAGE_PROTECTION_REQUEST_CONFIGURATION,
+		'MediaWiki:AdiutorCreateSpeedyDeletion.json' => AdiutorDummyConfig::SPEEDY_DELETION_REQUEST_CONFIGURATION,
+		'MediaWiki:AdiutorDeletionPropose.json' => AdiutorDummyConfig::DELETION_PROPOSE_CONFIGURATION,
+		'MediaWiki:AdiutorRequestPageMove.json' => AdiutorDummyConfig::PAGE_MOVE_CONFIGURATION,
+		'MediaWiki:AdiutorArticleTagging.json' => AdiutorDummyConfig::ARTICLE_TAGGING_CONFIGURATION,
+		'MediaWiki:AdiutorReportRevision.json' => AdiutorDummyConfig::REPORT_REVISION_CONFIGURATION,
 	];
 
 	public function getConfigurationPages(): array {

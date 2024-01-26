@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\Test\Integration\HookHandler;
+namespace MediaWiki\Extension\Adiutor\Test\Integration\Hooks;
 
 use Exception;
 use MediaWiki\Permissions\PermissionManager;
@@ -11,7 +11,7 @@ class PageDisplayHandlerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test the behavior of onPageContentSaveComplete hook.
 	 *
-	 * @covers \MediaWiki\Extension\Adiutor\HookHandler\PageDisplayHandler::onBeforePageDisplay
+	 * @covers \MediaWiki\Extension\Adiutor\Hooks\PageDisplayHandler::onBeforePageDisplay
 	 * @throws Exception
 	 */
 	public function testOnBeforePageDisplay() {

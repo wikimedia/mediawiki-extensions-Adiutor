@@ -1,7 +1,8 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\Test\Integration\HookHandler;
+namespace MediaWiki\Extension\Adiutor\Test\Integration\Hooks;
 
+use Exception;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWikiIntegrationTestCase;
 use User;
@@ -10,8 +11,8 @@ class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test the behavior of onGetBetaFeaturePreferences hook.
 	 *
-	 * @covers \MediaWiki\Extension\Adiutor\HookHandler\BetaFeaturePreferencesHandler::onGetBetaFeaturePreferences
-	 * @throws \Exception
+	 * @covers \MediaWiki\Extension\Adiutor\Hooks\BetaFeaturePreferencesHandler::onGetBetaFeaturePreferences
+	 * @throws Exception
 	 */
 	public function testOnGetBetaFeaturePreferences() {
 		// Override PermissionManager service to return true for userHasRight

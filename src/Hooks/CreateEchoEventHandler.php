@@ -1,10 +1,10 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\HookHandler;
+namespace MediaWiki\Extension\Adiutor\Hooks;
 
 use EchoAttributeManager;
 use EchoUserLocator;
-use MediaWiki\Extension\Adiutor\EchoNotifyCreatorPresentationModel;
+use MediaWiki\Extension\Adiutor\Presentations\EchoNotifyCreatorPresentationModel;
 use MediaWiki\Extension\Notifications\Hooks\BeforeCreateEchoEventHook;
 
 /**
