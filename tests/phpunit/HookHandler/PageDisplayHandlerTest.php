@@ -22,6 +22,7 @@ class PageDisplayHandlerTest extends MediaWikiIntegrationTestCase {
 				'PermissionManager' => function () {
 					$permissionManager = $this->createMock( PermissionManager::class );
 					$permissionManager->method( 'userHasRight' )->willReturn( true );
+					$this->setService( 'PermissionManager', $permissionManager );
 					return $permissionManager;
 				}
 			]
