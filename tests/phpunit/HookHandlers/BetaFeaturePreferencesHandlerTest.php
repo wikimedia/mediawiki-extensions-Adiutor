@@ -1,20 +1,20 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\Test\Integration\Hooks;
+namespace MediaWiki\Extension\Adiutor\Test\Integration\HookHandlers;
 
 use Exception;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWikiIntegrationTestCase;
 use User;
 
-class PageDisplayHandlerTest extends MediaWikiIntegrationTestCase {
+class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * Test the behavior of onPageContentSaveComplete hook.
+	 * Test the behavior of onGetBetaFeaturePreferences hook.
 	 *
-	 * @covers \MediaWiki\Extension\Adiutor\Hooks\PageDisplayHandler::onBeforePageDisplay
+	 * @covers \MediaWiki\Extension\Adiutor\HookHandlers\BetaFeaturePreferencesHandler::onGetBetaFeaturePreferences
 	 * @throws Exception
 	 */
-	public function testOnBeforePageDisplay() {
+	public function testOnGetBetaFeaturePreferences() {
 		// Override PermissionManager service to return true for userHasRight
 		$this->overrideMwServices(
 			null,
@@ -22,7 +22,6 @@ class PageDisplayHandlerTest extends MediaWikiIntegrationTestCase {
 				'PermissionManager' => function () {
 					$permissionManager = $this->createMock( PermissionManager::class );
 					$permissionManager->method( 'userHasRight' )->willReturn( true );
-					$this->setService( 'PermissionManager', $permissionManager );
 					return $permissionManager;
 				}
 			]

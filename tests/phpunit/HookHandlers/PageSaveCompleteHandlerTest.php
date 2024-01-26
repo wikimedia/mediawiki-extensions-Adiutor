@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\Test\Integration\Hooks;
+namespace MediaWiki\Extension\Adiutor\Test\Integration\HookHandlers;
 
 use HashBagOStuff;
-use MediaWiki\Extension\Adiutor\Hooks\PageSaveCompleteHandler;
+use MediaWiki\Extension\Adiutor\HookHandlers\PageSaveCompleteHandler;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
@@ -15,7 +15,7 @@ class PageSaveCompleteHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * This test case verifies the behavior of PageSaveCompleteHandler hook.
-	 * @covers \MediaWiki\Extension\Adiutor\Hooks\PageSaveCompleteHandler
+	 * @covers \MediaWiki\Extension\Adiutor\HookHandlers\PageSaveCompleteHandler
 	 */
 	public function testPageSaveComplete() {
 		// Mock UserIdentity to simulate the user saving a page.

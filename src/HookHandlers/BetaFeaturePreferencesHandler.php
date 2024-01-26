@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\Hooks;
+namespace MediaWiki\Extension\Adiutor\HookHandlers;
 
 use Config;
 use MediaWiki\Permissions\PermissionManager;

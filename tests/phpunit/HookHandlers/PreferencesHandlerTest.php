@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\Test\Unit\Hooks;
+namespace MediaWiki\Extension\Adiutor\Test\Unit\HookHandlers;
 
 use ExtensionRegistry;
-use MediaWiki\Extension\Adiutor\Hooks\PreferencesHandler;
+use MediaWiki\Extension\Adiutor\HookHandlers\PreferencesHandler;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -28,7 +28,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Extension\Adiutor\Hooks\PreferencesHandler::onSaveUserOptions
+	 * @covers \MediaWiki\Extension\Adiutor\HookHandlers\PreferencesHandler::onSaveUserOptions
 	 * @dataProvider provideOnSaveUserOptionsNoAccessChange
 	 */
 	public function testOnSaveUserOptionsNoAccessChange( $originalOptions, $modifiedOptions, $expectedOptions ) {
@@ -119,7 +119,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Extension\Adiutor\Hooks\PreferencesHandler::onGetPreferences
+	 * @covers \MediaWiki\Extension\Adiutor\HookHandlers\PreferencesHandler::onGetPreferences
 	 */
 	public function testOnGetPreferences() {
 		$user = $this->createMock( User::class );

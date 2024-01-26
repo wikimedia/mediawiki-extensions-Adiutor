@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\Adiutor\Hooks;
+namespace MediaWiki\Extension\Adiutor\HookHandlers;
 
 use MediaWiki\ChangeTags\Hook\ChangeTagsAllowedAddHook;
 use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;

@@ -46,7 +46,7 @@
 	},
 	"HookHandlers": {
 		"preferences": {
-			"class": "MediaWiki\\Extension\\Adiutor\\Hooks\\PreferencesHandler",
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandlers\\PreferencesHandler",
 			"services": [
 				"PermissionManager",
 				"UserOptionsLookup",
@@ -54,14 +54,14 @@
 			]
 		},
 		"betaFeature": {
-			"class": "MediaWiki\\Extension\\Adiutor\\Hooks\\BetaFeaturePreferencesHandler",
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandlers\\BetaFeaturePreferencesHandler",
 			"services": [
 				"MainConfig",
 				"PermissionManager"
 			]
 		},
 		"pageDisplay": {
-			"class": "MediaWiki\\Extension\\Adiutor\\Hooks\\PageDisplayHandler",
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandlers\\PageDisplayHandler",
 			"services": [
 				"PermissionManager",
 				"UserOptionsLookup",
@@ -70,31 +70,31 @@
 			]
 		},
 		"listDefinedTags": {
-			"class": "MediaWiki\\Extension\\Adiutor\\Hooks\\ChangeTagsHandler",
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandlers\\ChangeTagsHandler",
 			"services": [
 				"MainConfig"
 			]
 		},
 		"changeTagsListActive": {
-			"class": "MediaWiki\\Extension\\Adiutor\\Hooks\\ChangeTagsHandler",
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandlers\\ChangeTagsHandler",
 			"services": [
 				"MainConfig"
 			]
 		},
 		"changeTagsAllowedAdd": {
-			"class": "MediaWiki\\Extension\\Adiutor\\Hooks\\ChangeTagsHandler",
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandlers\\ChangeTagsHandler",
 			"services": [
 				"MainConfig"
 			]
 		},
 		"pageSaveComplete": {
-			"class": "MediaWiki\\Extension\\Adiutor\\Hooks\\PageSaveCompleteHandler",
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandlers\\PageSaveCompleteHandler",
 			"services": [
 				"MainConfig"
 			]
 		},
 		"createEchoEvent": {
-			"class": "MediaWiki\\Extension\\Adiutor\\Hooks\\CreateEchoEventHandler",
+			"class": "MediaWiki\\Extension\\Adiutor\\HookHandlers\\CreateEchoEventHandler",
 			"services": [
 				"MainConfig"
 			]
