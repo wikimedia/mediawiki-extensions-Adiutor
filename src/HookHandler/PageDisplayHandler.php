@@ -144,17 +144,20 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 				];
 				foreach ( $configPages as $configPage ) {
 					if ( !isset( $configPage['title'] ) || !isset( $configPage['configuration'] ) ) {
-						$this->logger->warning( 'Configuration page data is incomplete', [ 'configPage' => $configPage ] );
+						$this->logger->warning( 'Configuration page data is incomplete',
+							[ 'configPage' => $configPage ] );
 						continue;
 					}
 					$title = Title::newFromText( $configPage['title'] );
 					if ( !$title ) {
-						$this->logger->warning( 'Configuration page title is invalid', [ 'configPageTitle' => $configPage['title'] ] );
+						$this->logger->warning( 'Configuration page title is invalid',
+							[ 'configPageTitle' => $configPage['title'] ] );
 						continue;
 					}
 					$rev = $this->revisionLookup->getRevisionByTitle( $title );
 					if ( !$rev ) {
-						$this->logger->warning( 'Configuration page not found', [ 'configPageTitle' => $configPage['title'] ] );
+						$this->logger->warning( 'Configuration page not found',
+							[ 'configPageTitle' => $configPage['title'] ] );
 						$configData[$configPage['configuration']] = [];
 						continue;
 					}
@@ -169,7 +172,8 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 					}
 					$jsonContent = FormatJson::decode( $content->getText(), true );
 					if ( !is_array( $jsonContent ) ) {
-						$this->logger->warning( 'Configuration page content is not valid JSON', [ 'configPageTitle' => $configPage['title'] ] );
+						$this->logger->warning( 'Configuration page content is not valid JSON',
+							[ 'configPageTitle' => $configPage['title'] ] );
 						$configData[$configPage['configuration']] = [];
 						continue;
 					}
