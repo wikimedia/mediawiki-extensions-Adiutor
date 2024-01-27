@@ -35,7 +35,7 @@ class AdiutorTest extends MediaWikiIntegrationTestCase {
 
 	protected function tearDown(): void {
 		// Reset the Adiutor maintenance object after each test
-		Adiutor::setMaintenance( null );
+		Adiutor::setMaintenance();
 
 		parent::tearDown();
 	}
