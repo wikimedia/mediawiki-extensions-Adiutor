@@ -42,9 +42,8 @@ class AdiutorMaintenance extends Maintenance {
 		$services = MediaWikiServices::getInstance();
 		$titleFactory = $services->getTitleFactory();
 		$systemUserName = 'AdiutorBot';
-		$user =
-			User::newSystemUser( $systemUserName,
-				[ 'steal' => true ] );
+		$user = User::newSystemUser( $systemUserName, [ 'steal' => true ] );
+
 		if ( !$user ) {
 			return;
 		}
