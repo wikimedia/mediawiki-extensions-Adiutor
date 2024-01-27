@@ -173,7 +173,7 @@
 	 * @param {string} parsedContent - The parsed content from which to extract templates and parameters.
 	 * @return {Array} - An array of objects, each representing a template and its parameters.
 	 */
-	async function extractTemplatesFromParsedContent( parsedContent ) {
+	function extractTemplatesFromParsedContent( parsedContent ) {
 		const templatesAndParams = [];
 		const processedTemplates = new Set();
 

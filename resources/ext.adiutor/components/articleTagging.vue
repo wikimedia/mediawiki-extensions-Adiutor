@@ -283,7 +283,7 @@ module.exports = defineComponent( {
     onMounted( async () => {
       try {
         const parsedContent = await AdiutorUtility.getParseTree( pageName );
-        const templatesAndParams = await AdiutorUtility.extractTemplatesFromParsedContent( parsedContent );
+        const templatesAndParams = AdiutorUtility.extractTemplatesFromParsedContent( parsedContent );
         const templateNamesOnPage = [];
         templatesAndParams.forEach( ( templateObj ) => {
           tagList.forEach( ( labelObj ) => {
