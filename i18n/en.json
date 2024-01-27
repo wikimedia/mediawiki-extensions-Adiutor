@@ -35,7 +35,7 @@
 	"adiutor-prd-deletion-type": "Proposed deletion type",
 	"adiutor-prd-deletion-type-1": "PROD (Proposed deletion)",
 	"adiutor-prd-deletion-type-2": "BLP PROD (Proposed deletion of unsourced BLPs)",
-	"adiutor-prd-deletion-type-1-help": "Proposed deletion of $1",
+	"adiutor-prd-deletion-type-1-help": "Proposed deletion per $1",
 	"adiutor-prd-deletion-type-2-help": "Proposed deletion of entirely unsourced biographies of living individuals, following the guidelines stated in $1.",
 	"adiutor-rpp-header-title": "Page protect request",
 	"adiutor-rpp-incomplete-request-details": "Please ensure you have selected a duration and a type and provided a rationale.",
