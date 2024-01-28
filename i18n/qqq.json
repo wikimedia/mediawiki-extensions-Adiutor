@@ -50,7 +50,7 @@
 	"adiutor-prd-header-description": "This message will be displayed on the proposed deletion request action window.",
 	"adiutor-new-name": "This message will be displayed on the page move request action window.",
 	"adiutor-pmr-header-title": "This message will be displayed on the page move request action window.",
-	"adiutor-pmr-header-description": "This message will be displayed on the page move request action window.",
+	"adiutor-pmr-header-description": "This message will be displayed on the page move request action window. \"Move\" must be consistent with {{msg-mw|skin-action-move}}.",
 	"adiutor-afd-header-title": "This message will be displayed on the article for deletion request action window.",
 	"adiutor-afd-header-description": "This message will be displayed on the article for deletion request action window.",
 	"adiutor-tag-header-description": "This message will be displayed on the page tagging action window.",

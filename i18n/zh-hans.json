@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cwek"
+		]
+	},
+	"adiutor-csd-template-start-single-reason": "单个原因删除用模板",
+	"adiutor-csd-template-start-multiple-reason": "多个原因删除用模板",
+	"adiutor-single-reason-summary": "单个原因编辑摘要",
+	"adiutor-multiple-reason-summary": "多个原因编辑摘要",
+	"adiutor-name-space": "命名空间"
+}

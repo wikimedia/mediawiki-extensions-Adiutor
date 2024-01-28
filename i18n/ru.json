@@ -2,20 +2,24 @@
 	"@metadata": {
 		"authors": [
 			"Kareyac",
+			"Mitte27",
 			"Okras"
 		]
 	},
 	"adiutor-create": "Создать",
 	"adiutor-request": "Запрос",
+	"adiutor-protection-policy": "Политика защиты",
 	"adiutor-speedy-deletion-policy": "Политика быстрого удаления",
 	"adiutor-delete": "Удалить",
 	"adiutor-other-options": "Другие настройки",
+	"adiutor-propose": "Предложить",
 	"adiutor-continue": "Продолжить",
 	"adiutor-options": "Настройки",
 	"adiutor-afd-special-page-title": "Статьи для удаления",
 	"adiutor-create-request": "Создать запрос",
 	"adiutor-protection-type": "Тип защиты",
 	"adiutor-rpp-header-title": "Запрос на защиту страницы",
+	"adiutor-new-name": "Новое название:",
 	"adiutor-page-move-request": "Запрос на перемещение страницы",
 	"adiutor-page-protection-request": "Запрос на защиту страницы",
 	"adiutor-operation-failed": "Операция не удалась!",
@@ -29,6 +33,8 @@
 	"adiutor-action-column": "Действие",
 	"adiutor-delete-button": "Удалить",
 	"adiutor-parameters": "Параметры",
+	"adiutor-parameters-page-name": "Название страницы",
+	"adiutor-parameters-protection-type": "тип защиты",
 	"adiutor-parameters-day": "день",
 	"adiutor-parameters-month": "месяц",
 	"adiutor-parameters-year": "год",
@@ -36,9 +42,11 @@
 	"adiutor-name-space": "Пространство имён",
 	"adiutor-close": "Закрыть",
 	"adiutor-protection-types": "Типы защиты",
+	"adiutor-save-configurations": "Сохранить настройки",
 	"adiutor-single-reason-template": "Шаблон одной причины:",
 	"adiutor-multiple-reason-template": "Шаблон нескольких причин:",
 	"adiutor-speedy-deletion-reasons": "Причины быстрого удаления",
+	"adiutor-name": "Имя",
 	"adiutor-action": "Действие",
 	"adiutor-value": "Значение",
 	"adiutor-data": "Данные",
@@ -55,5 +63,8 @@
 	"prefs-moderation": "Модерация",
 	"adiutor-deletion-log": "Журнал удалений",
 	"echo-category-title-moderation": "Модерация",
-	"adiutor-parameters-comment": "комментарий"
+	"adiutor-speedy-deletion-policy-name-lowercase": "быстрое удаление",
+	"adiutor-protection-policy-name-lowercase": "защита",
+	"adiutor-parameters-comment": "комментарий",
+	"adiutor-update": "Обновить"
 }
