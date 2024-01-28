@@ -8,7 +8,7 @@ use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
 
 class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook, ChangeTagsAllowedAddHook {
 	// Make the tag name a class constant
-	private const TAG_NAME = 'adiutor';
+	public const TAG_NAME = 'adiutor';
 
 	/**
 	 * Hook to define a change tag.
