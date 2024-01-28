@@ -127,23 +127,15 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param array $originalOptions
 	 */
 	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
-		$betaFeatureIsEnabled =
-			$this->isTrue( $originalOptions,
-				'adiutor-beta-feature-enable' );
+		$betaFeatureIsEnabled = $this->isTrue( $originalOptions, 'adiutor-beta-feature-enable' );
 		$betaFeatureIsDisabled = !$betaFeatureIsEnabled;
 
-		$betaFeatureWillEnable =
-			$this->isTrue( $modifiedOptions,
-				'adiutor-beta-feature-enable' );
+		$betaFeatureWillEnable = $this->isTrue( $modifiedOptions, 'adiutor-beta-feature-enable' );
 		$betaFeatureWillDisable = $this->isFalse( $modifiedOptions );
 
-		$autoEnrollIsEnabled =
-			$this->isTrue( $originalOptions,
-				'betafeatures-auto-enroll' );
+		$autoEnrollIsEnabled = $this->isTrue( $originalOptions, 'betafeatures-auto-enroll' );
 		$autoEnrollIsDisabled = !$autoEnrollIsEnabled;
-		$autoEnrollWillEnable =
-			$this->isTrue( $modifiedOptions,
-				'betafeatures-auto-enroll' );
+		$autoEnrollWillEnable = $this->isTrue( $modifiedOptions, 'betafeatures-auto-enroll' );
 
 		if ( !isset( $modifiedOptions[self::PREF_ADIUTOR_ENABLE] ) &&
 			isset( $originalOptions[self::PREF_ADIUTOR_ENABLE] ) ) {
