@@ -33,7 +33,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testOnSaveUserOptionsNoAccessChange( $originalOptions, $modifiedOptions, $expectedOptions ) {
 		$user = $this->createMock( UserIdentity::class );
-		$handler = $this->GetPreferencesHandler();
+		$handler = $this->getPreferencesHandler();
 		$handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
 		$this->assertSame( $expectedOptions, $modifiedOptions );
 	}
