@@ -1,8 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
+			"AnupamM",
 			"No se"
 		]
 	},
+	"adiutor-create": "Crear",
+	"adiutor-delete": "Eliminar",
+	"adiutor-other-options": "Otras opciones",
+	"adiutor-propose": "Proponer",
+	"adiutor-continue": "Continuar",
+	"adiutor-options": "Opciones",
+	"adiutor-afd-special-page-title": "Artículos para eliminar",
+	"adiutor-protection-type": "Tipo de protección",
+	"adiutor-choose-appropriate-tags": "Elija etiquetas apropiadas",
 	"adiutor-name": "Nombre"
 }

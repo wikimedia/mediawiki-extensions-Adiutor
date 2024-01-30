@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"adiutor-create": "만들기",
+	"adiutor-request": "요청",
+	"adiutor-protection-policy": "보호 정책",
+	"adiutor-speedy-deletion-policy": "빠른 삭제 정책",
+	"adiutor-delete": "삭제",
+	"adiutor-other-options": "다른 옵션",
+	"adiutor-propose": "제안",
+	"adiutor-continue": "계속",
+	"adiutor-options": "옵션",
+	"adiutor-create-request": "요청 만들기",
+	"adiutor-protection-type": "보호 유형",
+	"adiutor-choose-appropriate-tags": "적절한 태그 선택",
+	"adiutor-prd-deletion-type-1": "삭제 신청"
+}

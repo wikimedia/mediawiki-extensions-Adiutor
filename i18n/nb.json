@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"EdoAug"
+		]
+	},
+	"adiutor-toggle-adiutor": "Bruk Adiutor for å administrere, sortere og vedlikeholde innholdsoppgaver",
+	"adiutor-desc": "Adiutor er en MediaWiki-utvidelse for å administrere, sortere og vedlikeholde innholdsoppgaver på Wikipedia. Den implementerer innholdssorteringsmetoder og prioriterer og kategoriserer forespørsler og innhold basert på nødvendighet og viktighet. Dens brukergrensesnitt gjør kompliserte prosesser enklere, noe som gjør Wikipedia-vedlikehold mer tilgjengelig og effektiv for brukere på alle evnenivå.",
+	"adiutor-beta-feature-description": "Adiutor er en MediaWiki-utvidelse for å administrere, sortere og vedlikeholde innholdsoppgaver på Wikipedia. Den implementerer innholdssorteringsmetoder og prioriterer og kategoriserer forespørsler og innhold basert på nødvendighet og viktighet. Dens brukergrensesnitt gjør kompliserte prosesser enklere, noe som gjør Wikipedia-vedlikehold mer tilgjengelig og effektiv for brukere på alle evnenivå.",
+	"adiutor-beta-feature-enabled": "Adiutor er nå aktivert som en betafunksjon.",
+	"adiutor-create": "Opprett",
+	"adiutor-request": "Forespør",
+	"adiutor-protection-policy": "Vernepolitikk",
+	"adiutor-speedy-deletion-policy": "Politikk for hurtigsletting",
+	"adiutor-delete": "Slett",
+	"adiutor-other-options": "Andre alternativ",
+	"adiutor-propose": "Foreslå",
+	"adiutor-continue": "Fortsett",
+	"adiutor-options": "Alternativ",
+	"adiutor-protect-against-rebuilding": "Forespør gjenopprettingsbeskyttelse",
+	"adiutor-protect-against-rebuilding-help": "Om valgt, vil taggen for gjenopprettingsbeskyttelse spørre administratorer om å låse siden for opprettelse om den gjenopprettes gjentatte ganger.",
+	"adiutor-rationale": "Begrunnelse",
+	"adiutor-rationale-placeholder": "Hvorfor nominerer {{GENDER:|du}} denne siden for sletting?",
+	"adiutor-inform-creator": "Informer brukeren som opprettet siden.",
+	"adiutor-inform-creator-help": "Om valg, blir brukeren som opprettet siden varslet.",
+	"adiutor-rpp-rationale-placeholder": "Angi en begrunnelse for beskyttelse",
+	"adiutor-rpm-rationale-placeholder": "Angi en begrunnelse",
+	"adiutor-afd-special-page-title": "Artikler som vurderes slettet",
+	"adiutor-create-request": "Opprett forespørsel",
+	"adiutor-protection-type": "Beskyttelsestype",
+	"adiutor-choose-appropriate-tags": "Velg passende tagger",
+	"adiutor-prd-deletion-rationale": "Begrunnelse for foreslått sletting"
+}
