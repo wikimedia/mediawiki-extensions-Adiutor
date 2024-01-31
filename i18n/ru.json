@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Butko",
 			"Kareyac",
 			"Mitte27",
 			"Okras"
@@ -22,9 +23,12 @@
 	"adiutor-new-name": "Новое название:",
 	"adiutor-page-move-request": "Запрос на перемещение страницы",
 	"adiutor-page-protection-request": "Запрос на защиту страницы",
+	"adiutor-operation-completed": "Операция завершена!",
 	"adiutor-operation-failed": "Операция не удалась!",
 	"adiutor-no-namespace-reason-for-csd-title": "Для этого пространства имён не указана причина быстрого удаления.",
+	"adiutor-no-namespace-reason-for-csd": "Пожалуйста, выберите одну из общих причин справа.",
 	"adiutor-and": "и",
+	"adiutor-select-speedy-deletion-reason": "Вы должны выбрать хотя бы одну причину быстрого удаления.",
 	"adiutor-warning": "Предупреждение",
 	"adiutor-settings-label": "Настройки",
 	"adiutor-multiple-issues-template-label": "Шаблон нескольких причин:",
@@ -42,7 +46,7 @@
 	"adiutor-name-space": "Пространство имён",
 	"adiutor-close": "Закрыть",
 	"adiutor-protection-types": "Типы защиты",
-	"adiutor-save-configurations": "Сохранить настройки",
+	"adiutor-save-configurations": "Сохранить конфигурацию",
 	"adiutor-single-reason-template": "Шаблон одной причины:",
 	"adiutor-multiple-reason-template": "Шаблон нескольких причин:",
 	"adiutor-speedy-deletion-reasons": "Причины быстрого удаления",
@@ -63,6 +67,8 @@
 	"prefs-moderation": "Модерация",
 	"adiutor-deletion-log": "Журнал удалений",
 	"echo-category-title-moderation": "Модерация",
+	"adiutor-page-proposed-for-deletion": "Страница предлагается к удалению!",
+	"adiutor-cancel": "Отмена",
 	"adiutor-speedy-deletion-policy-name-lowercase": "быстрое удаление",
 	"adiutor-protection-policy-name-lowercase": "защита",
 	"adiutor-parameters-comment": "комментарий",

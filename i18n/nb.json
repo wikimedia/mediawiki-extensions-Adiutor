@@ -29,5 +29,12 @@
 	"adiutor-create-request": "Opprett forespørsel",
 	"adiutor-protection-type": "Beskyttelsestype",
 	"adiutor-choose-appropriate-tags": "Velg passende tagger",
-	"adiutor-prd-deletion-rationale": "Begrunnelse for foreslått sletting"
+	"adiutor-prd-deletion-rationale": "Begrunnelse for foreslått sletting",
+	"adiutor-prd-deletion-type": "Type foreslått sletting",
+	"adiutor-and": "og",
+	"adiutor-select-speedy-deletion-reason": "Du må velge minst én begrunnelse for hurtigsletting.",
+	"adiutor-warning": "Advarsel",
+	"adiutor-select-a-tag": "Velg en tagg.",
+	"adiutor-settings-label": "Innstillinger",
+	"adiutor-use-multiple-issues-template-label": "«Bruk flere problemer»-mal:"
 }
