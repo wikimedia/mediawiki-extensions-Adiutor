@@ -101,7 +101,7 @@
 	"adiutor-parameters-reason-value": "Label for the parameter where the reason for an action is specified.",
 	"adiutor-speedy-deletion-policy-link": "Label for the link to the policy regarding speedy deletions.",
 	"adiutor-speedy-deletion-policy-page-shortcut": "Label for the shortcut to the page outlining the speedy deletion policy.",
-	"adiutor-csd-notification-template": "Label for the template used to notify users about a speedy deletion request.",
+	"adiutor-csd-notification-template": "Label for the template used to notify users about a speedy deletion request.\n\nCSD = Criteria for Speedy Deletion, see https://en.wikipedia.org/wiki/Wikipedia:Criteria_for_speedy_deletion",
 	"adiutor-copy-vio-reason-value": "Label for the parameter specifying the reason related to copyright violation in deletion requests.",
 	"adiutor-csd-template-start-single-reason": "Label for the template used in speedy deletion requests with a single reason.",
 	"adiutor-csd-template-start-multiple-reason": "Label for the template used in speedy deletion requests with multiple reasons.",

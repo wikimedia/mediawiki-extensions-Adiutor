@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ajeje Brazorf",
-			"Iketsi"
+			"Iketsi",
+			"Thibaut120094"
 		]
 	},
 	"adiutor-create": "Créer",
@@ -12,6 +13,7 @@
 	"adiutor-propose": "Proposer",
 	"adiutor-continue": "Continuer",
 	"adiutor-options": "Options",
+	"adiutor-protect-against-rebuilding-help": "Lorsqu'elle est choisie, la balise de protection de la recréation invite les administrateurs à appliquer la protection de la création si la page est constamment recréée.",
 	"adiutor-and": "et",
 	"adiutor-warning": "Avertissement",
 	"adiutor-settings-label": "Paramètres",
@@ -38,5 +40,17 @@
 	"adiutor-configurations-saving": "Enregistrement en cours...",
 	"adiutor-csd-default": "Par défaut",
 	"adiutor-new-name-placeholder": "Nouveau nom",
-	"adiutor-please-select-a-tag": "Veuillez sélectionner une étiquette."
+	"adiutor-please-select-a-tag": "Veuillez sélectionner une étiquette.",
+	"adiutor-cancel": "Annuler",
+	"adiutor-please-read-the-x-policy": "Veuillez lire la politique $1.",
+	"adiutor-speedy-deletion-policy-name-lowercase": "suppression immédiate",
+	"adiutor-protection-policy-name-lowercase": "protection",
+	"adiutor-protection-policy-title": "Politique de protection",
+	"adiutor-protection-policy-title-help": "Il s’agit du titre de la page de la politique de protection.",
+	"adiutor-revision-deletion-policy-title": "Politique de suppression d’une version",
+	"adiutor-rev-enable-label": "Activer le signalement d’une version",
+	"adiutor-revision-reporting-header-title": "Signalement de version",
+	"adiutor-comment": "Commentaire",
+	"adiutor-report": "Signaler",
+	"adiutor-rev-incomplete-request-details": "Veuillez vous assurer que vous avez sélectionné une justification et que vous avez fourni un commentaire."
 }

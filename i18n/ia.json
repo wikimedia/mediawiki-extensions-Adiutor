@@ -96,5 +96,13 @@
 	"adiutor-parameters-reason-data": "datos del motivo",
 	"adiutor-parameters-reason-value": "valor del motivo",
 	"adiutor-speedy-deletion-policy-link": "Politica de deletion rapide",
-	"adiutor-speedy-deletion-policy-page-shortcut": "Accesso directe al pagina del politica de deletion rapide"
+	"adiutor-speedy-deletion-policy-page-shortcut": "Accesso directe al pagina del politica de deletion rapide",
+	"adiutor-csd-notification-template": "Patrono de notification de requesta de deletion rapide",
+	"adiutor-copy-vio-reason-value": "Valor del motivo concernente un violation del derecto de autor",
+	"adiutor-csd-template-start-single-reason": "Patrono pro un motivo singule",
+	"adiutor-csd-template-start-multiple-reason": "Patrono pro plure motivos",
+	"adiutor-single-reason-summary": "Summario pro un motivo singule",
+	"adiutor-multiple-reason-summary": "Summario pro plure motivos",
+	"adiutor-name-space": "Spatio de nomines",
+	"adiutor-add-new": "Adder un nove"
 }
