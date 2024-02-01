@@ -16,28 +16,20 @@
     </p>
   </cdx-field>
   <cdx-field>
+    <cdx-toggle-switch v-model="moduleEnabled" :align-switch="true">
+      {{ $i18n( 'adiutor-module-enabled' ) }}
+      <template #description>
+        {{ $i18n( 'adiutor-module-enabled-description' ) }}
+      </template>
+    </cdx-toggle-switch>
+    <cdx-toggle-switch v-model="testMode" :align-switch="true">
+      {{ $i18n( 'adiutor-test-mode' ) }}
+      <template #description>
+        {{ $i18n( 'adiutor-test-mode-description' ) }}
+      </template>
+    </cdx-toggle-switch>
     <cdx-field :is-fieldset="true">
-      <cdx-toggle-switch v-model="moduleEnabled">
-        <cdx-label input-id="moduleEnabled">
-          {{ $i18n( 'adiutor-module-enabled' ) }}
-        </cdx-label>
-        <template #description>
-          {{ $i18n( 'adiutor-module-enabled-description' ) }}
-        </template>
-      </cdx-toggle-switch>
-    </cdx-field>
-    <cdx-field :is-fieldset="true">
-      <cdx-toggle-switch v-model="testMode">
-        <cdx-label input-id="testMode">
-          {{ $i18n( 'adiutor-test-mode' ) }}
-        </cdx-label>
-        <template #description>
-          {{ $i18n( 'adiutor-test-mode-description' ) }}
-        </template>
-      </cdx-toggle-switch>
-    </cdx-field>
-    <cdx-field :is-fieldset="true">
-      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
+      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="{{ $i18n('adiutor-remove') }}"></cdx-chip-input>
       <template #label>
         {{ $i18n( 'adiutor-namespaces' ) }}
       </template>
@@ -46,7 +38,7 @@
       </template>
     </cdx-field>
     <cdx-field :is-fieldset="true">
-      <cdx-toggle-switch v-model="useMultipleIssuesTemplate">
+      <cdx-toggle-switch v-model="useMultipleIssuesTemplate" :align-switch="true">
         <cdx-label input-id="useMultipleIssuesTemplate">
           {{ $i18n( 'adiutor-use-multiple-issues-template-label' ) }}
         </cdx-label>
@@ -62,7 +54,7 @@
       <cdx-text-input
           id="multipleIssuesTemplate"
           v-model="multipleIssuesTemplate"
-          aria-label="Multiple issues template"></cdx-text-input>
+          aria-label="{{ $i18n( 'adiutor-multiple-issues-template' ) }}"></cdx-text-input>
       <template #help-text>
         {{ $i18n( 'adiutor-multiple-issues-template-help-text' ) }}
         <h5>{{ $i18n( 'adiutor-output' ) }}</h5>
@@ -75,8 +67,8 @@
       </cdx-label>
       <cdx-text-input
           id="uncategorizedTemplate"
-          v-model="uncategorizedTemplate"
-          aria-label="Uncategorized template"></cdx-text-input>
+          v-model="uncategorizedTemplate">
+      </cdx-text-input>
       <template #help-text>
         {{ $i18n( 'adiutor-uncategorized-template-help-text' ) }}
       </template>
@@ -90,8 +82,8 @@
       </cdx-label>
       <cdx-text-input
           id="apiPostSummary"
-          v-model="apiPostSummary"
-          aria-label="API Post Summary for Talk Page"></cdx-text-input>
+          v-model="apiPostSummary">
+      </cdx-text-input>
     </cdx-field>
   </cdx-field>
   <cdx-field>
@@ -113,7 +105,7 @@
       </tr>
       <tr v-for="( label, index ) in tagList" :key="index">
         <td>
-          <cdx-text-input v-model="label.label" aria-label="Namespace value"></cdx-text-input>
+          <cdx-text-input v-model="label.label" aria-label="{{ $i18n( 'adiutor-namespace-value' ) }}"></cdx-text-input>
         </td>
         <td style="text-align: right;">
           <cdx-button action="destructive" @click="deleteLabel( label )">
@@ -145,11 +137,11 @@
         <td>
           <cdx-text-input
               v-model="tag.tag"
-              aria-label="Value"
+              aria-label="{{ $i18n( 'adiutor-value' ) }}"
               style="min-width: 50px;"></cdx-text-input>
         </td>
         <td>
-          <cdx-text-input v-model="tag.description" aria-label="Data"></cdx-text-input>
+          <cdx-text-input v-model="tag.description" aria-label="{{ $i18n( 'adiutor-data' ) }}"></cdx-text-input>
         </td>
         <td style="text-align: right;">
           <cdx-button action="destructive" @click="deleteTag( labelIndex, tagIndex )">
@@ -189,37 +181,37 @@
                 <td>
                   <cdx-text-input
                       v-model="subitem.name"
-                      aria-label="Subitem Value"
+                      aria-label="{{ $i18n( 'adiutor-subitem-value' ) }}"
                       style="min-width: 80px;"></cdx-text-input>
                 </td>
                 <td>
-                  <cdx-toggle-switch v-model="subitem.required" aria-label="Required"></cdx-toggle-switch>
+                  <cdx-toggle-switch v-model="subitem.required" aria-label="{{ $i18n( 'adiutor-required' ) }}"></cdx-toggle-switch>
                 </td>
                 <td>
                   <cdx-text-input
                       v-model="subitem.parameter"
-                      aria-label="Subitem parameter"
+                      aria-label="{{ $i18n( 'adiutor-subitem-parameter' ) }}"
                       style="min-width: 80px;"></cdx-text-input>
                 </td>
                 <td>
                   <cdx-text-input
                       v-model="subitem.type"
-                      aria-label="Subitem type"
+                      aria-label="{{ $i18n( 'adiutor-subitem-type' ) }}"
                       style="min-width: 50px;"></cdx-text-input>
                 </td>
                 <td>
                   <cdx-text-input
                       v-model="subitem.value"
-                      aria-label="Subitem value"
+                      aria-label="{{ $i18n( 'adiutor-subitem-value' ) }}"
                       style="min-width: 50px;"></cdx-text-input>
                 </td>
                 <td>
-                  <cdx-text-input v-model="subitem.label" aria-label="Subitem label"></cdx-text-input>
+                  <cdx-text-input v-model="subitem.label" aria-label="{{ $i18n( 'adiutor-subitem-label' ) }}"></cdx-text-input>
                 </td>
                 <td>
                   <cdx-text-input
                       v-model="subitem.help"
-                      aria-label="Subitem help"
+                      aria-label="{{ $i18n( 'adiutor-subitem-help' ) }}"
                       style="min-width: 150px;"></cdx-text-input>
                 </td>
                 <td style="text-align: right;">
@@ -240,7 +232,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxLabel, CdxTextInput, CdxChipInput, CdxField, CdxToggleSwitch, CdxButton } = require( '@wikimedia/codex' );
+const { CdxLabel, CdxTextInput, CdxChipInput, CdxField, CdxToggleSwitch, CdxButton } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'ArticleTaggingOptions',
@@ -428,11 +420,11 @@ module.exports = defineComponent( {
   }
 }
 
-.cdx-field {
+.ext-adiutor-options .cdx-field {
   margin-top: 10px;
   display: block;
 }
 
-.top-message {
+.ext-adiutor-options .top-message {
   margin-top: 10px;
 }</style>
