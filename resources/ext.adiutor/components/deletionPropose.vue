@@ -5,15 +5,15 @@
       :show-dividers="true"
       :title="$i18n( 'adiutor-prd-header-title' )"
       class="prd-dialog"
-      :close-button-label="$i18n( 'adiutor-close' )"
+      close-button-label="Close"
       @default="openPrdDialog = true">
-    <div class="adiutor-dialog-header">
+    <div class="header">
       <p>{{ $i18n( 'adiutor-prd-header-description' ) }}</p>
     </div>
-    <cdx-field class="prd-dialog-body" :is-fieldset="true">
-      <template #label>
+    <cdx-field class="prd-dialog-body">
+      <cdx-label class="adt-label">
         <strong>{{ $i18n( 'adiutor-prd-deletion-type' ) }}</strong>
-      </template>
+      </cdx-label>
       <cdx-radio
           v-for="radio in radios"
           :key="'radio-' + radio.value"
@@ -25,21 +25,20 @@
           <span v-html="radio.description"></span>
         </template>
       </cdx-radio>
-    </cdx-field>
-    <cdx-field class="prd-dialog-body">
-      <template #label>
+      <cdx-label class="adt-label">
         <strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
-      </template>
+      </cdx-label>
       <cdx-text-area
           v-model="textareaValue"
           :placeholder="$i18n( 'adiutor-prd-rationale-placeholder' )"></cdx-text-area>
     </cdx-field>
-    <div class="adiutor-dialog-footer">
+    <div class="footer">
       <cdx-checkbox v-model="informCreator" :inline="true">
         {{ $i18n( 'adiutor-inform-creator' ) }}
       </cdx-checkbox>
       <cdx-button
           action="progressive"
+          aria-label="Next"
           weight="primary"
           @click="proposeForDeletion">
         {{ $i18n( 'adiutor-propose' ) }}
@@ -50,7 +49,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxTextArea, CdxRadio } = require( '../../codex.js' );
+const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextArea, CdxRadio } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const prdConfiguration = mw.config.get( 'wgAdiutorDeletionPropose' );
 const {
@@ -72,7 +71,7 @@ function processDeletionHelpMessage( message, link, shortcut ) {
 
 module.exports = defineComponent( {
   name: 'ProposeDeletion',
-  components: { CdxRadio, CdxButton, CdxDialog, CdxCheckbox, CdxField, CdxTextArea },
+  components: { CdxRadio, CdxButton, CdxDialog, CdxCheckbox, CdxField, CdxLabel, CdxTextArea },
   setup() {
     const api = new mw.Api();
     const informCreator = ref( true );
@@ -258,7 +257,7 @@ module.exports = defineComponent( {
   margin-top: 10px;
 }
 
-.prd-dialog .adiutor-dialog-header {
+.prd-dialog .header {
   background-color: #eaf3ff;
   display: block;
   align-items: baseline;
@@ -275,7 +274,7 @@ module.exports = defineComponent( {
   padding: 10px !important;
 }
 
-.prd-dialog .adiutor-dialog-header p {
+.prd-dialog .header p {
   width: 60%;
 }
 
@@ -289,7 +288,7 @@ module.exports = defineComponent( {
   margin-bottom: 10px !important;
 }
 
-.prd-dialog .adiutor-dialog-footer {
+.prd-dialog .footer {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
