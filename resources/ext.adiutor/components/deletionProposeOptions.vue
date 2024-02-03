@@ -30,20 +30,28 @@
     </ul>
   </cdx-message>
   <cdx-field>
-    <cdx-toggle-switch v-model="moduleEnabled" :align-switch="true">
-      {{ $i18n( 'adiutor-module-enabled' ) }}
-      <template #description>
-        {{ $i18n( 'adiutor-module-enabled-description' ) }}
-      </template>
-    </cdx-toggle-switch>
-    <cdx-toggle-switch v-model="testMode" :align-switch="true">
-      {{ $i18n( 'adiutor-test-mode' ) }}
-      <template #description>
-        {{ $i18n( 'adiutor-test-mode-description' ) }}
-      </template>
-    </cdx-toggle-switch>
     <cdx-field :is-fieldset="true">
-      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="{{ $i18n('adiutor-remove') }}"></cdx-chip-input>
+      <cdx-toggle-switch v-model="moduleEnabled">
+        <cdx-label input-id="moduleEnabled">
+          {{ $i18n( 'adiutor-module-enabled' ) }}
+        </cdx-label>
+        <template #description>
+          {{ $i18n( 'adiutor-module-enabled-description' ) }}
+        </template>
+      </cdx-toggle-switch>
+    </cdx-field>
+    <cdx-field :is-fieldset="true">
+      <cdx-toggle-switch v-model="testMode">
+        <cdx-label input-id="testMode">
+          {{ $i18n( 'adiutor-test-mode' ) }}
+        </cdx-label>
+        <template #description>
+          {{ $i18n( 'adiutor-test-mode-description' ) }}
+        </template>
+      </cdx-toggle-switch>
+    </cdx-field>
+    <cdx-field :is-fieldset="true">
+      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
       <template #label>
         {{ $i18n( 'adiutor-namespaces' ) }}
       </template>
@@ -147,7 +155,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxField, CdxButton } = require( '../../codex.js' );
+const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxField, CdxButton } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'DeletionProposeOptions',
@@ -246,7 +254,7 @@ module.exports = defineComponent( {
 
 <style lang="less">
 
-.ext-adiutor-options .top-message {
+.top-message {
   margin-top: 10px;
 }
 </style>

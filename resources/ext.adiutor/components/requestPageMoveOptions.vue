@@ -27,20 +27,28 @@
     </ul>
   </cdx-message>
   <cdx-field>
-    <cdx-toggle-switch v-model="moduleEnabled" :align-switch="true">
-      {{ $i18n( 'adiutor-module-enabled' ) }}
-      <template #description>
-        {{ $i18n( 'adiutor-module-enabled-description' ) }}
-      </template>
-    </cdx-toggle-switch>
-    <cdx-toggle-switch v-model="testMode" :align-switch="true">
-      {{ $i18n( 'adiutor-test-mode' ) }}
-      <template #description>
-        {{ $i18n( 'adiutor-test-mode-description' ) }}
-      </template>
-    </cdx-toggle-switch>
     <cdx-field>
-      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="{{ $i18n('adiutor-remove') }}"></cdx-chip-input>
+      <cdx-toggle-switch v-model="moduleEnabled">
+        <cdx-label input-id="moduleEnabled">
+          {{ $i18n( 'adiutor-module-enabled' ) }}
+        </cdx-label>
+        <template #description>
+          {{ $i18n( 'adiutor-module-enabled-description' ) }}
+        </template>
+      </cdx-toggle-switch>
+    </cdx-field>
+    <cdx-field>
+      <cdx-toggle-switch v-model="testMode">
+        <cdx-label input-id="testMode">
+          {{ $i18n( 'adiutor-test-mode' ) }}
+        </cdx-label>
+        <template #description>
+          {{ $i18n( 'adiutor-test-mode-description' ) }}
+        </template>
+      </cdx-toggle-switch>
+    </cdx-field>
+    <cdx-field>
+      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
       <template #label>
         {{ $i18n( 'adiutor-namespaces' ) }}
       </template>
@@ -70,7 +78,7 @@
       </template>
     </cdx-field>
     <cdx-field>
-      <cdx-toggle-switch v-model="addNewSection" :align-switch="true">
+      <cdx-toggle-switch v-model="addNewSection">
         <cdx-label input-id="addNewSection">
           {{ $i18n( 'adiutor-create-new-section' ) }}
         </cdx-label>
@@ -146,7 +154,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxLabel, CdxMessage, CdxTextInput, CdxToggleSwitch, CdxChipInput, CdxButton, CdxField, CdxRadio, CdxTextArea } = require( '../../codex.js' );
+const { CdxLabel, CdxMessage, CdxTextInput, CdxToggleSwitch, CdxChipInput, CdxButton, CdxField, CdxRadio, CdxTextArea } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'RequestPageMove',
@@ -255,16 +263,21 @@ module.exports = defineComponent( {
 
 <style lang="less">
 
-.ext-adiutor-options .cdx-field {
+.cdx-toggle-switch {
+  justify-content: space-between;
+  display: flex;
+}
+
+.cdx-field {
   margin-top: 10px;
   display: block;
 }
 
-.ext-adiutor-options .top-message {
+.top-message {
   margin-top: 10px;
 }
 
-.ext-adiutor-options .save-button {
+.save-button {
   float: right;
 }
 </style>

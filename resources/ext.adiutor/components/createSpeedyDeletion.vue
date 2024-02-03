@@ -6,16 +6,16 @@
       :show-dividers="true"
       :title="$i18n( 'adiutor-csd-header-title' )"
       class="csd-dialog"
-      :close-button-label="$i18n( 'adiutor-close' )"
+      close-button-label="Close"
       @default="openCsdDialog = false"
       @primary="createSpeedyDeletionRequest">
-    <div class="adiutor-dialog-header">
+    <div class="header">
       <p>{{ $i18n( "adiutor-csd-header-description" ) }}</p>
     </div>
     <cdx-message
         v-if="deletionLogs.length"
         class="csd-deletion-log-message"
-        dismiss-button-label="{{ $i18n('adiutor-close') }}"
+        dismiss-button-label="Close"
         inline
         type="warning">
       {{ $i18n( "adiutor-this-page-deleted-before", deletionLogs.length ) }}
@@ -27,9 +27,9 @@
     <div class="csd-reasons-body">
       <div class="csd-reason-field">
         <cdx-field v-for="namespaceReason in namespaceDeletionReasons" :is-fieldset="true">
-          <template #label>
-              {{ namespaceReason.name }}
-          </template>
+          <cdx-label class="adt-label">
+            <strong>{{ namespaceReason.name }}</strong>
+          </cdx-label>
           <cdx-checkbox
               v-for="reason in namespaceReason.reasons"
               :key="reason.value"
@@ -51,9 +51,9 @@
       </div>
       <div class="csd-reason-field">
         <cdx-field v-for="generalReason in generalDeletionReasons" :is-fieldset="true">
-          <template #label>
-              {{ generalReason.name }}
-          </template>
+          <cdx-label class="adt-label">
+            <strong>{{ generalReason.name }}</strong>
+          </cdx-label>
           <cdx-checkbox
               v-for="reasonItem in generalReason.reasons"
               :key="'checkbox-' + reasonItem.value"
@@ -66,12 +66,12 @@
               {{ reasonItem.help }}
             </template>
           </cdx-checkbox>
-          <cdx-field v-if="showCopyVioInput">
-            <template #label>
+          <div v-if="showCopyVioInput">
+            <cdx-label class="adt-label">
               <strong>{{ $i18n( "adiutor-copyright-infringing-page" ) }}</strong>
-            </template>
-            <cdx-text-input id="copyVioInputId" v-model="copyVioInput"></cdx-text-input>
-          </cdx-field>
+            </cdx-label>
+            <cdx-text-input v-model="copyVioInput" aria-label="TextInput default demo"></cdx-text-input>
+          </div>
         </cdx-field>
       </div>
     </div>
@@ -96,7 +96,7 @@
 
 <script>
 const { defineComponent, ref, nextTick, onMounted } = require( 'vue' );
-const { CdxCheckbox, CdxField, CdxDialog, CdxTextInput, CdxMessage } = require( '../../codex.js' );
+const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const createSpeedyDeletionMiddleware = require( '../middlewares/speedyDeletionMiddleware.js' );
 const csdConfiguration = mw.config.get( 'wgAdiutorCreateSpeedyDeletion' );
@@ -125,6 +125,7 @@ module.exports = defineComponent( {
     CdxDialog,
     CdxCheckbox,
     CdxField,
+    CdxLabel,
     CdxTextInput,
     CdxMessage
   },
@@ -220,6 +221,12 @@ module.exports = defineComponent( {
   padding: 20px;
 }
 
+.csd-dialog .cdx-dialog {
+  max-width: 720px;
+  padding-top: 10px;
+  padding-bottom: 0;
+}
+
 .csd-dialog .cdx-dialog__body {
   flex-grow: 1;
   margin-top: 0;
@@ -247,7 +254,12 @@ module.exports = defineComponent( {
   font-weight: 700;
 }
 
-.csd-dialog .adiutor-dialog-header {
+.csd-dialog cdx-label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.csd-dialog .header {
   background-color: #eaf3ff;
   display: block;
   align-items: baseline;
@@ -260,7 +272,7 @@ module.exports = defineComponent( {
   background-size: 205px;
 }
 
-.csd-dialog .adiutor-dialog-header p {
+.csd-dialog .header p {
   width: 70%;
 }
 

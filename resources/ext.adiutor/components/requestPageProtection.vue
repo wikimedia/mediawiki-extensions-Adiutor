@@ -6,17 +6,17 @@
       :show-dividers="true"
       :title="$i18n( 'adiutor-rpp-header-title' )"
       class="rpp-dialog"
-      :close-button-label="$i18n( 'adiutor-close' )"
+      close-button-label="Close"
       @default="openRppDialog = false"
       @primary="requestPageProtection">
-    <div class="adiutor-dialog-header">
+    <div class="header">
       <p>{{ $i18n( 'adiutor-rpp-header-description' ) }}</p>
     </div>
-    <div class="rpp-dialog-body">
-      <cdx-field class="flex-box" is-fieldset="true">
-        <template #label>
+    <cdx-field class="rpp-dialog-body">
+      <cdx-field class="flex-box">
+        <cdx-label class="adt-label">
           <strong>{{ $i18n( 'adiutor-protection-type' ) }}</strong>
-        </template>
+        </cdx-label>
         <cdx-select
             v-model:selected="durationSelection"
             :menu-items="protectionDurations"
@@ -26,25 +26,20 @@
             :menu-items="protectionTypes"
             default-label="Select protection type"></cdx-select>
       </cdx-field>
-      <cdx-field>
-      <template #label>
-        <strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
-      </template>
+      <cdx-label><strong>{{ $i18n( 'adiutor-rationale' ) }}</strong></cdx-label>
       <cdx-text-area
           v-model="rationaleInput"
           :placeholder="$i18n( 'adiutor-rpp-rationale-placeholder' )"></cdx-text-area>
-      </cdx-field>
-    </div>
+    </cdx-field>
     <template #footer-text>
-	<!-- eslint-disable vue/no-v-html -->
-	<span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
+      <span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
     </template>
   </cdx-dialog>
 </template>
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxField, CdxDialog, CdxTextArea, CdxSelect } = require( '../../codex.js' );
+const { CdxField, CdxDialog, CdxLabel, CdxTextArea, CdxSelect } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const rppConfiguration = mw.config.get( 'wgAdiutorRequestPageProtection' );
 const noticeBoardTitle = rppConfiguration.noticeBoardTitle;
@@ -61,6 +56,7 @@ module.exports = defineComponent( {
   components: {
     CdxDialog,
     CdxField,
+    CdxLabel,
     CdxTextArea,
     CdxSelect
   },
@@ -210,7 +206,7 @@ module.exports = defineComponent( {
   margin-top: 10px;
 }
 
-.rpp-dialog .adiutor-dialog-header {
+.rpp-dialog .header {
   background-color: #eaf3ff;
   display: block;
   align-items: baseline;
@@ -223,7 +219,7 @@ module.exports = defineComponent( {
   background-size: 200px;
 }
 
-.rpp-dialog .adiutor-dialog-header p {
+.rpp-dialog .header p {
   width: 60%;
 }
 

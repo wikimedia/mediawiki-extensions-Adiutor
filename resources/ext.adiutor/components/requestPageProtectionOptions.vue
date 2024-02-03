@@ -18,7 +18,7 @@
       {{ $i18n( 'adiutor-request-page-protection-description' ) }}
     </p>
   </cdx-field>
-  <cdx-message dismiss-button-label="{{ $i18n('adiutor-close') }}" type="warning">
+  <cdx-message dismiss-button-label="Close" type="warning">
     <h3>{{ $i18n( 'adiutor-parameters' ) }}</h3>
     <p>{{ $i18n( 'adiutor-parameters-description' ) }}</p>
     <ul>
@@ -29,20 +29,28 @@
     </ul>
   </cdx-message>
   <cdx-field>
-    <cdx-toggle-switch v-model="moduleEnabled" :align-switch="true">
-      {{ $i18n( 'adiutor-module-enabled' ) }}
-      <template #description>
-        {{ $i18n( 'adiutor-module-enabled-description' ) }}
-      </template>
-    </cdx-toggle-switch>
-    <cdx-toggle-switch v-model="testMode" :align-switch="true">
-      {{ $i18n( 'adiutor-test-mode' ) }}
-      <template #description>
-        {{ $i18n( 'adiutor-test-mode-description' ) }}
-      </template>
-    </cdx-toggle-switch>
     <cdx-field>
-      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="{{ $i18n('adiutor-remove') }}"></cdx-chip-input>
+      <cdx-toggle-switch v-model="moduleEnabled">
+        <cdx-label input-id="moduleEnabled">
+          {{ $i18n( 'adiutor-module-enabled' ) }}
+        </cdx-label>
+        <template #description>
+          {{ $i18n( 'adiutor-module-enabled-description' ) }}
+        </template>
+      </cdx-toggle-switch>
+    </cdx-field>
+    <cdx-field>
+      <cdx-toggle-switch v-model="testMode">
+        <cdx-label input-id="testMode">
+          {{ $i18n( 'adiutor-test-mode' ) }}
+        </cdx-label>
+        <template #description>
+          {{ $i18n( 'adiutor-test-mode-description' ) }}
+        </template>
+      </cdx-toggle-switch>
+    </cdx-field>
+    <cdx-field>
+      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
       <template #label>
         {{ $i18n( 'adiutor-namespaces' ) }}
       </template>
@@ -84,7 +92,7 @@
       </template>
     </cdx-field>
     <cdx-field>
-      <cdx-toggle-switch v-model="addNewSection" :align-switch="true">
+      <cdx-toggle-switch v-model="addNewSection">
         <cdx-label input-id="addNewSection">
           {{ $i18n( 'adiutor-create-new-section' ) }}
         </cdx-label>
@@ -100,7 +108,7 @@
       <cdx-text-input
           id="sectionTitle"
           v-model="sectionTitle"
-          aria-label="{{ $i18n( 'adiutor-protection-policy' ) }}"></cdx-text-input>
+          aria-label="Speedy Deletion Policy"></cdx-text-input>
     </cdx-field>
     <cdx-field v-if="!addNewSection">
       <cdx-toggle-switch v-model="useExistSection">
@@ -175,13 +183,13 @@
       </tr>
       <tr v-for="duration in protectionDurations">
         <td>
-          <cdx-text-input v-model="duration.value" aria-label="{{ $i18n( 'adiutor-duration-value' ) }}"></cdx-text-input>
+          <cdx-text-input v-model="duration.value" aria-label="Duration value"></cdx-text-input>
         </td>
         <td>
-          <cdx-text-input v-model="duration.data" aria-label="{{ $i18n( 'adiutor-duration-data' ) }}"></cdx-text-input>
+          <cdx-text-input v-model="duration.data" aria-label="Duration data"></cdx-text-input>
         </td>
         <td>
-          <cdx-text-input v-model="duration.label" aria-label="{{ $i18n( 'adiutor-duration-label' ) }}"></cdx-text-input>
+          <cdx-text-input v-model="duration.label" aria-label="Duration label"></cdx-text-input>
         </td>
         <td>
           <cdx-button action="destructive" @click="deleteProtectionDuration( duration )">
@@ -210,13 +218,13 @@
       </tr>
       <tr v-for="protection_type in protectionTypes">
         <td>
-          <cdx-text-input v-model="protection_type.value" aria-label="{{ $i18n( 'adiutor-type-value' ) }}"></cdx-text-input>
+          <cdx-text-input v-model="protection_type.value" aria-label="Type value"></cdx-text-input>
         </td>
         <td>
-          <cdx-text-input v-model="protection_type.data" aria-label="{{ $i18n( 'adiutor-type-data' ) }}"></cdx-text-input>
+          <cdx-text-input v-model="protection_type.data" aria-label="Type data"></cdx-text-input>
         </td>
         <td>
-          <cdx-text-input v-model="protection_type.label" aria-label="{{ $i18n( 'adiutor-type-label' ) }}"></cdx-text-input>
+          <cdx-text-input v-model="protection_type.label" aria-label="Type label"></cdx-text-input>
         </td>
         <td>
           <cdx-button action="destructive" @click="deleteProtectionType( protection_type )">
@@ -230,7 +238,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxButton, CdxField, CdxRadio, CdxTextArea } = require( '../../codex.js' );
+const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxButton, CdxField, CdxRadio, CdxTextArea } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'RequestPageProtectionOptions',
@@ -418,15 +426,20 @@ module.exports = defineComponent( {
   }
 }
 
-.ext-adiutor-options .cdx-field {
+.cdx-toggle-switch {
+  justify-content: space-between;
+  display: flex;
+}
+
+.cdx-field {
   margin-top: 10px;
   display: block;
 }
 
-.ext-adiutor-options .top-message {
+.top-message {
   margin-top: 10px;
 }
 
-.ext-adiutor-options .save-button {
+.save-button {
   float: right;
 }</style>

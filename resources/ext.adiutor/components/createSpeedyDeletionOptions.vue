@@ -17,7 +17,7 @@
       {{ $i18n( 'adiutor-create-speedy-deletion-configuration-description' ) }}
     </p>
   </cdx-field>
-  <cdx-message dismiss-button-label="{{ $i18n('adiutor-close') }}" type="warning">
+  <cdx-message dismiss-button-label="Close" type="warning">
     <h3>{{ $i18n( 'adiutor-parameters' ) }}</h3>
     <p>{{ $i18n( 'adiutor-parameters-description' ) }}</p>
     <ul>
@@ -27,20 +27,28 @@
     </ul>
   </cdx-message>
   <cdx-field>
-    <cdx-toggle-switch v-model="moduleEnabled" :align-switch="true">
-      {{ $i18n( 'adiutor-module-enabled' ) }}
-      <template #description>
-        {{ $i18n( 'adiutor-module-enabled-description' ) }}
-      </template>
-    </cdx-toggle-switch>
-    <cdx-toggle-switch v-model="testMode" :align-switch="true">
-      {{ $i18n( 'adiutor-test-mode' ) }}
-      <template #description>
-        {{ $i18n( 'adiutor-test-mode-description' ) }}
-      </template>
-    </cdx-toggle-switch>
     <cdx-field>
-      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="{{ $i18n('adiutor-remove') }}"></cdx-chip-input>
+      <cdx-toggle-switch v-model="moduleEnabled">
+        <cdx-label input-id="moduleEnabled">
+          {{ $i18n( 'adiutor-module-enabled' ) }}
+        </cdx-label>
+        <template #description>
+          {{ $i18n( 'adiutor-module-enabled-description' ) }}
+        </template>
+      </cdx-toggle-switch>
+    </cdx-field>
+    <cdx-field>
+      <cdx-toggle-switch v-model="testMode">
+        <cdx-label input-id="testMode">
+          {{ $i18n( 'adiutor-test-mode' ) }}
+        </cdx-label>
+        <template #description>
+          {{ $i18n( 'adiutor-test-mode-description' ) }}
+        </template>
+      </cdx-toggle-switch>
+    </cdx-field>
+    <cdx-field>
+      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
       <template #label>
         {{ $i18n( 'adiutor-namespaces' ) }}
       </template>
@@ -258,7 +266,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxField, CdxRadio, CdxButton } = require( '../../codex.js' );
+const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxField, CdxRadio, CdxButton } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'CreateSpeedyDeletionOptions',
@@ -487,7 +495,7 @@ module.exports = defineComponent( {
   }
 }
 
-.ext-adiutor-options .top-message {
+.top-message {
   margin-top: 10px;
 }
 </style>

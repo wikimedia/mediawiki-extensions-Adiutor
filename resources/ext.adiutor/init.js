@@ -101,5 +101,5 @@
 	attachEventListener( '#t-tag-article', 'articleTagging' );
 	attachEventListener( '#t-report-revision', 'reportRevision' );
 
-	Vue.createMwApp( components.adiutorSettings ).mount( '#adiutor-settings-app' );
+	Vue.createMwApp( components.adiutorSettings ).mount( '#adiutor-settings-teleport-target' );
 }() );

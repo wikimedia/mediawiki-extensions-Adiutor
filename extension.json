@@ -109,14 +109,6 @@
 	},
 	"ResourceModules": {
 		"ext.adiutor": {
-			"class": "MediaWiki\\ResourceLoader\\CodexModule",
-			"dependencies": [
-				"mediawiki.util",
-				"mediawiki.user",
-				"mediawiki.Title",
-				"mediawiki.api",
-				"vue"
-			],
 			"packageFiles": [
 				"ext.adiutor/init.js",
 				"ext.adiutor/utilities/adiutorUtility.js",
@@ -146,24 +138,13 @@
 					]
 				}
 			],
-			"codexComponents": [
-				"CdxDialog",
-				"CdxIcon",
-				"CdxCheckbox",
-				"CdxField",
-				"CdxChipInput",
-				"CdxSelect",
-				"CdxLabel",
-				"CdxRadio",
-				"CdxTab",
-				"CdxTextArea",
-				"CdxTextInput",
-				"CdxLookup",
-				"CdxTabs",
-				"CdxCard",
-				"CdxMessage",
-				"CdxToggleSwitch",
-				"CdxButton"
+			"dependencies": [
+				"mediawiki.util",
+				"mediawiki.user",
+				"mediawiki.Title",
+				"mediawiki.api",
+				"@wikimedia/codex",
+				"vue"
 			],
 			"messages": [
 				"adiutor-title",
@@ -409,24 +390,7 @@
 				"adiutor-report",
 				"adiutor-rev-incomplete-request-details",
 				"adiutor-revision-reporting-comment-placeholder",
-				"adiutor-update",
-				"adiutor-multiple-issues-template",
-				"adiutor-uncategorized-template",
-				"adiutor-namespace-value",
-				"adiutor-subitem-value",
-				"adiutor-subitem-parameter",
-				"adiutor-subitem-type",
-				"adiutor-subitem-label",
-				"adiutor-subitem-help",
-				"adiutor-rationale-value",
-				"adiutor-rationale-label",
-				"adiutor-duration-value",
-				"adiutor-duration-label",
-				"adiutor-duration-data",
-				"adiutor-type-value",
-				"adiutor-type-label",
-				"adiutor-type-data",
-				"adiutor-search"
+				"adiutor-update"
 			]
 		}
 	},
