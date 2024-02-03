@@ -249,5 +249,22 @@
 	"adiutor-report": "Report",
 	"adiutor-rev-incomplete-request-details": "Please ensure you have selected a rationale and provided a comment.",
 	"adiutor-revision-reporting-comment-placeholder": "Please write a comment",
-	"adiutor-update": "Update"
+	"adiutor-update": "Update",
+	"adiutor-multiple-issues-template": "Multiple issues template",
+	"adiutor-uncategorized-template": "Uncategorized template",
+	"adiutor-namespace-value": "Namespace value",
+	"adiutor-subitem-value": "Subitem value",
+	"adiutor-subitem-parameter": "Subitem parameter",
+	"adiutor-subitem-type": "Subitem type",
+	"adiutor-subitem-label": "Subitem label",
+	"adiutor-subitem-help": "Subitem help",
+	"adiutor-rationale-value": "Rationale value",
+	"adiutor-rationale-label": "Rationale label",
+	"adiutor-duration-value": "Duration value",
+	"adiutor-duration-label": "Duration label",
+	"adiutor-duration-data": "Duration help",
+	"adiutor-type-value": "Type value",
+	"adiutor-type-label": "Type label",
+	"adiutor-type-data": "Type help",
+	"adiutor-search": "Search"
 }
