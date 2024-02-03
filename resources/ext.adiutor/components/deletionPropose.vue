@@ -52,7 +52,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxTextArea, CdxRadio } = require( '@wikimedia/codex' );
+const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxTextArea, CdxRadio } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const prdConfiguration = mw.config.get( 'wgAdiutorDeletionPropose' );
 const {

@@ -36,7 +36,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxField, CdxDialog, CdxTextInput, CdxTextArea } = require( '@wikimedia/codex' );
+const { CdxField, CdxDialog, CdxTextInput, CdxTextArea } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const rpmConfiguration = mw.config.get( 'wgAdiutorRequestPageMove' );
 const noticeBoardTitle = rpmConfiguration.noticeBoardTitle;

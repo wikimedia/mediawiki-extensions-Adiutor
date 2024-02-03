@@ -232,7 +232,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxLabel, CdxTextInput, CdxChipInput, CdxField, CdxToggleSwitch, CdxButton } = require( '@wikimedia/codex' );
+const { CdxLabel, CdxTextInput, CdxChipInput, CdxField, CdxToggleSwitch, CdxButton } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'ArticleTaggingOptions',

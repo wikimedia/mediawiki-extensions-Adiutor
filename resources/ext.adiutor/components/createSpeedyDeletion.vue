@@ -96,7 +96,7 @@
 
 <script>
 const { defineComponent, ref, nextTick, onMounted } = require( 'vue' );
-const { CdxCheckbox, CdxField, CdxDialog, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
+const { CdxCheckbox, CdxField, CdxDialog, CdxTextInput, CdxMessage } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const createSpeedyDeletionMiddleware = require( '../middlewares/speedyDeletionMiddleware.js' );
 const csdConfiguration = mw.config.get( 'wgAdiutorCreateSpeedyDeletion' );

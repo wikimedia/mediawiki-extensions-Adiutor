@@ -146,7 +146,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxLabel, CdxMessage, CdxTextInput, CdxToggleSwitch, CdxChipInput, CdxButton, CdxField, CdxRadio, CdxTextArea } = require( '@wikimedia/codex' );
+const { CdxLabel, CdxMessage, CdxTextInput, CdxToggleSwitch, CdxChipInput, CdxButton, CdxField, CdxRadio, CdxTextArea } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'RequestPageMove',

@@ -78,7 +78,7 @@
 
 <script>
 const { defineComponent, ref, computed, onMounted } = require( 'vue' );
-const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '@wikimedia/codex' );
+const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '../../codex.js' );
 const { cdxIconSearch, cdxIconInfoFilled } = require( '../icons.json' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {

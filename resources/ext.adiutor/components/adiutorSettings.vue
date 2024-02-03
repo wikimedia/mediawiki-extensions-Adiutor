@@ -12,7 +12,7 @@
 
 <script>
 const { defineComponent } = require( 'vue' );
-const { CdxTabs, CdxTab } = require( '@wikimedia/codex' );
+const { CdxTabs, CdxTab } = require( '../../codex.js' );
 const createSpeedyDeletionOptions = require( './createSpeedyDeletionOptions.vue' );
 const requestPageProtectionOptions = require( './requestPageProtectionOptions.vue' );
 const requestPageMoveOptions = require( './requestPageMoveOptions.vue' );

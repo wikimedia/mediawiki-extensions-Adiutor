@@ -207,7 +207,7 @@ const {
   CdxField,
   CdxRadio,
   CdxTextArea
-} = require( '@wikimedia/codex' );
+} = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'ReportRevisionOptions',

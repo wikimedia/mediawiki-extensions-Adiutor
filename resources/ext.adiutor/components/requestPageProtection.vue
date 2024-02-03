@@ -44,7 +44,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxField, CdxDialog, CdxTextArea, CdxSelect } = require( '@wikimedia/codex' );
+const { CdxField, CdxDialog, CdxTextArea, CdxSelect } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const rppConfiguration = mw.config.get( 'wgAdiutorRequestPageProtection' );
 const noticeBoardTitle = rppConfiguration.noticeBoardTitle;

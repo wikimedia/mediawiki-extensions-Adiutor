@@ -48,7 +48,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxField, CdxDialog, CdxTextArea, CdxRadio } = require( '@wikimedia/codex' );
+const { CdxField, CdxDialog, CdxTextArea, CdxRadio } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const revConfiguration = mw.config.get( 'wgAdiutorReportRevision' );
 const noticeBoardTitle = revConfiguration.noticeBoardTitle;
