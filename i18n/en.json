@@ -151,7 +151,7 @@
 	"adiutor-request-page-move-description": "This page provides you with the ability to customize the settings of Adiutor's request page protection module. When you make adjustments here, it directly updates the configuration stored in the MediaWiki:AdiutorRequestPageMove.json page on your behalf. You can easily track and review the history of your modifications on that page.",
 	"adiutor-noticeboard": "Noticeboard:",
 	"adiutor-content-pattern": "Content pattern:",
-	"adiutor-content-pattern-description": "In this field you can create the basic pattern of the content to be added to the page using the parameters specified above, you can use a preload templates in this field or you can also add regular templates.",
+	"adiutor-content-pattern-description": "In this field you can create the basic pattern of the content to be added to the page using the parameters specified above. You can use preloaded templates in this field or add regular templates.",
 	"adiutor-create-new-section": "Create a new section on a new request queue.",
 	"adiutor-new-section-description": "When activated, a new section will be added to the noticeboard page.",
 	"adiutor-new-section-title": "New section title:",
