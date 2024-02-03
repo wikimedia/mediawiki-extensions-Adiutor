@@ -6,10 +6,10 @@
       :show-dividers="true"
       :title="$i18n( 'adiutor-tag-header-title' )"
       class="adiutor-article-tagging-dialog"
-      close-button-label="Close"
+      :close-button-label="$i18n( 'adiutor-close' )"
       @default="openTagDialog = false"
       @primary="tagArticle">
-    <div class="header">
+    <div class="adiutor-dialog-header">
       <p>{{ $i18n( "adiutor-tag-header-description" ) }}</p>
       <cdx-text-input
           v-model="searchTag"
@@ -17,7 +17,7 @@
           :end-icon="cdxIconInfoFilled"
           :placeholder="$i18n( 'adiutor-search-tag-placeholder' )"
           :start-icon="cdxIconSearch"
-          aria-label="New page name"
+          :aria-label="$i18n( 'adiutor-search' )"
           class="tag-search"
           input-type="search"></cdx-text-input>
     </div>
@@ -49,10 +49,16 @@
                     :key="'text-input-' + subItem.name"
                     v-model="subItem.value"
                     :name="subItem.name"
-                    :placeholder="subItem.label"></cdx-text-input>
+                    :placeholder="subItem.label"
+                    :aria-label="subItem.label"
+                    class="sub-item-text-input">
+                </cdx-text-input>
               </template>
               <template v-else-if="subItem.type === 'checkbox'">
-                <cdx-checkbox :key="'checkbox-' + subItem.name" v-model="subItem.value">
+                <cdx-checkbox
+                :key="'checkbox-' + subItem.name"
+                v-model="subItem.value"
+                class="sub-item-checkbox">
                   {{ subItem.label }}
                 </cdx-checkbox>
               </template>
@@ -373,7 +379,7 @@ module.exports = defineComponent( {
   display: block;
 }
 
-.adiutor-article-tagging-dialog .header {
+.adiutor-article-tagging-dialog .adiutor-dialog-header {
   background-color: #eaf3ff;
   display: block;
   align-items: baseline;
@@ -386,7 +392,7 @@ module.exports = defineComponent( {
   background-size: 205px;
 }
 
-.adiutor-article-tagging-dialog .header p {
+.adiutor-article-tagging-dialog .adiutor-dialog-header p {
   width: 70%;
 }
 
@@ -394,5 +400,14 @@ module.exports = defineComponent( {
   margin: 0;
   padding: 0;
   font-size: 1.125em !important
+}
+
+.adiutor-article-tagging-dialog .sub-item-text-input {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.adiutor-article-tagging-dialog .sub-item-checkbox {
+  margin-left: 20px;
 }
 </style>

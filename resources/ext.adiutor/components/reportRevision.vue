@@ -6,17 +6,17 @@
       :show-dividers="true"
       :title="$i18n( 'adiutor-revision-reporting-header-title' )"
       class="revision-reporting-dialog"
-      close-button-label="Close"
+      :close-button-label="$i18n( 'adiutor-close' )"
       @default="openDialog = false"
       @primary="reportRevision">
-    <div class="header">
+    <div class="adiutor-dialog-header">
       <p>{{ $i18n( "adiutor-revision-reporting-warning" ) }}</p>
     </div>
     <cdx-field class="revision-reporting-dialog-body">
       <cdx-field class="flex-box">
-        <cdx-label class="adt-label">
+        <template #label>
           {{ $i18n( "adiutor-rationale" ) }}
-        </cdx-label>
+        </template>
         <cdx-field :is-fieldset="true">
           <cdx-radio
               v-for="rationale in reportRationales"
@@ -28,8 +28,10 @@
             {{ rationale.label }}
           </cdx-radio>
         </cdx-field>
-        <cdx-field :is-fieldset="true">
-          <cdx-label>{{ $i18n( "adiutor-comment" ) }}</cdx-label>
+        <cdx-field class="margin-top-20">
+          <template #label>
+            {{ $i18n( "adiutor-comment" ) }}
+          </template>
           <cdx-text-area
               v-model="commentInput"
               :placeholder="$i18n( 'adiutor-revision-reporting-comment-placeholder' )">
@@ -38,6 +40,7 @@
       </cdx-field>
     </cdx-field>
     <template #footer-text>
+      <!-- eslint-disable vue/no-v-html -->
       <span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
     </template>
   </cdx-dialog>
@@ -45,7 +48,7 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxField, CdxDialog, CdxLabel, CdxTextArea, CdxRadio } = require( '@wikimedia/codex' );
+const { CdxField, CdxDialog, CdxTextArea, CdxRadio } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const revConfiguration = mw.config.get( 'wgAdiutorReportRevision' );
 const noticeBoardTitle = revConfiguration.noticeBoardTitle;
@@ -62,7 +65,6 @@ module.exports = defineComponent( {
   components: {
     CdxDialog,
     CdxField,
-    CdxLabel,
     CdxTextArea,
     CdxRadio
   },
@@ -182,6 +184,10 @@ module.exports = defineComponent( {
   width: inherit;
 }
 
+.revision-reporting-dialog-body .margin-top-20 {
+  margin-top: 20px;
+}
+
 .revision-reporting-dialog .cdx-dialog__body {
   flex-grow: 1;
   margin-top: 0;
@@ -215,7 +221,7 @@ module.exports = defineComponent( {
   margin-top: 10px;
 }
 
-.revision-reporting-dialog .header {
+.revision-reporting-dialog .adiutor-dialog-header {
   background-color: #eaf3ff;
   display: block;
   align-items: baseline;
@@ -228,7 +234,7 @@ module.exports = defineComponent( {
   background-size: 170px;
 }
 
-.revision-reporting-dialog .header p {
+.revision-reporting-dialog .adiutor-dialog-header p {
   width: 70%;
 }
 

@@ -27,28 +27,20 @@
     </ul>
   </cdx-message>
   <cdx-field>
+    <cdx-toggle-switch v-model="moduleEnabled" :align-switch="true">
+      {{ $i18n( 'adiutor-module-enabled' ) }}
+      <template #description>
+        {{ $i18n( 'adiutor-module-enabled-description' ) }}
+      </template>
+    </cdx-toggle-switch>
+    <cdx-toggle-switch v-model="testMode" :align-switch="true">
+      {{ $i18n( 'adiutor-test-mode' ) }}
+      <template #description>
+        {{ $i18n( 'adiutor-test-mode-description' ) }}
+      </template>
+    </cdx-toggle-switch>
     <cdx-field>
-      <cdx-toggle-switch v-model="moduleEnabled">
-        <cdx-label input-id="moduleEnabled">
-          {{ $i18n( 'adiutor-module-enabled' ) }}
-        </cdx-label>
-        <template #description>
-          {{ $i18n( 'adiutor-module-enabled-description' ) }}
-        </template>
-      </cdx-toggle-switch>
-    </cdx-field>
-    <cdx-field>
-      <cdx-toggle-switch v-model="testMode">
-        <cdx-label input-id="testMode">
-          {{ $i18n( 'adiutor-test-mode' ) }}
-        </cdx-label>
-        <template #description>
-          {{ $i18n( 'adiutor-test-mode-description' ) }}
-        </template>
-      </cdx-toggle-switch>
-    </cdx-field>
-    <cdx-field>
-      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="remove"></cdx-chip-input>
+      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="{{ $i18n('adiutor-remove') }}"></cdx-chip-input>
       <template #label>
         {{ $i18n( 'adiutor-namespaces' ) }}
       </template>
@@ -78,7 +70,7 @@
       </template>
     </cdx-field>
     <cdx-field>
-      <cdx-toggle-switch v-model="addNewSection">
+      <cdx-toggle-switch v-model="addNewSection" :align-switch="true">
         <cdx-label input-id="addNewSection">
           {{ $i18n( 'adiutor-create-new-section' ) }}
         </cdx-label>
@@ -263,21 +255,16 @@ module.exports = defineComponent( {
 
 <style lang="less">
 
-.cdx-toggle-switch {
-  justify-content: space-between;
-  display: flex;
-}
-
-.cdx-field {
+.ext-adiutor-options .cdx-field {
   margin-top: 10px;
   display: block;
 }
 
-.top-message {
+.ext-adiutor-options .top-message {
   margin-top: 10px;
 }
 
-.save-button {
+.ext-adiutor-options .save-button {
   float: right;
 }
 </style>

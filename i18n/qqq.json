@@ -251,5 +251,22 @@
 	"adiutor-report": "This is the label for the report.",
 	"adiutor-rev-incomplete-request-details": "This is the label for the incomplete request details.",
 	"adiutor-revision-reporting-comment-placeholder": "This is the placeholder for the comment.",
-	"adiutor-update": "This is the label for the update."
+	"adiutor-update": "This is the label for the update.",
+	"adiutor-multiple-issues-template": "This is the label for the multiple issues template.",
+	"adiutor-uncategorized-template": "This is the label for the uncategorized template.",
+	"adiutor-namespace-value": "This is the label for the namespace value.",
+	"adiutor-subitem-value": "This is the label for the subitem value.",
+	"adiutor-subitem-parameter": "This is the label for the subitem parameter.",
+	"adiutor-subitem-type": "This is the label for the subitem type.",
+	"adiutor-subitem-label": "This is the label for the subitem label.",
+	"adiutor-subitem-help": "This is the label for the subitem help.",
+	"adiutor-rationale-value": "This is the label for the rationale value.",
+	"adiutor-rationale-label": "This is the label for the rationale label.",
+	"adiutor-duration-value": "This is the label for the duration value.",
+	"adiutor-duration-label": "This is the label for the duration label.",
+	"adiutor-duration-data": "This is the label for the duration data.",
+	"adiutor-type-value": "This is the label for the type value.",
+	"adiutor-type-label": "This is the label for the type label.",
+	"adiutor-type-data": "This is the label for the type data.",
+	"adiutor-search": "This is the label for the search."
 }
