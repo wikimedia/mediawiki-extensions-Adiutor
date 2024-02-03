@@ -6,33 +6,37 @@
       :show-dividers="true"
       :title="$i18n( 'adiutor-pmr-header-title' )"
       class="rpm-dialog"
-      close-button-label="Close"
+      :close-button-label="$i18n( 'adiutor-close' )"
       @default="openRpmDialog = false"
       @primary="requestPageMove">
-    <div class="header">
+    <div class="adiutor-dialog-header">
       <p>{{ $i18n( 'adiutor-pmr-header-description' ) }}</p>
     </div>
-    <cdx-field class="rpm-dialog-body">
-      <cdx-label class="rpm-label">
-        <strong>{{ $i18n( 'adiutor-new-name' ) }}</strong>
-      </cdx-label>
-      <cdx-text-input
-          v-model="newPageName"
-          :placeholder="$i18n( 'adiutor-new-name-placeholder' )"
-          aria-label="New page name"></cdx-text-input>
-      <cdx-label class="rpm-label">
-        <strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
-      </cdx-label>
-      <cdx-text-area
-          v-model="rationaleInput"
-          :placeholder="$i18n( 'adiutor-rpm-rationale-placeholder' )"></cdx-text-area>
-    </cdx-field>
+    <div class="rpm-dialog-body">
+      <cdx-field>
+        <template #label>
+          <strong>{{ $i18n( 'adiutor-new-name' ) }}</strong>
+        </template>
+        <cdx-text-input
+            v-model="newPageName"
+            :placeholder="$i18n( 'adiutor-new-name-placeholder' )"
+        ></cdx-text-input>
+      </cdx-field>
+      <cdx-field class="margin-top-20">
+        <template #label>
+          <strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
+        </template>
+        <cdx-text-area
+            v-model="rationaleInput"
+            :placeholder="$i18n( 'adiutor-rpm-rationale-placeholder' )"></cdx-text-area>
+      </cdx-field>
+    </div>
   </cdx-dialog>
 </template>
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxTextArea } = require( '@wikimedia/codex' );
+const { CdxField, CdxDialog, CdxTextInput, CdxTextArea } = require( '@wikimedia/codex' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const rpmConfiguration = mw.config.get( 'wgAdiutorRequestPageMove' );
 const noticeBoardTitle = rpmConfiguration.noticeBoardTitle;
@@ -49,7 +53,6 @@ module.exports = defineComponent( {
   components: {
     CdxDialog,
     CdxField,
-    CdxLabel,
     CdxTextInput,
     CdxTextArea
   },
@@ -159,6 +162,10 @@ module.exports = defineComponent( {
   width: inherit;
 }
 
+.rpm-dialog-body .margin-top-20 {
+  margin-top: 20px;
+}
+
 .rpm-dialog .cdx-dialog__body {
   flex-grow: 1;
   margin-top: 0;
@@ -190,7 +197,7 @@ module.exports = defineComponent( {
   margin-top: 10px;
 }
 
-.rpm-dialog .header {
+.rpm-dialog .adiutor-dialog-header {
   background-color: #eaf3ff;
   display: block;
   align-items: baseline;
@@ -203,7 +210,7 @@ module.exports = defineComponent( {
   background-size: 200px;
 }
 
-.rpm-dialog .header p {
+.rpm-dialog .adiutor-dialog-header p {
   width: 60%;
 }
 
