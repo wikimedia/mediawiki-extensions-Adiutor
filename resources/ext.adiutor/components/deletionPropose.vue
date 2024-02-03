@@ -10,7 +10,7 @@
     <div class="adiutor-dialog-header">
       <p>{{ $i18n( 'adiutor-prd-header-description' ) }}</p>
     </div>
-    <div class="prd-dialog-body" >
+    <div class="prd-dialog-body">
       <cdx-field :is-fieldset="true">
         <template #label>
           <strong>{{ $i18n( 'adiutor-prd-deletion-type' ) }}</strong>
