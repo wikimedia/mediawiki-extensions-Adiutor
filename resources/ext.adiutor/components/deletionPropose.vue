@@ -10,22 +10,24 @@
     <div class="adiutor-dialog-header">
       <p>{{ $i18n( 'adiutor-prd-header-description' ) }}</p>
     </div>
-    <cdx-field class="prd-dialog-body" :is-fieldset="true">
-      <template #label>
-        <strong>{{ $i18n( 'adiutor-prd-deletion-type' ) }}</strong>
-      </template>
-      <cdx-radio
-          v-for="radio in radios"
-          :key="'radio-' + radio.value"
-          v-model="radioValue"
-          :input-value="radio.value"
-          name="radio-group-descriptions">
-        {{ radio.label }}
-        <template #description>
-          <span v-html="radio.description"></span>
+    <div class="prd-dialog-body" >
+      <cdx-field :is-fieldset="true">
+        <template #label>
+          <strong>{{ $i18n( 'adiutor-prd-deletion-type' ) }}</strong>
         </template>
-      </cdx-radio>
-    </cdx-field>
+        <cdx-radio
+            v-for="radio in radios"
+            :key="'radio-' + radio.value"
+            v-model="radioValue"
+            :input-value="radio.value"
+            name="radio-group-descriptions">
+          {{ radio.label }}
+          <template #description>
+            <span v-html="radio.description"></span>
+          </template>
+        </cdx-radio>
+      </cdx-field>
+    </div>
     <cdx-field class="prd-dialog-body">
       <template #label>
         <strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
