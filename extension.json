@@ -110,6 +110,25 @@
 	"ResourceModules": {
 		"ext.adiutor": {
 			"class": "MediaWiki\\ResourceLoader\\CodexModule",
+			"codexComponents": [
+				"CdxDialog",
+				"CdxIcon",
+				"CdxCheckbox",
+				"CdxField",
+				"CdxChipInput",
+				"CdxSelect",
+				"CdxLabel",
+				"CdxRadio",
+				"CdxTab",
+				"CdxTextArea",
+				"CdxTextInput",
+				"CdxLookup",
+				"CdxTabs",
+				"CdxCard",
+				"CdxMessage",
+				"CdxToggleSwitch",
+				"CdxButton"
+			],
 			"dependencies": [
 				"mediawiki.util",
 				"mediawiki.user",
@@ -145,25 +164,6 @@
 						"cdxIconTag"
 					]
 				}
-			],
-			"codexComponents": [
-				"CdxDialog",
-				"CdxIcon",
-				"CdxCheckbox",
-				"CdxField",
-				"CdxChipInput",
-				"CdxSelect",
-				"CdxLabel",
-				"CdxRadio",
-				"CdxTab",
-				"CdxTextArea",
-				"CdxTextInput",
-				"CdxLookup",
-				"CdxTabs",
-				"CdxCard",
-				"CdxMessage",
-				"CdxToggleSwitch",
-				"CdxButton"
 			],
 			"messages": [
 				"adiutor-title",
