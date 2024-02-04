@@ -1,6 +1,6 @@
 {
 	"name": "Adiutor",
-	"author": "Vikipolimer",
+	"author": "Doğu Abaris",
 	"url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
 	"descriptionmsg": "adiutor-desc",
 	"version": "0.0.1",
@@ -12,7 +12,7 @@
 		]
 	},
 	"requires": {
-		"MediaWiki": ">=1.41"
+		"MediaWiki": ">=1.42"
 	},
 	"ExtensionMessagesFiles": {
 		"AdiutorAlias": "Adiutor.i18n.alias.php"
