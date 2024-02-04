@@ -18,7 +18,7 @@
       {{ $i18n( "adiutor-report-revision-configuration-description" ) }}
     </p>
   </cdx-field>
-  <cdx-message dismiss-button-label="{{ $i18n('adiutor-close') }}" type="warning">
+  <cdx-message :dismiss-button-label="$i18n( 'adiutor-close' )" type="warning">
     <h3>{{ $i18n( "adiutor-parameters" ) }}</h3>
     <p>{{ $i18n( "adiutor-parameters-description" ) }}</p>
     <ul>
@@ -30,21 +30,21 @@
   </cdx-message>
   <cdx-field>
     <cdx-toggle-switch v-model="moduleEnabled" :align-switch="true">
-      {{ $i18n( 'adiutor-module-enabled' ) }}
+      {{ $i18n( "adiutor-module-enabled" ) }}
       <template #description>
-        {{ $i18n( 'adiutor-module-enabled-description' ) }}
+        {{ $i18n( "adiutor-module-enabled-description" ) }}
       </template>
     </cdx-toggle-switch>
     <cdx-toggle-switch v-model="testMode" :align-switch="true">
-      {{ $i18n( 'adiutor-test-mode' ) }}
+      {{ $i18n( "adiutor-test-mode" ) }}
       <template #description>
-        {{ $i18n( 'adiutor-test-mode-description' ) }}
+        {{ $i18n( "adiutor-test-mode-description" ) }}
       </template>
     </cdx-toggle-switch>
     <cdx-field>
       <cdx-chip-input
           v-model:input-chips="namespaces"
-          remove-button-label="{{ $i18n('adiutor-remove') }}"></cdx-chip-input>
+          :remove-button-label="$i18n( 'adiutor-remove' )"></cdx-chip-input>
       <template #label>
         {{ $i18n( "adiutor-namespaces" ) }}
       </template>
@@ -53,30 +53,28 @@
       </template>
     </cdx-field>
     <cdx-field>
-      <cdx-label input-id="policyTitle">
-        {{ $i18n( "adiutor-revision-deletion-policy-title" ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-revision-deletion-policy-title" ) }}</strong>
+      </template>
       <cdx-text-input
           id="policyLink"
-          v-model="policyTitle"
-          aria-label="{{ $i18n('adiutor-revision-deletion-policy-title') }}"></cdx-text-input>
+          v-model="policyTitle"></cdx-text-input>
       <template #help-text>
         {{ $i18n( "adiutor-revision-deletion-policy-title-help" ) }}
       </template>
     </cdx-field>
     <cdx-field>
-      <cdx-label input-id="noticeBoardTitle">
-        {{ $i18n( "adiutor-noticeboard" ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-noticeboard" ) }}</strong>
+      </template>
       <cdx-text-input
           id="noticeBoardTitle"
-          v-model="noticeBoardTitle"
-          aria-label="{{ $i18n('adiutor-noticeboard') }}"></cdx-text-input>
+          v-model="noticeBoardTitle"></cdx-text-input>
     </cdx-field>
     <cdx-field>
-      <cdx-label input-id="contentPattern">
-        {{ $i18n( "adiutor-content-pattern" ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-content-pattern" ) }}</strong>
+      </template>
       <cdx-text-area
           id="contentPattern"
           v-model="contentPattern"
@@ -85,43 +83,35 @@
         {{ $i18n( "adiutor-content-pattern-description" ) }}
       </template>
     </cdx-field>
-    <cdx-field>
-      <cdx-toggle-switch v-model="addNewSection" :align-switch="true">
-        <cdx-label input-id="addNewSection">
-          {{ $i18n( "adiutor-create-new-section" ) }}
-        </cdx-label>
-        <template #description>
-          {{ $i18n( "adiutor-new-section-description" ) }}
-        </template>
-      </cdx-toggle-switch>
-    </cdx-field>
+    <cdx-toggle-switch v-model="addNewSection" :align-switch="true">
+      {{ $i18n( "adiutor-create-new-section" ) }}
+      <template #description>
+        {{ $i18n( "adiutor-new-section-description" ) }}
+      </template>
+    </cdx-toggle-switch>
     <cdx-field v-if="addNewSection">
-      <cdx-label input-id="sectionTitle">
-        {{ $i18n( "adiutor-new-section-title" ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-new-section-title" ) }}</strong>
+      </template>
       <cdx-text-input
           id="sectionTitle"
-          v-model="sectionTitle"
-          aria-label="{{ $i18n( 'adiutor-speedy-deletion-policy' ) }}y"></cdx-text-input>
+          v-model="sectionTitle"></cdx-text-input>
     </cdx-field>
     <cdx-field v-if="!addNewSection">
-      <cdx-toggle-switch v-model="useExistSection">
-        <cdx-label input-id="useExistSection">
-          {{ $i18n( "adiutor-use-exist-section" ) }}
-        </cdx-label>
+      <cdx-toggle-switch v-model="useExistSection" :align-switch="true">
+        {{ $i18n( "adiutor-use-exist-section" ) }}
         <template #description>
           {{ $i18n( "adiutor-use-exist-section-description" ) }}
         </template>
       </cdx-toggle-switch>
     </cdx-field>
     <cdx-field v-if="useExistSection">
-      <cdx-label input-id="sectionId">
-        {{ $i18n( "adiutor-section-id" ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-section-id" ) }}</strong>
+      </template>
       <cdx-text-input
           id="sectionId"
-          v-model="sectionId"
-          aria-label="{{ $i18n('adiutor-section-id') }}"></cdx-text-input>
+          v-model="sectionId"></cdx-text-input>
       <template #help-text>
         {{ $i18n( "adiutor-section-id-description" ) }}
       </template>
@@ -148,14 +138,12 @@
   </cdx-field>
   <cdx-field>
     <cdx-field>
-      <strong>{{ $i18n( "adiutor-summaries" ) }}</strong>
-      <cdx-label input-id="apiPostSummary">
-        {{ $i18n( "adiutor-api-post-summary" ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-api-post-summary" ) }}</strong>
+      </template>
       <cdx-text-input
           id="apiPostSummary"
-          v-model="apiPostSummary"
-          aria-label="{{ $i18n('adiutor-api-post-summary') }}"></cdx-text-input>
+          v-model="apiPostSummary"></cdx-text-input>
     </cdx-field>
   </cdx-field>
   <cdx-field>
@@ -198,7 +186,6 @@
 <script>
 const { defineComponent, ref } = require( 'vue' );
 const {
-  CdxLabel,
   CdxMessage,
   CdxTextInput,
   CdxChipInput,
@@ -212,7 +199,6 @@ const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'ReportRevisionOptions',
   components: {
-    CdxLabel,
     CdxTextInput,
     CdxChipInput,
     CdxMessage,

@@ -1,12 +1,12 @@
 <template>
   <cdx-dialog
       v-model:open="openDialog"
+      :close-button-label="$i18n( 'adiutor-close' )"
       :default-action="defaultAction"
       :primary-action="primaryAction"
       :show-dividers="true"
       :title="$i18n( 'adiutor-revision-reporting-header-title' )"
       class="revision-reporting-dialog"
-      :close-button-label="$i18n( 'adiutor-close' )"
       @default="openDialog = false"
       @primary="reportRevision">
     <div class="adiutor-dialog-header">
@@ -22,8 +22,8 @@
               v-for="rationale in reportRationales"
               :key="'rationale-' + rationale.value"
               v-model="rationaleSelection"
-              name="rationale-group-descriptions"
               :input-value="rationale.value"
+              name="rationale-group-descriptions"
           >
             {{ rationale.label }}
           </cdx-radio>

@@ -1,23 +1,23 @@
 <template>
   <cdx-dialog
       v-model:open="openTagDialog"
-      :primary-action="primaryAction"
+      :close-button-label="$i18n( 'adiutor-close' )"
       :default-action="defaultAction"
+      :primary-action="primaryAction"
       :show-dividers="true"
       :title="$i18n( 'adiutor-tag-header-title' )"
       class="adiutor-article-tagging-dialog"
-      :close-button-label="$i18n( 'adiutor-close' )"
       @default="openTagDialog = false"
       @primary="tagArticle">
     <div class="adiutor-dialog-header">
       <p>{{ $i18n( "adiutor-tag-header-description" ) }}</p>
       <cdx-text-input
           v-model="searchTag"
+          :aria-label="$i18n( 'adiutor-search' )"
           :clearable="true"
           :end-icon="cdxIconInfoFilled"
           :placeholder="$i18n( 'adiutor-search-tag-placeholder' )"
           :start-icon="cdxIconSearch"
-          :aria-label="$i18n( 'adiutor-search' )"
           class="tag-search"
           input-type="search"></cdx-text-input>
     </div>
@@ -26,10 +26,8 @@
           v-for="label in filteredTagList"
           :key="'fieldset-' + label.label"
           :is-fieldset="true">
-        <template v-if="label.tags.length > 0">
-          <cdx-label class="adt-label">
-            <strong>{{ label.label }}</strong>
-          </cdx-label>
+        <template v-if="label.tags.length > 0" #label>
+          <strong>{{ label.label }}</strong>
         </template>
         <cdx-field
             v-for="tag in label.tags"
@@ -48,17 +46,17 @@
                 <cdx-text-input
                     :key="'text-input-' + subItem.name"
                     v-model="subItem.value"
+                    :aria-label="subItem.label"
                     :name="subItem.name"
                     :placeholder="subItem.label"
-                    :aria-label="subItem.label"
                     class="sub-item-text-input">
                 </cdx-text-input>
               </template>
               <template v-else-if="subItem.type === 'checkbox'">
                 <cdx-checkbox
-                :key="'checkbox-' + subItem.name"
-                v-model="subItem.value"
-                class="sub-item-checkbox">
+                    :key="'checkbox-' + subItem.name"
+                    v-model="subItem.value"
+                    class="sub-item-checkbox">
                   {{ subItem.label }}
                 </cdx-checkbox>
               </template>
@@ -78,7 +76,7 @@
 
 <script>
 const { defineComponent, ref, computed, onMounted } = require( 'vue' );
-const { CdxCheckbox, CdxField, CdxDialog, CdxLabel, CdxTextInput, CdxMessage } = require( '../../codex.js' );
+const { CdxCheckbox, CdxField, CdxDialog, CdxTextInput, CdxMessage } = require( '../../codex.js' );
 const { cdxIconSearch, cdxIconInfoFilled } = require( '../icons.json' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
@@ -87,7 +85,6 @@ module.exports = defineComponent( {
     CdxDialog,
     CdxCheckbox,
     CdxField,
-    CdxLabel,
     CdxTextInput,
     CdxMessage
   },

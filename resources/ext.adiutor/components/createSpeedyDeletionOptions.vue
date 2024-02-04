@@ -11,100 +11,97 @@
       {{ saveButtonLabel }}
     </cdx-button>
     <h3 style="display: initial;">
-      {{ $i18n( 'adiutor-create-speedy-deletion-configuration-title' ) }}
+      {{ $i18n( "adiutor-create-speedy-deletion-configuration-title" ) }}
     </h3>
     <p style="margin-top: 22px;">
-      {{ $i18n( 'adiutor-create-speedy-deletion-configuration-description' ) }}
+      {{ $i18n( "adiutor-create-speedy-deletion-configuration-description" ) }}
     </p>
   </cdx-field>
-  <cdx-message dismiss-button-label="{{ $i18n('adiutor-close') }}" type="warning">
-    <h3>{{ $i18n( 'adiutor-parameters' ) }}</h3>
-    <p>{{ $i18n( 'adiutor-parameters-description' ) }}</p>
+  <cdx-message :dismiss-button-label="$i18n( 'adiutor-close' )" type="warning">
+    <h3>{{ $i18n( "adiutor-parameters" ) }}</h3>
+    <p>{{ $i18n( "adiutor-parameters-description" ) }}</p>
     <ul>
-      <li><strong>$1</strong>: {{ $i18n( 'adiutor-parameters-page-name' ) }}</li>
-      <li><strong>$2</strong>: {{ $i18n( 'adiutor-parameters-reason-data' ) }}</li>
-      <li><strong>$3</strong>: {{ $i18n( 'adiutor-parameters-reason-value' ) }}</li>
+      <li><strong>$1</strong>: {{ $i18n( "adiutor-parameters-page-name" ) }}</li>
+      <li><strong>$2</strong>: {{ $i18n( "adiutor-parameters-reason-data" ) }}</li>
+      <li><strong>$3</strong>: {{ $i18n( "adiutor-parameters-reason-value" ) }}</li>
     </ul>
   </cdx-message>
   <cdx-field>
     <cdx-toggle-switch v-model="moduleEnabled" :align-switch="true">
-      {{ $i18n( 'adiutor-module-enabled' ) }}
+      {{ $i18n( "adiutor-module-enabled" ) }}
       <template #description>
-        {{ $i18n( 'adiutor-module-enabled-description' ) }}
+        {{ $i18n( "adiutor-module-enabled-description" ) }}
       </template>
     </cdx-toggle-switch>
     <cdx-toggle-switch v-model="testMode" :align-switch="true">
-      {{ $i18n( 'adiutor-test-mode' ) }}
+      {{ $i18n( "adiutor-test-mode" ) }}
       <template #description>
-        {{ $i18n( 'adiutor-test-mode-description' ) }}
+        {{ $i18n( "adiutor-test-mode-description" ) }}
       </template>
     </cdx-toggle-switch>
     <cdx-field>
-      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="{{ $i18n('adiutor-remove') }}"></cdx-chip-input>
+      <cdx-chip-input
+          v-model:input-chips="namespaces"
+          :remove-button-label="$i18n( 'adiutor-remove' )"></cdx-chip-input>
       <template #label>
-        {{ $i18n( 'adiutor-namespaces' ) }}
+        {{ $i18n( "adiutor-namespaces" ) }}
       </template>
       <template #description>
-        {{ $i18n( 'adiutor-namespaces-description' ) }}
+        {{ $i18n( "adiutor-namespaces-description" ) }}
       </template>
     </cdx-field>
     <cdx-field>
-    <cdx-label input-id="speedyDeletionPolicyLink">
-      {{ $i18n( 'adiutor-speedy-deletion-policy-link' ) }}
-    </cdx-label>
-    <cdx-text-input
-        id="speedyDeletionPolicyLink"
-        v-model="speedyDeletionPolicyLink"
-        aria-label="{{ $i18n('adiutor-speedy-deletion-policy-link') }}"></cdx-text-input>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-speedy-deletion-policy-link" ) }}</strong>
+      </template>
+      <cdx-text-input
+          id="speedyDeletionPolicyLink"
+          v-model="speedyDeletionPolicyLink"></cdx-text-input>
     </cdx-field>
     <cdx-field>
-    <cdx-label input-id="speedyDeletionPolicyPageShortcut">
-      {{ $i18n( 'adiutor-speedy-deletion-policy-page-shortcut' ) }}
-    </cdx-label>
-    <cdx-text-input
-        id="speedyDeletionPolicyPageShortcut"
-        v-model="speedyDeletionPolicyPageShortcut"
-        aria-label="{{ $i18n('adiutor-speedy-deletion-policy-page-shortcut') }}"></cdx-text-input>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-speedy-deletion-policy-page-shortcut" ) }}</strong>
+      </template>
+      <cdx-text-input
+          id="speedyDeletionPolicyPageShortcut"
+          v-model="speedyDeletionPolicyPageShortcut"></cdx-text-input>
     </cdx-field>
     <cdx-field>
-    <cdx-label input-id="csdNotificationTemplate">
-      {{ $i18n( 'adiutor-csd-notification-template' ) }}
-    </cdx-label>
-    <cdx-text-input
-        id="csdNotificationTemplate"
-        v-model="csdNotificationTemplate"
-        aria-label="{{ $i18n('adiutor-csd-notification-template') }}"></cdx-text-input>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-csd-notification-template" ) }}</strong>
+      </template>
+      <cdx-text-input
+          id="csdNotificationTemplate"
+          v-model="csdNotificationTemplate"></cdx-text-input>
     </cdx-field>
     <cdx-field>
       <cdx-text-input v-model="copyVioReasonValue"></cdx-text-input>
       <template #label>
-        {{ $i18n( 'adiutor-copy-vio-reason-value' ) }}
+        {{ $i18n( "adiutor-copy-vio-reason-value" ) }}
       </template>
       <template #description>
-        {{ $i18n( 'adiutor-copy-vio-reason-value-description' ) }}
+        {{ $i18n( "adiutor-copy-vio-reason-value-description" ) }}
       </template>
       <template #help-text>
-        {{ $i18n( 'adiutor-copy-vio-reason-value-help-text' ) }}
+        {{ $i18n( "adiutor-copy-vio-reason-value-help-text" ) }}
       </template>
     </cdx-field>
   </cdx-field>
   <cdx-field>
     <cdx-field>
-      <strong>{{ $i18n( 'adiutor-in-page-request-templating-configuration' ) }}</strong>
-      <cdx-label input-id="csdTemplateStartSingleReason">
-        {{ $i18n( 'adiutor-single-reason-template' ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-single-reason-template" ) }}</strong>
+      </template>
       <cdx-text-input
           id="csdTemplateStartSingleReason"
-          v-model="csdTemplateStartSingleReason"
-          aria-label="{{ $i18n('adiutor-single-reason-template') }}"></cdx-text-input>
+          v-model="csdTemplateStartSingleReason"></cdx-text-input>
       <template #help-text>
-        {{ $i18n( 'adiutor-single-reason-template-description' ) }}
+        {{ $i18n( "adiutor-single-reason-template-description" ) }}
       </template>
     </cdx-field>
     <cdx-field>
       <template #label>
-        {{ $i18n( 'adiutor-postfix-reason-usage' ) }}
+        {{ $i18n( "adiutor-postfix-reason-usage" ) }}
       </template>
       <cdx-radio
           v-for="postfix in postfixReasonUsageRadios"
@@ -115,26 +112,25 @@
         {{ postfix.label }}
         <template #description>
           {{ postfix.description }}
-          <h5>{{ $i18n( 'adiutor-output' ) }}</h5>
+          <h5>{{ $i18n( "adiutor-output" ) }}</h5>
           <pre> {{ csdTemplateStartSingleReason }}{{ postfix.output }}</pre>
         </template>
       </cdx-radio>
     </cdx-field>
     <cdx-field>
-      <cdx-label input-id="csdTemplateStartMultipleReason">
-        {{ $i18n( 'adiutor-multiple-reason-template' ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-multiple-reason-template" ) }}</strong>
+      </template>
       <cdx-text-input
           id="csdTemplateStartMultipleReason"
-          v-model="csdTemplateStartMultipleReason"
-          aria-label="{{ $i18n('adiutor-multiple-reason-template') }}"></cdx-text-input>
+          v-model="csdTemplateStartMultipleReason"></cdx-text-input>
       <template #help-text>
-        {{ $i18n( 'adiutor-multiple-reason-template-description' ) }}
+        {{ $i18n( "adiutor-multiple-reason-template-description" ) }}
       </template>
     </cdx-field>
     <cdx-field>
       <template #label>
-        {{ $i18n( 'adiutor-multiple-reason-separation' ) }}
+        {{ $i18n( "adiutor-multiple-reason-separation" ) }}
       </template>
       <cdx-radio
           v-for="separator in multipleReasonSeparationRadios"
@@ -145,66 +141,64 @@
         {{ separator.label }}
         <template #description>
           {{ separator.description }}
-          <h5>{{ $i18n( 'adiutor-output' ) }}</h5>
+          <h5>{{ $i18n( "adiutor-output" ) }}</h5>
           <pre> {{ csdTemplateStartMultipleReason }}{{ separator.output }}</pre>
         </template>
       </cdx-radio>
     </cdx-field>
   </cdx-field>
   <cdx-field>
-      <cdx-field>
-      <cdx-label input-id="singleReasonSummary">
-        {{ $i18n( 'adiutor-single-reason-summary' ) }}
-      </cdx-label>
+    <cdx-field>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-single-reason-summary" ) }}</strong>
+      </template>
       <cdx-text-input
           id="singleReasonSummary"
-          v-model="singleReasonSummary"
-          aria-label="{{ $i18n('adiutor-single-reason-summary') }}"></cdx-text-input>
-      </cdx-field>
-      <cdx-field>
-      <cdx-label input-id="multipleReasonSummary">
-        {{ $i18n( 'adiutor-multiple-reason-summary' ) }}
-      </cdx-label>
+          v-model="singleReasonSummary"></cdx-text-input>
+    </cdx-field>
+    <cdx-field>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-multiple-reason-summary" ) }}</strong>
+      </template>
       <cdx-text-input
           id="multipleReasonSummary"
-          v-model="multipleReasonSummary"
-          aria-label="{{ $i18n('adiutor-multiple-reason-summary') }}"></cdx-text-input>
-      </cdx-field>
+          v-model="multipleReasonSummary"></cdx-text-input>
     </cdx-field>
+  </cdx-field>
   <cdx-field>
     <table id="adiutor-options-props">
       <caption>
-        {{ $i18n( 'adiutor-speedy-deletion-reasons' ) }}
+        {{ $i18n( "adiutor-speedy-deletion-reasons" ) }}
         <cdx-button
             class="add-new-button"
             weight="quiet"
             @click="addNewNameSpace">
-          {{ $i18n( 'adiutor-add-new' ) }}
+          {{ $i18n( "adiutor-add-new" ) }}
         </cdx-button>
       </caption>
       <tr>
-        <th>{{ $i18n( 'adiutor-name-space' ) }}</th>
-        <th>{{ $i18n( 'adiutor-name' ) }}</th>
-        <th>{{ $i18n( 'adiutor-action' ) }}</th>
+        <th>{{ $i18n( "adiutor-name-space" ) }}</th>
+        <th>{{ $i18n( "adiutor-name" ) }}</th>
+        <th>{{ $i18n( "adiutor-action" ) }}</th>
       </tr>
       <tr v-for="( reasonNamespace, index ) in speedyDeletionReasons" :key="index">
         <td>
           <cdx-text-input
               v-model="reasonNamespace.namespace"
-              :disabled="isNamespaceDisabled( reasonNamespace )"
-              aria-label="{{ $i18n('adiutor-name-space') }}"></cdx-text-input>
+              :aria-label="$i18n( 'adiutor-name-space' )"
+              :disabled="isNamespaceDisabled( reasonNamespace )"></cdx-text-input>
         </td>
         <td>
           <cdx-text-input
               v-model="reasonNamespace.name"
-              aria-label="{{ $i18n('adiutor-name') }}"></cdx-text-input>
+              :aria-label="$i18n( 'adiutor-name' )"></cdx-text-input>
         </td>
         <td>
           <cdx-button
               :disabled="isNamespaceDisabled( reasonNamespace )"
               action="destructive"
               @click="deleteNameSpace( reasonNamespace )">
-            {{ $i18n( 'adiutor-delete' ) }}
+            {{ $i18n( "adiutor-delete" ) }}
           </cdx-button>
         </td>
       </tr>
@@ -215,40 +209,40 @@
       :key="'nestedTable-' + namespaceIndex">
     <table id="adiutor-options-props">
       <caption>
-        {{ $i18n( 'adiutor-deletion-reasons-for' ) }} {{ reasonNamespace.name }}
+        {{ $i18n( "adiutor-deletion-reasons-for" ) }} {{ reasonNamespace.name }}
         <cdx-button
             class="add-new-button"
             weight="quiet"
             @click="addNewReason( namespaceIndex )">
-          {{ $i18n( 'adiutor-add-new' ) }}
+          {{ $i18n( "adiutor-add-new" ) }}
         </cdx-button>
       </caption>
       <tr>
-        <th>{{ $i18n( 'adiutor-value' ) }}</th>
-        <th>{{ $i18n( 'adiutor-data' ) }}</th>
-        <th>{{ $i18n( 'adiutor-label' ) }}</th>
-        <th>{{ $i18n( 'adiutor-help' ) }}</th>
-        <th>{{ $i18n( 'adiutor-action' ) }}</th>
+        <th>{{ $i18n( "adiutor-value" ) }}</th>
+        <th>{{ $i18n( "adiutor-data" ) }}</th>
+        <th>{{ $i18n( "adiutor-label" ) }}</th>
+        <th>{{ $i18n( "adiutor-help" ) }}</th>
+        <th>{{ $i18n( "adiutor-action" ) }}</th>
       </tr>
       <tr v-for="( reason, reasonIndex ) in reasonNamespace.reasons" :key="'reason-' + reasonIndex">
         <td>
           <cdx-text-input
               v-model="reason.value"
-              aria-label="{{ $i18n('adiutor-value') }}"
+              :aria-label="$i18n( 'adiutor-value' )"
               style="min-width: 50px;"></cdx-text-input>
         </td>
         <td>
-          <cdx-text-input v-model="reason.data" aria-label="{{ $i18n('adiutor-data') }}"></cdx-text-input>
+          <cdx-text-input v-model="reason.data" :aria-label="$i18n( 'adiutor-data' )"></cdx-text-input>
         </td>
         <td>
-          <cdx-text-input v-model="reason.label" aria-label="{{ $i18n('adiutor-label') }}"></cdx-text-input>
+          <cdx-text-input v-model="reason.label" :aria-label="$i18n( 'adiutor-label' )"></cdx-text-input>
         </td>
         <td>
-          <cdx-text-input v-model="reason.help" aria-label="{{ $i18n('adiutor-help') }}"></cdx-text-input>
+          <cdx-text-input v-model="reason.help" :aria-label="$i18n( 'adiutor-help' )"></cdx-text-input>
         </td>
         <td>
           <cdx-button action="destructive" @click="deleteReason( namespaceIndex, reasonIndex )">
-            {{ $i18n( 'adiutor-delete' ) }}
+            {{ $i18n( "adiutor-delete" ) }}
           </cdx-button>
         </td>
       </tr>
@@ -258,12 +252,19 @@
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxField, CdxRadio, CdxButton } = require( '../../codex.js' );
+const {
+  CdxMessage,
+  CdxTextInput,
+  CdxChipInput,
+  CdxToggleSwitch,
+  CdxField,
+  CdxRadio,
+  CdxButton
+} = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'CreateSpeedyDeletionOptions',
   components: {
-    CdxLabel,
     CdxChipInput,
     CdxTextInput,
     CdxMessage,

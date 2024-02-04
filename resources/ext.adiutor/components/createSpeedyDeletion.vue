@@ -1,12 +1,12 @@
 <template>
   <cdx-dialog
       v-model:open="openCsdDialog"
+      :close-button-label="$i18n( 'adiutor-close' )"
       :default-action="defaultAction"
       :primary-action="primaryAction"
       :show-dividers="true"
       :title="$i18n( 'adiutor-csd-header-title' )"
       class="csd-dialog"
-      :close-button-label="$i18n( 'adiutor-close' )"
       @default="openCsdDialog = false"
       @primary="createSpeedyDeletionRequest">
     <div class="adiutor-dialog-header">
@@ -14,21 +14,20 @@
     </div>
     <cdx-message
         v-if="deletionLogs.length"
+        :dismiss-button-label="$i18n( 'adiutor-close' )"
         class="csd-deletion-log-message"
-        dismiss-button-label="{{ $i18n('adiutor-close') }}"
         inline
         type="warning">
       {{ $i18n( "adiutor-this-page-deleted-before", deletionLogs.length ) }}
       <small>(<a
-          :href="'/wiki/Special:Log?type=delete&user=&page=' + encodeURIComponent( pageName )">{{
-          $i18n( "adiutor-deletion-log" )
-        }}</a>)</small>
+          :href="'/wiki/Special:Log?type=delete&user=&page=' + encodeURIComponent( pageName )">
+        {{ $i18n( "adiutor-deletion-log" ) }}</a>)</small>
     </cdx-message>
     <div class="csd-reasons-body">
       <div class="csd-reason-field">
         <cdx-field v-for="namespaceReason in namespaceDeletionReasons" :is-fieldset="true">
           <template #label>
-              {{ namespaceReason.name }}
+            {{ namespaceReason.name }}
           </template>
           <cdx-checkbox
               v-for="reason in namespaceReason.reasons"
@@ -52,7 +51,7 @@
       <div class="csd-reason-field">
         <cdx-field v-for="generalReason in generalDeletionReasons" :is-fieldset="true">
           <template #label>
-              {{ generalReason.name }}
+            {{ generalReason.name }}
           </template>
           <cdx-checkbox
               v-for="reasonItem in generalReason.reasons"

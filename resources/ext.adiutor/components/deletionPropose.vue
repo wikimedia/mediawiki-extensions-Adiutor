@@ -2,18 +2,18 @@
 <template>
   <cdx-dialog
       v-model:open="openPrdDialog"
+      :close-button-label="$i18n( 'adiutor-close' )"
       :show-dividers="true"
       :title="$i18n( 'adiutor-prd-header-title' )"
       class="prd-dialog"
-      :close-button-label="$i18n( 'adiutor-close' )"
       @default="openPrdDialog = true">
     <div class="adiutor-dialog-header">
-      <p>{{ $i18n( 'adiutor-prd-header-description' ) }}</p>
+      <p>{{ $i18n( "adiutor-prd-header-description" ) }}</p>
     </div>
     <div class="prd-dialog-body">
       <cdx-field :is-fieldset="true">
         <template #label>
-          <strong>{{ $i18n( 'adiutor-prd-deletion-type' ) }}</strong>
+          <strong>{{ $i18n( "adiutor-prd-deletion-type" ) }}</strong>
         </template>
         <cdx-radio
             v-for="radio in radios"
@@ -30,7 +30,7 @@
     </div>
     <cdx-field class="prd-dialog-body">
       <template #label>
-        <strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
+        <strong>{{ $i18n( "adiutor-rationale" ) }}</strong>
       </template>
       <cdx-text-area
           v-model="textareaValue"
@@ -38,13 +38,13 @@
     </cdx-field>
     <div class="adiutor-dialog-footer">
       <cdx-checkbox v-model="informCreator" :inline="true">
-        {{ $i18n( 'adiutor-inform-creator' ) }}
+        {{ $i18n( "adiutor-inform-creator" ) }}
       </cdx-checkbox>
       <cdx-button
           action="progressive"
           weight="primary"
           @click="proposeForDeletion">
-        {{ $i18n( 'adiutor-propose' ) }}
+        {{ $i18n( "adiutor-propose" ) }}
       </cdx-button>
     </div>
   </cdx-dialog>

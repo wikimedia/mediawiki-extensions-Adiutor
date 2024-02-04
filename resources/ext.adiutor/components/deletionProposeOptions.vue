@@ -11,148 +11,145 @@
       {{ saveButtonLabel }}
     </cdx-button>
     <h3 style="display: initial;">
-      {{ $i18n( 'adiutor-proposed-deletion-configuration' ) }}
+      {{ $i18n( "adiutor-proposed-deletion-configuration" ) }}
     </h3>
     <p style="margin-top: 22px;">
-      {{ $i18n( 'adiutor-proposed-deletion-description' ) }}
+      {{ $i18n( "adiutor-proposed-deletion-description" ) }}
     </p>
   </cdx-field>
-  <cdx-message dismiss-button-label="{{ $i18n('adiutor-close') }}" type="warning">
-    <h3>{{ $i18n( 'adiutor-parameters' ) }}</h3>
-    <p>{{ $i18n( 'adiutor-parameters-description' ) }}</p>
+  <cdx-message :dismiss-button-label="$i18n( 'adiutor-close' )" type="warning">
+    <h3>{{ $i18n( "adiutor-parameters" ) }}</h3>
+    <p>{{ $i18n( "adiutor-parameters-description" ) }}</p>
     <ul>
-      <li><strong>$1</strong>: {{ $i18n( 'adiutor-parameters-page-name' ) }}</li>
-      <li><strong>$2</strong>: {{ $i18n( 'adiutor-parameters-rationale' ) }}</li>
-      <li><strong>$3</strong>: {{ $i18n( 'adiutor-parameters-day' ) }}</li>
-      <li><strong>$4</strong>: {{ $i18n( 'adiutor-parameters-month' ) }}</li>
-      <li><strong>$5</strong>: {{ $i18n( 'adiutor-parameters-year' ) }}</li>
-      <li><strong>$6</strong>: {{ $i18n( 'adiutor-parameters-requester' ) }}</li>
+      <li><strong>$1</strong>: {{ $i18n( "adiutor-parameters-page-name" ) }}</li>
+      <li><strong>$2</strong>: {{ $i18n( "adiutor-parameters-rationale" ) }}</li>
+      <li><strong>$3</strong>: {{ $i18n( "adiutor-parameters-day" ) }}</li>
+      <li><strong>$4</strong>: {{ $i18n( "adiutor-parameters-month" ) }}</li>
+      <li><strong>$5</strong>: {{ $i18n( "adiutor-parameters-year" ) }}</li>
+      <li><strong>$6</strong>: {{ $i18n( "adiutor-parameters-requester" ) }}</li>
     </ul>
   </cdx-message>
   <cdx-field>
     <cdx-toggle-switch v-model="moduleEnabled" :align-switch="true">
-      {{ $i18n( 'adiutor-module-enabled' ) }}
+      {{ $i18n( "adiutor-module-enabled" ) }}
       <template #description>
-        {{ $i18n( 'adiutor-module-enabled-description' ) }}
+        {{ $i18n( "adiutor-module-enabled-description" ) }}
       </template>
     </cdx-toggle-switch>
     <cdx-toggle-switch v-model="testMode" :align-switch="true">
-      {{ $i18n( 'adiutor-test-mode' ) }}
+      {{ $i18n( "adiutor-test-mode" ) }}
       <template #description>
-        {{ $i18n( 'adiutor-test-mode-description' ) }}
+        {{ $i18n( "adiutor-test-mode-description" ) }}
       </template>
     </cdx-toggle-switch>
-    <cdx-field :is-fieldset="true">
-      <cdx-chip-input v-model:input-chips="namespaces" remove-button-label="{{ $i18n('adiutor-remove') }}"></cdx-chip-input>
+    <cdx-field>
+      <cdx-chip-input
+          v-model:input-chips="namespaces"
+          :remove-button-label="$i18n( 'adiutor-remove' )"></cdx-chip-input>
       <template #label>
-        {{ $i18n( 'adiutor-namespaces' ) }}
+        {{ $i18n( "adiutor-namespaces" ) }}
       </template>
       <template #description>
-        {{ $i18n( 'adiutor-namespaces-description' ) }}
+        {{ $i18n( "adiutor-namespaces-description" ) }}
       </template>
     </cdx-field>
     <cdx-field>
-      <cdx-label input-id="proposedDeletionPolicy">
-        {{ $i18n( 'adiutor-proposed-deletion-policy' ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-proposed-deletion-policy" ) }}</strong>
+      </template>
       <cdx-text-input
           id="proposedDeletionPolicy"
-          v-model="proposedDeletionPolicy"
-          aria-label="{{ $i18n('adiutor-proposed-deletion-policy') }}"></cdx-text-input>
+          v-model="proposedDeletionPolicy"></cdx-text-input>
     </cdx-field>
     <cdx-field>
-      <cdx-label input-id="proposedDeletionPolicyShortcut">
-        {{ $i18n( 'adiutor-proposed-deletion-policy-shortcut' ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-proposed-deletion-policy-shortcut" ) }}</strong>
+      </template>
       <cdx-text-input
           id="proposedDeletionPolicyShortcut"
-          v-model="proposedDeletionPolicyShortcut"
-          aria-label="{{ $i18n('adiutor-proposed-deletion-policy-shortcut') }}"></cdx-text-input>
+          v-model="proposedDeletionPolicyShortcut"></cdx-text-input>
     </cdx-field>
     <cdx-field>
-      <cdx-label input-id="proposedDeletionOfBiographiesOfLivingPeoplePolicy">
-        {{ $i18n( 'adiutor-proposed-deletion-blpprod-policy' ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-proposed-deletion-blpprod-policy" ) }}</strong>
+      </template>
       <cdx-text-input
           id="proposedDeletionOfBiographiesOfLivingPeoplePolicy"
-          v-model="proposedDeletionOfBiographiesOfLivingPeoplePolicy"
-          aria-label="{{ $i18n('adiutor-proposed-deletion-blpprod-policy') }}"></cdx-text-input>
+          v-model="proposedDeletionOfBiographiesOfLivingPeoplePolicy"></cdx-text-input>
     </cdx-field>
     <cdx-field>
-      <cdx-label input-id="proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut">
-        {{ $i18n( 'adiutor-proposed-deletion-blpprod-policy-shortcut' ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-proposed-deletion-blpprod-policy-shortcut" ) }}</strong>
+      </template>
       <cdx-text-input
           id="proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut"
-          v-model="proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut"
-          aria-label="{{ $i18n('adiutor-proposed-deletion-blpprod-policy-shortcut') }}"></cdx-text-input>
+          v-model="proposedDeletionOfBiographiesOfLivingPeoplePolicyShortcut"></cdx-text-input>
     </cdx-field>
   </cdx-field>
   <cdx-field>
     <cdx-field>
-      <strong>{{ $i18n( 'adiutor-in-page-request-templating-configuration' ) }}</strong>
-      <cdx-label input-id="standardProposeTemplate">
-        {{ $i18n( 'adiutor-proposed-deletion-template' ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-proposed-deletion-template" ) }}</strong>
+      </template>
       <cdx-text-input
           id="standardProposeTemplate"
-          v-model="standardProposeTemplate"
-          aria-label="{{ $i18n('adiutor-proposed-deletion-template') }}"></cdx-text-input>
+          v-model="standardProposeTemplate"></cdx-text-input>
       <template #help-text>
-        {{ $i18n( 'adiutor-proposed-deletion-template-description' ) }}
+        {{ $i18n( "adiutor-proposed-deletion-template-description" ) }}
       </template>
     </cdx-field>
     <cdx-field>
-      <cdx-label input-id="livingPersonProposeTemplate">
-        {{ $i18n( 'adiutor-proposed-deletion-blps-template' ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-proposed-deletion-blps-template" ) }}</strong>
+      </template>
       <cdx-text-input
           id="livingPersonProposeTemplate"
-          v-model="livingPersonProposeTemplate"
-          aria-label="{{ $i18n('adiutor-proposed-deletion-blps-template') }}"></cdx-text-input>
+          v-model="livingPersonProposeTemplate"></cdx-text-input>
       <template #help-text>
-        {{ $i18n( 'adiutor-proposed-deletion-blps-template-description' ) }}
+        {{ $i18n( "adiutor-proposed-deletion-blps-template-description" ) }}
       </template>
     </cdx-field>
   </cdx-field>
   <cdx-field>
-    <cdx-label input-id="prodNotificationTemplate">
-      {{ $i18n( 'adiutor-prod-notification-template' ) }}
-    </cdx-label>
+    <template #label>
+      <strong>{{ $i18n( "adiutor-prod-notification-template" ) }}</strong>
+    </template>
     <cdx-text-input
         id="prodNotificationTemplate"
-        v-model="prodNotificationTemplate"
-        aria-label="{{ $i18n('adiutor-prod-notification-template') }}"></cdx-text-input>
+        v-model="prodNotificationTemplate"></cdx-text-input>
   </cdx-field>
   <cdx-field>
+    <template #label>
+      <strong>{{ $i18n( "adiutor-api-post-summary" ) }}</strong>
+    </template>
+    <cdx-text-input
+        id="apiPostSummary"
+        v-model="apiPostSummary"></cdx-text-input>
     <cdx-field>
-      <strong>{{ $i18n( 'adiutor-summaries' ) }}</strong>
-      <cdx-label input-id="apiPostSummary">
-        {{ $i18n( 'adiutor-api-post-summary' ) }}
-      </cdx-label>
-      <cdx-text-input
-          id="apiPostSummary"
-          v-model="apiPostSummary"
-          aria-label="{{ $i18n('adiutor-api-post-summary-for-talk-page') }}"></cdx-text-input>
-      <cdx-label input-id="apiPostSummaryForCreator">
-        {{ $i18n( 'adiutor-api-post-summary-for-creator' ) }}
-      </cdx-label>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-api-post-summary-for-creator" ) }}</strong>
+      </template>
       <cdx-text-input
           id="apiPostSummaryForCreator"
-          v-model="apiPostSummaryForCreator"
-          aria-label="{{ $i18n('adiutor-api-post-summary-for-creator') }}"></cdx-text-input>
+          v-model="apiPostSummaryForCreator"></cdx-text-input>
     </cdx-field>
   </cdx-field>
 </template>
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxLabel, CdxMessage, CdxTextInput, CdxChipInput, CdxToggleSwitch, CdxField, CdxButton } = require( '../../codex.js' );
+const {
+  CdxMessage,
+  CdxTextInput,
+  CdxChipInput,
+  CdxToggleSwitch,
+  CdxField,
+  CdxButton
+} = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'DeletionProposeOptions',
   components: {
-    CdxLabel,
     CdxTextInput,
     CdxChipInput,
     CdxToggleSwitch,

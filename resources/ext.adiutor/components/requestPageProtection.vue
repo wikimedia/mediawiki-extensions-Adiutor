@@ -1,21 +1,21 @@
 <template>
   <cdx-dialog
       v-model:open="openRppDialog"
+      :close-button-label="$i18n( 'adiutor-close' )"
       :default-action="defaultAction"
       :primary-action="primaryAction"
       :show-dividers="true"
       :title="$i18n( 'adiutor-rpp-header-title' )"
       class="rpp-dialog"
-      :close-button-label="$i18n( 'adiutor-close' )"
       @default="openRppDialog = false"
       @primary="requestPageProtection">
     <div class="adiutor-dialog-header">
-      <p>{{ $i18n( 'adiutor-rpp-header-description' ) }}</p>
+      <p>{{ $i18n( "adiutor-rpp-header-description" ) }}</p>
     </div>
     <div class="rpp-dialog-body">
       <cdx-field class="flex-box" is-fieldset="true">
         <template #label>
-          <strong>{{ $i18n( 'adiutor-protection-type' ) }}</strong>
+          <strong>{{ $i18n( "adiutor-protection-type" ) }}</strong>
         </template>
         <cdx-select
             v-model:selected="durationSelection"
@@ -27,17 +27,17 @@
             default-label="Select protection type"></cdx-select>
       </cdx-field>
       <cdx-field>
-      <template #label>
-        <strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
-      </template>
-      <cdx-text-area
-          v-model="rationaleInput"
-          :placeholder="$i18n( 'adiutor-rpp-rationale-placeholder' )"></cdx-text-area>
+        <template #label>
+          <strong>{{ $i18n( "adiutor-rationale" ) }}</strong>
+        </template>
+        <cdx-text-area
+            v-model="rationaleInput"
+            :placeholder="$i18n( 'adiutor-rpp-rationale-placeholder' )"></cdx-text-area>
       </cdx-field>
     </div>
     <template #footer-text>
-	<!-- eslint-disable vue/no-v-html -->
-	<span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
+      <!-- eslint-disable vue/no-v-html -->
+      <span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
     </template>
   </cdx-dialog>
 </template>

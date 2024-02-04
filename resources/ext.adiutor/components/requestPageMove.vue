@@ -1,21 +1,21 @@
 <template>
   <cdx-dialog
       v-model:open="openRpmDialog"
-      :primary-action="primaryAction"
+      :close-button-label="$i18n( 'adiutor-close' )"
       :default-action="defaultAction"
+      :primary-action="primaryAction"
       :show-dividers="true"
       :title="$i18n( 'adiutor-pmr-header-title' )"
       class="rpm-dialog"
-      :close-button-label="$i18n( 'adiutor-close' )"
       @default="openRpmDialog = false"
       @primary="requestPageMove">
     <div class="adiutor-dialog-header">
-      <p>{{ $i18n( 'adiutor-pmr-header-description' ) }}</p>
+      <p>{{ $i18n( "adiutor-pmr-header-description" ) }}</p>
     </div>
     <div class="rpm-dialog-body">
       <cdx-field>
         <template #label>
-          <strong>{{ $i18n( 'adiutor-new-name' ) }}</strong>
+          <strong>{{ $i18n( "adiutor-new-name" ) }}</strong>
         </template>
         <cdx-text-input
             v-model="newPageName"
@@ -24,7 +24,7 @@
       </cdx-field>
       <cdx-field class="margin-top-20">
         <template #label>
-          <strong>{{ $i18n( 'adiutor-rationale' ) }}</strong>
+          <strong>{{ $i18n( "adiutor-rationale" ) }}</strong>
         </template>
         <cdx-text-area
             v-model="rationaleInput"
