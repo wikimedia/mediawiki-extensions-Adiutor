@@ -225,12 +225,10 @@ module.exports = defineComponent( {
   align-items: baseline;
   justify-content: space-between;
   height: 10em;
-  background-image: url(../../ext.adiutor.images/csd-background.png);
-  background-position: 95% 0;
+  background-image: url(../../ext.adiutor.images/csd-icon-ltr.svg);
+  background-position: 100% -4px;
   background-repeat: no-repeat;
-  background-size: 148px;
-  border-bottom: 1px solid #dedede;
-  margin-bottom: 20px;
+  background-size: 140px;
 }
 
 .csd-reasons-body {

@@ -347,12 +347,10 @@ module.exports = defineComponent( {
   align-items: baseline;
   justify-content: space-between;
   height: 10em;
-  background-image: url(../../ext.adiutor.images/tag-background.png);
-  background-position: 100% 0;
+  background-image: url(../../ext.adiutor.images/tag-icon-ltr.svg);
+  background-position: 100% 10px;
   background-repeat: no-repeat;
   background-size: 170px;
-  border-bottom: 1px solid #dedede;
-  margin-bottom: 20px;
 }
 
 .adiutor-article-tagging-dialog .adiutor-dialog-header p {

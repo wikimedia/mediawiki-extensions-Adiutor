@@ -174,12 +174,10 @@ module.exports = defineComponent( {
   align-items: baseline;
   justify-content: space-between;
   height: 10em;
-  background-image: url(../../ext.adiutor.images/rpp-background.png);
-  background-position: 100% 0;
+  background-image: url(../../ext.adiutor.images/protection-icon-ltr.svg);
+  background-position: 100% -4px;
   background-repeat: no-repeat;
-  background-size: 165px;
-  border-bottom: 1px solid #dedede;
-  margin-bottom: 20px;
+  background-size: 140px;
 }
 
 .rpp-dialog .adiutor-dialog-header p {
