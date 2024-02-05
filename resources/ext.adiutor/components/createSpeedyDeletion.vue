@@ -11,18 +11,19 @@
       @primary="createSpeedyDeletionRequest">
     <div class="adiutor-dialog-header">
       <p>{{ $i18n( "adiutor-csd-header-description" ) }}</p>
+      <cdx-message
+          v-if="deletionLogs.length"
+          :dismiss-button-label="$i18n( 'adiutor-close' )"
+          class="csd-deletion-log-message"
+          inline
+          type="warning"
+          style="margin: 10px 0 0 0;">
+        {{ $i18n( "adiutor-this-page-deleted-before", deletionLogs.length ) }}
+        <small>(<a
+            :href="'/wiki/Special:Log?type=delete&user=&page=' + encodeURIComponent( pageName )">
+          {{ $i18n( "adiutor-deletion-log" ) }}</a>)</small>
+      </cdx-message>
     </div>
-    <cdx-message
-        v-if="deletionLogs.length"
-        :dismiss-button-label="$i18n( 'adiutor-close' )"
-        class="csd-deletion-log-message"
-        inline
-        type="warning">
-      {{ $i18n( "adiutor-this-page-deleted-before", deletionLogs.length ) }}
-      <small>(<a
-          :href="'/wiki/Special:Log?type=delete&user=&page=' + encodeURIComponent( pageName )">
-        {{ $i18n( "adiutor-deletion-log" ) }}</a>)</small>
-    </cdx-message>
     <div class="csd-reasons-body">
       <div class="csd-reason-field">
         <cdx-field v-for="namespaceReason in namespaceDeletionReasons" :is-fieldset="true">
