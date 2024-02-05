@@ -12,25 +12,23 @@
     <div class="adiutor-dialog-header">
       <p>{{ $i18n( "adiutor-pmr-header-description" ) }}</p>
     </div>
-    <div class="rpm-dialog-body">
-      <cdx-field>
-        <template #label>
-          <strong>{{ $i18n( "adiutor-new-name" ) }}</strong>
-        </template>
-        <cdx-text-input
-            v-model="newPageName"
-            :placeholder="$i18n( 'adiutor-new-name-placeholder' )"
-        ></cdx-text-input>
-      </cdx-field>
-      <cdx-field class="margin-top-20">
-        <template #label>
-          <strong>{{ $i18n( "adiutor-rationale" ) }}</strong>
-        </template>
-        <cdx-text-area
-            v-model="rationaleInput"
-            :placeholder="$i18n( 'adiutor-rpm-rationale-placeholder' )"></cdx-text-area>
-      </cdx-field>
-    </div>
+    <cdx-field>
+      <template #label>
+        <strong>{{ $i18n( "adiutor-new-name" ) }}</strong>
+      </template>
+      <cdx-text-input
+          v-model="newPageName"
+          :placeholder="$i18n( 'adiutor-new-name-placeholder' )"
+      ></cdx-text-input>
+    </cdx-field>
+    <cdx-field style="margin-top:10px">
+      <template #label>
+        <strong>{{ $i18n( "adiutor-rationale" ) }}</strong>
+      </template>
+      <cdx-text-area
+          v-model="rationaleInput"
+          :placeholder="$i18n( 'adiutor-rpm-rationale-placeholder' )"></cdx-text-area>
+    </cdx-field>
   </cdx-dialog>
 </template>
 
@@ -140,86 +138,22 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="css">
-.rpm-dialog {
-
-  max-width: 29.571429em;
-
-}
-
-.rpm-dialog .cdx-dialog {
-  max-width: 448px;
-  padding-top: 10px;
-  padding-bottom: 0;
-}
-
-.rpm-dialog .cdx-field__control {
-  display: grid;
-}
-
-.rpm-dialog-body {
-  padding: 20px;
-  display: grid;
-  width: inherit;
-}
-
-.rpm-dialog-body .margin-top-20 {
-  margin-top: 20px;
-}
-
-.rpm-dialog .cdx-dialog__body {
-  flex-grow: 1;
-  margin-top: 0;
-  overflow-y: auto;
-  padding: 0 0 20px;
-}
-
-.rpm-dialog .cdx-dialog--dividers .cdx-dialog__body {
-  padding-top: 0;
-}
-
-.rpm-dialog .rpm-reason-field {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-.rpm-dialog .cdx-dialog__header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px 20px 10px;
-  font-weight: 700;
-}
-
-.rpm-label {
-  margin-top: 10px;
-}
 
 .rpm-dialog .adiutor-dialog-header {
-  background-color: #eaf3ff;
   display: block;
   align-items: baseline;
   justify-content: space-between;
-  height: 9em;
-  padding: 20px;
+  height: 10em;
   background-image: url(../../ext.adiutor.images/rpm-background.png);
-  background-position: right -30px;
+  background-position: 100% -60px;
   background-repeat: no-repeat;
-  background-size: 200px;
+  background-size: 184px;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 20px;
 }
 
 .rpm-dialog .adiutor-dialog-header p {
   width: 60%;
 }
 
-.rpm-dialog h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 1.125em !important
-}
-
-.rpm-dialog .cdx-select-vue {
-  margin-bottom: 10px !important;
-}</style>
+</style>

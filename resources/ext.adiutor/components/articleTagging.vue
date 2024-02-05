@@ -21,56 +21,55 @@
           class="tag-search"
           input-type="search"></cdx-text-input>
     </div>
-    <div class="tag-reasons-body">
+    <cdx-field
+        v-for="label in filteredTagList"
+        :key="'fieldset-' + label.label"
+        :is-fieldset="true"
+        style="margin-bottom: 10px">
+      <template v-if="label.tags.length > 0" #label>
+        <strong>{{ label.label }}</strong>
+      </template>
       <cdx-field
-          v-for="label in filteredTagList"
-          :key="'fieldset-' + label.label"
+          v-for="tag in label.tags"
+          :key="'fieldset-' + tag.tag"
           :is-fieldset="true">
-        <template v-if="label.tags.length > 0" #label>
-          <strong>{{ label.label }}</strong>
-        </template>
-        <cdx-field
-            v-for="tag in label.tags"
-            :key="'fieldset-' + tag.tag"
-            :is-fieldset="true">
-          <cdx-checkbox
-              :key="'checkbox-' + tag.tag"
-              v-model="checkboxValue"
-              :input-value="tag.tag"
-              @change="toggleTag( tag )">
-            {{ tag.description }}
-          </cdx-checkbox>
-          <template v-if="tag.items && tag.items.length > 0 && checkboxValue.includes( tag.tag )">
-            <template v-for="subItem in tag.items">
-              <template v-if="subItem.type === 'input'">
-                <cdx-text-input
-                    :key="'text-input-' + subItem.name"
-                    v-model="subItem.value"
-                    :aria-label="subItem.label"
-                    :name="subItem.name"
-                    :placeholder="subItem.label"
-                    class="sub-item-text-input">
-                </cdx-text-input>
-              </template>
-              <template v-else-if="subItem.type === 'checkbox'">
-                <cdx-checkbox
-                    :key="'checkbox-' + subItem.name"
-                    v-model="subItem.value"
-                    class="sub-item-checkbox">
-                  {{ subItem.label }}
-                </cdx-checkbox>
-              </template>
+        <cdx-checkbox
+            :key="'checkbox-' + tag.tag"
+            v-model="checkboxValue"
+            :input-value="tag.tag"
+            @change="toggleTag( tag )">
+          {{ tag.description }}
+        </cdx-checkbox>
+        <template v-if="tag.items && tag.items.length > 0 && checkboxValue.includes( tag.tag )">
+          <template v-for="subItem in tag.items">
+            <template v-if="subItem.type === 'input'">
+              <cdx-text-input
+                  :key="'text-input-' + subItem.name"
+                  v-model="subItem.value"
+                  :aria-label="subItem.label"
+                  :name="subItem.name"
+                  :placeholder="subItem.label"
+                  class="sub-item-text-input">
+              </cdx-text-input>
+            </template>
+            <template v-else-if="subItem.type === 'checkbox'">
+              <cdx-checkbox
+                  :key="'checkbox-' + subItem.name"
+                  v-model="subItem.value"
+                  class="sub-item-checkbox">
+                {{ subItem.label }}
+              </cdx-checkbox>
             </template>
           </template>
-        </cdx-field>
+        </template>
       </cdx-field>
-      <cdx-message
-          v-if="!filteredTagList.length"
-          inline
-          type="warning">
-        <p>{{ $i18n( "adiutor-no-tag-found" ) }}</p>
-      </cdx-message>
-    </div>
+    </cdx-field>
+    <cdx-message
+        v-if="!filteredTagList.length"
+        inline
+        type="warning">
+      <p>{{ $i18n( "adiutor-no-tag-found" ) }}</p>
+    </cdx-message>
   </cdx-dialog>
 </template>
 
@@ -332,71 +331,32 @@ module.exports = defineComponent( {
 
 <style lang="css">
 .adiutor-article-tagging-dialog {
-  max-width: 720px;
+  max-width: 720px !important;
   flex-grow: 1;
   margin-top: 0;
   padding: 0;
   overflow-y: auto;
 }
 
-.adiutor-article-tagging-dialog .tag-reasons-body {
-  padding: 20px;
-}
-
 .adiutor-article-tagging-dialog .tag-search {
   width: 200px
 }
 
-.adiutor-article-tagging-dialog .cdx-dialog__body {
-  padding: 0;
-}
-
-.adiutor-article-tagging-dialog .cdx-dialog--dividers .cdx-dialog__body {
-  padding-top: 0;
-}
-
-.adiutor-article-tagging-dialog .tag-reason-field {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-.adiutor-article-tagging-dialog .cdx-dialog__header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px 20px 10px;
-  font-weight: 700;
-}
-
-.adiutor-article-tagging-dialog cdx-label {
-  margin-bottom: 10px;
-  display: block;
-}
-
 .adiutor-article-tagging-dialog .adiutor-dialog-header {
-  background-color: #eaf3ff;
   display: block;
   align-items: baseline;
   justify-content: space-between;
   height: 10em;
-  padding: 20px;
   background-image: url(../../ext.adiutor.images/tag-background.png);
-  background-position: right 25px;
+  background-position: 100% 0;
   background-repeat: no-repeat;
-  background-size: 205px;
+  background-size: 170px;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 20px;
 }
 
 .adiutor-article-tagging-dialog .adiutor-dialog-header p {
   width: 70%;
-}
-
-.adiutor-article-tagging-dialog h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 1.125em !important
 }
 
 .adiutor-article-tagging-dialog .sub-item-text-input {

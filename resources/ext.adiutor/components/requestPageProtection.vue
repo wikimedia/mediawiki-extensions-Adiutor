@@ -12,7 +12,6 @@
     <div class="adiutor-dialog-header">
       <p>{{ $i18n( "adiutor-rpp-header-description" ) }}</p>
     </div>
-    <div class="rpp-dialog-body">
       <cdx-field class="flex-box" is-fieldset="true">
         <template #label>
           <strong>{{ $i18n( "adiutor-protection-type" ) }}</strong>
@@ -34,7 +33,6 @@
             v-model="rationaleInput"
             :placeholder="$i18n( 'adiutor-rpp-rationale-placeholder' )"></cdx-text-area>
       </cdx-field>
-    </div>
     <template #footer-text>
       <!-- eslint-disable vue/no-v-html -->
       <span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
@@ -161,12 +159,6 @@ module.exports = defineComponent( {
   max-width: 32em;
 }
 
-.rpp-dialog .cdx-dialog {
-  max-width: 448px;
-  padding-top: 10px;
-  padding-bottom: 0;
-}
-
 .rpp-dialog .cdx-field__control {
   display: grid;
 }
@@ -175,17 +167,6 @@ module.exports = defineComponent( {
   padding: 20px;
   display: grid;
   width: inherit;
-}
-
-.rpp-dialog .cdx-dialog__body {
-  flex-grow: 1;
-  margin-top: 0;
-  overflow-y: auto;
-  padding: 0 0 20px;
-}
-
-.rpp-dialog .cdx-dialog--dividers .cdx-dialog__body {
-  padding-top: 0;
 }
 
 .rpp-dialog .rpp-reason-field {
@@ -211,26 +192,20 @@ module.exports = defineComponent( {
 }
 
 .rpp-dialog .adiutor-dialog-header {
-  background-color: #eaf3ff;
   display: block;
   align-items: baseline;
   justify-content: space-between;
-  height: 9em;
-  padding: 20px;
+  height: 10em;
   background-image: url(../../ext.adiutor.images/rpp-background.png);
-  background-position: right 22px;
+  background-position: 100% 0;
   background-repeat: no-repeat;
-  background-size: 200px;
+  background-size: 165px;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 20px;
 }
 
 .rpp-dialog .adiutor-dialog-header p {
   width: 60%;
-}
-
-.rpp-dialog h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 1.125em !important
 }
 
 .rpp-dialog .cdx-select-vue {

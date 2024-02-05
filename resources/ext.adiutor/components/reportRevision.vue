@@ -12,7 +12,6 @@
     <div class="adiutor-dialog-header">
       <p>{{ $i18n( "adiutor-revision-reporting-warning" ) }}</p>
     </div>
-    <cdx-field class="revision-reporting-dialog-body">
       <cdx-field class="flex-box">
         <template #label>
           {{ $i18n( "adiutor-rationale" ) }}
@@ -28,7 +27,7 @@
             {{ rationale.label }}
           </cdx-radio>
         </cdx-field>
-        <cdx-field class="margin-top-20">
+        <cdx-field style="margin-top:10px">
           <template #label>
             {{ $i18n( "adiutor-comment" ) }}
           </template>
@@ -38,7 +37,6 @@
           </cdx-text-area>
         </cdx-field>
       </cdx-field>
-    </cdx-field>
     <template #footer-text>
       <!-- eslint-disable vue/no-v-html -->
       <span v-html="getModulePolicy( $i18n( 'please-read-the-x-policy' ) )"></span>
@@ -165,86 +163,23 @@ module.exports = defineComponent( {
 
 <style lang="css">
 .revision-reporting-dialog {
-  max-width: 40em;
-}
-
-.revision-reporting-dialog .cdx-dialog {
-  max-width: 40em;
-  padding-top: 10px;
-  padding-bottom: 0;
-}
-
-.revision-reporting-dialog .cdx-field__control {
-  display: grid;
-}
-
-.revision-reporting-dialog-body {
-  padding: 20px;
-  display: grid;
-  width: inherit;
-}
-
-.revision-reporting-dialog-body .margin-top-20 {
-  margin-top: 20px;
-}
-
-.revision-reporting-dialog .cdx-dialog__body {
-  flex-grow: 1;
-  margin-top: 0;
-  overflow-y: auto;
-  padding: 0 0 20px;
-}
-
-.revision-reporting-dialog .cdx-dialog--dividers .cdx-dialog__body {
-  padding-top: 0;
-}
-
-.revision-reporting-dialog .rpp-reason-field {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-.revision-reporting-dialog .cdx-dialog__header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px 20px 10px;
-  font-weight: 700;
-}
-
-.revision-reporting-dialog cdx-label {
-  margin-bottom: 10px;
-  display: block;
-  margin-top: 10px;
+  max-width: 40em !important;
 }
 
 .revision-reporting-dialog .adiutor-dialog-header {
-  background-color: #eaf3ff;
   display: block;
   align-items: baseline;
   justify-content: space-between;
-  height: 9em;
-  padding: 20px;
+  height: 10em;
   background-image: url(../../ext.adiutor.images/revision-reporting-background.svg);
-  background-position: right 15px;
+  background-position: 100% 0;
   background-repeat: no-repeat;
-  background-size: 170px;
+  background-size: 140px;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 20px;
 }
 
 .revision-reporting-dialog .adiutor-dialog-header p {
   width: 70%;
-}
-
-.revision-reporting-dialog h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 1.125em !important
-}
-
-.revision-reporting-dialog .cdx-select-vue {
-  margin-bottom: 10px !important;
 }
 </style>

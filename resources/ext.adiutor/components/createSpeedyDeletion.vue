@@ -211,23 +211,7 @@ module.exports = defineComponent( {
 
 <style lang="css">
 .csd-dialog {
-  max-width: 45em;
-}
-
-.csd-dialog .csd-reasons-body {
-  display: flex;
-  padding: 20px;
-}
-
-.csd-dialog .cdx-dialog__body {
-  flex-grow: 1;
-  margin-top: 0;
-  padding: 0;
-  overflow-y: auto;
-}
-
-.csd-dialog .cdx-dialog--dividers .cdx-dialog__body {
-  padding-top: 0;
+  max-width: 50em !important;
 }
 
 .csd-dialog .csd-reason-field {
@@ -236,27 +220,23 @@ module.exports = defineComponent( {
   width: 50%;
 }
 
-.csd-dialog .cdx-dialog__header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px 20px 10px;
-  font-weight: 700;
-}
-
 .csd-dialog .adiutor-dialog-header {
-  background-color: #eaf3ff;
   display: block;
   align-items: baseline;
   justify-content: space-between;
   height: 10em;
-  padding: 20px;
   background-image: url(../../ext.adiutor.images/csd-background.png);
-  background-position: right 10px;
+  background-position: 95% 0;
   background-repeat: no-repeat;
-  background-size: 205px;
+  background-size: 148px;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 20px;
+}
+
+.csd-reasons-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .csd-dialog .adiutor-dialog-header p {
@@ -268,9 +248,4 @@ module.exports = defineComponent( {
   margin-top: 20px;
 }
 
-.csd-dialog h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 1.125em !important
-}
 </style>

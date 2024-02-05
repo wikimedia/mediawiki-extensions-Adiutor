@@ -1,34 +1,35 @@
-<!-- eslint-disable vue/no-v-html -->
 <template>
   <cdx-dialog
       v-model:open="openPrdDialog"
       :close-button-label="$i18n( 'adiutor-close' )"
+      :default-action="defaultAction"
+      :primary-action="primaryAction"
       :show-dividers="true"
       :title="$i18n( 'adiutor-prd-header-title' )"
       class="prd-dialog"
-      @default="openPrdDialog = true">
+      @default="openRppDialog = false"
+      @primary="proposeForDeletion">
     <div class="adiutor-dialog-header">
       <p>{{ $i18n( "adiutor-prd-header-description" ) }}</p>
     </div>
-    <div class="prd-dialog-body">
-      <cdx-field :is-fieldset="true">
-        <template #label>
-          <strong>{{ $i18n( "adiutor-prd-deletion-type" ) }}</strong>
+    <cdx-field :is-fieldset="true">
+      <template #label>
+        <strong>{{ $i18n( "adiutor-prd-deletion-type" ) }}</strong>
+      </template>
+      <cdx-radio
+          v-for="radio in radios"
+          :key="'radio-' + radio.value"
+          v-model="radioValue"
+          :input-value="radio.value"
+          name="radio-group-descriptions">
+        {{ radio.label }}
+        <template #description>
+          <!-- eslint-disable vue/no-v-html -->
+          <span v-html="radio.description"></span>
         </template>
-        <cdx-radio
-            v-for="radio in radios"
-            :key="'radio-' + radio.value"
-            v-model="radioValue"
-            :input-value="radio.value"
-            name="radio-group-descriptions">
-          {{ radio.label }}
-          <template #description>
-            <span v-html="radio.description"></span>
-          </template>
-        </cdx-radio>
-      </cdx-field>
-    </div>
-    <cdx-field class="prd-dialog-body">
+      </cdx-radio>
+    </cdx-field>
+    <cdx-field style="margin-top:20px">
       <template #label>
         <strong>{{ $i18n( "adiutor-rationale" ) }}</strong>
       </template>
@@ -36,23 +37,17 @@
           v-model="textareaValue"
           :placeholder="$i18n( 'adiutor-prd-rationale-placeholder' )"></cdx-text-area>
     </cdx-field>
-    <div class="adiutor-dialog-footer">
+    <template #footer-text>
       <cdx-checkbox v-model="informCreator" :inline="true">
         {{ $i18n( "adiutor-inform-creator" ) }}
       </cdx-checkbox>
-      <cdx-button
-          action="progressive"
-          weight="primary"
-          @click="proposeForDeletion">
-        {{ $i18n( "adiutor-propose" ) }}
-      </cdx-button>
-    </div>
+    </template>
   </cdx-dialog>
 </template>
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxButton, CdxCheckbox, CdxField, CdxDialog, CdxTextArea, CdxRadio } = require( '../../codex.js' );
+const { CdxCheckbox, CdxField, CdxDialog, CdxTextArea, CdxRadio } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 const prdConfiguration = mw.config.get( 'wgAdiutorDeletionPropose' );
 const {
@@ -74,12 +69,19 @@ function processDeletionHelpMessage( message, link, shortcut ) {
 
 module.exports = defineComponent( {
   name: 'ProposeDeletion',
-  components: { CdxRadio, CdxButton, CdxDialog, CdxCheckbox, CdxField, CdxTextArea },
+  components: { CdxRadio, CdxDialog, CdxCheckbox, CdxField, CdxTextArea },
   setup() {
     const api = new mw.Api();
     const informCreator = ref( true );
     const textareaValue = ref( '' );
     const openPrdDialog = ref( true );
+    const primaryAction = {
+      label: mw.msg( 'adiutor-propose' ),
+      actionType: 'progressive'
+    };
+    const defaultAction = {
+      label: mw.msg( 'adiutor-cancel' )
+    };
     const radioValue = ref( 'default' );
     const radios = [
       {
@@ -205,6 +207,8 @@ module.exports = defineComponent( {
     return {
       openPrdDialog,
       textareaValue,
+      primaryAction,
+      defaultAction,
       informCreator,
       radioValue,
       radios,
@@ -215,87 +219,22 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="css">
-.prd-dialog .cdx-dialog {
-  max-width: 548px;
-  padding-top: 10px;
-  padding-bottom: 0;
-}
-
-.prd-dialog-body {
-  padding: 20px;
-  display: grid;
-  width: inherit;
-}
-
-.prd-dialog .cdx-dialog__body {
-  flex-grow: 1;
-  margin-top: 0;
-  padding: 0;
-  overflow-y: auto;
-}
-
-.prd-dialog .cdx-dialog--dividers .cdx-dialog__body {
-  padding-top: 0;
-}
-
-.prd-dialog .prd-reason-field {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-.prd-dialog .cdx-dialog__header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px 20px 10px;
-  font-weight: 700;
-}
-
-.prd-dialog cdx-label {
-  margin-bottom: 10px;
-  display: block;
-  margin-top: 10px;
-}
 
 .prd-dialog .adiutor-dialog-header {
-  background-color: #eaf3ff;
   display: block;
   align-items: baseline;
   justify-content: space-between;
   height: 10em;
-  padding: 20px;
   background-image: url(../../ext.adiutor.images/prd-background.png);
-  background-position: 95% 10px;
+  background-position: 95% 0;
   background-repeat: no-repeat;
-  background-size: 215px;
-}
-
-.prd-dialog .cdx-dialog__footer {
-  padding: 10px !important;
+  background-size: 148px;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 20px;
 }
 
 .prd-dialog .adiutor-dialog-header p {
   width: 60%;
 }
 
-.prd-dialog h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 1.125em !important
-}
-
-.prd-dialog .cdx-select-vue {
-  margin-bottom: 10px !important;
-}
-
-.prd-dialog .adiutor-dialog-footer {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  border-top: solid 1px #c8ccd1;
-  padding: 20px;
-}
 </style>
