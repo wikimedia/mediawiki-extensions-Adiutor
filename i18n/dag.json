@@ -5,6 +5,7 @@
 			"Munkaila Sulemana"
 		]
 	},
+	"adiutor-protect-against-rebuilding-help": "Di yi niŋ ka bɛ pii li, labi- yoogi gu ka taɣi shɛhira nyɛla din yɛn chɛ ka kpamba zaŋ gu ka taɣi tum tuma di yi niŋ ka lala yaɣili ŋɔ kuli labiri yoora.",
 	"adiutor-inform-creator-help": "Di yi niŋ ka bi pii li, bɛ ni ti ŋun daa yoogi yaɣili ŋɔ lahabali.",
 	"adiutor-use-multiple-issues-template-label": "\"Zaŋmi yɛltɔɣa bɔbugu\" tɛmplet:",
 	"adiutor-multiple-issues-template-label": "\"Yɛla pam\" tɛmplet",
@@ -18,6 +19,7 @@
 	"adiutor-api-post-summary-for-creator": "Lahabali ŋmaa zaŋ n-ti dintoli maliniŋ n-ti ŋun yoogi akaunti",
 	"adiutor-proposed-deletion-blps-template": "\"Gbaabu yihibu zaŋ n-ti lahabali din ka kundivihira \nBrLPs\" tɛmplet:",
 	"adiutor-new-section-description": "Di yi niŋ ka di piligi tuma, piibu yaɣa palli ni pahi lahabali wuligibu yaɣili ni.",
+	"adiutor-csd-use-vertical-bar": "Pɔmpi din tum tuma",
 	"adiutor-csd-use-vertical-bar-description": "Di yi niŋ ka di piligi, daliri shɛŋa din be yomyom yihibu tɛmplet nyɛla din yɛn waligi ni pipɛ biɛhigu \n(|).",
 	"adiutor-module-enabled-description": "Di yi niŋ ka di piligi tuma, modɔle ŋɔ ni pili.",
 	"adiutor-test-mode-description": "Di yi niŋ ka di piligi, 'interface'kpamba koŋko ni tooi zahim modɔlɛ ŋɔ.",
@@ -50,5 +52,21 @@
 	"adiutor-report": "Lahabali yɛli ti",
 	"adiutor-rev-incomplete-request-details": "Pahimi suɣulo mali dihitabili ni a piigi piligu daliri shɛli ka sabi a daliri.",
 	"adiutor-revision-reporting-comment-placeholder": "Pahimi suɣulo sabimi a yɛltɔɣa",
-	"adiutor-update": "Pahima bin pala"
+	"adiutor-update": "Pahima bin pala",
+	"adiutor-multiple-issues-template": "Yɛltɔɣa bɔbugu tɛmplet",
+	"adiutor-uncategorized-template": "Din daa bi laɣim taba tɛmplet",
+	"adiutor-namespace-value": "Yuya polo tibu darisa",
+	"adiutor-subitem-value": "Nee'shɛli zaŋ kpɛhi di kpee ni darisa",
+	"adiutor-subitem-type": "Nee'shɛli zaŋ kpɛhi di kpee ni ŋmali",
+	"adiutor-subitem-label": "Nee'shɛli zaŋ kpɛhi di kpee ni yuya tibu",
+	"adiutor-subitem-help": "Nee'shɛli din kpɛ di kpee ni sɔŋsim",
+	"adiutor-rationale-value": "Piligu daliri nima darisa",
+	"adiutor-rationale-label": "Piligu daliri nima yuya tibu",
+	"adiutor-duration-value": "Yuusim darisa",
+	"adiutor-duration-label": "Yuusim yuya tibu",
+	"adiutor-duration-data": "Yuusim sɔŋsim",
+	"adiutor-type-value": "Ŋmali darisa",
+	"adiutor-type-label": "Ŋmali yuya tibu",
+	"adiutor-type-data": "Ŋmali sɔŋsim",
+	"adiutor-search": "Vihima"
 }
