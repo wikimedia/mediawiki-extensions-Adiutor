@@ -163,28 +163,6 @@ module.exports = defineComponent( {
   display: grid;
 }
 
-.rpp-dialog-body {
-  padding: 20px;
-  display: grid;
-  width: inherit;
-}
-
-.rpp-dialog .rpp-reason-field {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-.rpp-dialog .cdx-dialog__header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px 20px 10px;
-  font-weight: 700;
-}
-
 .rpp-dialog cdx-label {
   margin-bottom: 10px;
   display: block;
