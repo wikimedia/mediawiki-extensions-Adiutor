@@ -171,12 +171,10 @@ module.exports = defineComponent( {
   align-items: baseline;
   justify-content: space-between;
   height: 10em;
-  background-image: url(../../ext.adiutor.images/revision-reporting-background.svg);
-  background-position: 100% 0;
+  background-image: url(../../ext.adiutor.images/revision-icon-ltr.svg);
+  background-position: 100% -4px;
   background-repeat: no-repeat;
   background-size: 140px;
-  border-bottom: 1px solid #dedede;
-  margin-bottom: 20px;
 }
 
 .revision-reporting-dialog .adiutor-dialog-header p {
