@@ -23,5 +23,6 @@
 	"adiutor-cancel": "Annulla",
 	"adiutor-protection-policy-title": "Politica di protezione",
 	"adiutor-parameters-revision-number": "numero versione",
-	"adiutor-parameters-comment": "commento"
+	"adiutor-parameters-comment": "commento",
+	"adiutor-namespace-value": "Valore del namespace"
 }
