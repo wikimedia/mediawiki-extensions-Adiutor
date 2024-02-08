@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"McDutchie"
+			"McDutchie",
+			"Mitsjol"
 		]
 	},
 	"adiutor-toggle-adiutor": "Adiutor gebruiken om inhoudstaken te modereren, te beoordelen en te onderhouden",
@@ -64,5 +65,6 @@
 	"adiutor-select-speedy-deletion-reason": "U moet ten minste één reden voor snelle verwijdering selecteren.",
 	"adiutor-warning": "Waarschuwing",
 	"adiutor-select-a-tag": "Kies een tag uit.",
-	"adiutor-article-tagging-configuration-title": "Instellingen artikeltags"
+	"adiutor-article-tagging-configuration-title": "Instellingen artikeltags",
+	"adiutor-comment": "Opmerking"
 }
