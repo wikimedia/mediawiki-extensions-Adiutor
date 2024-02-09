@@ -100,9 +100,6 @@
 			]
 		}
 	},
-	"ExtensionFunctions": [
-		"MediaWiki\\Extension\\Adiutor\\Adiutor::onExtensionLoad"
-	],
 	"ResourceFileModulePaths": {
 		"localBasePath": "resources",
 		"remoteExtPath": "Adiutor/resources"

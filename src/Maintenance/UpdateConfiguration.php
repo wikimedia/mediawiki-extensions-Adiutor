@@ -1,6 +1,6 @@
 <?php
 /**
- * Class AdiutorMaintenance
+ * Class UpdateConfiguration
  *
  * This class is responsible for creating and saving configuration pages for the Adiutor extension
  * if they do not already exist. It extends the Maintenance class.
@@ -18,7 +18,12 @@ use TextContent;
 use TitleFactory;
 use User;
 
-class AdiutorMaintenance extends Maintenance {
+class UpdateConfiguration extends Maintenance {
+
+	public function __construct() {
+		parent::__construct();
+		$this->requireExtension( 'Adiutor' );
+	}
 
 	private array $configurationPages = [
 		'MediaWiki:AdiutorRequestPageProtection.json' => AdiutorDummyConfig::PAGE_PROTECTION_REQUEST_CONFIGURATION,
@@ -31,11 +36,6 @@ class AdiutorMaintenance extends Maintenance {
 
 	public function getConfigurationPages(): array {
 		return $this->configurationPages;
-	}
-
-	public function __construct() {
-		parent::__construct();
-		$this->addDescription( 'Creates and saves configuration pages for Adiutor if they do not already exist.' );
 	}
 
 	public function execute() {

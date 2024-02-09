@@ -1,20 +1,20 @@
 <?php
 namespace MediaWiki\Extension\Adiutor\Tests;
 
-use MediaWiki\Extension\Adiutor\Maintenance\AdiutorMaintenance;
+use MediaWiki\Extension\Adiutor\Maintenance\UpdateConfiguration;
 use MediaWikiIntegrationTestCase;
 use Title;
 use TitleFactory;
 use User;
 
 /**
- * PHPUnit test class for the AdiutorMaintenance.
+ * PHPUnit test class for the UpdateConfiguration.
  *
  * @group Adiutor
  * @group Database
- * @covers \MediaWiki\Extension\Adiutor\Maintenance\AdiutorMaintenance
+ * @covers \MediaWiki\Extension\Adiutor\Maintenance\UpdateConfiguration
  */
-class AdiutorMaintenanceTest extends MediaWikiIntegrationTestCase {
+class UpdateConfigurationTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecute() {
 		$mockTitleFactory = $this->createMock( TitleFactory::class );
@@ -24,7 +24,7 @@ class AdiutorMaintenanceTest extends MediaWikiIntegrationTestCase {
 		$mockTitle->method( 'exists' )->willReturn( false );
 		$mockUser->method( 'isAllowed' )->willReturn( true );
 
-		$maintenance = new AdiutorMaintenance();
+		$maintenance = new UpdateConfiguration();
 		$maintenance->execute();
 
 		foreach ( $maintenance->getConfigurationPages() as $pageTitle => $content ) {
@@ -46,7 +46,7 @@ class AdiutorMaintenanceTest extends MediaWikiIntegrationTestCase {
 
 		$titleFactory->method( 'newFromText' )->willReturn( $title );
 
-		$maintenance = new AdiutorMaintenance();
+		$maintenance = new UpdateConfiguration();
 		$maintenance->createPage(
 			$titleFactory,
 			$titleText,
@@ -62,7 +62,7 @@ class AdiutorMaintenanceTest extends MediaWikiIntegrationTestCase {
 		$expectedContent = json_encode( $content, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
 		$this->assertEquals( $expectedContent, $pageText, 'Page should contain the expected JSON content.' );
 
-		$sameMaintenance = new AdiutorMaintenance();
+		$sameMaintenance = new UpdateConfiguration();
 		$sameMaintenance->createPage(
 			$titleFactory,
 			$titleText,
