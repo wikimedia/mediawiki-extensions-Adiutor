@@ -85,6 +85,15 @@
 		}
 	} );
 
+	if ( mw.config.get( 'skin' ) === 'minerva' ) {
+		portletLinks.forEach( ( link ) => {
+			const linkNamespaces = link.namespaces.map( ( nsObj ) => parseInt( nsObj.value, 10 ) );
+			if ( linkNamespaces.indexOf( currentNamespace ) !== -1 ) {
+				mw.util.addPortletLink( 'p-tb', '#', link.label, link.id, link.action, link.key );
+			}
+		} );
+	}
+
 	function attachEventListener( link, component ) {
 		const element = document.querySelector( link );
 		if ( element ) {

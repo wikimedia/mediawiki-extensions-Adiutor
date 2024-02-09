@@ -180,4 +180,16 @@ module.exports = defineComponent( {
 .revision-reporting-dialog .adiutor-dialog-header p {
   width: 70%;
 }
+
+/* Media query for mobile view */
+@media only screen and (max-width: 767px) {
+  .revision-reporting-dialog .adiutor-dialog-header {
+    background: none; /* Hide background */
+    margin-bottom: 10px !important;
+  }
+  .revision-reporting-dialog .adiutor-dialog-header p {
+    width: 100% !important;
+  }
+}
+
 </style>

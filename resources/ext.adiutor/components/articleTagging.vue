@@ -365,4 +365,16 @@ module.exports = defineComponent( {
 .adiutor-article-tagging-dialog .sub-item-checkbox {
   margin-left: 20px;
 }
+
+/* Media query for mobile view */
+@media only screen and (max-width: 767px) {
+  .adiutor-article-tagging-dialog .adiutor-dialog-header {
+    background: none; /* Hide background */
+    margin-bottom: 10px !important;
+  }
+  .adiutor-article-tagging-dialog .adiutor-dialog-header p {
+    width: 100% !important;
+  }
+}
+
 </style>

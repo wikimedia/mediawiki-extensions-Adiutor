@@ -154,4 +154,15 @@ module.exports = defineComponent( {
   width: 60%;
 }
 
+/* Media query for mobile view */
+@media only screen and (max-width: 767px) {
+  .rpm-dialog .adiutor-dialog-header {
+    background: none; /* Hide background */
+    margin-bottom: 10px !important;
+  }
+  .rpm-dialog .adiutor-dialog-header p {
+    width: 100% !important;
+  }
+}
+
 </style>

@@ -187,4 +187,16 @@ module.exports = defineComponent( {
 .rpp-dialog .cdx-select-vue {
   margin-bottom: 10px !important;
 }
+
+/* Media query for mobile view */
+@media only screen and (max-width: 767px) {
+  .rpp-dialog .adiutor-dialog-header {
+    background: none; /* Hide background */
+    margin-bottom: 10px !important;
+  }
+  .rpp-dialog .adiutor-dialog-header p {
+    width: 100% !important;
+  }
+}
+
 </style>

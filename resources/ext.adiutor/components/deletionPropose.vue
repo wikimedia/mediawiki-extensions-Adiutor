@@ -235,4 +235,15 @@ module.exports = defineComponent( {
   width: 70%;
 }
 
+/* Media query for mobile view */
+@media only screen and (max-width: 767px) {
+  .prd-dialog .adiutor-dialog-header {
+    background: none; /* Hide background */
+    margin-bottom: 10px !important;
+  }
+  .prd-dialog .adiutor-dialog-header p {
+    width: 100% !important;
+  }
+}
+
 </style>

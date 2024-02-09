@@ -247,4 +247,23 @@ module.exports = defineComponent( {
   margin-top: 20px;
 }
 
+/* Media query for mobile view */
+@media only screen and (max-width: 767px) {
+  .csd-dialog .adiutor-dialog-header {
+    background: none; /* Hide background */
+    margin-bottom: 10px !important;
+  }
+  .csd-dialog .adiutor-dialog-header p {
+    width: 100% !important;
+  }
+  .csd-dialog .csd-reasons-body {
+    flex-direction: column;
+  }
+  .csd-dialog .csd-reason-field {
+    display: contents;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
 </style>
