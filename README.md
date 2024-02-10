@@ -21,6 +21,14 @@ Load the extension in LocalSettings.php:
 ```php
 wfLoadExtension( 'Adiutor' );
 ```
+Run the following command in the root directory of your MediaWiki installation:
+```bash
+cd maintenance
+```
+Run the following command to create the necessary configuration:
+```bash
+php run.php ../extensions/Adiutor/maintenance/updateConfiguration.php
+```
 
 Then visit Special:Adiutor settings to configure localization.
 
