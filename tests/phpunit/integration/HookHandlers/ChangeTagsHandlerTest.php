@@ -1,11 +1,35 @@
 <?php
+/**
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @since 0.0.1
+ */
 
-namespace MediaWiki\Extension\Adiutor\Test\Unit\HookHandlers;
+namespace MediaWiki\Extension\Adiutor\Test\Integration\HookHandlers;
 
 use MediaWiki\Extension\Adiutor\HookHandlers\ChangeTagsHandler;
 use MediaWikiIntegrationTestCase;
 use User;
 
+/**
+ * @group Adiutor
+ * @group Database
+ * @covers \MediaWiki\Extension\Adiutor\HookHandlers\ChangeTagsHandler
+ */
 class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private ChangeTagsHandler $handler;
@@ -15,9 +39,6 @@ class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->handler = new ChangeTagsHandler();
 	}
 
-	/**
-	 * @covers \MediaWiki\Extension\Adiutor\HookHandlers\ChangeTagsHandler::onListDefinedTags
-	 */
 	public function testOnListDefinedTags() {
 		$tags = [];
 		$this->handler->onListDefinedTags( $tags );
@@ -25,9 +46,6 @@ class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 			'The adiutor tag should be defined in the tags list' );
 	}
 
-	/**
-	 * @covers \MediaWiki\Extension\Adiutor\HookHandlers\ChangeTagsHandler::onChangeTagsListActive
-	 */
 	public function testOnChangeTagsListActive() {
 		$tags = [];
 		$this->handler->onChangeTagsListActive( $tags );
@@ -35,9 +53,6 @@ class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 			'The adiutor tag should be marked as active in the tags list' );
 	}
 
-	/**
-	 * @covers \MediaWiki\Extension\Adiutor\HookHandlers\ChangeTagsHandler::onChangeTagsAllowedAdd
-	 */
 	public function testOnChangeTagsAllowedAdd_UserAllowedToAddTag() {
 		$allowedTags = [];
 		$addTags = [ ChangeTagsHandler::TAG_NAME ];
@@ -47,9 +62,6 @@ class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 			'The adiutor tag should be allowed for addition by the user' );
 	}
 
-	/**
-	 * @covers \MediaWiki\Extension\Adiutor\HookHandlers\ChangeTagsHandler::onChangeTagsAllowedAdd
-	 */
 	public function testOnChangeTagsAllowedAdd_TagNotInAddTags() {
 		$allowedTags = [];
 		$addTags = [ 'some-other-tag' ];
@@ -59,9 +71,6 @@ class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 			'The adiutor tag should not be allowed for addition if it is not in addTags' );
 	}
 
-	/**
-	 * @covers \MediaWiki\Extension\Adiutor\HookHandlers\ChangeTagsHandler::onChangeTagsAllowedAdd
-	 */
 	public function testOnChangeTagsAllowedAdd_TagAlreadyAllowed() {
 		$allowedTags = [ ChangeTagsHandler::TAG_NAME ];
 		$addTags = [ ChangeTagsHandler::TAG_NAME ];

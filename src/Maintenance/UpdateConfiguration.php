@@ -1,5 +1,25 @@
 <?php
 /**
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @since 0.0.1
+ */
+
+/**
  * Class UpdateConfiguration
  *
  * This class is responsible for creating and saving configuration pages for the Adiutor extension
@@ -15,7 +35,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use TextContent;
-use TitleFactory;
 use User;
 
 class UpdateConfiguration extends Maintenance {
@@ -34,57 +53,39 @@ class UpdateConfiguration extends Maintenance {
 		'MediaWiki:AdiutorReportRevision.json' => AdiutorDummyConfig::REPORT_REVISION_CONFIGURATION,
 	];
 
-	public function getConfigurationPages(): array {
-		return $this->configurationPages;
-	}
-
 	public function execute() {
-		$services = MediaWikiServices::getInstance();
-		$titleFactory = $services->getTitleFactory();
-		$systemUserName = 'AdiutorBot';
-		$user = User::newSystemUser( $systemUserName, [ 'steal' => true ] );
-
-		if ( !$user ) {
-			return;
-		}
-
-		global $wgReservedUsernames;
-		if ( !in_array( $systemUserName,
-			(array)$wgReservedUsernames ) ) {
-			$wgReservedUsernames[] = $systemUserName;
-		}
-
 		foreach ( $this->configurationPages as $pageTitle => $content ) {
-			$this->createPage( $titleFactory,
-				$pageTitle,
-				$content,
-				$user,
-				$services );
+			$this->createPage( $pageTitle, $content );
 		}
 	}
 
 	/**
-	 * Creates a new page with the given title, content, user, and services.
+	 * Creates a new page with the given title and content.
 	 *
-	 * @param TitleFactory $titleFactory The factory for creating page titles.
 	 * @param string $pageTitle The title of the new page.
 	 * @param array $content The content of the new page.
-	 * @param User $user The user creating the page.
-	 * @param MediaWikiServices $services The services required for creating the page.
 	 *
 	 * @return void
 	 */
-	public function createPage( TitleFactory $titleFactory, string $pageTitle, array $content, User $user,
-		MediaWikiServices $services ) {
+	public function createPage( string $pageTitle, array $content ) {
+		$services = MediaWikiServices::getInstance();
+		$titleFactory = $services->getTitleFactory();
+		$systemUserName = 'AdiutorBot';
+		$user = User::newSystemUser( $systemUserName, [ 'steal' => true ] );
+		if ( !$user ) {
+			return;
+		}
+		global $wgReservedUsernames;
+		if ( !in_array( $systemUserName, (array)$wgReservedUsernames ) ) {
+			$wgReservedUsernames[] = $systemUserName;
+		}
 		$title = $titleFactory->newFromText( $pageTitle );
 		if ( !$title->exists() ) {
-			$pageContent =
-				json_encode( $content, JSON_PRETTY_PRINT );
+			$pageContent = json_encode( $content, JSON_PRETTY_PRINT );
 			$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
 			$pageUpdater->setContent( SlotRecord::MAIN, new TextContent( $pageContent ) );
 			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment(
-				'Initial content for Adiutor localization file' ),
-				EDIT_INTERNAL | EDIT_AUTOSUMMARY );
+				'Initial content for Adiutor localization file' ), EDIT_INTERNAL | EDIT_AUTOSUMMARY );
 			$saveStatus = $pageUpdater->getStatus();
 			if ( !$saveStatus->isGood() ) {
 				$logger = LoggerFactory::getInstance( 'Adiutor' );
