@@ -4,7 +4,7 @@
 	"url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
 	"descriptionmsg": "adiutor-desc",
 	"version": "0.0.1",
-	"license-name": "GPL-2.0-or-later",
+	"license-name": "GPL-3.0-or-later",
 	"type": "other",
 	"MessagesDirs": {
 		"Adiutor": [

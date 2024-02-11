@@ -35,5 +35,6 @@ Then visit Special:Adiutor settings to configure localization.
 
 # License
 
-GNU GENERAL PUBLIC LICENSE
-Version 2, June 1991
+This extension is licensed under the GNU General Public License version 3.0 or later (GPL-3.0-or-later).
+
+http://www.gnu.org/copyleft/gpl.html
