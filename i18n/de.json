@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Brettchenweber"
+			"Brettchenweber",
+			"Killarnee"
 		]
 	},
 	"adiutor-toggle-adiutor": "Verwenden Adiutor, um Inhaltsaufgaben zu moderieren, zu selektieren und zu verwalten",
@@ -17,9 +18,16 @@
 	"adiutor-propose": "Vorschlagen",
 	"adiutor-continue": "Fortfahren",
 	"adiutor-options": "Optionen",
+	"adiutor-rationale": "Begründung",
 	"adiutor-rationale-placeholder": "Warum schlägst {{GENDER:|du}} diese Seite zum Löschen vor?",
 	"adiutor-inform-creator": "Informiere den Benutzer, der die Seite erstellt hat.",
 	"adiutor-inform-creator-help": "Wenn diese Option ausgewählt ist, wird der Benutzer benachrichtigt, der diese Seite erstellt hat.",
+	"adiutor-rpp-rationale-placeholder": "Bitte verfasse eine Schutzbegründung",
+	"adiutor-rpm-rationale-placeholder": "Bitte schreibe eine Begründung",
+	"adiutor-afd-special-page-title": "Löschkandidaten",
+	"adiutor-create-request": "Anfrage erstellen",
+	"adiutor-protection-type": "Schutzart",
+	"adiutor-choose-appropriate-tags": "Wähle geeignete Tags",
 	"adiutor-prd-header-title": "Vorgeschlagene Löschung",
 	"adiutor-csd-header-title": "Anfrage für eine Schnelllöschung",
 	"adiutor-new-name": "Neuer Name",
@@ -30,8 +38,10 @@
 	"adiutor-operation-failed": "Operation fehlgeschlagen!",
 	"adiutor-and": "und",
 	"adiutor-warning": "Warnung",
+	"adiutor-select-a-tag": "Bitte wähle einen Tag aus.",
 	"adiutor-settings-label": "Einstellungen",
 	"adiutor-summaries-label": "Zusammenfassungen",
+	"adiutor-add-new-tag-label": "Neue hinzufügen",
 	"adiutor-label-column": "Bezeichnung",
 	"adiutor-action-column": "Aktion",
 	"adiutor-delete-button": "Löschen",
@@ -46,6 +56,7 @@
 	"adiutor-parameters-year": "Jahr",
 	"adiutor-parameters-requester": "Anfrager",
 	"adiutor-name-space": "Namensraum",
+	"adiutor-add-new": "Neue hinzufügen",
 	"adiutor-close": "Schließen",
 	"adiutor-protection-durations": "Schutzdauern",
 	"adiutor-protection-types": "Schutzarten",
