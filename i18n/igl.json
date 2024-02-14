@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Beracy",
 			"Jerryjaymi"
 		]
 	},
-	"adiutor-update": "Énwu etitó"
+	"adiutor-update": "Énwu etitó",
+	"adiutor-type-data": "Ka bune",
+	"adiutor-search": "Tene"
 }
