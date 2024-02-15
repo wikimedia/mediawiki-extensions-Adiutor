@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Stefán Örvar Sigmundsson"
+		]
+	},
+	"adiutor-create": "Búa til",
+	"adiutor-inform-creator": "Láta notandann vita sem bjó til síðuna.",
+	"adiutor-inform-creator-help": "Ef valið mun notandinn sem bjó til þessa síðu vera látinn vita."
+}
