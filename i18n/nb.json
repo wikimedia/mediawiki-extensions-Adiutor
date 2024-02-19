@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"EdoAug"
+			"EdoAug",
+			"Jon Harald Søby"
 		]
 	},
 	"adiutor-toggle-adiutor": "Bruk Adiutor for å administrere, sortere og vedlikeholde innholdsoppgaver",
@@ -36,5 +37,14 @@
 	"adiutor-warning": "Advarsel",
 	"adiutor-select-a-tag": "Velg en tagg.",
 	"adiutor-settings-label": "Innstillinger",
-	"adiutor-use-multiple-issues-template-label": "«Bruk flere problemer»-mal:"
+	"adiutor-use-multiple-issues-template-label": "«Bruk flere problemer»-mal:",
+	"adiutor-value": "Verdi",
+	"adiutor-data": "Data",
+	"adiutor-label": "Etikett",
+	"adiutor-help": "Hjelp",
+	"adiutor-required": "Påkrevd",
+	"adiutor-parameter": "Parameter",
+	"adiutor-type": "Type",
+	"adiutor-namespaces": "Navnerom",
+	"adiutor-cancel": "Avbryt"
 }

@@ -5,7 +5,8 @@
 			"Gomoko",
 			"Iketsi",
 			"Melimeli",
-			"Thibaut120094"
+			"Thibaut120094",
+			"Urhixidur"
 		]
 	},
 	"adiutor-toggle-adiutor": "Utilisez Adiutor pour modérer, trier et gérer les tâches de contenu",
@@ -21,7 +22,7 @@
 	"adiutor-propose": "Proposer",
 	"adiutor-continue": "Continuer",
 	"adiutor-options": "Options",
-	"adiutor-protect-against-rebuilding": "Demander une protection des loisirs",
+	"adiutor-protect-against-rebuilding": "Demander une protection contre la re-création",
 	"adiutor-protect-against-rebuilding-help": "Lorsqu'elle est choisie, la balise de protection de la recréation invite les administrateurs à appliquer la protection de la création si la page est constamment recréée.",
 	"adiutor-rationale": "Motif",
 	"adiutor-rationale-placeholder": "Pourquoi citez-{{GENDER:|vous}} cette page pour être supprimée ?",
