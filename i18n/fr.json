@@ -39,6 +39,7 @@
 	"adiutor-prd-deletion-type-1": "PROD (Suppression proposée)",
 	"adiutor-prd-deletion-type-2": "BLP PROD (Suppression proposée de biographies sans sources)",
 	"adiutor-prd-deletion-type-1-help": "Suppression proposée par $1",
+	"adiutor-prd-deletion-type-2-help": "Suppression proposée de biographies entièrement sans sources d’individus vivants, suivant les lignes directrices établies en $1.",
 	"adiutor-and": "et",
 	"adiutor-warning": "Avertissement",
 	"adiutor-settings-label": "Paramètres",
