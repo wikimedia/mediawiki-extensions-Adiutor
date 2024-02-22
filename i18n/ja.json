@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Chqaz",
 			"Gogchannel",
 			"MathXplore",
 			"もなー(偽物)"
@@ -31,6 +32,7 @@
 	"adiutor-prd-deletion-type": "申請された削除方式",
 	"adiutor-prd-deletion-type-1": "PROD (削除申請)",
 	"adiutor-prd-deletion-type-1-help": "$1あたりの削除申請",
+	"adiutor-rpp-header-title": "ページの保護をリクエスト",
 	"adiutor-operation-failed": "操作に失敗しました！",
 	"adiutor-no-namespace-reason-for-csd-title": "この名前空間には迅速な削除の理由が指定されていません。",
 	"adiutor-no-namespace-reason-for-csd": "一般的な理由を右から一つ選択してください。",
