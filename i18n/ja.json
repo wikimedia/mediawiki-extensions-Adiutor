@@ -36,6 +36,7 @@
 	"adiutor-prd-deletion-type-1": "PROD (削除申請)",
 	"adiutor-prd-deletion-type-1-help": "$1あたりの削除申請",
 	"adiutor-rpp-header-title": "ページの保護をリクエスト",
+	"adiutor-csd-header-title": "即時削除を依頼",
 	"adiutor-page-protection-request": "ページの保護を申請",
 	"adiutor-tag-page": "タグページ",
 	"adiutor-settings": "Adiutorの設定",
