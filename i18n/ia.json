@@ -125,5 +125,15 @@
 	"adiutor-value": "Valor",
 	"adiutor-data": "Datos",
 	"adiutor-label": "Etiquetta",
-	"adiutor-help": "Adjuta"
+	"adiutor-help": "Adjuta",
+	"adiutor-tag-labels": "Nomines de etiquettas",
+	"adiutor-tags-for": "Etiquettas pro",
+	"adiutor-tag-template": "Patrono de etiquettas",
+	"adiutor-tag-description": "Description",
+	"adiutor-add-sub-item": "Adder subelemento",
+	"adiutor-sub-items-for": "Subelementos pro",
+	"adiutor-required": "Obligatori",
+	"adiutor-parameter": "Parametro",
+	"adiutor-type": "Typo",
+	"adiutor-proposed-deletion-configuration": "Configuration proponite de deletion"
 }

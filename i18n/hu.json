@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dj"
+		]
+	},
+	"adiutor-create": "Létrehozás",
+	"adiutor-request": "Kérelem",
+	"adiutor-protection-policy": "Védelmi politika",
+	"adiutor-speedy-deletion-policy": "Gyors törlési szabályzat",
+	"adiutor-delete": "Törlés",
+	"adiutor-other-options": "Egyéb beállítások",
+	"adiutor-parameters": "Paraméterek",
+	"adiutor-parameters-day": "nap",
+	"adiutor-parameters-month": "hónap",
+	"adiutor-parameters-year": "év",
+	"adiutor-parameters-requester": "kérelmező",
+	"adiutor-value": "Érték",
+	"adiutor-data": "Adatok",
+	"adiutor-label": "Címke",
+	"adiutor-help": "Súgó",
+	"adiutor-type": "Típus"
+}
