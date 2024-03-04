@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Borhan"
+			"Borhan",
+			"খাত্তাব হাসান"
 		]
 	},
-	"adiutor-please-select-a-tag": "অনুগ্রহ করে একটি ট্যাগ নির্বাচন করুন।"
+	"adiutor-please-select-a-tag": "অনুগ্রহ করে একটি ট্যাগ নির্বাচন করুন।",
+	"adiutor-search": "অনুসন্ধান"
 }

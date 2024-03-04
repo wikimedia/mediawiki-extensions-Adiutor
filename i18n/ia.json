@@ -135,5 +135,18 @@
 	"adiutor-required": "Obligatori",
 	"adiutor-parameter": "Parametro",
 	"adiutor-type": "Typo",
-	"adiutor-proposed-deletion-configuration": "Configuration proponite de deletion"
+	"adiutor-proposed-deletion-configuration": "Configuration proponite de deletion",
+	"adiutor-proposed-deletion-description": "Iste pagina permitte personalisar le parametros del modulo de requesta de deletion proponite de Adiutor. Si tu face adjustamentos hic, illo actualisa directemente, e in tu nomine, le configuration immagazinate in le pagina MediaWiki:AdiutorDeletionPropose.json. Tu pote traciar e revider facilemente le historia de tu modificationes sur ille pagina.",
+	"adiutor-prod-notification-template": "Patrono “Notification de deletion proponite”:",
+	"adiutor-proposed-deletion-template": "Patrono “Deletion proponite”:",
+	"adiutor-proposed-deletion-unsourced-blps-template": "Patrono “Deletion proponite de biographias sur personas vivente sin fontes”:",
+	"adiutor-api-post-summary": "Summario pro modificationes automatisate:",
+	"adiutor-api-post-summary-for-creator": "Summario pro modificationes automatisate pro le creator",
+	"adiutor-proposed-deletion-template-description": "Isto es un patrono de requesta de deletion proponite a usar quando il ha un motivo normal.",
+	"adiutor-proposed-deletion-blps-template": "Patrono “Deletion proponite de biographias sur personas vivente sin fontes”:",
+	"adiutor-proposed-deletion-blps-template-description": "Isto es un patrono de requesta de deletion proponite a usar pro le biographias sur personas vivente sin fontes.",
+	"adiutor-request-page-move-configuration": "Configuration de requestas de renomination de pagina",
+	"adiutor-request-page-move-description": "Iste pagina permitte personalisar le parametros del modulo de requestas de renomination de pagina de Adiutor. Si tu face adjustamentos hic, illo actualisa directemente, e in tu nomine, le configuration immagazinate in le pagina MediaWiki:AdiutorRequestPageMove.json. Tu pote traciar e revider facilemente le historia de tu modificationes sur ille pagina.",
+	"adiutor-noticeboard": "Pannello de notitias:",
+	"adiutor-content-pattern": "Patrono de contento:"
 }
