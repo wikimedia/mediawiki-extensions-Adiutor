@@ -203,7 +203,7 @@
 	"adiutor-proposed-deletion-blpprod-policy-shortcut": "建議刪除無源 BLP 政策捷徑",
 	"adiutor-copy-vio-reason-value-description": "輸入將觸發顯示版權侵權頁面輸入的原因值。",
 	"adiutor-copy-vio-reason-value-help-text": "請記住，模板應該有一個“url=”參數。",
-	"adiutor-this-page-deleted-before": "此頁面之前被刪過 $1 次！（$2）",
+	"adiutor-this-page-deleted-before": "此頁面之前已被刪除$1次！",
 	"adiutor-deletion-log": "刪除日誌",
 	"tag-adiutor-description": "此編輯是使用 Adiutor 擴充功能進行的。",
 	"adiutor-csd-enable-label": "啟用快速刪除請求",
