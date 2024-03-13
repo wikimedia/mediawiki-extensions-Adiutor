@@ -181,7 +181,7 @@
 	"adiutor-csd-use-vertical-bar": "Use pipe",
 	"adiutor-csd-use-vertical-bar-description": "When activated, reasons within the speedy deletion template are separated by a pipe character (|).",
 	"adiutor-csd-default": "Default",
-	"adiutor-csd-default-description": "When activated, reasons within the speedy deletion template are separated by and.",
+	"adiutor-csd-default-description": "When activated, reasons within the speedy deletion template are separated by the word \"and\".",
 	"adiutor-prepend-text-on-the-page": "Prepend text on the page",
 	"adiutor-prepend-text-on-the-page-description": "When activated, the specified content in the content pattern input will be prepended on the page.",
 	"adiutor-append-text-on-the-page": "Append text to page.",
