@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Brettchenweber",
 			"Killarnee"
 		]
@@ -76,7 +77,7 @@
 	"adiutor-parameter": "Parameter",
 	"adiutor-type": "Typ",
 	"adiutor-proposed-deletion-configuration": "Vorgeschlagene Löschkonfiguration",
-	"adiutor-proposed-deletion-description": "Auf dieser Seite hast du die Möglichkeit, die Einstellungen des von Adiutor vorgeschlagenen Löschmoduls anzupassen. Wenn du hier Anpassungen vornimmst, wird in deinem Namen direkt die auf der Seite MediaWiki:AdiutorDeletionPropose.json gespeicherte Konfiguration aktualisiert. Auf dieser Seite kannst du den Verlauf deiner Änderungen  verfolgen und überprüfen.",
+	"adiutor-proposed-deletion-description": "Auf dieser Seite hast du die Möglichkeit, die Einstellungen des von Adiutor vorgeschlagenen Löschmoduls anzupassen. Wenn du hier Anpassungen vornimmst, wird in deinem Namen direkt die auf der Seite MediaWiki:AdiutorDeletionPropose.json gespeicherte Konfiguration aktualisiert. Auf dieser Seite kannst du den Verlauf deiner Änderungen verfolgen und überprüfen.",
 	"adiutor-section-id": "Abschnitts-ID:",
 	"adiutor-configurations-saving": "Speichere …",
 	"adiutor-try-again": "Erneut versuchen",

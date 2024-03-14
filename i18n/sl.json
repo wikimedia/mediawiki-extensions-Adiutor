@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Eleassar"
 		]
 	},
@@ -20,7 +21,7 @@
 	"adiutor-protect-against-rebuilding": "Predlog za zaščito pred ponovnim ustvarjanjem",
 	"adiutor-protect-against-rebuilding-help": "Ob izbiri oznaka za zaščito pred ponovnim ustvarjanjem pozove administratorje, naj uporabijo zaščito pred ustvarjanjem, če se stran vedno znova ustvarja.",
 	"adiutor-rationale": "Utemeljitev",
-	"adiutor-rationale-placeholder": "Zakaj  {{GENDER:|predlagate}} to stran za izbris?",
+	"adiutor-rationale-placeholder": "Zakaj {{GENDER:|predlagate}} to stran za izbris?",
 	"adiutor-inform-creator": "Obbvesti uporabnika, ki je ustvaril stran.",
 	"adiutor-inform-creator-help": "Če boste izbrali to, bo obveščen uporabnik, ki je ustvaril to stran.",
 	"adiutor-rpp-rationale-placeholder": "Napišite utemeljitev zaščite",
