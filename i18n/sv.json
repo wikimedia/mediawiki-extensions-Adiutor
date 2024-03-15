@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Josve05a",
 			"Kakan spelar"
 		]
 	},
@@ -22,6 +23,7 @@
 	"adiutor-prd-deletion-type-2-help": "Föreslagen radering av biografier om levande individer utan källa, enligt riktlinjerna som anges i $1.",
 	"adiutor-rpp-header-title": "Begäran om sidskydd",
 	"adiutor-prd-header-title": "Föreslagen radering",
+	"adiutor-csd-header-title": "Begäran om snabbradering",
 	"adiutor-tag-header-title": "Artikeltaggning",
 	"adiutor-csd-header-description": "Välj lämplig orsak till borttagningen av den här sidan från alternativen nedan. Om orsaken till begäran om snabb radering inte uppfyller kriterierna för snabb radering, kan sidan inte tas bort.",
 	"adiutor-new-name": "Nytt namn",
@@ -46,6 +48,7 @@
 	"adiutor-parameters-requester": "begärare",
 	"adiutor-parameters-reason-value": "Anledningsvärde",
 	"adiutor-speedy-deletion-policy-link": "Policy för snabbradering",
+	"adiutor-name-space": "Namnrymd",
 	"adiutor-add-new": "Lägg till ny",
 	"adiutor-close": "Stäng",
 	"adiutor-summaries": "Sammanfattningar",
@@ -72,5 +75,6 @@
 	"adiutor-parameters-comment": "kommentar",
 	"adiutor-comment": "Kommentera",
 	"adiutor-report": "Rapportera",
-	"adiutor-update": "Uppdatera"
+	"adiutor-update": "Uppdatera",
+	"adiutor-search": "Sök"
 }
