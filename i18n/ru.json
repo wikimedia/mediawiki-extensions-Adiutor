@@ -6,7 +6,8 @@
 			"Kareyac",
 			"Mitte27",
 			"Nikokrat",
-			"Okras"
+			"Okras",
+			"Yurina Tatiana"
 		]
 	},
 	"adiutor-toggle-adiutor": "Используйте Adiutor для модерации, сортировки и обслуживания задач по контенту",
@@ -42,6 +43,7 @@
 	"adiutor-settings-label": "Настройки",
 	"adiutor-multiple-issues-template-label": "Шаблон «нескольких проблем»:",
 	"adiutor-uncategorized-template-label": "«Некатегоризованные» шаблоны:",
+	"adiutor-add-new-tag-label": "Добавить новый",
 	"adiutor-label-column": "Метка",
 	"adiutor-action-column": "Действие",
 	"adiutor-delete-button": "Удалить",
@@ -60,6 +62,7 @@
 	"adiutor-save-configurations": "Сохранить конфигурацию",
 	"adiutor-single-reason-template": "Шаблон «одной причины»:",
 	"adiutor-multiple-reason-template": "Шаблон «нескольких причин»:",
+	"adiutor-output": "Вывод:",
 	"adiutor-speedy-deletion-reasons": "Причины быстрого удаления",
 	"adiutor-name": "Имя",
 	"adiutor-action": "Действие",
@@ -78,12 +81,17 @@
 	"adiutor-test-mode": "Тестовый режим",
 	"adiutor-namespaces": "Пространства имён",
 	"prefs-moderation": "Модерация",
+	"adiutor-new-name-placeholder": "Новое название",
 	"adiutor-deletion-log": "Журнал удалений",
 	"echo-category-title-moderation": "Модерация",
+	"adiutor-please-select-a-tag": "Пожалуйста, выберите метку.",
 	"adiutor-page-proposed-for-deletion": "Страница предлагается к удалению!",
 	"adiutor-cancel": "Отмена",
 	"adiutor-speedy-deletion-policy-name-lowercase": "быстрое удаление",
 	"adiutor-protection-policy-name-lowercase": "защита",
 	"adiutor-parameters-comment": "комментарий",
-	"adiutor-update": "Обновить"
+	"adiutor-comment": "Комментарий",
+	"adiutor-report": "Отчёт",
+	"adiutor-update": "Обновить",
+	"adiutor-search": "Поиск"
 }
