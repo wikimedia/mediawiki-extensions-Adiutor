@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Arielyurusova",
+			"Cookai1205",
 			"SupaplexTW",
 			"Winston Sung"
 		]
@@ -42,7 +43,7 @@
 	"adiutor-rpm-incomplete-request-details": "請確保您輸入了新名稱並提供了理由。",
 	"adiutor-prd-header-title": "提刪",
 	"adiutor-csd-header-title": "快速刪除請求",
-	"adiutor-tag-header-title": "文章標籤",
+	"adiutor-tag-header-title": "標記條目",
 	"adiutor-csd-header-description": "請從下面的選項中選擇刪除此頁面的適當原因。如果快速刪除請求的原因不符合快速刪除標準，則該頁面可能不會被刪除。",
 	"adiutor-rpp-header-description": "此模組用於請求保護頁面、文件或範本。請仔細閱讀保護政策。",
 	"adiutor-prd-header-description": "提案建議即使該條目不符合快速刪除所需的更嚴謹、更多要求的標準，仍可毫無爭議地刪除。請考慮刪除該條目。",
