@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ebraminio",
 			"Emads2",
 			"Jeeputer"
 		]
@@ -24,7 +25,7 @@
 	"adiutor-afd-special-page-title": "مقالات برای حذف",
 	"adiutor-create-request": "ایجاد درخواست",
 	"adiutor-protection-type": "نوع حفاظت",
-	"adiutor-choose-appropriate-tags": "برچسب های مناسب را انتخاب کنید",
+	"adiutor-choose-appropriate-tags": "برچسب‌های مناسب را انتخاب کنید",
 	"adiutor-prd-deletion-rationale": "دلیل حذف پیشنهادی",
 	"adiutor-prd-deletion-type": "نوع حذف پیشنهادی",
 	"adiutor-prd-deletion-type-1": "حذف پیشنهادی",
