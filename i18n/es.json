@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"AnupamM",
+			"McDutchie",
 			"No se"
 		]
 	},
@@ -14,5 +15,6 @@
 	"adiutor-afd-special-page-title": "Artículos para eliminar",
 	"adiutor-protection-type": "Tipo de protección",
 	"adiutor-choose-appropriate-tags": "Elija etiquetas apropiadas",
-	"adiutor-name": "Nombre"
+	"adiutor-name": "Nombre",
+	"adiutor-csd-default-description": "Cuando se activa, los motivos dentro de la plantilla de eliminación rápida están separados por la palabra \"and\"."
 }

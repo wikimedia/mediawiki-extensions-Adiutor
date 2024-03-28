@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chrumps"
+			"Chrumps",
+			"Msz2001"
 		]
 	},
+	"adiutor-toggle-adiutor": "Wykorzystaj Adiustatora aby moderować, segregować i utrzymywać zadania związane z treścią",
 	"adiutor-other-options": "Inne opcje",
 	"adiutor-continue": "Kontynuuj",
 	"adiutor-options": "Opcje",

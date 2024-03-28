@@ -182,7 +182,7 @@
 	"adiutor-csd-use-vertical-bar": "להשתמש בקו ניצב",
 	"adiutor-csd-use-vertical-bar-description": "כשזה מופעל, סיבות בתוך תבנית המחיקה המהירה מופרדות על־ידי קן ניצב (|).",
 	"adiutor-csd-default": "ברירת המחדל",
-	"adiutor-csd-default-description": "כשזה מופעל, סיבות בתוך תבנית המחיקה המהירה מופרדות על־ידי and.",
+	"adiutor-csd-default-description": "כשזה מופעל, סיבות בתוך תבנית המחיקה המהירה מופרדות במילה \"and\".",
 	"adiutor-prepend-text-on-the-page": "להוסיף את הטקסט לתחילת הדף",
 	"adiutor-prepend-text-on-the-page-description": "כשזה מופעל, התוכן שצוין בקלט דפוס התוכן יופיע בראש הדף.",
 	"adiutor-append-text-on-the-page": "להוסיף את הטקסט לסוף הדף",

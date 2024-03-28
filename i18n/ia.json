@@ -179,7 +179,7 @@
 	"adiutor-csd-use-vertical-bar": "Usar barra vertical",
 	"adiutor-csd-use-vertical-bar-description": "Si es activate, le motivos in le patrono de deletion rapide se separa con un character de barra vertical (|).",
 	"adiutor-csd-default": "Predefinite",
-	"adiutor-csd-default-description": "Si es activate, le motivos in le patrono de deletion rapide se separa per un del duo characteres de separation predefinite.",
+	"adiutor-csd-default-description": "Si es activate, le motivos in le patrono de deletion rapide se separa per le parola “and”.",
 	"adiutor-prepend-text-on-the-page": "Prefixar le texto al pagina",
 	"adiutor-prepend-text-on-the-page-description": "Si es activate, le contento specificate in le entrata del patrono de contento essera inserite al initio del pagina.",
 	"adiutor-append-text-on-the-page": "Adjunger le texto al pagina.",

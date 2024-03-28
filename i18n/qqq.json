@@ -183,7 +183,7 @@
 	"adiutor-csd-use-vertical-bar": "Label for the option to use a pipe (vertical bar) in a speedy deletion request.",
 	"adiutor-csd-use-vertical-bar-description": "Description of the option to use a vertical bar in a speedy deletion request.",
 	"adiutor-csd-default": "Label for the default option in a speedy deletion request.",
-	"adiutor-csd-default-description": "Description of the default option in a speedy deletion request. \"and\" is an English word, don't translate it.",
+	"adiutor-csd-default-description": "Description of the default option in a speedy deletion request.\n{{doc-important|\"and\" must remain an English word, don't translate it!}}",
 	"adiutor-prepend-text-on-the-page": "Label for the option to prepend text on the page optionally.",
 	"adiutor-prepend-text-on-the-page-description": "Description of the option to prepend text on the page optionally.",
 	"adiutor-append-text-on-the-page": "Label for the option to append text on the page optionally.",
