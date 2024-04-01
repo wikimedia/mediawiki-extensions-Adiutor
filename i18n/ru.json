@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Butko",
+			"Dirruw'o",
 			"Kareyac",
 			"Mitte27",
 			"Nikokrat",
@@ -80,6 +81,7 @@
 	"adiutor-try-again": "Попробовать ещё раз",
 	"adiutor-csd-use-reason-data": "Использовать данные причины",
 	"adiutor-csd-default": "По умолчанию",
+	"adiutor-csd-default-description": "При активации причины в шаблоне быстрого удаления разделяются словом «и».",
 	"adiutor-test-mode": "Тестовый режим",
 	"adiutor-namespaces": "Пространства имён",
 	"prefs-moderation": "Модерация",
