@@ -3,6 +3,7 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Gomoko",
+			"Hecatonchire",
 			"Iketsi",
 			"MacOS Weed",
 			"Melimeli",
@@ -41,6 +42,8 @@
 	"adiutor-prd-deletion-type-2": "BLP PROD (Suppression proposée de biographies sans sources)",
 	"adiutor-prd-deletion-type-1-help": "Suppression proposée par $1",
 	"adiutor-prd-deletion-type-2-help": "Suppression proposée de biographies entièrement sans sources d’individus vivants, suivant les lignes directrices établies en $1.",
+	"adiutor-rpp-incomplete-request-details": "Veuillez vous assurer d'avoir sélectionné une durée, un type ainsi que fourni une raison.",
+	"adiutor-rpm-incomplete-request-details": "Veuillez vous assurer d'avoir entré un nouveau nom et fourni une justification.",
 	"adiutor-prd-header-title": "Suppression proposée",
 	"adiutor-csd-header-title": "Demande de suppression immédiate",
 	"adiutor-csd-header-description": "Veuillez sélectionner parmi les options ci-dessous le motif approprié pour la suppression de cette page. Si le motif pour la demande de suppression immédiate ne répond pas aux critères pour la suppression immédiate, la page peut ne pas être supprimée.",
