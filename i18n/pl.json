@@ -2,10 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Chrumps",
-			"Msz2001"
+			"Msz2001",
+			"WaldiSt"
 		]
 	},
 	"adiutor-toggle-adiutor": "Wykorzystaj Adiustatora aby moderować, segregować i utrzymywać zadania związane z treścią",
+	"adiutor-create": "Utwórz",
+	"adiutor-delete": "Usuń",
 	"adiutor-other-options": "Inne opcje",
 	"adiutor-continue": "Kontynuuj",
 	"adiutor-options": "Opcje",
@@ -30,6 +33,7 @@
 	"adiutor-settings-label": "Ustawienia",
 	"adiutor-uncategorized-template-label": "Nieskategoryzowany szablon:",
 	"adiutor-label-column": "Etykieta",
+	"adiutor-delete-button": "Usuń",
 	"adiutor-parameters": "Parametry",
 	"adiutor-parameters-description": "Można wykorzystać parametry zawarte w tych opcjach, które obejmują:",
 	"adiutor-parameters-page-name": "nazwa strony",
@@ -59,7 +63,7 @@
 	"adiutor-try-again": "Spróbuj ponownie",
 	"adiutor-module-enabled": "Moduł włączony",
 	"adiutor-test-mode": "Tryb testowy",
-	"adiutor-test-mode-description": "Gdy ta opcja jest włączona, ten moduł mogą testować tylko administratorzy interfejsu.",
+	"adiutor-test-mode-description": "Po aktywacji moduł ten może być testowany wyłącznie przez administratorów interfejsu.",
 	"adiutor-namespaces": "Przestrzenie nazw",
 	"adiutor-namespaces-description": "Możesz określić przestrzenie nazw, w których ten moduł będzie aktywny.",
 	"prefs-moderation": "Moderacja",
@@ -70,5 +74,6 @@
 	"adiutor-protection-policy-name-lowercase": "zabezpieczenie",
 	"adiutor-comment": "Komentarz",
 	"adiutor-report": "Raport",
-	"adiutor-revision-reporting-comment-placeholder": "Proszę napisać komentarz"
+	"adiutor-revision-reporting-comment-placeholder": "Proszę napisać komentarz",
+	"adiutor-search": "Szukaj"
 }
