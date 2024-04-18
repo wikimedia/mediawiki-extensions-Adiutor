@@ -75,6 +75,7 @@
 
 	/**
 	 * Handles an error by displaying a notification with the error message.
+	 *
 	 * @param {string} error - The error message.
 	 */
 	function handleError( error ) {
@@ -120,6 +121,7 @@
 
 	/**
 	 * Retrieves the content of a page from the MediaWiki API.
+	 *
 	 * @param {string} title - The title of the page.
 	 * @return {Promise<string>} - The content of the page.
 	 */

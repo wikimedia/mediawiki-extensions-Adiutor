@@ -117,6 +117,7 @@
 
 	/**
 	 * Sends a notification to the creator of a page.
+	 *
 	 * @param {string} pageName - The name of the page.
 	 * @param {string} csdReason - The reason for speedy deletion.
 	 * @param {string} csdSummary - The summary of the speedy deletion.
@@ -139,6 +140,7 @@
 
 	/**
 	 * Creates an API request to tag an article for speedy deletion.
+	 *
 	 * @param {string} pageName - The name of the page.
 	 * @param {string} csdReason - The reason for the speedy deletion.
 	 * @param {string} csdSummary - The summary of the speedy deletion.
