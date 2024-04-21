@@ -84,7 +84,7 @@
 	"adiutor-create-speedy-deletion-configuration-title": "Create speedy deletion configuration",
 	"adiutor-create-speedy-deletion-configuration-description": "This page provides you with the ability to customize the settings of Adiutor's request speedy deletion module. When you make adjustments here, it directly updates the configuration stored in the MediaWiki:AdiutorCreateSpeedyDeletion.json page on your behalf. You can easily track and review the history of your modifications on that page.",
 	"adiutor-parameters": "Parameters",
-	"adiutor-parameters-description": "You can utilize the parameters within this options, which include:",
+	"adiutor-parameters-description": "You can utilize the parameters within these options, which include:",
 	"adiutor-parameters-page-name": "page name",
 	"adiutor-parameters-new-page-name": "new page name",
 	"adiutor-parameters-protection-duration": "protection duration",
