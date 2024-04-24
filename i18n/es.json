@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"AnupamM",
+			"Eulalio",
 			"Fitoschido",
 			"McDutchie",
 			"No se"
@@ -19,6 +20,7 @@
 	"adiutor-choose-appropriate-tags": "Elija etiquetas apropiadas",
 	"adiutor-delete-button": "Borrar",
 	"adiutor-parameters": "Parámetros",
+	"adiutor-parameters-description": "Puede utilizar los parámetros dentro de estas opciones, que incluyen:",
 	"adiutor-parameters-page-name": "página nueva",
 	"adiutor-parameters-new-page-name": "nombre de página nueva",
 	"adiutor-parameters-protection-duration": "duración de protección",

@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Brettchenweber",
+			"Justman10000",
 			"Killarnee",
 			"TomatoCake"
 		]
@@ -52,6 +53,7 @@
 	"adiutor-action-column": "Aktion",
 	"adiutor-delete-button": "Löschen",
 	"adiutor-parameters": "Parameter",
+	"adiutor-parameters-description": "Du kannst die Parameter innerhalb dieser Optionen verwenden, die da wären:",
 	"adiutor-parameters-page-name": "Seitenname",
 	"adiutor-parameters-new-page-name": "neuer Seitenname",
 	"adiutor-parameters-protection-duration": "Schutzdauer",
