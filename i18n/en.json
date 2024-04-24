@@ -148,7 +148,7 @@
 	"adiutor-proposed-deletion-blps-template": "\"Proposed deletion of unsourced BLPs\" template:",
 	"adiutor-proposed-deletion-blps-template-description": "This is a proposed deletion request template to be used for BLPs.",
 	"adiutor-request-page-move-configuration": "Request page move configuration",
-	"adiutor-request-page-move-description": "This page provides you with the ability to customize the settings of Adiutor's request page protection module. When you make adjustments here, it directly updates the configuration stored in the MediaWiki:AdiutorRequestPageMove.json page on your behalf. You can easily track and review the history of your modifications on that page.",
+	"adiutor-request-page-move-description": "This page provides you with the ability to customize the settings of Adiutor's request page move module. When you make adjustments here, it directly updates the configuration stored in the MediaWiki:AdiutorRequestPageMove.json page on your behalf. You can easily track and review the history of your modifications on that page.",
 	"adiutor-noticeboard": "Noticeboard:",
 	"adiutor-content-pattern": "Content pattern:",
 	"adiutor-content-pattern-description": "In this field you can create the basic pattern of the content to be added to the page using the parameters specified above, you can use a preload templates in this field or you can also add regular templates.",
