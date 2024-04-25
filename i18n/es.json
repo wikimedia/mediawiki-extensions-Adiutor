@@ -3,7 +3,9 @@
 		"authors": [
 			"AnupamM",
 			"McDutchie",
-			"No se"
+			"No se",
+			"Eulalio",
+			"Fitoschido"
 		]
 	},
 	"adiutor-create": "Crear",
@@ -13,8 +15,33 @@
 	"adiutor-continue": "Continuar",
 	"adiutor-options": "Opciones",
 	"adiutor-afd-special-page-title": "Artículos para eliminar",
+	"adiutor-create-request": "Crear solicitud",
 	"adiutor-protection-type": "Tipo de protección",
 	"adiutor-choose-appropriate-tags": "Elija etiquetas apropiadas",
+	"adiutor-delete-button": "Borrar",
+	"adiutor-parameters": "Parámetros",
+	"adiutor-parameters-page-name": "página nueva",
+	"adiutor-parameters-new-page-name": "nombre de página nueva",
+	"adiutor-parameters-protection-duration": "duración de protección",
+	"adiutor-parameters-protection-type": "tipo de protección",
+	"adiutor-parameters-day": "día",
+	"adiutor-parameters-month": "mes",
+	"adiutor-parameters-year": "año",
+	"adiutor-parameters-requester": "solicitante",
+	"adiutor-name-space": "Espacio de nombres",
+	"adiutor-add-new": "Añadir nuevo",
+	"adiutor-close": "Cerrar",
+	"adiutor-protection-durations": "Duraciones de protección",
+	"adiutor-protection-types": "Tipos de protección",
+	"adiutor-save-configurations": "Guardar configuración",
 	"adiutor-name": "Nombre",
-	"adiutor-csd-default-description": "Cuando se activa, los motivos dentro de la plantilla de eliminación rápida están separados por la palabra \"and\"."
+	"adiutor-tag-description": "Descripción",
+	"adiutor-add-sub-item": "Añadir subelemento",
+	"adiutor-sub-items-for": "Subelementos de",
+	"adiutor-required": "Requerido",
+	"adiutor-parameter": "Parámetro",
+	"adiutor-type": "Tipo",
+	"adiutor-csd-default-description": "Cuando se activa, los motivos dentro de la plantilla de eliminación rápida están separados por la palabra \"and\".",
+	"prefs-moderation": "Moderación",
+	"adiutor-new-name-placeholder": "Nombre nuevo"
 }
