@@ -149,7 +149,7 @@
 	"adiutor-proposed-deletion-blps-template": "תבנית \"מחיקה מוצעת של ביוגרפיות של אנשים חיים ללא מקורות\":",
 	"adiutor-proposed-deletion-blps-template-description": "זוהי תבנית בקשת מחיקה מוצעת לשימוש עם ביוגרפיות של אנשים חיים.",
 	"adiutor-request-page-move-configuration": "הגדרות בקשת העברת דף",
-	"adiutor-request-page-move-description": "הדף הזה מספק לך את היכולת להתאים את ההגדרות של מודול בקשת הגנה על דף של Adiutor. בעת ביצוע התאמות, הוא מעדכן ישירות את התצורה המאוחסנת בדף MediaWiki:AdiutorRequestPageMove.json בשמך. באפשרותך לעקוב בקלות אחר ההיסטוריה של השינויים שלך ולסקור אותן בדף ההוא.",
+	"adiutor-request-page-move-description": "הדף הזה מספק לך את היכולת להתאים את ההגדרות של מודול בקשת העברת דף של Adiutor. בעת ביצוע התאמות, הוא מעדכן ישירות את התצורה המאוחסנת בדף MediaWiki:AdiutorRequestPageMove.json בשמך. באפשרותך לעקוב בקלות אחר ההיסטוריה של השינויים שלך ולסקור אותן בדף ההוא.",
 	"adiutor-noticeboard": "לוח מודעות:",
 	"adiutor-content-pattern": "דפוס תוכן:",
 	"adiutor-content-pattern-description": "בשדה הזה ניתן ליצור את התמליל הבסיסי של התוכן שיתווסף לעמוד בהתאם לפרמטרים שהוגדרו לעיל. ניתן להשתמש בתמליל מוגדר מראש בשדה הזה או להוסיף תבניות רגילות.",
