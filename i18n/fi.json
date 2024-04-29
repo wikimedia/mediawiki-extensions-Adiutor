@@ -5,5 +5,10 @@
 		]
 	},
 	"adiutor-create": "Luo",
-	"adiutor-delete": "Poista"
+	"adiutor-delete": "Poista",
+	"adiutor-continue": "Jatka",
+	"adiutor-options": "Asetukset",
+	"adiutor-and": "ja",
+	"adiutor-warning": "Varoitus",
+	"adiutor-settings-label": "Asetukset"
 }

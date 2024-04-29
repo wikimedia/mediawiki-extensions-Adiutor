@@ -9,7 +9,8 @@
 			"MacOS Weed",
 			"Melimeli",
 			"Thibaut120094",
-			"Urhixidur"
+			"Urhixidur",
+			"Wladek92"
 		]
 	},
 	"adiutor-toggle-adiutor": "Utilisez Adiutor pour modérer, trier et gérer les tâches de contenu",
@@ -154,7 +155,7 @@
 	"adiutor-proposed-deletion-blps-template": "Modèle \"Suppression de BPV non sourcées\":",
 	"adiutor-proposed-deletion-blps-template-description": "Ceci est un modèle de demande de proposition de suppression à utiliser pour des BPVs.",
 	"adiutor-request-page-move-configuration": "Configuration de demandes de renommage de page",
-	"adiutor-request-page-move-description": "Cette page vous offre la possibilité de personnaliser les paramètres du module de protection de page d'Adiutor. Lorsque vous effectuez des ajustements ici, il met directement à jour la configuration stockée dans la page MediaWiki:RequestPageMove.json en votre nom. Vous pouvez facilement suivre et consulter l'historique de vos modifications sur cette page.",
+	"adiutor-request-page-move-description": "Cette page vous offre la possibilité de personnaliser les paramètres du module de renommage de la page de requête de Adiutor. Lorsque vous effectuez des modifications ici, il met directement à jour la configuration stockée dans la page MediaWiki:RequestPageMove.json en votre nom. Vous pouvez facilement suivre et consulter l'historique de vos modifications sur cette page.",
 	"adiutor-noticeboard": "Panneau d'affichage:",
 	"adiutor-content-pattern": "Patterne de contenu:",
 	"adiutor-content-pattern-description": "Dans ce champ, vous pouvez créer le modèle de base du contenu à ajouter à la page en utilisant les paramètres spécifiés ci-dessus, vous pouvez utiliser des modèles de préchargement dans ce champ ou vous pouvez également ajouter des modèles normaux.",
