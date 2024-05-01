@@ -3,7 +3,7 @@
 		"authors": [
 			"Amire80",
 			"McDutchie",
-			"Vikipolimer"
+			"Doğu"
 		]
 	},
 	"adiutor-title": "The name of the extension",
@@ -268,5 +268,6 @@
 	"adiutor-type-value": "This is the label for the type value.",
 	"adiutor-type-label": "This is the label for the type label.",
 	"adiutor-type-data": "This is the label for the type data.",
-	"adiutor-search": "This is the label for the search."
+	"adiutor-search": "This is the label for the search.",
+	"adiutor-create-localization-initial-content": "This is the change summary for the initial localization configuration."
 }

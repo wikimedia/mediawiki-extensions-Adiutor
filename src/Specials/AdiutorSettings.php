@@ -62,7 +62,7 @@ class AdiutorSettings extends SpecialPage {
 	 */
 	public function execute( $subPage ) {
 		$out = $this->output ?? $this->getOutput();
-		$out->setPageTitle( $this->msg( 'adiutor-settings' ) );
+		$out->setPageTitleMsg( $this->msg( 'adiutor-settings' ) );
 		$out->addModules( 'ext.adiutor' );
 		$out->addHTML( $this->templateParser->processTemplate( 'AdiutorSettings', [] ) );
 	}

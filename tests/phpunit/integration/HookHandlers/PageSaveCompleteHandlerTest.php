@@ -66,9 +66,6 @@ class PageSaveCompleteHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// Call the hook handler.
 		$handler->onPageSaveComplete( $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult );
-
-		// Verify that the cache key was deleted.
-		$this->assertTrue( true );
 	}
 
 }

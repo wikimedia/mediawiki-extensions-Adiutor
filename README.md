@@ -2,9 +2,6 @@
 
 https://www.mediawiki.org/wiki/Extension:Adiutor
 
-[![Build Status](https://travis-ci.org/wikimedia/mediawiki-extensions-Adiutor.svg?branch=master)](https://travis-ci.org/wikimedia/mediawiki-extensions-Adiutor)
-[![Coverage Status](https://coveralls.io/repos/github/wikimedia/mediawiki-extensions-Adiutor/badge.svg?branch=master)](https://coveralls.io/github/wikimedia/mediawiki-extensions-Adiutor?branch=master)
-
 Adiutor is a MediaWiki extension to moderate, triage, and maintain content tasks on Wikipedia. Utilizing the advanced
 capabilities of the Codex design system, specifically developed for Wikimedia, along with the all-purpose features of
 Vue.js, this extension enables Wikipedia users a user-friendly and convenient interface for conducting a wide range of

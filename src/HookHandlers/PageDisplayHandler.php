@@ -71,12 +71,6 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	public function onBeforePageDisplay( $out, $skin ): void {
 		$extensionRegistry = ExtensionRegistry::getInstance();
 		$user = $out->getUser();
-		$title = $out->getTitle();
-
-		if ( $title->isSpecialPage() ) {
-			$this->loadModulesAndHTML( $out );
-			return;
-		}
 
 		if ( !Utils::isEnabledForUser( $this->userOptionsLookup, $user, $extensionRegistry ) ) {
 			return;
@@ -143,11 +137,6 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 					],
 				];
 				foreach ( $configPages as $configPage ) {
-					if ( !isset( $configPage['title'] ) || !isset( $configPage['configuration'] ) ) {
-						$this->logger->warning( 'Configuration page data is incomplete',
-							[ 'configPage' => $configPage ] );
-						continue;
-					}
 					$title = Title::newFromText( $configPage['title'] );
 					if ( !$title ) {
 						$this->logger->warning( 'Configuration page title is invalid',

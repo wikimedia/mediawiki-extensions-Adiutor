@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vikipolimer"
+			"Doğu"
 		]
 	},
 	"adiutor-title": "Adiutor",
@@ -266,5 +266,6 @@
 	"adiutor-type-value": "Type value",
 	"adiutor-type-label": "Type label",
 	"adiutor-type-data": "Type help",
-	"adiutor-search": "Search"
+	"adiutor-search": "Search",
+	"adiutor-create-localization-initial-content": "Initial content for Adiutor localization file"
 }

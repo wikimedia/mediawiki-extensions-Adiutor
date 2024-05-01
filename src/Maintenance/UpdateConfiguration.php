@@ -33,6 +33,7 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Extension\Adiutor\Configs\AdiutorDummyConfig;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Revision\SlotRecord;
 use TextContent;
 use User;
@@ -85,7 +86,8 @@ class UpdateConfiguration extends Maintenance {
 			$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
 			$pageUpdater->setContent( SlotRecord::MAIN, new TextContent( $pageContent ) );
 			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment(
-				'Initial content for Adiutor localization file' ), EDIT_INTERNAL | EDIT_AUTOSUMMARY );
+				Message::newFromKey( 'adiutor-create-localization-initial-content' ) ), EDIT_INTERNAL |
+				EDIT_AUTOSUMMARY );
 			$saveStatus = $pageUpdater->getStatus();
 			if ( !$saveStatus->isGood() ) {
 				$logger = LoggerFactory::getInstance( 'Adiutor' );

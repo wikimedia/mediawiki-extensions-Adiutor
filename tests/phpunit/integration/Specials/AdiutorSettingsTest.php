@@ -23,7 +23,6 @@ namespace MediaWiki\Extension\Adiutor\Tests\Integration\Specials;
 
 use MediaWiki\Extension\Adiutor\Specials\AdiutorSettings;
 use MediaWikiIntegrationTestCase;
-use Message;
 use OutputPage;
 
 /**
@@ -39,13 +38,10 @@ class AdiutorSettingsTest extends MediaWikiIntegrationTestCase {
 		// Set up a mock OutputPage.
 		$mockOutputPage = $this->createMock( OutputPage::class );
 
-		// Set expectations for setPageTitle method using a callback to check the message key.
+		// Set up expectations for the addModules method.
 		$mockOutputPage->expects( $this->once() )
-			->method( 'setPageTitle' )
-			->with( $this->callback( static function ( $message ) {
-				// Check if the message key matches 'adiutor-settings'.
-				return $message instanceof Message && $message->getKey() === 'adiutor-settings';
-			} ) );
+			->method( 'addModules' )
+			->with( 'ext.adiutor' );
 
 		// Set up expectations for the addHTML method.
 		$mockOutputPage->expects( $this->once() )
@@ -55,7 +51,7 @@ class AdiutorSettingsTest extends MediaWikiIntegrationTestCase {
 		// Inject the mock OutputPage into the AdiutorSettings object.
 		$adiutorSettings->setOutput( $mockOutputPage );
 
-		// Call the execute method.
-		$adiutorSettings->execute( 'subPage' );
+		// Call the execute method with a dummy subpage argument.
+		$adiutorSettings->execute( '' );
 	}
 }

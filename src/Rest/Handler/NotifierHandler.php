@@ -36,7 +36,7 @@ use User;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * Example class to update local adiutor module configurations
+ * This is a rest handler for echo notifications.
  */
 class NotifierHandler extends SimpleHandler {
 

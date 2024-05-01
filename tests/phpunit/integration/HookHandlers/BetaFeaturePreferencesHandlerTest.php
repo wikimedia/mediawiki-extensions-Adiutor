@@ -74,8 +74,5 @@ class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'adiutor-beta-feature-enable', $preferences );
 
 		$handler->onGetBetaFeaturePreferences( $user, $preferences );
-
-		// Verify that the cache key was deleted.
-		$this->assertTrue( true );
 	}
 }

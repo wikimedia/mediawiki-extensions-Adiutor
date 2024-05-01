@@ -146,26 +146,26 @@
 	 * @param {string} csdSummary - The summary of the speedy deletion.
 	 */
 	const createApiRequest = async ( pageName, csdReason, csdSummary ) => {
-		// API request to tag the article for speedy deletion
-		api.postWithToken( 'csrf', {
-			action: 'edit',
-			title: pageName,
-			prependtext: csdReason + '\n',
-			summary: csdSummary,
-			tags: 'adiutor',
-			format: 'json'
-		} ).done( function () {
+		try {
+			await api.postWithToken( 'csrf', {
+				action: 'edit',
+				title: pageName,
+				prependtext: csdReason + '\n',
+				summary: csdSummary,
+				tags: 'adiutor',
+				format: 'json'
+			} );
 			mw.notify( mw.message( 'adiutor-speedy-deletion-request-completed' ).text(), {
 				title: mw.msg( 'adiutor-operation-completed' ),
 				type: 'success'
 			} );
 			window.location.reload();
-		} ).fail( function ( error ) {
+		} catch ( error ) {
 			mw.notify( error, {
 				title: mw.msg( 'adiutor-operation-failed' ),
 				type: 'error'
 			} );
-		} );
+		}
 	};
 
 	/**
