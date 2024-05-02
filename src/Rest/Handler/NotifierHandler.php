@@ -93,7 +93,7 @@ class NotifierHandler extends SimpleHandler {
 	}
 
 	/**
-	 * Check if a page has changed recently
+	 * Check if a page has changed recently before sending notification.
 	 *
 	 * @param string $pageTitle Title of the page to check.
 	 * @return bool True if the page has changed; otherwise, false.
