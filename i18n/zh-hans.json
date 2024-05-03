@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Anterdc99",
-			"Cwek"
+			"Cwek",
+			"McDutchie"
 		]
 	},
 	"adiutor-toggle-adiutor": "使用Adiutor来审核、分类和维护内容任务",
@@ -140,7 +141,7 @@
 	"adiutor-csd-use-vertical-bar": "使用管道符",
 	"adiutor-csd-use-vertical-bar-description": "激活后，快速删除模板中的理由会用竖线（|）分隔。",
 	"adiutor-csd-default": "默认",
-	"adiutor-csd-default-description": "激活后，快速删除模板中的理由会用“和”分隔。",
+	"adiutor-csd-default-description": "激活后，快速删除模板中的理由会用“and”分隔。",
 	"adiutor-prepend-text-on-the-page": "将文本附加到页面前",
 	"adiutor-prepend-text-on-the-page-description": "激活后，输入的内容模式中指定的内容将会附加到页面前。",
 	"adiutor-append-text-on-the-page": "将文本附加到页面后。",
