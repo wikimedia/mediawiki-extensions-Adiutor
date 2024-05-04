@@ -84,9 +84,7 @@
     </cdx-field>
     <cdx-field>
       <cdx-toggle-switch v-model="addNewSection" :align-switch="true">
-        <template #label>
-          {{ $i18n( "adiutor-create-new-section" ) }}
-        </template>
+        {{ $i18n( "adiutor-create-new-section" ) }}
         <template #description>
           {{ $i18n( "adiutor-new-section-description" ) }}
         </template>

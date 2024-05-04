@@ -90,7 +90,7 @@
 		"pageSaveComplete": {
 			"class": "MediaWiki\\Extension\\Adiutor\\HookHandlers\\PageSaveCompleteHandler",
 			"services": [
-				"MainConfig"
+				"RevisionLookup"
 			]
 		},
 		"createEchoEvent": {
