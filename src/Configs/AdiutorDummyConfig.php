@@ -1,6 +1,5 @@
 <?php
 /**
- * @noinspection ALL
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,6 +23,9 @@
 
 namespace MediaWiki\Extension\Adiutor\Configs;
 
+/**
+ * This class provides initial configurations for the Adiutor extension, facilitating the setup of configuration pages.
+ */
 class AdiutorDummyConfig {
 
 	public const DELETION_PROPOSE_CONFIGURATION = [

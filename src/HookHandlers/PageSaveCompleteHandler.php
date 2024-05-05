@@ -21,17 +21,65 @@
 
 namespace MediaWiki\Extension\Adiutor\HookHandlers;
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Storage\Hook\PageSaveCompleteHook;
+use Psr\Log\LoggerInterface;
+use Title;
 
 class PageSaveCompleteHandler implements PageSaveCompleteHook {
+	private RevisionLookup $revisionLookup;
+	private LoggerInterface $logger;
+	private array $configPages = [
+		'MediaWiki:AdiutorRequestPageProtection.json',
+		'MediaWiki:AdiutorCreateSpeedyDeletion.json',
+		'MediaWiki:AdiutorDeletionPropose.json',
+		'MediaWiki:AdiutorRequestPageMove.json',
+		'MediaWiki:AdiutorArticleTagging.json',
+		'MediaWiki:AdiutorReportRevision.json'
+	];
+
+	public function __construct( RevisionLookup $revisionLookup ) {
+		$this->revisionLookup = $revisionLookup;
+		$this->logger = LoggerFactory::getInstance( "Adiutor" );
+	}
 
 	/**
+	 * Handles page save completion events and updates configuration if necessary.
 	 * @inheritDoc
 	 */
 	public function onPageSaveComplete( $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult ) {
+		$titleText = $wikiPage->getTitle()->getText();
+		if ( in_array( $titleText, $this->configPages ) ) {
+			$this->processPageSave( $titleText );
+		}
+	}
+
+	/**
+	 * Processes the page save operation for configuration pages.
+	 *
+	 * Checks if the saved page is one of the designated configuration pages and, if so,
+	 * updates the necessary cache settings and logs the action.
+	 *
+	 * @param string $titleText The title of the page being saved.
+	 */
+	private function processPageSave( string $titleText ) {
+		$title = Title::newFromText( $titleText );
+		if ( !$title ) {
+			$this->logger->warning( 'Invalid configuration page title', [ 'configPageTitle' => $titleText ] );
+			return;
+		}
+		$revision = $this->revisionLookup->getRevisionByTitle( $title );
+		if ( !$revision ) {
+			$this->logger->warning( 'Configuration page not found', [ 'configPageTitle' => $titleText ] );
+			return;
+		}
+
+		// Invalidate cache when the configuration page is updated
 		$wanObjectCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $wanObjectCache->makeKey( 'Adiutor', 'config-data' );
 		$wanObjectCache->delete( $key );
+		$this->logger->info( 'Cache for Adiutor configuration data cleared', [ 'configPageTitle' => $titleText ] );
 	}
 }

@@ -19,13 +19,6 @@
  * @since 0.0.1
  */
 
-/**
- * Class UpdateConfiguration
- *
- * This class is responsible for creating and saving configuration pages for the Adiutor extension
- * if they do not already exist. It extends the Maintenance class.
- */
-
 namespace MediaWiki\Extension\Adiutor\Maintenance;
 
 use Maintenance;
@@ -38,6 +31,10 @@ use MediaWiki\Revision\SlotRecord;
 use TextContent;
 use User;
 
+/**
+ * This class is responsible for creating and saving configuration pages for the Adiutor extension
+ * if they do not already exist. It extends the Maintenance class.
+ */
 class UpdateConfiguration extends Maintenance {
 
 	public function __construct() {
@@ -86,8 +83,7 @@ class UpdateConfiguration extends Maintenance {
 			$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
 			$pageUpdater->setContent( SlotRecord::MAIN, new TextContent( $pageContent ) );
 			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment(
-				Message::newFromKey( 'adiutor-create-localization-initial-content' ) ), EDIT_INTERNAL |
-				EDIT_AUTOSUMMARY );
+				Message::newFromKey( 'adiutor-create-localization-initial-content' ) ), EDIT_INTERNAL );
 			$saveStatus = $pageUpdater->getStatus();
 			if ( !$saveStatus->isGood() ) {
 				$logger = LoggerFactory::getInstance( 'Adiutor' );

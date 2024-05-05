@@ -83,12 +83,14 @@
         {{ $i18n( "adiutor-content-pattern-description" ) }}
       </template>
     </cdx-field>
-    <cdx-toggle-switch v-model="addNewSection" :align-switch="true">
-      {{ $i18n( "adiutor-create-new-section" ) }}
-      <template #description>
-        {{ $i18n( "adiutor-new-section-description" ) }}
-      </template>
-    </cdx-toggle-switch>
+    <cdx-field>
+      <cdx-toggle-switch v-model="addNewSection" :align-switch="true">
+        {{ $i18n( "adiutor-create-new-section" ) }}
+        <template #description>
+          {{ $i18n( "adiutor-new-section-description" ) }}
+        </template>
+      </cdx-toggle-switch>
+    </cdx-field>
     <cdx-field v-if="addNewSection">
       <template #label>
         <strong>{{ $i18n( "adiutor-new-section-title" ) }}</strong>
