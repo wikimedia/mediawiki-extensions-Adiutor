@@ -26,7 +26,6 @@ use MediaWikiIntegrationTestCase;
 use ReflectionClass;
 use Title;
 use TitleFactory;
-use User;
 
 /**
  * @group Maintenance
@@ -38,7 +37,9 @@ class UpdateConfigurationTest extends MediaWikiIntegrationTestCase {
 	public function testExecute() {
 		// Create a new UpdateConfiguration object
 		$maintenance = new UpdateConfiguration();
+		ob_start();
 		$maintenance->execute();
+		ob_end_clean();
 		// Set getConfigurationPages to public for testing purposes
 		$reflection = new ReflectionClass( $maintenance );
 		$property = $reflection->getProperty( 'configurationPages' );
@@ -56,33 +57,29 @@ class UpdateConfigurationTest extends MediaWikiIntegrationTestCase {
 		$maintenance = new UpdateConfiguration();
 		$titleFactory = $this->createMock( TitleFactory::class );
 		$services = $this->getServiceContainer();
-		$user = User::newSystemUser( 'Adiutor bot', [ 'steal' => true ] );
-		$this->setMwGlobals( 'wgReservedUsernames', [ 'Adiutor bot' ] );
-		// Now check username is in the reserved usernames
-		$this->assertContains( $user->getName(), $GLOBALS['wgReservedUsernames'],
-			'Adiutor bot should be in the reserved usernames.' );
-		// Create a new title and check if it exists
+		$this->setMwGlobals( 'wgReservedUsernames', [ 'AdiutorBot' ] );
+
 		$titleText = 'MediaWiki:AdiutorTestPage' . mt_rand( 10000, 99999 ) . '.json';
 		$content = [ 'key' => 'value' ];
 		$title = Title::newFromText( $titleText );
-		$this->assertFalse( $title->exists(), 'Title should not exist for testing purposes.' );
 		$titleFactory->method( 'newFromText' )->willReturn( $title );
-		$maintenance->createPage(
-			$titleText,
-			$content,
-		);
-		$this->assertTrue( $title->exists(), 'Title should have been created.' );
+
+		ob_start();
+		$maintenance->createPage( $titleText, $content );
+		ob_end_clean();
+
 		$wikiPage = $services->getWikiPageFactory()->newFromTitle( $title );
 		$pageText = $wikiPage->getContent()->serialize();
 		$expectedContent = json_encode( $content, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
+
 		$this->assertEquals( $expectedContent, $pageText, 'Page should contain the expected JSON content.' );
-		$maintenance->createPage(
-			$titleText,
-			[ 'new' => 'content' ],
-		);
+
+		ob_start();
+		$maintenance->createPage( $titleText, [ 'new' => 'content' ] );
+		ob_end_clean();
+
 		$wikiPageAfter = $services->getWikiPageFactory()->newFromTitle( $title );
 		$pageTextAfter = $wikiPageAfter->getContent()->serialize();
-		$this->assertEquals( $expectedContent, $pageTextAfter,
-			'Page content should not change when the title already exists.' );
+		$this->assertEquals( $expectedContent, $pageTextAfter, 'Page content should not change when the title already exists.' );
 	}
 }

@@ -71,28 +71,38 @@ class UpdateConfiguration extends Maintenance {
 		$systemUserName = 'AdiutorBot';
 		$user = User::newSystemUser( $systemUserName, [ 'steal' => true ] );
 		if ( !$user ) {
+			$this->error( "Could not create or obtain system user: $systemUserName.\n" );
 			return;
 		}
+
 		global $wgReservedUsernames;
 		if ( !in_array( $systemUserName, (array)$wgReservedUsernames ) ) {
 			$wgReservedUsernames[] = $systemUserName;
 		}
+
 		$title = $titleFactory->newFromText( $pageTitle );
-		if ( !$title->exists() ) {
-			$pageContent = json_encode( $content, JSON_PRETTY_PRINT );
-			$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
-			$pageUpdater->setContent( SlotRecord::MAIN, new TextContent( $pageContent ) );
-			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment(
-				Message::newFromKey( 'adiutor-create-localization-initial-content' ) ), EDIT_INTERNAL );
-			$saveStatus = $pageUpdater->getStatus();
-			if ( !$saveStatus->isGood() ) {
-				$logger = LoggerFactory::getInstance( 'Adiutor' );
-				$logger->warning( 'Failed to create configuration page', [
-					'pageTitle' => $pageTitle,
-					'pageContent' => $pageContent,
-					'saveStatus' => $saveStatus,
-				] );
-			}
+		if ( $title->exists() ) {
+			$this->output( "Page '$pageTitle' already exists and was not created.\n" );
+			return;
+		}
+
+		$pageContent = json_encode( $content, JSON_PRETTY_PRINT );
+		$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
+		$pageUpdater->setContent( SlotRecord::MAIN, new TextContent( $pageContent ) );
+		$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment(
+			Message::newFromKey( 'adiutor-create-localization-initial-content' ) ), EDIT_INTERNAL );
+
+		$saveStatus = $pageUpdater->getStatus();
+		if ( !$saveStatus->isGood() ) {
+			$logger = LoggerFactory::getInstance( 'Adiutor' );
+			$logger->warning( 'Failed to create configuration page', [
+				'pageTitle' => $pageTitle,
+				'pageContent' => $pageContent,
+				'saveStatus' => $saveStatus,
+			] );
+			$this->error( "Failed to create page '$pageTitle'.\n" );
+		} else {
+			$this->output( "Page '$pageTitle' created successfully.\n" );
 		}
 	}
 }
