@@ -85,7 +85,7 @@
     </cdx-field>
   </cdx-field>
   <cdx-field>
-    <table id="adiutor-options-props">
+    <table id="adiutor-options-props" class="adiutor-article-tagging-options">
       <caption>
         {{ $i18n( "adiutor-tag-labels" ) }}
         <cdx-button
@@ -380,15 +380,16 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="less">
-#adiutor-options-props {
+@import 'mediawiki.skin.variables.less';
+#adiutor-options-props.adiutor-article-tagging-options {
   border-collapse: collapse;
   width: 100%;
 
   caption {
     padding-top: 12px;
     padding-bottom: 12px;
-    background-color: #eaecf0;
-    color: #000f;
+    background-color: @background-color-interactive;
+    color: @color-emphasized;
     text-align: center;
     border: 1px solid #ddd;
     font-weight: 900;
@@ -400,19 +401,19 @@ module.exports = defineComponent( {
   }
 
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: @background-color-interactive-subtle;
   }
 
   tr:hover {
-    background-color: #ddd;
+    background-color: @background-color-interactive;
   }
 
   th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #fff;
-    color: #000f;
+    background-color: @background-color-base;
+    color: @color-base;
   }
 
   .add-new-button {
