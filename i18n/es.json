@@ -44,5 +44,6 @@
 	"adiutor-type": "Tipo",
 	"adiutor-csd-default-description": "Cuando se activa, los motivos dentro de la plantilla de eliminación rápida están separados por la palabra \"and\".",
 	"prefs-moderation": "Moderación",
-	"adiutor-new-name-placeholder": "Nombre nuevo"
+	"adiutor-new-name-placeholder": "Nombre nuevo",
+	"adiutor-create-localization-initial-content": "Contenido inicial del archivo de localización de Adiutor"
 }
