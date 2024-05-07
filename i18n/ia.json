@@ -262,5 +262,6 @@
 	"adiutor-type-value": "Valor del typo",
 	"adiutor-type-label": "Etiquetta del typo",
 	"adiutor-type-data": "Adjuta del typo",
-	"adiutor-search": "Cercar"
+	"adiutor-search": "Cercar",
+	"adiutor-create-localization-initial-content": "Contento initial pro le file de localisation de Adiutor"
 }
