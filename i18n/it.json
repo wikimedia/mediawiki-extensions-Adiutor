@@ -1,20 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Champ0999"
 		]
 	},
 	"adiutor-protection-policy": "Politica di protezione",
+	"adiutor-continue": "Continua",
+	"adiutor-options": "Opzioni",
 	"adiutor-pmr-header-title": "Richiesta di spostamento della pagina",
 	"adiutor-page-protection-request": "Richiesta di protezione della pagina",
 	"adiutor-localization-settings-has-been-updated": "Le impostazioni di localizzazione di Adiutor sono state aggiornate.",
 	"adiutor-operation-completed": "Operazione completata!",
+	"adiutor-settings-label": "Impostazioni",
+	"adiutor-delete-button": "Cancella",
 	"adiutor-parameters-month": "mese",
 	"adiutor-parameters-year": "anno",
 	"adiutor-name-space": "Namespace",
+	"adiutor-close": "Chiudi",
 	"adiutor-save-configurations": "Salva configurazione",
 	"adiutor-name": "Nome",
 	"adiutor-value": "Valore",
+	"adiutor-tag-description": "Descrizione",
 	"adiutor-section-id": "ID sezione:",
 	"adiutor-configurations-saving": "Salvataggio...",
 	"adiutor-module-enabled-description": "Una volta attivato, il modulo sarà abilitato.",

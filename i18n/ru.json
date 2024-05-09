@@ -8,7 +8,8 @@
 			"Mitte27",
 			"Nikokrat",
 			"Okras",
-			"Yurina Tatiana"
+			"Yurina Tatiana",
+			"McDutchie"
 		]
 	},
 	"adiutor-toggle-adiutor": "Используйте Adiutor для модерации, сортировки и обслуживания задач по контенту",
@@ -81,7 +82,7 @@
 	"adiutor-try-again": "Попробовать ещё раз",
 	"adiutor-csd-use-reason-data": "Использовать данные причины",
 	"adiutor-csd-default": "По умолчанию",
-	"adiutor-csd-default-description": "При активации причины в шаблоне быстрого удаления разделяются словом «и».",
+	"adiutor-csd-default-description": "При активации причины в шаблоне быстрого удаления разделяются словом «and».",
 	"adiutor-test-mode": "Тестовый режим",
 	"adiutor-namespaces": "Пространства имён",
 	"prefs-moderation": "Модерация",
