@@ -4,7 +4,8 @@
 			"Anterdc99",
 			"Cwek",
 			"Kichin",
-			"McDutchie"
+			"McDutchie",
+			"Yining Chen"
 		]
 	},
 	"adiutor-toggle-adiutor": "使用Adiutor来审核、分类和维护内容任务",
@@ -196,6 +197,10 @@
 	"adiutor-search-tag-placeholder": "搜索标签……",
 	"adiutor-no-tag-found": "没有与您的搜索相符的维护标签。",
 	"adiutor-prd-rationale-placeholder": "{{GENDER:|您}}为什么要提议删除此条目？",
+	"adiutor-proposed-deletion-policy": "建议性删除方针",
+	"adiutor-proposed-deletion-policy-shortcut": "建议性删除方针快捷方式",
+	"adiutor-proposed-deletion-blpprod-policy": "对未注明来源生者传记的建议性删除方针",
+	"adiutor-proposed-deletion-blpprod-policy-shortcut": "对未注明来源生者传记的建议性删除方针快捷方式",
 	"adiutor-copy-vio-reason-value-help-text": "请记住，模板应该有一个“url=”参数。",
 	"adiutor-this-page-deleted-before": "此页面之前已被删除了$1次！",
 	"adiutor-deletion-log": "删除日志",
