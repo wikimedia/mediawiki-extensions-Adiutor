@@ -204,50 +204,53 @@
       </tr>
     </table>
   </cdx-field>
-  <cdx-field
-      v-for="( reasonNamespace, namespaceIndex ) in speedyDeletionReasons"
-      :key="'nestedTable-' + namespaceIndex">
+  <cdx-accordion
+        v-for="( reasonNamespace, namespaceIndex ) in speedyDeletionReasons"
+        :key="'nestedTable-' + namespaceIndex">
+    <template #title>
+      {{ $i18n( "adiutor-deletion-reasons-for" ) }} {{ reasonNamespace.name }}
+    </template>
     <table id="adiutor-options-props">
-      <caption>
-        {{ $i18n( "adiutor-deletion-reasons-for" ) }} {{ reasonNamespace.name }}
-        <cdx-button
-            class="add-new-button"
-            weight="quiet"
-            @click="addNewReason( namespaceIndex )">
-          {{ $i18n( "adiutor-add-new" ) }}
-        </cdx-button>
-      </caption>
-      <tr>
-        <th>{{ $i18n( "adiutor-value" ) }}</th>
-        <th>{{ $i18n( "adiutor-data" ) }}</th>
-        <th>{{ $i18n( "adiutor-label" ) }}</th>
-        <th>{{ $i18n( "adiutor-help" ) }}</th>
-        <th>{{ $i18n( "adiutor-action" ) }}</th>
-      </tr>
-      <tr v-for="( reason, reasonIndex ) in reasonNamespace.reasons" :key="'reason-' + reasonIndex">
-        <td>
-          <cdx-text-input
-              v-model="reason.value"
-              :aria-label="$i18n( 'adiutor-value' )"
-              style="min-width: 50px;"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-text-input v-model="reason.data" :aria-label="$i18n( 'adiutor-data' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-text-input v-model="reason.label" :aria-label="$i18n( 'adiutor-label' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-text-input v-model="reason.help" :aria-label="$i18n( 'adiutor-help' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-button action="destructive" @click="deleteReason( namespaceIndex, reasonIndex )">
-            {{ $i18n( "adiutor-delete" ) }}
+        <caption>
+          {{ $i18n( "adiutor-deletion-reasons-for" ) }} {{ reasonNamespace.name }}
+          <cdx-button
+              class="add-new-button"
+              weight="quiet"
+              @click="addNewReason( namespaceIndex )">
+            {{ $i18n( "adiutor-add-new" ) }}
           </cdx-button>
-        </td>
-      </tr>
-    </table>
-  </cdx-field>
+        </caption>
+        <tr>
+          <th>{{ $i18n( "adiutor-value" ) }}</th>
+          <th>{{ $i18n( "adiutor-data" ) }}</th>
+          <th>{{ $i18n( "adiutor-label" ) }}</th>
+          <th>{{ $i18n( "adiutor-help" ) }}</th>
+          <th>{{ $i18n( "adiutor-action" ) }}</th>
+        </tr>
+        <tr v-for="( reason, reasonIndex ) in reasonNamespace.reasons" :key="'reason-' + reasonIndex">
+          <td>
+            <cdx-text-input
+                v-model="reason.value"
+                :aria-label="$i18n( 'adiutor-value' )"
+                style="min-width: 50px;"></cdx-text-input>
+          </td>
+          <td>
+            <cdx-text-input v-model="reason.data" :aria-label="$i18n( 'adiutor-data' )"></cdx-text-input>
+          </td>
+          <td>
+            <cdx-text-input v-model="reason.label" :aria-label="$i18n( 'adiutor-label' )"></cdx-text-input>
+          </td>
+          <td>
+            <cdx-text-input v-model="reason.help" :aria-label="$i18n( 'adiutor-help' )"></cdx-text-input>
+          </td>
+          <td>
+            <cdx-button action="destructive" @click="deleteReason( namespaceIndex, reasonIndex )">
+              {{ $i18n( "adiutor-delete" ) }}
+            </cdx-button>
+          </td>
+        </tr>
+      </table>
+  </cdx-accordion>
 </template>
 
 <script>
@@ -259,7 +262,8 @@ const {
   CdxToggleSwitch,
   CdxField,
   CdxRadio,
-  CdxButton
+  CdxButton,
+  CdxAccordion
 } = require( '../../codex.js' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
@@ -271,7 +275,8 @@ module.exports = defineComponent( {
     CdxField,
     CdxRadio,
     CdxButton,
-    CdxToggleSwitch
+    CdxToggleSwitch,
+    CdxAccordion
   },
   setup() {
     const csdConfiguration = mw.config.get( 'wgAdiutorCreateSpeedyDeletion' );

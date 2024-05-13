@@ -124,7 +124,8 @@
 				"CdxCard",
 				"CdxMessage",
 				"CdxToggleSwitch",
-				"CdxButton"
+				"CdxButton",
+				"CdxAccordion"
 			],
 			"dependencies": [
 				"mediawiki.util",
