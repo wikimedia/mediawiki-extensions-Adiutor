@@ -122,6 +122,7 @@
 	"adiutor-multiple-reason-template-description": "Description of the multiple reason template, explaining its use.",
 	"adiutor-output": "Label for the output section or area in the interface.",
 	"adiutor-summaries": "Label for the section where summaries of actions or changes are displayed or entered.",
+	"adiutor-speedy-deletion-namespaces": "Label for the list or selection of namespaces for speedy deletion requests.",
 	"adiutor-speedy-deletion-reasons": "Label for the list or selection of reasons available for speedy deletion requests.",
 	"adiutor-name": "Label for the field or column where names are displayed or entered.",
 	"adiutor-action": "Label for the field or column indicating the action taken or to be taken.",

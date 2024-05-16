@@ -125,7 +125,8 @@
 				"CdxMessage",
 				"CdxToggleSwitch",
 				"CdxButton",
-				"CdxAccordion"
+				"CdxAccordion",
+				"CdxTable"
 			],
 			"dependencies": [
 				"mediawiki.util",
@@ -158,8 +159,11 @@
 						"cdxIconAdd",
 						"cdxIconClose",
 						"cdxIconSearch",
+						"cdxIconTrash",
+						"cdxIconEdit",
 						"cdxIconLinkExternal",
-						"cdxIconTag"
+						"cdxIconTag",
+						"cdxIconAdd"
 					]
 				}
 			],
@@ -278,6 +282,7 @@
 				"adiutor-multiple-reason-template-description",
 				"adiutor-output",
 				"adiutor-summaries",
+				"adiutor-speedy-deletion-namespaces",
 				"adiutor-speedy-deletion-reasons",
 				"adiutor-name",
 				"adiutor-action",

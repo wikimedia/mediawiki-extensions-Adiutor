@@ -166,91 +166,94 @@
     </cdx-field>
   </cdx-field>
   <cdx-field>
-    <table id="adiutor-options-props">
-      <caption>
-        {{ $i18n( "adiutor-speedy-deletion-reasons" ) }}
-        <cdx-button
-            class="add-new-button"
-            weight="quiet"
-            @click="addNewNameSpace">
-          {{ $i18n( "adiutor-add-new" ) }}
-        </cdx-button>
-      </caption>
-      <tr>
-        <th>{{ $i18n( "adiutor-name-space" ) }}</th>
-        <th>{{ $i18n( "adiutor-name" ) }}</th>
-        <th>{{ $i18n( "adiutor-action" ) }}</th>
-      </tr>
-      <tr v-for="( reasonNamespace, index ) in speedyDeletionReasons" :key="index">
-        <td>
-          <cdx-text-input
-              v-model="reasonNamespace.namespace"
-              :aria-label="$i18n( 'adiutor-name-space' )"
-              :disabled="isNamespaceDisabled( reasonNamespace )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-text-input
-              v-model="reasonNamespace.name"
-              :aria-label="$i18n( 'adiutor-name' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-button
-              :disabled="isNamespaceDisabled( reasonNamespace )"
-              action="destructive"
-              @click="deleteNameSpace( reasonNamespace )">
-            {{ $i18n( "adiutor-delete" ) }}
+    {{ speedyDeletionReasons }}
+    <cdx-table
+        class="cdx-docs-table-custom-cells"
+        :caption="$i18n( 'adiutor-speedy-deletion-namespaces' )"
+        :columns="speedyDeletionNamespacesColumns"
+        :data="speedyDeletionReasons"
+    >
+      <template #header>
+        <div class="cdx-docs-table-with-selection__header">
+          <cdx-button :aria-label="$i18n( 'adiutor-add-new' )" @click="addNewNameSpace">
+            <cdx-icon :icon="cdxIconAdd"></cdx-icon>
           </cdx-button>
-        </td>
-      </tr>
-    </table>
-  </cdx-field>
-  <cdx-accordion
-        v-for="( reasonNamespace, namespaceIndex ) in speedyDeletionReasons"
-        :key="'nestedTable-' + namespaceIndex">
-    <template #title>
-      {{ $i18n( "adiutor-deletion-reasons-for" ) }} {{ reasonNamespace.name }}
-    </template>
-    <table id="adiutor-options-props">
-        <caption>
-          {{ $i18n( "adiutor-deletion-reasons-for" ) }} {{ reasonNamespace.name }}
+        </div>
+      </template>
+      <template #item-namespace="{ row, item }">
+        <cdx-text-input
+            v-model="row.namespace"
+            :aria-label="$i18n( 'adiutor-name-space' )"
+            :disabled="isNamespaceDisabled( item )"></cdx-text-input>
+      </template>
+      <template #item-name="{ row }">
+        <cdx-text-input
+            v-model="row.name"
+            :aria-label="$i18n( 'adiutor-name' )"></cdx-text-input>
+      </template>
+      <template #item-actions="{ row }">
+        <div class="cdx-docs-table-custom-cells__actions">
           <cdx-button
-              class="add-new-button"
               weight="quiet"
-              @click="addNewReason( namespaceIndex )">
-            {{ $i18n( "adiutor-add-new" ) }}
+              action="destructive"
+              :aria-label="$i18n( 'adiutor-delete' )"
+              :disabled="isNamespaceDisabled( row.namespace )"
+              @click="deleteNameSpace( row )"
+          >
+            <cdx-icon :icon="cdxIconTrash"></cdx-icon>
           </cdx-button>
-        </caption>
-        <tr>
-          <th>{{ $i18n( "adiutor-value" ) }}</th>
-          <th>{{ $i18n( "adiutor-data" ) }}</th>
-          <th>{{ $i18n( "adiutor-label" ) }}</th>
-          <th>{{ $i18n( "adiutor-help" ) }}</th>
-          <th>{{ $i18n( "adiutor-action" ) }}</th>
-        </tr>
-        <tr v-for="( reason, reasonIndex ) in reasonNamespace.reasons" :key="'reason-' + reasonIndex">
-          <td>
-            <cdx-text-input
-                v-model="reason.value"
-                :aria-label="$i18n( 'adiutor-value' )"
-                style="min-width: 50px;"></cdx-text-input>
-          </td>
-          <td>
-            <cdx-text-input v-model="reason.data" :aria-label="$i18n( 'adiutor-data' )"></cdx-text-input>
-          </td>
-          <td>
-            <cdx-text-input v-model="reason.label" :aria-label="$i18n( 'adiutor-label' )"></cdx-text-input>
-          </td>
-          <td>
-            <cdx-text-input v-model="reason.help" :aria-label="$i18n( 'adiutor-help' )"></cdx-text-input>
-          </td>
-          <td>
-            <cdx-button action="destructive" @click="deleteReason( namespaceIndex, reasonIndex )">
-              {{ $i18n( "adiutor-delete" ) }}
-            </cdx-button>
-          </td>
-        </tr>
-      </table>
-  </cdx-accordion>
+        </div>
+      </template>
+    </cdx-table>
+  </cdx-field>
+  <cdx-field v-for="( reasonNamespace, namespaceIndex ) in speedyDeletionReasons" :key="namespaceIndex">
+    <cdx-table
+        class="cdx-docs-table-custom-cells"
+        :caption="$i18n( 'adiutor-deletion-reasons-for' ) + ' ' + reasonNamespace.name"
+        :columns="speedyDeletionReasonsColumns"
+        :data="reasonNamespace.reasons"
+    >
+      <template #header>
+        <div class="cdx-docs-table-with-selection__header">
+          <cdx-button :aria-label="$i18n( 'adiutor-add-new' )" @click="addNewReason( namespaceIndex )">
+            <cdx-icon :icon="cdxIconAdd"></cdx-icon>
+          </cdx-button>
+        </div>
+      </template>
+      <template #item-value="{ row, item }">
+        <cdx-text-input
+            v-model="row.value"
+            :aria-label="$i18n( 'adiutor-value' )"
+            :disabled="isNamespaceDisabled( item )"></cdx-text-input>
+      </template>
+      <template #item-data="{ row }">
+        <cdx-text-input
+            v-model="row.data"
+            :aria-label="$i18n( 'adiutor-data' )"></cdx-text-input>
+      </template>
+      <template #item-label="{ row }">
+        <cdx-text-input
+            v-model="row.label"
+            :aria-label="$i18n( 'adiutor-label' )"></cdx-text-input>
+      </template>
+      <template #item-help="{ row }">
+        <cdx-text-input
+            v-model="row.help"
+            :aria-label="$i18n( 'adiutor-help' )"></cdx-text-input>
+      </template>
+      <template #item-actions="{ row }">
+        <div class="cdx-docs-table-custom-cells__actions">
+          <cdx-button
+              weight="quiet"
+              action="destructive"
+              :aria-label="$i18n( 'adiutor-delete' )"
+              @click="deleteReason( row )">
+            <cdx-icon :icon="cdxIconTrash"></cdx-icon>
+          </cdx-button>
+        </div>
+      </template>
+    </cdx-table>
+  </cdx-field>
 </template>
 
 <script>
@@ -263,8 +266,10 @@ const {
   CdxField,
   CdxRadio,
   CdxButton,
-  CdxAccordion
+  CdxTable,
+  CdxIcon
 } = require( '../../codex.js' );
+const { cdxIconAdd, cdxIconTrash } = require( '../icons.json' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'CreateSpeedyDeletionOptions',
@@ -276,7 +281,8 @@ module.exports = defineComponent( {
     CdxRadio,
     CdxButton,
     CdxToggleSwitch,
-    CdxAccordion
+    CdxTable,
+    CdxIcon
   },
   setup() {
     const csdConfiguration = mw.config.get( 'wgAdiutorCreateSpeedyDeletion' );
@@ -326,6 +332,18 @@ module.exports = defineComponent( {
         output: '|[[WP:CSD#A1]] and [[WP:CSD#G1]]}}'
       }
     ];
+    const speedyDeletionNamespacesColumns = [
+      { id: 'namespace', label: mw.msg( 'adiutor-name-space' ) },
+      { id: 'name', label: mw.msg( 'adiutor-name' ) },
+      { id: 'actions', label: mw.msg( 'adiutor-action' ), textAlign: 'end' }
+    ];
+    const speedyDeletionReasonsColumns = [
+      { id: 'value', label: mw.msg( 'adiutor-value' ), maxWidth: '50px' },
+      { id: 'data', label: mw.msg( 'adiutor-data' ) },
+      { id: 'label', label: mw.msg( 'adiutor-label' ) },
+      { id: 'help', label: mw.msg( 'adiutor-help' ) },
+      { id: 'actions', label: mw.msg( 'adiutor-action' ), textAlign: 'end' }
+    ];
 
     return {
       speedyDeletionReasons,
@@ -343,7 +361,11 @@ module.exports = defineComponent( {
       testMode,
       postfixReasonUsageRadios,
       multipleReasonSeparation,
-      multipleReasonSeparationRadios
+      multipleReasonSeparationRadios,
+      speedyDeletionNamespacesColumns,
+      speedyDeletionReasonsColumns,
+      cdxIconTrash,
+      cdxIconAdd
     };
   },
   data() {
@@ -359,7 +381,7 @@ module.exports = defineComponent( {
 
     isNamespaceDisabled( reasonNamespace ) {
       const disabledNamespaces = [ 'general', 'redirect', 'other' ];
-      return disabledNamespaces.includes( reasonNamespace.namespace );
+      return disabledNamespaces.includes( reasonNamespace );
     },
 
     addNewNameSpace() {
@@ -395,14 +417,20 @@ module.exports = defineComponent( {
       }
     },
 
-    deleteReason( namespaceIndex, reasonIndex ) {
-      // Find the namespace based on the provided namespaceIndex
-      const reasonNamespace = this.speedyDeletionReasons[ namespaceIndex ];
+    deleteReason( reason ) {
+      // Iterate over each namespace to find the one containing the reason
+      for ( let namespaceIndex = 0; namespaceIndex < this.speedyDeletionReasons.length; namespaceIndex++ ) {
+        const reasonNamespace = this.speedyDeletionReasons[ namespaceIndex ];
 
-      // Check if the reasonNamespace and the reason exist (a safety check)
-      if ( reasonNamespace && reasonNamespace.reasons[ reasonIndex ] ) {
-        // Use splice to remove the reason at the specified reasonIndex
-        reasonNamespace.reasons.splice( reasonIndex, 1 );
+        // Find the index of the reason within the namespace
+        const reasonIndex = reasonNamespace.reasons.indexOf( reason );
+
+        // Check if the reason exists within the namespace
+        if ( reasonIndex !== -1 ) {
+          // Use splice to remove the reason at the specified reasonIndex
+          reasonNamespace.reasons.splice( reasonIndex, 1 );
+          break; // Exit the loop once the reason is found and removed
+        }
       }
     },
 
