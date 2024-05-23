@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ykhwong"
+			"Ykhwong",
+			"밥풀떼기"
 		]
 	},
 	"adiutor-create": "만들기",
@@ -48,6 +49,9 @@
 	"adiutor-delete-button": "삭제",
 	"adiutor-create-speedy-deletion-configuration-title": "빠른 삭제 구성 만들기",
 	"adiutor-parameters": "변수",
+	"adiutor-parameters-day": "일",
+	"adiutor-parameters-month": "월",
+	"adiutor-parameters-year": "연도",
 	"adiutor-speedy-deletion-policy-link": "빠른 삭제 정책",
 	"adiutor-speedy-deletion-policy-page-shortcut": "빠른 삭제 정책 문서 바로 가기",
 	"adiutor-name-space": "이름공간",
