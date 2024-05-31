@@ -3,6 +3,7 @@
 		"authors": [
 			"Anterdc99",
 			"Cwek",
+			"Key0121",
 			"Kichin",
 			"McDutchie",
 			"Yining Chen"
@@ -122,6 +123,7 @@
 	"adiutor-multiple-reason-template-description": "这是一个快速删除请求模板，其原因有多个。",
 	"adiutor-output": "输出：",
 	"adiutor-summaries": "摘要",
+	"adiutor-speedy-deletion-namespaces": "快速删除请求的命名空间",
 	"adiutor-speedy-deletion-reasons": "快速删除原因",
 	"adiutor-name": "名称",
 	"adiutor-action": "操作",
