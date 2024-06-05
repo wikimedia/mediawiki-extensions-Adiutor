@@ -23,11 +23,9 @@ global.mw = {
 			return configMap[ key ];
 		} )
 	},
-	message: jest.fn().mockImplementation( () => {
-		return {
-			text: jest.fn().mockReturnValue( 'MockMessage' )
-		};
-	} ),
+	message: jest.fn().mockImplementation( () => ( {
+		text: jest.fn().mockReturnValue( 'MockMessage' )
+	} ) ),
 	Api: jest.fn( () => ( {
 		postWithToken: jest.fn( () => Promise.resolve() ),
 		get: jest.fn( () => Promise.resolve() )

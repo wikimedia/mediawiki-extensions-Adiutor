@@ -12,7 +12,7 @@
 	 * @return {string} - The input string with the placeholders replaced.
 	 */
 	function replacePlaceholders( input, replacements ) {
-		return input.replace( /\$(\d+)/g, function ( match, group ) {
+		return input.replace( /\$(\d+)/g, ( match, group ) => {
 			const replacement = replacements[ '$' + group ];
 			return replacement !== undefined ? replacement : match;
 		} );
@@ -27,7 +27,7 @@
 	 * @return {string} - The input string with the specified parameter replaced.
 	 */
 	function replaceParameter( input, parameterName, newValue ) {
-		// eslint-disable-next-line security/detect-non-literal-regexp
+
 		const regex = new RegExp( '\\$' + parameterName, 'g' );
 		if ( input.includes( '$' + parameterName ) ) {
 			return input.replace( regex, newValue );

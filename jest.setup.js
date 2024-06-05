@@ -2,13 +2,11 @@ const { config } = require( '@vue/test-utils' );
 
 // Mock Vue plugins in test suites
 config.global.mocks = {
-	$i18n: ( str ) => {
-		return {
-			text: () => str,
-			parse: () => str,
-			toString: () => str
-		};
-	}
+	$i18n: ( str ) => ( {
+		text: () => str,
+		parse: () => str,
+		toString: () => str
+	} )
 };
 
 config.global.directives = {

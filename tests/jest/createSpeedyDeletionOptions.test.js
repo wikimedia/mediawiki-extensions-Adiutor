@@ -44,21 +44,17 @@ global.mw = {
 			get: jest.fn().mockReturnValue( 'mock-csrf-token' )
 		}
 	},
-	message: jest.fn().mockImplementation( () => {
-		return {
-			text: jest.fn().mockReturnValue( 'MockMessage' )
-		};
-	} ),
+	message: jest.fn().mockImplementation( () => ( {
+		text: jest.fn().mockReturnValue( 'MockMessage' )
+	} ) ),
 	Api: jest.fn( () => ( {
 		postWithToken: jest.fn( () => Promise.resolve() )
 	} ) ),
 	msg: jest.fn( () => 'translated message' ),
-	notify: jest.fn( () => {
-		return {
-			title: undefined,
-			type: 'success'
-		};
-	} )
+	notify: jest.fn( () => ( {
+		title: undefined,
+		type: 'success'
+	} ) )
 };
 const CreateSpeedyDeletionOptions = require( '../../resources/ext.adiutor/components/createSpeedyDeletionOptions.vue' );
 describe( 'CreateSpeedyDeletionOptions Component Tests', () => {

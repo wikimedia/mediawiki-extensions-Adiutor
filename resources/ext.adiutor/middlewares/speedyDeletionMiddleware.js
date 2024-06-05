@@ -12,15 +12,11 @@
 	 * @param {Object} selectedDeletionReasons - The array of checkbox values.
 	 * @return {Array} - The filtered array of selected speedy deletion reasons.
 	 */
-	const filterSelectedReasons = ( speedyDeletionReasons, selectedDeletionReasons ) => {
-		return speedyDeletionReasons.reduce( ( selected, category ) => {
-			const selectedInCategory = category.reasons.filter( ( reason ) => {
-				return selectedDeletionReasons.includes( reason.value );
-			} );
-			selected.push( ...selectedInCategory );
-			return selected;
-		}, [] );
-	};
+	const filterSelectedReasons = ( speedyDeletionReasons, selectedDeletionReasons ) => speedyDeletionReasons.reduce( ( selected, category ) => {
+		const selectedInCategory = category.reasons.filter( ( reason ) => selectedDeletionReasons.includes( reason.value ) );
+		selected.push( ...selectedInCategory );
+		return selected;
+	}, [] );
 
 	/**
 	 * Constructs the deletion text based on the selected reasons, copyVioInput, and config.
