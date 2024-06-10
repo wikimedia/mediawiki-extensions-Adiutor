@@ -8,6 +8,7 @@
 			"Iketsi",
 			"MacOS Weed",
 			"Melimeli",
+			"SleaY",
 			"Thibaut120094",
 			"Urhixidur",
 			"Wladek92"
@@ -127,6 +128,7 @@
 	"adiutor-multiple-reason-template-description": "Il s'agit d'un modèle de demande de suppression rapide à utiliser pour plusieurs raisons.",
 	"adiutor-output": "Sortie :",
 	"adiutor-summaries": "Résumés",
+	"adiutor-speedy-deletion-namespaces": "Espaces de noms pour des demandes de suppression rapides",
 	"adiutor-speedy-deletion-reasons": "Motifs de suppression immédiate",
 	"adiutor-name": "Nom",
 	"adiutor-action": "Action",
@@ -271,5 +273,6 @@
 	"adiutor-type-value": "Valeur de type",
 	"adiutor-type-label": "Libellé de type",
 	"adiutor-type-data": "Aide sur les types",
-	"adiutor-search": "Recherche"
+	"adiutor-search": "Recherche",
+	"adiutor-create-localization-initial-content": "Contenu initial du fichier de localisation Adiutor"
 }
