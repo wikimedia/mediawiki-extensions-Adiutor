@@ -166,7 +166,6 @@
     </cdx-field>
   </cdx-field>
   <cdx-field>
-    {{ speedyDeletionReasons }}
     <cdx-table
         class="cdx-docs-table-custom-cells"
         :caption="$i18n( 'adiutor-speedy-deletion-namespaces' )"
@@ -223,12 +222,14 @@
       <template #item-value="{ row, item }">
         <cdx-text-input
             v-model="row.value"
+            class="adiutor-cell-max-size-36"
             :aria-label="$i18n( 'adiutor-value' )"
             :disabled="isNamespaceDisabled( item )"></cdx-text-input>
       </template>
       <template #item-data="{ row }">
         <cdx-text-input
             v-model="row.data"
+            class="adiutor-cell-max-size-100"
             :aria-label="$i18n( 'adiutor-data' )"></cdx-text-input>
       </template>
       <template #item-label="{ row }">
@@ -480,45 +481,13 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="less">
-#adiutor-options-props {
-  border-collapse: collapse;
-  width: 100%;
+@import 'mediawiki.skin.variables.less';
 
-  caption {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: #eaecf0;
-    color: #000f;
-    text-align: center;
-    border: 1px solid #ddd;
-    font-weight: 900;
-  }
-
-  td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-
-  tr:hover {
-    background-color: #ddd;
-  }
-
-  th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #fff;
-    color: #000f;
-  }
-
-  .add-new-button {
-    float: right;
-    margin-right: 10px;
-  }
+.cdx-text-input.adiutor-cell-max-size-36 {
+  min-width: 36px;
+}
+.cdx-text-input.adiutor-cell-max-size-100 {
+  min-width: 100px;
 }
 
 .ext-adiutor-options .top-message {
