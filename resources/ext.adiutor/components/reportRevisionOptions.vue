@@ -149,39 +149,42 @@
     </cdx-field>
   </cdx-field>
   <cdx-field>
-    <table id="adiutor-options-props">
-      <caption>
-        {{ $i18n( "adiutor-rationales" ) }}
-        <cdx-button
-            class="add-new-button"
-            weight="quiet"
-            @click="addRationale">
-          {{ $i18n( "adiutor-add-new" ) }}
-        </cdx-button>
-      </caption>
-      <tr>
-        <th>{{ $i18n( "adiutor-value" ) }}</th>
-        <th>{{ $i18n( "adiutor-label" ) }}</th>
-        <th>{{ $i18n( "adiutor-action" ) }}</th>
-      </tr>
-      <tr v-for="rationale in reportRationales">
-        <td>
-          <cdx-text-input
-              v-model="rationale.value"
-              aria-label="{{ $i18n( 'adiutor-rationale-value' ) }}"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-text-input
-              v-model="rationale.label"
-              aria-label="{{ $i18n( 'adiutor-rationale-label' ) }}"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-button action="destructive" @click="deleteRationale( rationale )">
-            {{ $i18n( "adiutor-delete" ) }}
+    <cdx-table
+        class="cdx-docs-table-custom-cells"
+        :caption="$i18n( 'adiutor-rationales' )"
+        :columns="rationalesColumns"
+        :data="reportRationales"
+    >
+      <template #header>
+        <div class="cdx-docs-table-with-selection__header">
+          <cdx-button :aria-label="$i18n( 'adiutor-add-new' )" @click="addRationale">
+            <cdx-icon :icon="cdxIconAdd"></cdx-icon>
           </cdx-button>
-        </td>
-      </tr>
-    </table>
+        </div>
+      </template>
+      <template #item-value="{ row }">
+        <cdx-text-input
+            v-model="row.value"
+            :aria-label="$i18n( 'adiutor-value' )"></cdx-text-input>
+      </template>
+      <template #item-label="{ row }">
+        <cdx-text-input
+            v-model="row.label"
+            :aria-label="$i18n( 'adiutor-label' )"></cdx-text-input>
+      </template>
+      <template #item-actions="{ row }">
+        <div class="cdx-docs-table-custom-cells__actions">
+          <cdx-button
+              weight="quiet"
+              action="destructive"
+              :aria-label="$i18n( 'adiutor-delete' )"
+              @click="deleteRationale( row )"
+          >
+            <cdx-icon :icon="cdxIconTrash"></cdx-icon>
+          </cdx-button>
+        </div>
+      </template>
+    </cdx-table>
   </cdx-field>
 </template>
 
@@ -195,8 +198,11 @@ const {
   CdxButton,
   CdxField,
   CdxRadio,
-  CdxTextArea
+  CdxTextArea,
+  CdxTable,
+  CdxIcon
 } = require( '../../codex.js' );
+const { cdxIconAdd, cdxIconTrash } = require( '../icons.json' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'ReportRevisionOptions',
@@ -205,8 +211,12 @@ module.exports = defineComponent( {
     CdxChipInput,
     CdxMessage,
     CdxToggleSwitch,
-    CdxField, CdxButton,
-    CdxRadio, CdxTextArea
+    CdxField,
+    CdxButton,
+    CdxRadio,
+    CdxTextArea,
+    CdxTable,
+    CdxIcon
   },
   setup() {
     const revConfiguration = mw.config.get( 'wgAdiutorReportRevision' );
@@ -234,6 +244,11 @@ module.exports = defineComponent( {
         value: 'appendtext'
       }
     ];
+    const rationalesColumns = [
+      { id: 'value', label: mw.msg( 'adiutor-value' ) },
+      { id: 'label', label: mw.msg( 'adiutor-label' ) },
+      { id: 'actions', label: mw.msg( 'adiutor-action' ), textAlign: 'end' }
+    ];
 
     return {
       reportRationales,
@@ -249,7 +264,10 @@ module.exports = defineComponent( {
       textModificationDirectionRadios,
       moduleEnabled,
       testMode,
-      namespaces
+      namespaces,
+      rationalesColumns,
+      cdxIconTrash,
+      cdxIconAdd
     };
   },
   data() {
