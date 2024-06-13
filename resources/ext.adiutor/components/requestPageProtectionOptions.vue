@@ -149,84 +149,90 @@
     </cdx-field>
   </cdx-field>
   <cdx-field>
-    <table id="adiutor-options-props">
-      <caption>
-        {{ $i18n( "adiutor-protection-durations" ) }}
-        <cdx-button
-            class="add-new-button"
-            weight="quiet"
-            @click="addNewProtectionDuration">
-          {{ $i18n( "adiutor-add-new" ) }}
-        </cdx-button>
-      </caption>
-      <tr>
-        <th>{{ $i18n( "adiutor-value" ) }}</th>
-        <th>{{ $i18n( "adiutor-data" ) }}</th>
-        <th>{{ $i18n( "adiutor-label" ) }}</th>
-        <th>{{ $i18n( "adiutor-action" ) }}</th>
-      </tr>
-      <tr v-for="duration in protectionDurations">
-        <td>
-          <cdx-text-input
-              v-model="duration.value"
-              :aria-label="$i18n( 'adiutor-duration-value' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-text-input v-model="duration.data" :aria-label="$i18n( 'adiutor-duration-data' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-text-input
-              v-model="duration.label"
-              :aria-label="$i18n( 'adiutor-duration-label' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-button action="destructive" @click="deleteProtectionDuration( duration )">
-            {{ $i18n( "adiutor-delete" ) }}
+    <cdx-table
+        class="cdx-docs-table-custom-cells"
+        :caption="$i18n( 'adiutor-protection-durations' )"
+        :columns="protectionDurationsColumns"
+        :data="protectionDurations"
+    >
+      <template #header>
+        <div class="cdx-docs-table-with-selection__header">
+          <cdx-button :aria-label="$i18n( 'adiutor-add-new' )" @click="addNewProtectionDuration">
+            <cdx-icon :icon="cdxIconAdd"></cdx-icon>
           </cdx-button>
-        </td>
-      </tr>
-    </table>
+        </div>
+      </template>
+      <template #item-value="{ row }">
+        <cdx-text-input
+            v-model="row.value"
+            :aria-label="$i18n( 'adiutor-value' )"></cdx-text-input>
+      </template>
+      <template #item-data="{ row }">
+        <cdx-text-input
+            v-model="row.data"
+            :aria-label="$i18n( 'adiutor-data' )"></cdx-text-input>
+      </template>
+      <template #item-label="{ row }">
+        <cdx-text-input
+            v-model="row.label"
+            :aria-label="$i18n( 'adiutor-label' )"></cdx-text-input>
+      </template>
+      <template #item-actions="{ row }">
+        <div class="cdx-docs-table-custom-cells__actions">
+          <cdx-button
+              weight="quiet"
+              action="destructive"
+              :aria-label="$i18n( 'adiutor-delete' )"
+              @click="deleteProtectionDuration( row )"
+          >
+            <cdx-icon :icon="cdxIconTrash"></cdx-icon>
+          </cdx-button>
+        </div>
+      </template>
+    </cdx-table>
   </cdx-field>
   <cdx-field>
-    <table id="adiutor-options-props">
-      <caption>
-        {{ $i18n( "adiutor-protection-types" ) }}
-        <cdx-button
-            class="add-new-button"
-            weight="quiet"
-            @click="addNewProtectionType">
-          {{ $i18n( "adiutor-add-new" ) }}
-        </cdx-button>
-      </caption>
-      <tr>
-        <th>{{ $i18n( "adiutor-value" ) }}</th>
-        <th>{{ $i18n( "adiutor-data" ) }}</th>
-        <th>{{ $i18n( "adiutor-label" ) }}</th>
-        <th>{{ $i18n( "adiutor-action" ) }}</th>
-      </tr>
-      <tr v-for="protection_type in protectionTypes">
-        <td>
-          <cdx-text-input
-              v-model="protection_type.value"
-              :aria-label="$i18n( 'adiutor-type-value' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-text-input
-              v-model="protection_type.data"
-              aria-label="$i18n( 'adiutor-type-data' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-text-input
-              v-model="protection_type.label"
-              aria-label="$i18n( 'adiutor-type-label' )"></cdx-text-input>
-        </td>
-        <td>
-          <cdx-button action="destructive" @click="deleteProtectionType( protection_type )">
-            {{ $i18n( "adiutor-delete" ) }}
+    <cdx-table
+        class="cdx-docs-table-custom-cells"
+        :caption="$i18n( 'adiutor-protection-types' )"
+        :columns="protectionTypesColumns"
+        :data="protectionTypes"
+    >
+      <template #header>
+        <div class="cdx-docs-table-with-selection__header">
+          <cdx-button :aria-label="$i18n( 'adiutor-add-new' )" @click="addNewProtectionType">
+            <cdx-icon :icon="cdxIconAdd"></cdx-icon>
           </cdx-button>
-        </td>
-      </tr>
-    </table>
+        </div>
+      </template>
+      <template #item-value="{ row }">
+        <cdx-text-input
+            v-model="row.value"
+            :aria-label="$i18n( 'adiutor-value' )"></cdx-text-input>
+      </template>
+      <template #item-data="{ row }">
+        <cdx-text-input
+            v-model="row.data"
+            :aria-label="$i18n( 'adiutor-data' )"></cdx-text-input>
+      </template>
+      <template #item-label="{ row }">
+        <cdx-text-input
+            v-model="row.label"
+            :aria-label="$i18n( 'adiutor-label' )"></cdx-text-input>
+      </template>
+      <template #item-actions="{ row }">
+        <div class="cdx-docs-table-custom-cells__actions">
+          <cdx-button
+              weight="quiet"
+              action="destructive"
+              :aria-label="$i18n( 'adiutor-delete' )"
+              @click="deleteProtectionType( row )"
+          >
+            <cdx-icon :icon="cdxIconTrash"></cdx-icon>
+          </cdx-button>
+        </div>
+      </template>
+    </cdx-table>
   </cdx-field>
 </template>
 
@@ -240,8 +246,11 @@ const {
   CdxButton,
   CdxField,
   CdxRadio,
-  CdxTextArea
+  CdxTextArea,
+  CdxTable,
+  CdxIcon
 } = require( '../../codex.js' );
+const { cdxIconAdd, cdxIconTrash } = require( '../icons.json' );
 const AdiutorUtility = require( '../utilities/adiutorUtility.js' );
 module.exports = defineComponent( {
   name: 'RequestPageProtectionOptions',
@@ -250,8 +259,12 @@ module.exports = defineComponent( {
     CdxChipInput,
     CdxMessage,
     CdxToggleSwitch,
-    CdxField, CdxButton,
-    CdxRadio, CdxTextArea
+    CdxField,
+    CdxButton,
+    CdxRadio,
+    CdxTextArea,
+    CdxTable,
+    CdxIcon
   },
   setup() {
     const rppConfiguration = mw.config.get( 'wgAdiutorRequestPageProtection' );
@@ -280,6 +293,18 @@ module.exports = defineComponent( {
         value: 'appendtext'
       }
     ];
+    const protectionDurationsColumns = [
+      { id: 'value', label: mw.msg( 'adiutor-value' ) },
+      { id: 'data', label: mw.msg( 'adiutor-data' ) },
+      { id: 'label', label: mw.msg( 'adiutor-label' ) },
+      { id: 'actions', label: mw.msg( 'adiutor-action' ), textAlign: 'end' }
+    ];
+    const protectionTypesColumns = [
+      { id: 'value', label: mw.msg( 'adiutor-value' ) },
+      { id: 'data', label: mw.msg( 'adiutor-data' ) },
+      { id: 'label', label: mw.msg( 'adiutor-label' ) },
+      { id: 'actions', label: mw.msg( 'adiutor-action' ), textAlign: 'end' }
+    ];
 
     return {
       protectionDurations,
@@ -296,7 +321,11 @@ module.exports = defineComponent( {
       textModificationDirectionRadios,
       moduleEnabled,
       testMode,
-      namespaces
+      namespaces,
+      protectionDurationsColumns,
+      protectionTypesColumns,
+      cdxIconTrash,
+      cdxIconAdd
     };
   },
   data() {
@@ -387,46 +416,6 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="less">
-#adiutor-options-props {
-  border-collapse: collapse;
-  width: 100%;
-
-  caption {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: #eaecf0;
-    color: #000f;
-    text-align: center;
-    border: 1px solid #ddd;
-    font-weight: 900;
-  }
-
-  td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-
-  tr:hover {
-    background-color: #ddd;
-  }
-
-  th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #fff;
-    color: #000f;
-  }
-
-  .add-new-button {
-    float: right;
-    margin-right: 10px;
-  }
-}
 
 .ext-adiutor-options .cdx-field {
   margin-top: 10px;
