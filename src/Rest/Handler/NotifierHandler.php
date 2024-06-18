@@ -26,8 +26,6 @@ use HttpError;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
-use MediaWiki\Rest\Validator\JsonBodyValidator;
-use MediaWiki\Rest\Validator\UnsupportedContentTypeBodyValidator;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
@@ -154,29 +152,18 @@ class NotifierHandler extends SimpleHandler {
 		}
 	}
 
-	/**
-	 * Returns the appropriate body validator based on the content type.
-	 *
-	 * @param string $contentType The content type of the request body.
-	 *
-	 * @return JsonBodyValidator|UnsupportedContentTypeBodyValidator
-	 */
-	public function getBodyValidator( $contentType ) {
-		if ( $contentType === 'application/json' ) {
-			return new JsonBodyValidator(
-				[
-					'title' => [
-						ParamValidator::PARAM_TYPE => 'string',
-						ParamValidator::PARAM_REQUIRED => true,
-					],
-					'content' => [
-						ParamValidator::PARAM_TYPE => 'string',
-						ParamValidator::PARAM_REQUIRED => true,
-					],
-				]
-			);
-		} else {
-			return new UnsupportedContentTypeBodyValidator( $contentType );
-		}
+	public function getBodyParamSettings(): array {
+		return [
+			'title' => [
+				self::PARAM_SOURCE => 'body',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+			],
+			'content' => [
+				self::PARAM_SOURCE => 'body',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+			],
+		];
 	}
 }
