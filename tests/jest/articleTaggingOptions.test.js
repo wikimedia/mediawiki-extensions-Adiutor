@@ -16,7 +16,6 @@ global.mw = {
 					} ],
 					useMultipleIssuesTemplate: 'MockUseMultipleIssuesTemplate',
 					multipleIssuesTemplate: 'MockMultipleIssuesTemplate',
-					uncategorizedTemplate: 'MockSectionTemplate',
 					apiPostSummary: 'MockAPISummary',
 					moduleEnabled: false,
 					testMode: false,
@@ -65,7 +64,6 @@ describe( 'ArticleTaggingOptions Component Tests', () => {
 		] );
 		expect( wrapper.vm.useMultipleIssuesTemplate ).toBe( 'MockUseMultipleIssuesTemplate' );
 		expect( wrapper.vm.multipleIssuesTemplate ).toBe( 'MockMultipleIssuesTemplate' );
-		expect( wrapper.vm.uncategorizedTemplate ).toBe( 'MockSectionTemplate' );
 		expect( wrapper.vm.apiPostSummary ).toBe( 'MockAPISummary' );
 		expect( wrapper.vm.moduleEnabled ).toBe( false );
 		expect( wrapper.vm.testMode ).toBe( false );

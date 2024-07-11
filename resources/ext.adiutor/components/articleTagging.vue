@@ -94,7 +94,6 @@ module.exports = defineComponent( {
     const tagList = tagConfiguration.tagList;
     const useMultipleIssuesTemplate = tagConfiguration.useMultipleIssuesTemplate;
     const multipleIssuesTemplate = tagConfiguration.multipleIssuesTemplate;
-    const uncategorizedTemplate = tagConfiguration.uncategorizedTemplate;
     const apiPostSummary = tagConfiguration.apiPostSummary;
     const searchTag = ref( '' );
     const pageHasTags = ref( false );
@@ -104,20 +103,17 @@ module.exports = defineComponent( {
       label: mw.msg( 'adiutor-cancel' )
     };
 
-    const primaryAction = computed( () => {
-      return {
-        icon: 'cdxIconTag',
-        label: pageHasTags.value ? mw.msg( 'adiutor-update' ) : mw.msg( 'adiutor-tag-page' ),
-        actionType: 'progressive'
-      };
-    } );
+    const primaryAction = computed( () => ( {
+      icon: 'cdxIconTag',
+      label: pageHasTags.value ? mw.msg( 'adiutor-update' ) : mw.msg( 'adiutor-tag-page' ),
+      actionType: 'progressive'
+    } ) );
 
     const filteredTagList = computed( () => {
       const searchTerm = searchTag.value.toLowerCase();
       return tagList.map( ( label ) => {
         const filteredTags = label.tags
-            .filter( ( tag ) =>
-                tag.tag.toLowerCase().includes( searchTerm ) ||
+            .filter( ( tag ) => tag.tag.toLowerCase().includes( searchTerm ) ||
                 tag.description.toLowerCase().includes( searchTerm )
             )
             .map( ( tag ) => Object.assign( {}, tag ) );
@@ -145,17 +141,7 @@ module.exports = defineComponent( {
         tags: 'adiutor',
         format: 'json'
       };
-      let removedContent = '';
-      const modifiedTags = preparedTagsString.replace( '{{' + uncategorizedTemplate + '}}', function ( match ) {
-        removedContent = match;
-        return '';
-      } );
-      if ( removedContent ) {
-        editParams.prependtext = modifiedTags.split( ',' ).join( '\n' ) + '\n';
-        editParams.appendtext = '\n' + removedContent;
-      } else {
-        editParams.prependtext = modifiedTags.split( ',' ).join( '\n' ) + '\n';
-      }
+      editParams.prependtext = preparedTagsString.split( ',' ).join( '\n' ) + '\n';
       try {
         await api.postWithToken( 'csrf', editParams );
         openTagDialog.value = false;
@@ -195,9 +181,9 @@ module.exports = defineComponent( {
       const templateInfo = {};
       let preparedTagsString;
       let updatedPageContent;
-      selectedTags.forEach( function ( tag ) {
+      selectedTags.forEach( ( tag ) => {
         if ( tag.items && tag.items.length > 0 ) {
-          tag.items.forEach( function ( subItem ) {
+          tag.items.forEach( ( subItem ) => {
             if ( tag.tag ) {
               let template = `{{${ tag.tag }`;
               if ( subItem.parameter ) {

@@ -171,6 +171,7 @@ module.exports = defineComponent( {
 
     /**
      * Creates a speedy deletion request.
+     *
      * @return {Promise<void>}
      */
     const createSpeedyDeletionRequest = async () => {

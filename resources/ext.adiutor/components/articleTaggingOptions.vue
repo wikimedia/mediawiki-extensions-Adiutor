@@ -60,18 +60,6 @@
         <pre>{{ generateTemplateOutput() }}</pre>
       </template>
     </cdx-field>
-    <cdx-field>
-      <template #label>
-        <strong>{{ $i18n( "adiutor-uncategorized-template-label" ) }}</strong>
-      </template>
-      <cdx-text-input
-          id="uncategorizedTemplate"
-          v-model="uncategorizedTemplate">
-      </cdx-text-input>
-      <template #help-text>
-        {{ $i18n( "adiutor-uncategorized-template-help-text" ) }}
-      </template>
-    </cdx-field>
   </cdx-field>
   <cdx-field>
     <cdx-field>
@@ -250,7 +238,6 @@ module.exports = defineComponent( {
     const tagList = ref( tagConfiguration.tagList );
     const useMultipleIssuesTemplate = ref( tagConfiguration.useMultipleIssuesTemplate );
     const multipleIssuesTemplate = ref( tagConfiguration.multipleIssuesTemplate );
-    const uncategorizedTemplate = ref( tagConfiguration.uncategorizedTemplate );
     const apiPostSummary = ref( tagConfiguration.apiPostSummary );
     const moduleEnabled = ref( tagConfiguration.moduleEnabled );
     const testMode = ref( tagConfiguration.testMode );
@@ -259,7 +246,6 @@ module.exports = defineComponent( {
       tagList,
       useMultipleIssuesTemplate,
       multipleIssuesTemplate,
-      uncategorizedTemplate,
       apiPostSummary,
       moduleEnabled,
       testMode,
@@ -345,7 +331,6 @@ module.exports = defineComponent( {
         tagList: this.tagList,
         useMultipleIssuesTemplate: this.useMultipleIssuesTemplate,
         multipleIssuesTemplate: this.multipleIssuesTemplate,
-        uncategorizedTemplate: this.uncategorizedTemplate,
         apiPostSummary: this.apiPostSummary,
         moduleEnabled: this.moduleEnabled,
         testMode: this.testMode,

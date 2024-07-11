@@ -1314,7 +1314,6 @@ class AdiutorDummyConfig {
 		],
 		'useMultipleIssuesTemplate' => true,
 		'multipleIssuesTemplate' => 'Multiple issues',
-		'uncategorizedTemplate' => 'Uncategorized',
 		'apiPostSummary' => 'Page has been tagged',
 		'namespaces' => [
 			[ 'value' => '-1' ],

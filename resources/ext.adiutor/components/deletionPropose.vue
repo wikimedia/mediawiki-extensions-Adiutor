@@ -98,6 +98,7 @@ module.exports = defineComponent( {
 
     /**
      * Retrieves the creator of the page.
+     *
      * @return {jQuery.Promise} A promise that resolves with the creator's information.
      */
     function getCreator() {
@@ -113,6 +114,7 @@ module.exports = defineComponent( {
 
     /**
      * Sends a deletion request for the specified option and rationale.
+     *
      * @param {string} option - The deletion option ('standardPropose' or 'livingPersonPropose').
      * @param {string} rationale - The rationale for the deletion request.
      * @return {Promise<void>} - A promise that resolves when the deletion request is sent successfully.
@@ -155,6 +157,7 @@ module.exports = defineComponent( {
 
     /**
      * Sends a message to the author of a page.
+     *
      * @param {string} Author - The username of the author.
      * @param {string} message - The message to be sent.
      * @return {Promise<void>} - A promise that resolves when the message is sent successfully.
