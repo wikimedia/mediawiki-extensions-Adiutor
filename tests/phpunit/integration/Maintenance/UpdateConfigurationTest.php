@@ -22,6 +22,7 @@
 namespace MediaWiki\Extension\Adiutor\Tests\Integration\Maintenance;
 
 use MediaWiki\Extension\Adiutor\Maintenance\UpdateConfiguration;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use ReflectionClass;
 use Title;
@@ -57,7 +58,7 @@ class UpdateConfigurationTest extends MediaWikiIntegrationTestCase {
 		$maintenance = new UpdateConfiguration();
 		$titleFactory = $this->createMock( TitleFactory::class );
 		$services = $this->getServiceContainer();
-		$this->setMwGlobals( 'wgReservedUsernames', [ 'AdiutorBot' ] );
+		$this->overrideConfigValue( MainConfigNames::ReservedUsernames, [ 'AdiutorBot' ] );
 
 		$titleText = 'MediaWiki:AdiutorTestPage' . mt_rand( 10000, 99999 ) . '.json';
 		$content = [ 'key' => 'value' ];

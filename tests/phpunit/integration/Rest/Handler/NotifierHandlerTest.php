@@ -100,7 +100,7 @@ class NotifierHandlerTest extends MediaWikiIntegrationTestCase {
 		bool $expectsException,
 		bool $echoLoaded
 	) {
-		$this->setMwGlobals( [ 'wgEnableEcho' => $echoLoaded ] );
+		$this->overrideConfigValue( 'EnableEcho', $echoLoaded );
 		$mockUser = $this->createMock( User::class );
 		$mockUser->method( 'getName' )
 			->willReturn( $authorName );
