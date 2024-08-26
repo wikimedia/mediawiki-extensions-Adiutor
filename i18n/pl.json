@@ -7,6 +7,7 @@
 		]
 	},
 	"adiutor-toggle-adiutor": "Wykorzystaj Adiustatora aby moderować, segregować i utrzymywać zadania związane z treścią",
+	"adiutor-desc": "Adiutor to rozszerzenie MediaWiki do moderowania, segregowania i utrzymywania zadań związanych z treścią w Wikipedii. Wdraża metody selekcji treści oraz nadaje priorytety i kategoryzuje żądania i treści w oparciu o pilność i ważność. Interfejs użytkownika upraszcza złożone procesy, dzięki czemu utrzymanie Wikipedii jest bardziej dostępne i wydajne dla użytkowników na wszystkich poziomach umiejętności.",
 	"adiutor-create": "Utwórz",
 	"adiutor-delete": "Usuń",
 	"adiutor-other-options": "Inne opcje",
@@ -32,6 +33,7 @@
 	"adiutor-warning": "Ostrzeżenie",
 	"adiutor-settings-label": "Ustawienia",
 	"adiutor-uncategorized-template-label": "Nieskategoryzowany szablon:",
+	"adiutor-add-new-tag-label": "Dodaj nowy",
 	"adiutor-label-column": "Etykieta",
 	"adiutor-delete-button": "Usuń",
 	"adiutor-parameters": "Parametry",
@@ -50,6 +52,7 @@
 	"adiutor-close": "Zamknij",
 	"adiutor-protection-types": "Rodzaje zabezpieczenia",
 	"adiutor-save-configurations": "Zapisz konfigurację",
+	"adiutor-name": "Nazwa",
 	"adiutor-value": "Wartość",
 	"adiutor-data": "Dane",
 	"adiutor-label": "Etykieta",
