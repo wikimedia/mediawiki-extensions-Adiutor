@@ -27,7 +27,7 @@ use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
 use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
 
 class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook, ChangeTagsAllowedAddHook {
-	// Make the tag name a class constant
+
 	public const TAG_NAME = 'adiutor';
 
 	/**
@@ -57,11 +57,15 @@ class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook
 	 */
 	public function onChangeTagsAllowedAdd( &$allowedTags, $addTags, $user ) {
 		// If the adiutor tag is amongst those being added, add it to the list of allowed tags
-		if ( in_array( self::TAG_NAME,
+		if ( in_array(
+				self::TAG_NAME,
 				$addTags,
-				true ) && !in_array( self::TAG_NAME,
+				true
+			) && !in_array(
+				self::TAG_NAME,
 				$allowedTags,
-				true ) ) {
+				true
+			) ) {
 			$allowedTags[] = self::TAG_NAME;
 		}
 	}

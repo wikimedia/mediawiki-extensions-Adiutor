@@ -26,32 +26,25 @@ use MediaWikiIntegrationTestCase;
 use OutputPage;
 
 /**
- * @group Specials
  * @covers \MediaWiki\Extension\Adiutor\Specials\AdiutorSettings
  */
 class AdiutorSettingsTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecute() {
-		// Create an instance of AdiutorSettings special page.
 		$adiutorSettings = new AdiutorSettings();
 
-		// Set up a mock OutputPage.
 		$mockOutputPage = $this->createMock( OutputPage::class );
 
-		// Set up expectations for the addModules method.
 		$mockOutputPage->expects( $this->once() )
 			->method( 'addModules' )
 			->with( 'ext.adiutor' );
 
-		// Set up expectations for the addHTML method.
 		$mockOutputPage->expects( $this->once() )
 			->method( 'addHTML' )
 			->with( $this->isType( 'string' ) );
 
-		// Inject the mock OutputPage into the AdiutorSettings object.
 		$adiutorSettings->setOutput( $mockOutputPage );
 
-		// Call the execute method with a dummy subpage argument.
 		$adiutorSettings->execute( '' );
 	}
 }

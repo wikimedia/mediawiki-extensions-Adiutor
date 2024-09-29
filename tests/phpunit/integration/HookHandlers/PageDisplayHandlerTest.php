@@ -26,14 +26,11 @@ use MediaWikiIntegrationTestCase;
 use User;
 
 /**
- * @group Adiutor
- * @group Database
  * @covers \MediaWiki\Extension\Adiutor\HookHandlers\PageDisplayHandler
  */
 class PageDisplayHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testOnBeforePageDisplay() {
-		// Override PermissionManager service to return true for userHasRight
 		$this->overrideMwServices(
 			null,
 			[
@@ -41,23 +38,20 @@ class PageDisplayHandlerTest extends MediaWikiIntegrationTestCase {
 					$permissionManager = $this->createMock( PermissionManager::class );
 					$permissionManager->method( 'userHasRight' )->willReturn( true );
 					$this->setService( 'PermissionManager', $permissionManager );
+
 					return $permissionManager;
-				}
+				},
 			]
 		);
 
-		// Create a mock User object
 		$user = $this->createMock( User::class );
 
-		// Array to store preferences modified by the hook
 		$preferences = [
 			'adiutor-beta-feature-enable' => false,
 		];
 
-		// Run the onGetBetaFeaturePreferences hook
 		$this->getServiceContainer()->getHookContainer()->run( 'GetBetaFeaturePreferences', [ $user, $preferences ] );
 
-		// Assert that the 'adiutor-beta-feature-enable' key exists in the preferences array
 		$this->assertArrayHasKey( 'adiutor-beta-feature-enable', $preferences );
 	}
 }

@@ -27,15 +27,15 @@ use MediaWiki\Storage\Hook\PageSaveCompleteHook;
 
 class PageSaveCompleteHandler implements PageSaveCompleteHook {
 
-	private RevisionLookup $revisionLookup;
 	private static array $configPages = [
 		'MediaWiki:AdiutorRequestPageProtection.json',
 		'MediaWiki:AdiutorCreateSpeedyDeletion.json',
 		'MediaWiki:AdiutorDeletionPropose.json',
 		'MediaWiki:AdiutorRequestPageMove.json',
 		'MediaWiki:AdiutorArticleTagging.json',
-		'MediaWiki:AdiutorReportRevision.json'
+		'MediaWiki:AdiutorReportRevision.json',
 	];
+	private RevisionLookup $revisionLookup;
 
 	public function __construct( RevisionLookup $revisionLookup ) {
 		$this->revisionLookup = $revisionLookup;
@@ -43,6 +43,7 @@ class PageSaveCompleteHandler implements PageSaveCompleteHook {
 
 	/**
 	 * Handles page save completion events and updates configuration if necessary.
+	 *
 	 * @inheritDoc
 	 */
 	public function onPageSaveComplete( $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult ) {
@@ -60,7 +61,6 @@ class PageSaveCompleteHandler implements PageSaveCompleteHook {
 	 *
 	 */
 	private function processPageSave() {
-		// Invalidate cache when the configuration page is updated
 		$wanObjectCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $wanObjectCache->makeKey( 'Adiutor', 'config-data' );
 		$wanObjectCache->delete( $key );

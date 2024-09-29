@@ -27,8 +27,6 @@ use MediaWikiIntegrationTestCase;
 use User;
 
 /**
- * @group Adiutor
- * @group Database
  * @covers \MediaWiki\Extension\Adiutor\HookHandlers\BetaFeaturePreferencesHandler
  */
 class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
@@ -45,32 +43,28 @@ class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testOnGetBetaFeaturePreferences( $key, $value, $expected ) {
 		$handler = $this->createMock( BetaFeaturePreferencesHandler::class );
-		// Override PermissionManager service to return true for userHasRight
 		$this->overrideMwServices(
 			null,
 			[
 				'PermissionManager' => function () {
 					$permissionManager = $this->createMock( PermissionManager::class );
 					$permissionManager->method( 'userHasRight' )->willReturn( true );
+
 					return $permissionManager;
-				}
+				},
 			]
 		);
 
-		// Create a mock User object
 		$user = $this->createMock( User::class );
 
-		// Run the onGetBetaFeaturePreferences hook
 		$preferences = [
 			$key => $value,
 		];
 
 		$this->getServiceContainer()->getHookContainer()->run( 'GetBetaFeaturePreferences', [ $user, $preferences ] );
 
-		// Assert that the 'adiutor-beta-feature-enable' key exists in the preferences array
 		$this->assertArrayHasKey( $expected ? 'adiutor-beta-feature-enable' : $key, $preferences );
 
-		// Assert that the 'adiutor-beta-feature-enable' key exists in the preferences array
 		$this->assertArrayHasKey( 'adiutor-beta-feature-enable', $preferences );
 
 		$handler->onGetBetaFeaturePreferences( $user, $preferences );

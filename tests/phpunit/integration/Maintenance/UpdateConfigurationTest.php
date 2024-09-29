@@ -29,25 +29,19 @@ use Title;
 use TitleFactory;
 
 /**
- * @group Maintenance
  * @group Database
  * @covers \MediaWiki\Extension\Adiutor\Maintenance\UpdateConfiguration
  */
 class UpdateConfigurationTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecute() {
-		// Create a new UpdateConfiguration object
 		$maintenance = new UpdateConfiguration();
 		ob_start();
 		$maintenance->execute();
 		ob_end_clean();
-		// Set getConfigurationPages to public for testing purposes
 		$reflection = new ReflectionClass( $maintenance );
-		$property = $reflection->getProperty( 'configurationPages' );
-		$property->setAccessible( true );
-		// Now get getConfigurationPages value and check if the pages exist
-		$configurationPages = $property->getValue( $maintenance );
-		// Assert that the configuration pages exist
+		$configurationPages = $reflection->getConstant( 'CONFIGURATION_PAGES' );
+
 		foreach ( $configurationPages as $pageTitle => $content ) {
 			$title = Title::newFromText( $pageTitle );
 			$this->assertTrue( $title->exists(), "Configuration page $pageTitle should exist after execution." );
@@ -81,6 +75,10 @@ class UpdateConfigurationTest extends MediaWikiIntegrationTestCase {
 
 		$wikiPageAfter = $services->getWikiPageFactory()->newFromTitle( $title );
 		$pageTextAfter = $wikiPageAfter->getContent()->serialize();
-		$this->assertEquals( $expectedContent, $pageTextAfter, 'Page content should not change when the title already exists.' );
+		$this->assertEquals(
+			$expectedContent,
+			$pageTextAfter,
+			'Page content should not change when the title already exists.'
+		);
 	}
 }

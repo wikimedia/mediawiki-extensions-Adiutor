@@ -31,35 +31,9 @@ use MediaWikiIntegrationTestCase;
 use User;
 
 /**
- * @group HookHandlers
- * @group Database
  * @covers \MediaWiki\Extension\Adiutor\HookHandlers\PreferencesHandler
  */
 class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
-
-	private function getPreferencesHandler( array $options = [] ): PreferencesHandler {
-		return new PreferencesHandler(
-			...array_values(
-				array_merge(
-					[
-						'permissionManager' => $this->createMock( PermissionManager::class ),
-						'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
-					],
-					$options
-				)
-			)
-		);
-	}
-
-	/**
-	 * @dataProvider provideOnSaveUserOptionsNoAccessChange
-	 */
-	public function testOnSaveUserOptionsNoAccessChange( $originalOptions, $modifiedOptions, $expectedOptions ) {
-		$user = $this->createMock( UserIdentity::class );
-		$handler = $this->getPreferencesHandler();
-		$handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
-		$this->assertSame( $expectedOptions, $modifiedOptions );
-	}
 
 	public static function provideOnSaveUserOptionsNoAccessChange(): array {
 		return [
@@ -141,6 +115,30 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideOnSaveUserOptionsNoAccessChange
+	 */
+	public function testOnSaveUserOptionsNoAccessChange( $originalOptions, $modifiedOptions, $expectedOptions ) {
+		$user = $this->createMock( UserIdentity::class );
+		$handler = $this->getPreferencesHandler();
+		$handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
+		$this->assertSame( $expectedOptions, $modifiedOptions );
+	}
+
+	private function getPreferencesHandler( array $options = [] ): PreferencesHandler {
+		return new PreferencesHandler(
+			...array_values(
+				array_merge(
+					[
+						'permissionManager' => $this->createMock( PermissionManager::class ),
+						'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
+					],
+					$options
+				)
+			)
+		);
+	}
+
 	public function testOnGetPreferences() {
 		$user = $this->createMock( User::class );
 
@@ -153,7 +151,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )->willReturnMap( [
-			[ $user, 'adiutor-beta-feature-enable', null, false ]
+			[ $user, 'adiutor-beta-feature-enable', null, false ],
 		] );
 
 		$extensionRegistry = $this->createMock( ExtensionRegistry::class );

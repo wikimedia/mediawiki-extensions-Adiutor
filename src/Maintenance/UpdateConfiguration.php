@@ -37,12 +37,7 @@ use User;
  */
 class UpdateConfiguration extends Maintenance {
 
-	public function __construct() {
-		parent::__construct();
-		$this->requireExtension( 'Adiutor' );
-	}
-
-	private array $configurationPages = [
+	private const CONFIGURATION_PAGES = [
 		'MediaWiki:AdiutorRequestPageProtection.json' => AdiutorDummyConfig::PAGE_PROTECTION_REQUEST_CONFIGURATION,
 		'MediaWiki:AdiutorCreateSpeedyDeletion.json' => AdiutorDummyConfig::SPEEDY_DELETION_REQUEST_CONFIGURATION,
 		'MediaWiki:AdiutorDeletionPropose.json' => AdiutorDummyConfig::DELETION_PROPOSE_CONFIGURATION,
@@ -51,8 +46,13 @@ class UpdateConfiguration extends Maintenance {
 		'MediaWiki:AdiutorReportRevision.json' => AdiutorDummyConfig::REPORT_REVISION_CONFIGURATION,
 	];
 
+	public function __construct() {
+		parent::__construct();
+		$this->requireExtension( 'Adiutor' );
+	}
+
 	public function execute() {
-		foreach ( $this->configurationPages as $pageTitle => $content ) {
+		foreach ( self::CONFIGURATION_PAGES as $pageTitle => $content ) {
 			$this->createPage( $pageTitle, $content );
 		}
 	}
@@ -72,6 +72,7 @@ class UpdateConfiguration extends Maintenance {
 		$user = User::newSystemUser( $systemUserName, [ 'steal' => true ] );
 		if ( !$user ) {
 			$this->error( "Could not create or obtain system user: $systemUserName.\n" );
+
 			return;
 		}
 
@@ -83,14 +84,19 @@ class UpdateConfiguration extends Maintenance {
 		$title = $titleFactory->newFromText( $pageTitle );
 		if ( $title->exists() ) {
 			$this->output( "Page '$pageTitle' already exists and was not created.\n" );
+
 			return;
 		}
 
 		$pageContent = json_encode( $content, JSON_PRETTY_PRINT );
 		$pageUpdater = $services->getWikiPageFactory()->newFromTitle( $title )->newPageUpdater( $user );
 		$pageUpdater->setContent( SlotRecord::MAIN, new TextContent( $pageContent ) );
-		$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment(
-			Message::newFromKey( 'adiutor-create-localization-initial-content' ) ), EDIT_INTERNAL );
+		$pageUpdater->saveRevision(
+			CommentStoreComment::newUnsavedComment(
+				Message::newFromKey( 'adiutor-create-localization-initial-content' )
+			),
+			EDIT_INTERNAL
+		);
 
 		$saveStatus = $pageUpdater->getStatus();
 		if ( !$saveStatus->isGood() ) {

@@ -39,12 +39,12 @@ class CreateEchoEventHandler implements BeforeCreateEchoEventHook {
 		array &$notificationCategories,
 		array &$notificationIcons
 	) {
-		$notificationCategories['moderation'] = [
+		$notificationCategories[ 'moderation' ] = [
 			'priority' => 3,
 			'tooltip' => 'echo-pref-tooltip-moderation',
 		];
 
-		$notifications['adiutor-csd-notification'] = [
+		$notifications[ 'adiutor-csd-notification' ] = [
 			'category' => 'adiutor',
 			'group' => 'positive',
 			'section' => 'alert',
@@ -57,20 +57,20 @@ class CreateEchoEventHandler implements BeforeCreateEchoEventHook {
 			EchoAttributeManager::ATTR_LOCATORS => [
 				[
 					[ EchoUserLocator::class, 'locateFromEventExtra' ],
-					[ 'author' ]
+					[ 'author' ],
 				],
 			],
 		];
 
-		$notificationIcons['adiutor-notification-icon'] = [
+		$notificationIcons[ 'adiutor-notification-icon' ] = [
 			'path' => [
 				'ltr' => 'Adiutor/resources/ext.adiutor.images/adiutor-notification-icon-ltr.svg',
-				'rtl' => 'Adiutor/resources/ext.adiutor.images/adiutor-notification-icon-rtl.svg'
-			]
+				'rtl' => 'Adiutor/resources/ext.adiutor.images/adiutor-notification-icon-rtl.svg',
+			],
 		];
 
-		$notificationIcons['adiutor-notification-icon-ltr'] = [
-			'path' => 'Adiutor/resources/ext.adiutor.images/adiutor-notification-icon-ltr.svg'
+		$notificationIcons[ 'adiutor-notification-icon-ltr' ] = [
+			'path' => 'Adiutor/resources/ext.adiutor.images/adiutor-notification-icon-ltr.svg',
 		];
 	}
 }

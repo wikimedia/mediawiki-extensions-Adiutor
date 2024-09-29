@@ -33,6 +33,7 @@ class EchoNotifyCreatorPresentationModel extends EchoEventPresentationModel {
 		if ( in_array( $this->language->getCode(), [ 'he', 'yi' ] ) ) {
 			return 'edit-user-talk-ltr';
 		}
+
 		return 'edit-user-talk';
 	}
 
@@ -49,12 +50,13 @@ class EchoNotifyCreatorPresentationModel extends EchoEventPresentationModel {
 	 */
 	public function getBodyMessage() {
 		$extra = $this->event->getExtra();
-		$reason = $extra['reason'] ?? '';
-		$titleText = $extra['title'] ?? '';
+		$reason = $extra[ 'reason' ] ?? '';
+		$titleText = $extra[ 'title' ] ?? '';
 		if ( $reason !== '' && $titleText !== '' ) {
 			return $this->msg( 'adiutor-notification-body-csd-requested' )
 				->params( $titleText, $reason );
 		}
+
 		return false;
 	}
 

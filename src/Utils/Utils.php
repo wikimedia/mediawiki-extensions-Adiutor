@@ -45,13 +45,17 @@ class Utils {
 
 		if ( $isBetaFeatureLoaded ) {
 			// Cast the return value to bool to ensure a boolean is returned
-			return (bool)$userOptionsLookup->getOption( $user,
-				'adiutor-beta-feature-enable' );
+			return (bool)$userOptionsLookup->getOption(
+				$user,
+				'adiutor-beta-feature-enable'
+			);
 		} else {
 			// If 'adiutor-enable' option is not set, default to false
-			return (bool)$userOptionsLookup->getOption( $user,
+			return (bool)$userOptionsLookup->getOption(
+				$user,
 				'adiutor-enable',
-				false );
+				false
+			);
 		}
 	}
 }

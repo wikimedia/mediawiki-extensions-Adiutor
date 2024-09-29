@@ -38,7 +38,9 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
-	public function __construct( PermissionManager $permissionManager, UserOptionsLookup $userOptionsLookup
+	public function __construct(
+		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
@@ -60,10 +62,10 @@ class PreferencesHandler implements GetPreferencesHook {
 
 		// If BetaFeatures is not installed or the Adiutor Beta Feature is enabled, show adiutor-enable preference
 		if ( !$betaFeaturesInstalled || $adiutorBetaFeatureEnable ) {
-			$preferences[self::PREF_ADIUTOR_ENABLE] = [
+			$preferences[ self::PREF_ADIUTOR_ENABLE ] = [
 				'type' => 'toggle',
 				'label-message' => 'adiutor-toggle-adiutor',
-				'section' => 'moderation/adiutor'
+				'section' => 'moderation/adiutor',
 			];
 		}
 
@@ -115,19 +117,21 @@ class PreferencesHandler implements GetPreferencesHook {
 			];
 
 			foreach ( $prefDefinitions as $key => $definition ) {
-				$preferences[$key] = $definition;
+				$preferences[ $key ] = $definition;
 			}
 
 			$adiutorEnabled =
-				$this->userOptionsLookup->getOption( $user,
-					'adiutor-enable' );
+				$this->userOptionsLookup->getOption(
+					$user,
+					'adiutor-enable'
+				);
 
 			if ( !$adiutorEnabled ) {
-				$preferences['adiutor-csd-enable']['disabled'] = true;
-				$preferences['adiutor-rpp-enable']['disabled'] = true;
-				$preferences['adiutor-rpm-enable']['disabled'] = true;
-				$preferences['adiutor-prod-enable']['disabled'] = true;
-				$preferences['adiutor-tag-enable']['disabled'] = true;
+				$preferences[ 'adiutor-csd-enable' ][ 'disabled' ] = true;
+				$preferences[ 'adiutor-rpp-enable' ][ 'disabled' ] = true;
+				$preferences[ 'adiutor-rpm-enable' ][ 'disabled' ] = true;
+				$preferences[ 'adiutor-prod-enable' ][ 'disabled' ] = true;
+				$preferences[ 'adiutor-tag-enable' ][ 'disabled' ] = true;
 			}
 		}
 	}
@@ -148,15 +152,15 @@ class PreferencesHandler implements GetPreferencesHook {
 		$autoEnrollIsDisabled = !$autoEnrollIsEnabled;
 		$autoEnrollWillEnable = $this->isTrue( $modifiedOptions, 'betafeatures-auto-enroll' );
 
-		if ( !isset( $modifiedOptions[self::PREF_ADIUTOR_ENABLE] ) &&
-			isset( $originalOptions[self::PREF_ADIUTOR_ENABLE] ) ) {
-			$modifiedOptions[self::PREF_ADIUTOR_ENABLE] = $originalOptions[self::PREF_ADIUTOR_ENABLE];
+		if ( !isset( $modifiedOptions[ self::PREF_ADIUTOR_ENABLE ] ) &&
+			isset( $originalOptions[ self::PREF_ADIUTOR_ENABLE ] ) ) {
+			$modifiedOptions[ self::PREF_ADIUTOR_ENABLE ] = $originalOptions[ self::PREF_ADIUTOR_ENABLE ];
 		}
 
 		if ( ( $betaFeatureIsEnabled && $betaFeatureWillDisable ) ||
 			( $betaFeatureIsDisabled && $betaFeatureWillEnable ) ||
 			( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable ) ) {
-			$modifiedOptions['adiutor-enable'] = false;
+			$modifiedOptions[ 'adiutor-enable' ] = false;
 		}
 	}
 
@@ -167,7 +171,7 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @return bool The option is set and true
 	 */
 	private function isTrue( array $options, string $option ): bool {
-		return !empty( $options[$option] );
+		return !empty( $options[ $option ] );
 	}
 
 	/**
@@ -176,6 +180,6 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @return bool The option is set and false
 	 */
 	private function isFalse( array $options ): bool {
-		return isset( $options['adiutor-beta-feature-enable'] ) && !$options['adiutor-beta-feature-enable'];
+		return isset( $options[ 'adiutor-beta-feature-enable' ] ) && !$options[ 'adiutor-beta-feature-enable' ];
 	}
 }

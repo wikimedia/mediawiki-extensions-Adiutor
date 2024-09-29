@@ -36,7 +36,6 @@ use Title;
 use User;
 
 /**
- * @group Handler
  * @group Database
  * @covers \MediaWiki\Extension\Adiutor\Rest\Handler\NotifierHandler
  */
@@ -44,33 +43,6 @@ class NotifierHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private UserFactory $userFactory;
 	private RevisionLookup $revisionLookup;
-
-	protected function setUp(): void {
-		parent::setUp();
-		$this->userFactory = $this->createMock( UserFactory::class );
-		$this->revisionLookup = $this->createMock( RevisionLookup::class );
-		$mockBlockManager = $this->getMockBuilder( BlockManager::class )->disableOriginalConstructor()->getMock();
-		$mockBlockManager->method( 'getUserBlock' )->willReturn( null );
-		$this->setService( 'BlockManager', $mockBlockManager );
-	}
-
-	private function getHandler(): NotifierHandler {
-		$handler = $this->getMockBuilder( NotifierHandler::class )
-			->setConstructorArgs( [ $this->userFactory, $this->revisionLookup ] )
-			->onlyMethods( [ 'getValidatedBody' ] )
-			->getMock();
-
-		$handler->method( 'getValidatedBody' )
-			->willReturn( [
-				'content' => [
-					'author' => 'TestUser',
-					'title' => 'Test page',
-					'reason' => 'some_reason'
-				]
-			] );
-
-		return $handler;
-	}
 
 	public function provideRunTestData(): array {
 		return [
@@ -137,7 +109,34 @@ class NotifierHandlerTest extends MediaWikiIntegrationTestCase {
 			$jsonError = json_last_error_msg();
 			throw new Exception( "JSON error: $jsonError" );
 		}
-		$this->assertEquals( 'success', $data['result'] );
+		$this->assertEquals( 'success', $data[ 'result' ] );
 		$this->assertArrayHasKey( 'event', $data );
+	}
+
+	private function getHandler(): NotifierHandler {
+		$handler = $this->getMockBuilder( NotifierHandler::class )
+			->setConstructorArgs( [ $this->userFactory, $this->revisionLookup ] )
+			->onlyMethods( [ 'getValidatedBody' ] )
+			->getMock();
+
+		$handler->method( 'getValidatedBody' )
+			->willReturn( [
+				'content' => [
+					'author' => 'TestUser',
+					'title' => 'Test page',
+					'reason' => 'some_reason',
+				],
+			] );
+
+		return $handler;
+	}
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->userFactory = $this->createMock( UserFactory::class );
+		$this->revisionLookup = $this->createMock( RevisionLookup::class );
+		$mockBlockManager = $this->getMockBuilder( BlockManager::class )->disableOriginalConstructor()->getMock();
+		$mockBlockManager->method( 'getUserBlock' )->willReturn( null );
+		$this->setService( 'BlockManager', $mockBlockManager );
 	}
 }

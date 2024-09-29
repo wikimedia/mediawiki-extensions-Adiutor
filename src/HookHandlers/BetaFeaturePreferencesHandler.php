@@ -47,12 +47,14 @@ class BetaFeaturePreferencesHandler {
 	public function onGetBetaFeaturePreferences( User $user, array &$betaPrefs ) {
 		$extensionAssetsPath = $this->config->get( 'ExtensionAssetsPath' );
 
-		if ( $this->permissionManager->userHasRight( $user,
-			'edit' ) ) {
+		if ( $this->permissionManager->userHasRight(
+			$user,
+			'edit'
+		) ) {
 			$url = "https://meta.wikimedia.org/wiki/";
 			$infoLink = $url . "Adiutor";
 			$discussionLink = $url . "Talk:Adiutor";
-			$betaPrefs['adiutor-beta-feature-enable'] = [
+			$betaPrefs[ 'adiutor-beta-feature-enable' ] = [
 				'label-message' => 'adiutor-beta-feature-title',
 				'desc-message' => 'adiutor-beta-feature-description',
 				'screenshot' => [

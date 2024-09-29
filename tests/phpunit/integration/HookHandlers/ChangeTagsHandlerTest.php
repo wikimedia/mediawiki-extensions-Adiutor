@@ -26,31 +26,30 @@ use MediaWikiIntegrationTestCase;
 use User;
 
 /**
- * @group Adiutor
- * @group Database
  * @covers \MediaWiki\Extension\Adiutor\HookHandlers\ChangeTagsHandler
  */
 class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private ChangeTagsHandler $handler;
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->handler = new ChangeTagsHandler();
-	}
-
 	public function testOnListDefinedTags() {
 		$tags = [];
 		$this->handler->onListDefinedTags( $tags );
-		$this->assertContains( ChangeTagsHandler::TAG_NAME, $tags,
-			'The adiutor tag should be defined in the tags list' );
+		$this->assertContains(
+			ChangeTagsHandler::TAG_NAME,
+			$tags,
+			'The adiutor tag should be defined in the tags list'
+		);
 	}
 
 	public function testOnChangeTagsListActive() {
 		$tags = [];
 		$this->handler->onChangeTagsListActive( $tags );
-		$this->assertContains( ChangeTagsHandler::TAG_NAME, $tags,
-			'The adiutor tag should be marked as active in the tags list' );
+		$this->assertContains(
+			ChangeTagsHandler::TAG_NAME,
+			$tags,
+			'The adiutor tag should be marked as active in the tags list'
+		);
 	}
 
 	public function testOnChangeTagsAllowedAdd_UserAllowedToAddTag() {
@@ -58,8 +57,11 @@ class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 		$addTags = [ ChangeTagsHandler::TAG_NAME ];
 		$user = $this->createMock( User::class );
 		$this->handler->onChangeTagsAllowedAdd( $allowedTags, $addTags, $user );
-		$this->assertContains( ChangeTagsHandler::TAG_NAME, $allowedTags,
-			'The adiutor tag should be allowed for addition by the user' );
+		$this->assertContains(
+			ChangeTagsHandler::TAG_NAME,
+			$allowedTags,
+			'The adiutor tag should be allowed for addition by the user'
+		);
 	}
 
 	public function testOnChangeTagsAllowedAdd_TagNotInAddTags() {
@@ -67,8 +69,11 @@ class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 		$addTags = [ 'some-other-tag' ];
 		$user = $this->createMock( User::class );
 		$this->handler->onChangeTagsAllowedAdd( $allowedTags, $addTags, $user );
-		$this->assertNotContains( ChangeTagsHandler::TAG_NAME, $allowedTags,
-			'The adiutor tag should not be allowed for addition if it is not in addTags' );
+		$this->assertNotContains(
+			ChangeTagsHandler::TAG_NAME,
+			$allowedTags,
+			'The adiutor tag should not be allowed for addition if it is not in addTags'
+		);
 	}
 
 	public function testOnChangeTagsAllowedAdd_TagAlreadyAllowed() {
@@ -76,7 +81,15 @@ class ChangeTagsHandlerTest extends MediaWikiIntegrationTestCase {
 		$addTags = [ ChangeTagsHandler::TAG_NAME ];
 		$user = $this->createMock( User::class );
 		$this->handler->onChangeTagsAllowedAdd( $allowedTags, $addTags, $user );
-		$this->assertCount( 1, array_keys( $allowedTags, ChangeTagsHandler::TAG_NAME ),
-			'The adiutor tag should be present only once in the allowedTags' );
+		$this->assertCount(
+			1,
+			array_keys( $allowedTags, ChangeTagsHandler::TAG_NAME ),
+			'The adiutor tag should be present only once in the allowedTags'
+		);
+	}
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->handler = new ChangeTagsHandler();
 	}
 }

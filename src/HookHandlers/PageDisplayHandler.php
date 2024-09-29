@@ -54,7 +54,9 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	 * @param WANObjectCache $wanObjectCache
 	 */
 	public function __construct(
-		PermissionManager $permissionManager, UserOptionsLookup $userOptionsLookup, RevisionLookup $revisionLookup,
+		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup,
+		RevisionLookup $revisionLookup,
 		WANObjectCache $wanObjectCache
 	) {
 		$this->permissionManager = $permissionManager;
@@ -137,37 +139,44 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 					],
 				];
 				foreach ( $configPages as $configPage ) {
-					$title = Title::newFromText( $configPage['title'] );
+					$title = Title::newFromText( $configPage[ 'title' ] );
 					if ( !$title ) {
-						$this->logger->warning( 'Configuration page title is invalid',
-							[ 'configPageTitle' => $configPage['title'] ] );
+						$this->logger->warning(
+							'Configuration page title is invalid',
+							[ 'configPageTitle' => $configPage[ 'title' ] ]
+						);
 						continue;
 					}
 					$rev = $this->revisionLookup->getRevisionByTitle( $title );
 					if ( !$rev ) {
-						$this->logger->warning( 'Configuration page not found',
-							[ 'configPageTitle' => $configPage['title'] ] );
-						$configData[$configPage['configuration']] = [];
+						$this->logger->warning(
+							'Configuration page not found',
+							[ 'configPageTitle' => $configPage[ 'title' ] ]
+						);
+						$configData[ $configPage[ 'configuration' ] ] = [];
 						continue;
 					}
 					$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 					if ( !( $content instanceof TextContent ) ) {
 						$this->logger->warning( 'Configuration page content is not TextContent', [
-							'configPageTitle' => $configPage['title'],
+							'configPageTitle' => $configPage[ 'title' ],
 							'contentType' => get_class( $content ),
 						] );
-						$configData[$configPage['configuration']] = [];
+						$configData[ $configPage[ 'configuration' ] ] = [];
 						continue;
 					}
 					$jsonContent = FormatJson::decode( $content->getText(), true );
 					if ( !is_array( $jsonContent ) ) {
-						$this->logger->warning( 'Configuration page content is not valid JSON',
-							[ 'configPageTitle' => $configPage['title'] ] );
-						$configData[$configPage['configuration']] = [];
+						$this->logger->warning(
+							'Configuration page content is not valid JSON',
+							[ 'configPageTitle' => $configPage[ 'title' ] ]
+						);
+						$configData[ $configPage[ 'configuration' ] ] = [];
 						continue;
 					}
-					$configData[$configPage['configuration']] = $jsonContent;
+					$configData[ $configPage[ 'configuration' ] ] = $jsonContent;
 				}
+
 				return $configData;
 			}
 		);

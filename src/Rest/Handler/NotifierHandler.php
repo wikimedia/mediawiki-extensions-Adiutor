@@ -56,17 +56,17 @@ class NotifierHandler extends SimpleHandler {
 	public function run(): Response {
 		$jsonData = $this->getValidatedBody();
 
-		if ( !is_array( $jsonData ) || !isset( $jsonData['content'] ) ) {
+		if ( !is_array( $jsonData ) || !isset( $jsonData[ 'content' ] ) ) {
 			// Handle the error appropriately, for example:
 			throw new HttpError( 400, 'Invalid or missing content in the request body' );
 		}
 
-		$content = $jsonData['content'];
+		$content = $jsonData[ 'content' ];
 
 		$agent = RequestContext::getMain()->getUser();
-		$author = $this->userFactory->newFromName( $content['author'] );
+		$author = $this->userFactory->newFromName( $content[ 'author' ] );
 
-		$this->preconditionsCheck( $agent, $content['title'] );
+		$this->preconditionsCheck( $agent, $content[ 'title' ] );
 
 		$event = $this->createNotificationEvent( $content, $author, $agent );
 
@@ -78,6 +78,7 @@ class NotifierHandler extends SimpleHandler {
 	 *
 	 * @param User $agent The author user object.
 	 * @param string $pageTitle Title of the page that the notification is about.
+	 *
 	 * @throws HttpError
 	 */
 	private function preconditionsCheck( User $agent, string $pageTitle ): void {
@@ -94,6 +95,7 @@ class NotifierHandler extends SimpleHandler {
 	 * Check whether the page has been changed since the user calling the API has last edited it.
 	 *
 	 * @param string $pageTitle Title of the page to check.
+	 *
 	 * @return bool True if the page has changed; otherwise, false.
 	 */
 	private function hasPageChanged( string $pageTitle ): bool {
@@ -133,13 +135,13 @@ class NotifierHandler extends SimpleHandler {
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			$event = Event::create( [
 				'type' => 'adiutor-csd-notification',
-				'title' => Title::newFromText( $content['title'] ),
+				'title' => Title::newFromText( $content[ 'title' ] ),
 				'extra' => [
 					'author' => $author,
-					'reason' => $content['reason'],
-					'title' => $content['title'],
+					'reason' => $content[ 'reason' ],
+					'title' => $content[ 'title' ],
 				],
-				'agent' => $agent
+				'agent' => $agent,
 			] );
 
 			if ( $event === false ) {
