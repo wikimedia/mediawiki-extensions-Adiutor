@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\HookHandlers;
@@ -30,6 +30,7 @@ class CreateEchoEventHandler implements BeforeCreateEchoEventHook {
 	/**
 	 * Add Adiutor events to Echo
 	 *
+	 * @since 0.1.0
 	 * @param array &$notifications array of Echo notifications
 	 * @param array &$notificationCategories array of Echo notification categories
 	 * @param array &$notificationIcons array of icon details

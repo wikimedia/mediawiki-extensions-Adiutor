@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\Presentations;
@@ -27,6 +27,7 @@ use Message;
 class EchoNotifyCreatorPresentationModel extends EchoEventPresentationModel {
 
 	/**
+	 * @since 0.1.0
 	 * @inheritDoc
 	 */
 	public function getIconType(): string {
@@ -38,6 +39,7 @@ class EchoNotifyCreatorPresentationModel extends EchoEventPresentationModel {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @inheritDoc
 	 */
 	public function getHeaderMessage(): Message {
@@ -46,6 +48,7 @@ class EchoNotifyCreatorPresentationModel extends EchoEventPresentationModel {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @inheritDoc
 	 */
 	public function getBodyMessage() {
@@ -61,6 +64,7 @@ class EchoNotifyCreatorPresentationModel extends EchoEventPresentationModel {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @inheritDoc
 	 */
 	public function getPrimaryLink() {
@@ -69,5 +73,4 @@ class EchoNotifyCreatorPresentationModel extends EchoEventPresentationModel {
 			'label' => $this->event->getTitle()->getText(),
 		];
 	}
-
 }

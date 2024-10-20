@@ -17,7 +17,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\HookHandlers;
@@ -41,6 +41,7 @@ class BetaFeaturePreferencesHandler {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @param User $user
 	 * @param array[] &$betaPrefs
 	 */

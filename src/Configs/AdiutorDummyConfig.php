@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  * @see AdiutorMaintenance
  * @package MediaWiki\Extension\Adiutor
  */

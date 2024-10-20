@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\Maintenance;
@@ -58,12 +58,21 @@ class UpdateConfiguration extends Maintenance {
 	}
 
 	/**
-	 * Creates a new page with the given title and content.
+	 * Creates a new configuration page if it does not already exist.
 	 *
-	 * @param string $pageTitle The title of the new page.
-	 * @param array $content The content of the new page.
+	 * This method handles the creation of a MediaWiki page with the specified title and JSON content.
+	 * It uses the AdiutorBot system user to perform the creation. If the page already exists,
+	 * the method outputs a message indicating that no action was taken.
 	 *
-	 * @return void
+	 * Steps:
+	 * - Check if the page already exists.
+	 * - If not, create the page using the specified content.
+	 * - Log any failures in creation.
+	 *
+	 * @since 0.1.0
+	 * @param string $pageTitle The title of the page to be created.
+	 * @param array $content The content of the page in the form of a JSON-encoded array.
+	 * @return void Outputs messages regarding the success or failure of the page creation.
 	 */
 	public function createPage( string $pageTitle, array $content ) {
 		$services = MediaWikiServices::getInstance();

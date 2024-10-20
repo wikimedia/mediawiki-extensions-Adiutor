@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\Utils;
@@ -30,10 +30,10 @@ class Utils {
 	/**
 	 * Checks if a feature is enabled for a specific user.
 	 *
+	 * @since 0.1.0
 	 * @param UserOptionsLookup $userOptionsLookup The UserOptionsLookup instance.
 	 * @param UserIdentity $user The ID of the user to check.
 	 * @param ExtensionRegistry $extensionRegistry The ExtensionRegistry instance.
-	 *
 	 * @return bool Returns true if the feature is enabled for the user, false otherwise.
 	 */
 	public static function isEnabledForUser(

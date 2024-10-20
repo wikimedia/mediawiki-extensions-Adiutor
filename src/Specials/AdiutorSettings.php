@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\Specials;
@@ -40,6 +40,7 @@ class AdiutorSettings extends SpecialPage {
 	/**
 	 * Set the OutputPage object for testing purposes.
 	 *
+	 * @since 0.1.0
 	 * @param OutputPage $outputPage The mocked OutputPage object.
 	 */
 	public function setOutput( OutputPage $outputPage ) {
@@ -49,6 +50,7 @@ class AdiutorSettings extends SpecialPage {
 	/**
 	 * Returns the description of the AdiutorSettings object.
 	 *
+	 * @since 0.1.0
 	 * @return Message The description of the AdiutorSettings object.
 	 */
 	public function getDescription(): Message {
@@ -58,6 +60,7 @@ class AdiutorSettings extends SpecialPage {
 	/**
 	 * Shows the page to the user.
 	 *
+	 * @since 0.1.0
 	 * @param string $subPage The subpage string argument (if any).
 	 */
 	public function execute( $subPage ) {

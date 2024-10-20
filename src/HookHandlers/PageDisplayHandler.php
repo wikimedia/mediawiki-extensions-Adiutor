@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\HookHandlers;
@@ -68,6 +68,7 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @inheritDoc
 	 */
 	public function onBeforePageDisplay( $out, $skin ): void {
@@ -90,8 +91,8 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	/**
 	 * Loads modules and HTML content for the page display.
 	 *
+	 * @since 0.1.0
 	 * @param OutputPage $out The OutputPage object.
-	 *
 	 * @return void
 	 */
 	private function loadModulesAndHTML( OutputPage $out ): void {
@@ -104,6 +105,7 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	/**
 	 * Retrieves the configuration data from the cache or generates it if not available.
 	 *
+	 * @since 0.1.0
 	 * @return array The configuration data.
 	 */
 	private function getConfigData(): array {

@@ -17,7 +17,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\HookHandlers;
@@ -33,6 +33,7 @@ class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook
 	/**
 	 * Hook to define a change tag.
 	 *
+	 * @since 0.1.0
 	 * @param string[] &$tags Tags array
 	 */
 	public function onListDefinedTags( &$tags ) {
@@ -42,6 +43,7 @@ class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook
 	/**
 	 * Hook to mark a change tag as active.
 	 *
+	 * @since 0.1.0
 	 * @param string[] &$tags Active tags array
 	 */
 	public function onChangeTagsListActive( &$tags ) {
@@ -51,6 +53,7 @@ class ChangeTagsHandler implements ChangeTagsListActiveHook, ListDefinedTagsHook
 	/**
 	 * Hook to specify which change tags can be added by users.
 	 *
+	 * @since 0.1.0
 	 * @param string[] &$allowedTags Array of tags that are allowed to be added.
 	 * @param string[] $addTags Array of tags that are intended to be added.
 	 * @param mixed $user The user who is performing the action, type hint removed.

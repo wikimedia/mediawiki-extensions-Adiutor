@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\HookHandlers;
@@ -44,6 +44,7 @@ class PageSaveCompleteHandler implements PageSaveCompleteHook {
 	/**
 	 * Handles page save completion events and updates configuration if necessary.
 	 *
+	 * @since 0.1.0
 	 * @inheritDoc
 	 */
 	public function onPageSaveComplete( $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult ) {
@@ -59,6 +60,7 @@ class PageSaveCompleteHandler implements PageSaveCompleteHook {
 	 * Checks if the saved page is one of the designated configuration pages and, if so,
 	 * updates the necessary cache settings and logs the action.
 	 *
+	 * @since 0.1.0
 	 */
 	private function processPageSave() {
 		$wanObjectCache = MediaWikiServices::getInstance()->getMainWANObjectCache();

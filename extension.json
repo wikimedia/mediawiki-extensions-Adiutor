@@ -3,7 +3,7 @@
 	"author": "Doğu Abaris",
 	"url": "https://www.mediawiki.org/wiki/Extension:Adiutor",
 	"descriptionmsg": "adiutor-desc",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"license-name": "GPL-3.0-or-later",
 	"type": "other",
 	"MessagesDirs": {

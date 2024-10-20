@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\Rest\Handler;
@@ -51,6 +51,7 @@ class NotifierHandler extends SimpleHandler {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @throws HttpError
 	 */
 	public function run(): Response {
@@ -76,9 +77,9 @@ class NotifierHandler extends SimpleHandler {
 	/**
 	 * Check if any preconditions are violated before sending a notification
 	 *
+	 * @since 0.1.0
 	 * @param User $agent The author user object.
 	 * @param string $pageTitle Title of the page that the notification is about.
-	 *
 	 * @throws HttpError
 	 */
 	private function preconditionsCheck( User $agent, string $pageTitle ): void {
@@ -94,8 +95,8 @@ class NotifierHandler extends SimpleHandler {
 	/**
 	 * Check whether the page has been changed since the user calling the API has last edited it.
 	 *
+	 * @since 0.1.0
 	 * @param string $pageTitle Title of the page to check.
-	 *
 	 * @return bool True if the page has changed; otherwise, false.
 	 */
 	private function hasPageChanged( string $pageTitle ): bool {
@@ -124,10 +125,10 @@ class NotifierHandler extends SimpleHandler {
 	/**
 	 * Create a notification event if Echo extension is loaded
 	 *
+	 * @since 0.1.0
 	 * @param array $content The content array containing 'title' and 'reason'.
 	 * @param User $author The author user object.
 	 * @param User $agent The user object representing the agent.
-	 *
 	 * @return Event The notification event.
 	 * @throws HttpError
 	 */
@@ -154,6 +155,16 @@ class NotifierHandler extends SimpleHandler {
 		}
 	}
 
+	/**
+	 * Defines the validation rules for the request body parameters.
+	 *
+	 * This method returns an array specifying the required parameters for the API request:
+	 * - 'title': A required string representing the page title.
+	 * - 'content': A required string containing the notification content.
+	 *
+	 * @since 0.1.0
+	 * @return array Parameter settings with validation rules.
+	 */
 	public function getBodyParamSettings(): array {
 		return [
 			'title' => [

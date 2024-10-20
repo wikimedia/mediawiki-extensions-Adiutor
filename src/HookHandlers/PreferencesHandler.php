@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 0.0.1
+ * @since 0.1.0
  */
 
 namespace MediaWiki\Extension\Adiutor\HookHandlers;
@@ -47,6 +47,7 @@ class PreferencesHandler implements GetPreferencesHook {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @inheritDoc
 	 */
 	public function onGetPreferences( $user, &$preferences ): void {
@@ -137,6 +138,7 @@ class PreferencesHandler implements GetPreferencesHook {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @param UserIdentity $user
 	 * @param array &$modifiedOptions
 	 * @param array $originalOptions
@@ -165,9 +167,9 @@ class PreferencesHandler implements GetPreferencesHook {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @param array $options
 	 * @param string $option
-	 *
 	 * @return bool The option is set and true
 	 */
 	private function isTrue( array $options, string $option ): bool {
@@ -175,8 +177,8 @@ class PreferencesHandler implements GetPreferencesHook {
 	}
 
 	/**
+	 * @since 0.1.0
 	 * @param array $options
-	 *
 	 * @return bool The option is set and false
 	 */
 	private function isFalse( array $options ): bool {
