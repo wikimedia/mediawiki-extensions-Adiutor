@@ -1,9 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
-			"Abijeet Patro"
+			"Abijeet Patro",
+			"AnupamM"
 		]
 	},
+	"adiutor-create": "बनाएँ",
+	"adiutor-request": "अनुरोध",
+	"adiutor-protection-policy": "संरक्षण नीति",
+	"adiutor-delete": "हटाएँ",
+	"adiutor-other-options": "अन्य विकल्प",
+	"adiutor-continue": "जारी रखें",
+	"adiutor-options": "विकल्प",
+	"adiutor-inform-creator": "पृष्ठ बनाने वाले उपयोगकर्ता को सूचित करें।",
+	"adiutor-inform-creator-help": "यदि चुना जाता है, तो इस पृष्ठ को बनाने वाले उपयोगकर्ता को सूचित किया जाएगा।",
+	"adiutor-afd-special-page-title": "हटाए जाने योग्य लेख",
+	"adiutor-create-request": "अनुरोध बनाएँ",
+	"adiutor-protection-type": "सुरक्षा प्रकार",
+	"adiutor-choose-appropriate-tags": "उपयुक्त टैग चुनें",
+	"adiutor-and": "और",
 	"adiutor-cancel": "रद्द करें",
 	"adiutor-parameters-comment": "टिप्पणी",
 	"adiutor-comment": "टिप्पणी",
