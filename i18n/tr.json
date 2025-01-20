@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Hedda",
+			"Leo",
 			"RuzDD",
 			"Vikipolimer"
 		]
@@ -171,6 +172,7 @@
 	"adiutor-proposed-deletion-policy-shortcut": "Önerilen silme politikası kısayolu",
 	"adiutor-this-page-deleted-before": "Bu sayfa daha önce $1 kez silindi!",
 	"adiutor-deletion-log": "Silme günlüğü",
+	"tag-adiutor": "Adiutor",
 	"tag-adiutor-description": "Bu düzenleme Adiutor uzantısı kullanılarak yapılmıştır.",
 	"adiutor-csd-enable-label": "Hızlı silme isteklerini etkinleştir",
 	"adiutor-csd-enable-help": "Açıldığında hızlı silme isteği modülü etkinleştirilecektir.",
