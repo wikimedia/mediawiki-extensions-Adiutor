@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ajeje Brazorf"
+			"Ajeje Brazorf",
+			"GianAntonucci"
 		]
 	},
 	"adiutor-parameters-month": "misi",
@@ -9,5 +10,5 @@
 	"adiutor-name-space": "Namespace",
 	"adiutor-name": "Nomu",
 	"adiutor-value": "Valuri",
-	"adiutor-configurations-saving": "Sarvataggiu..."
+	"adiutor-configurations-saving": "Sarbamentu..."
 }
