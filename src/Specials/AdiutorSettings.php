@@ -21,10 +21,10 @@
 
 namespace MediaWiki\Extension\Adiutor\Specials;
 
+use MediaWiki\Html\TemplateParser;
 use Message;
 use OutputPage;
 use SpecialPage;
-use TemplateParser;
 
 class AdiutorSettings extends SpecialPage {
 

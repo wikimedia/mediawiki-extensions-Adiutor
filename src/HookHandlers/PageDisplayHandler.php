@@ -25,17 +25,17 @@ use ExtensionRegistry;
 use FormatJson;
 use MediaWiki\Extension\Adiutor\Utils\Utils;
 use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\Html\TemplateParser;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\LoggerInterface;
-use TemplateParser;
 use TextContent;
-use Title;
 use WANObjectCache;
 
 class PageDisplayHandler implements BeforePageDisplayHook {

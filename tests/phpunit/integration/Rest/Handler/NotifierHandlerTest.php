@@ -27,12 +27,12 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Extension\Adiutor\Rest\Handler\NotifierHandler;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
-use Title;
 use User;
 
 /**

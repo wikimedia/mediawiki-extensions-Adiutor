@@ -23,9 +23,9 @@ namespace MediaWiki\Extension\Adiutor\Tests\Integration\Maintenance;
 
 use MediaWiki\Extension\Adiutor\Maintenance\UpdateConfiguration;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use ReflectionClass;
-use Title;
 use TitleFactory;
 
 /**
