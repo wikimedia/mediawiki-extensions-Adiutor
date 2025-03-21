@@ -44,25 +44,25 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	private UserOptionsLookup $userOptionsLookup;
 	private RevisionLookup $revisionLookup;
 	private TemplateParser $templateParser;
-	private WANObjectCache $wanObjectCache;
+	private WANObjectCache $cache;
 	private LoggerInterface $logger;
 
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param RevisionLookup $revisionLookup
-	 * @param WANObjectCache $wanObjectCache
+	 * @param WANObjectCache $cache
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		RevisionLookup $revisionLookup,
-		WANObjectCache $wanObjectCache
+		WANObjectCache $cache
 	) {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->revisionLookup = $revisionLookup;
-		$this->wanObjectCache = $wanObjectCache;
+		$this->cache = $cache;
 		$this->templateParser = new TemplateParser( __DIR__ . '/../Templates' );
 		$this->logger = LoggerFactory::getInstance( 'Adiutor' );
 	}
@@ -109,9 +109,9 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 	 * @return array The configuration data.
 	 */
 	private function getConfigData(): array {
-		return $this->wanObjectCache->getWithSetCallback(
-			$this->wanObjectCache->makeKey( 'Adiutor', 'config-data' ),
-			$this->wanObjectCache::TTL_HOUR,
+		return $this->cache->getWithSetCallback(
+			$this->cache->makeKey( 'Adiutor', 'config-data' ),
+			$this->cache::TTL_HOUR,
 			function () {
 				$configData = [];
 				$configPages = [
@@ -159,6 +159,8 @@ class PageDisplayHandler implements BeforePageDisplayHook {
 						continue;
 					}
 					$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+
+					// TODO: Use JsonContent and JsonContent->getData()->getValue()
 					if ( !( $content instanceof TextContent ) ) {
 						$this->logger->warning( 'Configuration page content is not TextContent', [
 							'configPageTitle' => $configPage[ 'title' ],

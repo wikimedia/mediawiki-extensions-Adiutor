@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Extension\Adiutor\Test\Integration\HookHandlers;
 
-use HashBagOStuff;
 use MediaWiki\Extension\Adiutor\HookHandlers\PageSaveCompleteHandler;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -30,7 +29,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
-use WANObjectCache;
 use WikiPage;
 
 /**
@@ -39,30 +37,35 @@ use WikiPage;
 class PageSaveCompleteHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testPageSaveComplete() {
-		$revisionLookup = $this->createMock( RevisionLookup::class );
-		$logger = new NullLogger();
-		$handler = new PageSaveCompleteHandler( $revisionLookup, $logger );
+		$handler = new PageSaveCompleteHandler(
+			$this->createMock( RevisionLookup::class ),
+			new NullLogger()
+		);
 
 		$wikiPage = $this->createMock( WikiPage::class );
 		$wikiPage->method( 'getTitle' )->willReturn( Title::newFromText( 'MediaWiki:AdiutorRequestPageProtection.json' ) );
-
 		$user = $this->createMock( UserIdentity::class );
-
 		$summary = 'some summary';
-
 		$flags = 0;
-
 		$revisionRecord = $this->createMock( RevisionRecord::class );
-
 		$editResult = $this->createMock( EditResult::class );
 
-		$wanObjectCache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$key = $wanObjectCache->makeKey( 'Adiutor', 'config-data' );
-		$this->assertFalse( $wanObjectCache->get( $key ) );
-		$this->setService( 'MainWANObjectCache', $wanObjectCache );
+		$cache = $this->getServiceContainer()->getMainWANObjectCache();
+		$key = $cache->makeKey( 'Adiutor', 'config-data' );
+		$this->assertFalse( $cache->get( $key ) );
 
+		// FIXME: This isn't testing much, since it is already false and the hook has no ability
+		// to change that, even if not called.
+		//
+		// TODO:
+		// - Turn into hook-agnostic integration test that makes an actual edit (no mocking),
+		// - Call onBeforePageDisplay() to assert PageDisplayHandler is functionally working,
+		//   by checking the config data.
+		// - Disable WANObjectCache, make another edit, forward ConvertibleTimestamp clock by 1min.
+		//   Assert that the cache works by seeing onBeforePageDisplay continue to use the same data.
+		// - Re-enable, make a third and final edit, forward clock by another min.
+		//   Asseert that purge works by seeing onBeforePageDisplay now use the new data.
 		$handler->onPageSaveComplete( $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult );
-
-		$this->assertFalse( $wanObjectCache->get( $key ) );
+		$this->assertFalse( $cache->get( $key ) );
 	}
 }
