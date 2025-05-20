@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"adiutor-create": "Napravi",
+	"adiutor-new-name": "Novo ime",
+	"adiutor-settings-label": "Podešavanja",
+	"adiutor-delete-button": "Obriši",
+	"adiutor-parameters-day": "dan",
+	"adiutor-parameters-month": "mesec",
+	"adiutor-parameters-year": "godina",
+	"adiutor-name-space": "Imenski prostor",
+	"adiutor-close": "Zatvori",
+	"adiutor-save-configurations": "Sačuvaj konfiguraciju",
+	"adiutor-value": "Vrednost",
+	"adiutor-help": "Pomoć",
+	"adiutor-tag-description": "Opis",
+	"adiutor-configurations-saving": "Čuvanje...",
+	"adiutor-namespaces": "Imenski prostori",
+	"adiutor-please-select-a-tag": "Molimo izaberite oznaku.",
+	"adiutor-cancel": "Otkaži",
+	"adiutor-speedy-deletion-policy-name-lowercase": "brzo brisanje",
+	"adiutor-rationales": "Razlog",
+	"adiutor-parameters-comment": "komentar",
+	"adiutor-comment": "Komentar",
+	"adiutor-report": "Prijavi",
+	"adiutor-revision-reporting-comment-placeholder": "Unesite komentar",
+	"adiutor-update": "Ažuriraj",
+	"adiutor-search": "Pretraga"
+}
