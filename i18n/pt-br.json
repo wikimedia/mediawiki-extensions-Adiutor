@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardoaddad"
+		]
+	},
+	"adiutor-toggle-adiutor": "Usar o Adiutor para a moderação, triagem e manutenção de tarefas de conteúdo",
+	"adiutor-desc": "O Adiutor é uma extensão do MediaWiki para a moderação, triagem e manutenção de tarefas de conteúdo da Wikipédia. A extensão implementa métodos de triagem e prioriza e categoriza pedidos e conteúdos com base na sua urgência e importância. A interface da extensão simplifica processos complexos, tornando a manutenção da Wikipédia mais acessível e eficiente para utilizadores de todos os níveis de experiência.",
+	"adiutor-beta-feature-description": "O Adiutor é uma extensão do MediaWiki para a moderação, triagem e manutenção de tarefas de conteúdo da Wikipédia. A extensão implementa métodos de triagem e prioriza e categoriza pedidos e conteúdos com base na sua urgência e importância. A interface da extensão simplifica processos complexos, tornando a manutenção da Wikipédia mais acessível e eficiente para utilizadores de todos os níveis de experiência.",
+	"adiutor-beta-feature-enabled": "O Adiutor agora está ativado como um recurso beta.",
+	"adiutor-create": "Criar",
+	"adiutor-request": "Solicitar",
+	"adiutor-protection-policy": "Normas de proteção",
+	"adiutor-speedy-deletion-policy": "Política de exclusão rápida",
+	"adiutor-delete": "Excluir",
+	"adiutor-other-options": "Outras opções",
+	"adiutor-propose": "Propor",
+	"adiutor-continue": "Continuar",
+	"adiutor-options": "Opções",
+	"adiutor-protect-against-rebuilding": "Solicitar proteção contra nova criação",
+	"adiutor-rationale": "Justificativa",
+	"adiutor-rationale-placeholder": "Por que {{GENDER:|você}} está indicando esta página para ser excluída?",
+	"adiutor-inform-creator": "Informar o usuário que criou a página.",
+	"adiutor-rpp-rationale-placeholder": "Por favor, escreva uma justificativa para a proteção",
+	"adiutor-rpm-rationale-placeholder": "Indique, por favor, uma justificação",
+	"adiutor-afd-special-page-title": "Artigos para exclusão",
+	"adiutor-create-request": "Criar solicitação",
+	"adiutor-protection-type": "Tipo de proteção",
+	"adiutor-choose-appropriate-tags": "Escolher as etiquetas apropriadas",
+	"adiutor-prd-deletion-rationale": "Justificativa da proposta de exclusão",
+	"adiutor-close": "Fechar",
+	"adiutor-name": "Nome",
+	"adiutor-action": "Ação",
+	"adiutor-value": "Valor",
+	"adiutor-data": "Dados",
+	"adiutor-label": "Etiqueta",
+	"adiutor-help": "Ajuda",
+	"adiutor-tag-description": "Descrição",
+	"adiutor-parameter": "Parâmetro",
+	"adiutor-type": "Tipo"
+}
