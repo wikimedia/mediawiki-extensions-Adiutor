@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"adiutor-create": "جوړول",
+	"adiutor-request": "غوښتنه",
+	"adiutor-protection-policy": "ژغورنې تگلار",
+	"adiutor-speedy-deletion-policy": "چټک ړنگېدو تگلار",
+	"adiutor-delete": "ړنگول",
+	"adiutor-other-options": "نورې خوښنې",
+	"adiutor-propose": "وړانديز",
+	"adiutor-continue": "پرله‌پورې",
+	"adiutor-options": "خوښنې",
+	"adiutor-protect-against-rebuilding": "د بياجوړنې ژغورنې غوښتنه",
+	"adiutor-rationale": "دلیل",
+	"adiutor-rationale-placeholder": "{{GENDER:|تاسو}} ولې دا مخ ړنگېدو ته نومولی؟",
+	"adiutor-inform-creator": "هغه کارن خبر کړئ، چې دا مخ يې جوړ کړی دی.",
+	"adiutor-inform-creator-help": "که وټاکل شي؛ نو هغه کارن ته به خبر ورکړل شي چې دا مخ يې جوړ کړی دی.",
+	"adiutor-rpp-rationale-placeholder": "مهرباني وکړئ د ژغورنې دليل وليکئ",
+	"adiutor-rpm-rationale-placeholder": "مهرباني وکړئ يو دليل وليکئ",
+	"adiutor-afd-special-page-title": "ړنگېدو وړ ليکنې",
+	"adiutor-create-request": "غوښتنه جوړول",
+	"adiutor-protection-type": "ژغورنې ډول",
+	"adiutor-choose-appropriate-tags": "وړ نښلنونه خوښول",
+	"adiutor-prd-deletion-rationale": "د ړنگېدو لپاره وړانديز شوی دليل",
+	"adiutor-prd-deletion-type": "د ړنگېدو لپاره وړانديز شوی ډول",
+	"adiutor-prd-deletion-type-1": "(وړانديز‌شوې ړنگېدنه)",
+	"adiutor-new-name": "نوی نوم",
+	"adiutor-pmr-header-title": "مخ لېږد غوښتنه",
+	"adiutor-page-move-request": "مخ لېږد غوښتنه",
+	"adiutor-page-protection-request": "مخ ژغورنې غوښتنه",
+	"adiutor-tag-page": "مخ ته نښلن لگول"
+}
