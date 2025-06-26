@@ -5,7 +5,8 @@
 			"Gogchannel",
 			"MathXplore",
 			"もなー(偽物)",
-			"Khsmty"
+			"Khsmty",
+			"Shirayuki"
 		]
 	},
 	"adiutor-toggle-adiutor": "Adeutor を使用してコンテンツタスクを管理、優先順位付け、保守する",
@@ -57,7 +58,7 @@
 	"adiutor-warning": "警告",
 	"adiutor-select-a-tag": "タグを選択してください。",
 	"adiutor-article-tagging-configuration-title": "記事のタグ付け設定",
-	"adiutor-article-tagging-description": "このページでは、 Adiutor の記事タグ付けモジュールを設定できます。\nページの変更の履歴を簡単に追跡し、調査することができます。\n設定はMediaWiki:AdiutorArticleTagging.jsonに直接保存されます。",
+	"adiutor-article-tagging-description": "このページでは、Adiutor の記事タグ付けモジュールの設定をカスタマイズできます。ここで行った調整は、MediaWiki:AdiutorArticleTagging.json ページに直接反映されます。変更履歴もそのページで簡単に確認/追跡できます。",
 	"adiutor-settings-label": "設定",
 	"adiutor-use-multiple-issues-template-label": "「複数の問題を使用する」のテンプレート:",
 	"adiutor-multiple-issues-template-description": "有効にすると、記事に1つ以上のタグが追加された場合、「複数の問題を使用する」テンプレートに配置されます。",
