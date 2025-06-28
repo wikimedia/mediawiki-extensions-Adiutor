@@ -21,7 +21,7 @@
           :placeholder="$i18n( 'adiutor-new-name-placeholder' )"
       ></cdx-text-input>
     </cdx-field>
-    <cdx-field style="margin-top:10px">
+    <cdx-field style="margin-top: 10px;">
       <template #label>
         <strong>{{ $i18n( "adiutor-rationale" ) }}</strong>
       </template>
@@ -138,31 +138,30 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="css">
-
 .rpm-dialog .adiutor-dialog-header {
-  display: block;
-  align-items: baseline;
-  justify-content: space-between;
-  height: 10em;
-  background-image: url(../../ext.adiutor.images/move-icon-ltr.svg);
-  background-position: 100% -4px;
-  background-repeat: no-repeat;
-  background-size: 140px;
+	display: block;
+	align-items: baseline;
+	justify-content: space-between;
+	height: 10em;
+	background-image: url( ../../ext.adiutor.images/move-icon-ltr.svg );
+	background-position: 100% -4px;
+	background-repeat: no-repeat;
+	background-size: 140px;
 }
 
 .rpm-dialog .adiutor-dialog-header p {
-  width: 60%;
+	width: 60%;
 }
 
 /* Media query for mobile view */
-@media only screen and (max-width: 767px) {
-  .rpm-dialog .adiutor-dialog-header {
-    background: none; /* Hide background */
-    margin-bottom: 10px !important;
-  }
-  .rpm-dialog .adiutor-dialog-header p {
-    width: 100% !important;
-  }
-}
+@media only screen and ( max-width: 767px ) {
+	.rpm-dialog .adiutor-dialog-header {
+		background: none; /* Hide background */
+		margin-bottom: 10px !important;
+	}
 
+	.rpm-dialog .adiutor-dialog-header p {
+		width: 100% !important;
+	}
+}
 </style>

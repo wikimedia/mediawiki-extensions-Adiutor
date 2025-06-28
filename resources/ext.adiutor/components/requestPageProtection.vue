@@ -156,47 +156,48 @@ module.exports = defineComponent( {
 
 <style lang="css">
 .rpp-dialog {
-  max-width: 32em;
+	max-width: 32em;
 }
 
 .rpp-dialog .cdx-field__control {
-  display: grid;
+	display: grid;
 }
 
-.rpp-dialog cdx-label {
-  margin-bottom: 10px;
-  display: block;
-  margin-top: 10px;
+.rpp-dialog .cdx-label {
+	margin-bottom: 10px;
+	display: block;
+	margin-top: 10px;
 }
 
 .rpp-dialog .adiutor-dialog-header {
-  display: block;
-  align-items: baseline;
-  justify-content: space-between;
-  height: 10em;
-  background-image: url(../../ext.adiutor.images/protection-icon-ltr.svg);
-  background-position: 100% -4px;
-  background-repeat: no-repeat;
-  background-size: 140px;
+	display: block;
+	align-items: baseline;
+	justify-content: space-between;
+	height: 10em;
+	background-image: url( ../../ext.adiutor.images/protection-icon-ltr.svg );
+	background-position: 100% -4px;
+	background-repeat: no-repeat;
+	background-size: 140px;
 }
 
 .rpp-dialog .adiutor-dialog-header p {
-  width: 60%;
+	width: 60%;
 }
 
 .rpp-dialog .cdx-select-vue {
-  margin-bottom: 10px !important;
+	margin-bottom: 10px !important;
 }
 
 /* Media query for mobile view */
-@media only screen and (max-width: 767px) {
-  .rpp-dialog .adiutor-dialog-header {
-    background: none; /* Hide background */
-    margin-bottom: 10px !important;
-  }
-  .rpp-dialog .adiutor-dialog-header p {
-    width: 100% !important;
-  }
+@media only screen and ( max-width: 767px ) {
+	.rpp-dialog .adiutor-dialog-header {
+		background: none; /* Hide background */
+		margin-bottom: 10px !important;
+	}
+
+	.rpp-dialog .adiutor-dialog-header p {
+		width: 100% !important;
+	}
 }
 
 </style>

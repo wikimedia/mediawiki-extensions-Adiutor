@@ -242,8 +242,7 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="less">
-
 .ext-adiutor-options .top-message {
-  margin-top: 10px;
+	margin-top: 10px;
 }
 </style>

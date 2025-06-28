@@ -12,7 +12,7 @@ module.exports = function ( grunt ) {
 				cache: true
 			},
 			all: [
-				'**/*.{js,json}',
+				'**/*.{js,json,vue}',
 				'!resources/ext.adiutor/icons.json',
 				'!node_modules/**',
 				'!vendor/**'
@@ -23,7 +23,7 @@ module.exports = function ( grunt ) {
 				cache: true
 			},
 			all: [
-				'**/*.{css,less}',
+				'**/*.{css,less,vue}',
 				'!node_modules/**',
 				'!vendor/**'
 			]

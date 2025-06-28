@@ -25,7 +25,7 @@
         v-for="label in filteredTagList"
         :key="'fieldset-' + label.label"
         :is-fieldset="true"
-        style="margin-bottom: 10px">
+        style="margin-bottom: 10px;">
       <template v-if="label.tags.length > 0" #label>
         <strong>{{ label.label }}</strong>
       </template>
@@ -317,50 +317,50 @@ module.exports = defineComponent( {
 
 <style lang="css">
 .adiutor-article-tagging-dialog {
-  max-width: 720px !important;
-  flex-grow: 1;
-  margin-top: 0;
-  padding: 0;
-  overflow-y: auto;
+	max-width: 720px !important;
+	flex-grow: 1;
+	margin-top: 0;
+	padding: 0;
+	overflow-y: auto;
 }
 
 .adiutor-article-tagging-dialog .tag-search {
-  width: 200px
+	width: 200px;
 }
 
 .adiutor-article-tagging-dialog .adiutor-dialog-header {
-  display: block;
-  align-items: baseline;
-  justify-content: space-between;
-  height: 10em;
-  background-image: url(../../ext.adiutor.images/tag-icon-ltr.svg);
-  background-position: 100% 10px;
-  background-repeat: no-repeat;
-  background-size: 170px;
+	display: block;
+	align-items: baseline;
+	justify-content: space-between;
+	height: 10em;
+	background-image: url( ../../ext.adiutor.images/tag-icon-ltr.svg );
+	background-position: 100% 10px;
+	background-repeat: no-repeat;
+	background-size: 170px;
 }
 
 .adiutor-article-tagging-dialog .adiutor-dialog-header p {
-  width: 70%;
+	width: 70%;
 }
 
 .adiutor-article-tagging-dialog .sub-item-text-input {
-  margin-left: 20px;
-  margin-bottom: 10px;
+	margin-left: 20px;
+	margin-bottom: 10px;
 }
 
 .adiutor-article-tagging-dialog .sub-item-checkbox {
-  margin-left: 20px;
+	margin-left: 20px;
 }
 
 /* Media query for mobile view */
-@media only screen and (max-width: 767px) {
-  .adiutor-article-tagging-dialog .adiutor-dialog-header {
-    background: none; /* Hide background */
-    margin-bottom: 10px !important;
-  }
-  .adiutor-article-tagging-dialog .adiutor-dialog-header p {
-    width: 100% !important;
-  }
-}
+@media only screen and ( max-width: 767px ) {
+	.adiutor-article-tagging-dialog .adiutor-dialog-header {
+		background: none; /* Hide background */
+		margin-bottom: 10px !important;
+	}
 
+	.adiutor-article-tagging-dialog .adiutor-dialog-header p {
+		width: 100% !important;
+	}
+}
 </style>

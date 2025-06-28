@@ -484,13 +484,14 @@ module.exports = defineComponent( {
 @import 'mediawiki.skin.variables.less';
 
 .cdx-text-input.adiutor-cell-max-size-36 {
-  min-width: 36px;
+	min-width: 36px;
 }
+
 .cdx-text-input.adiutor-cell-max-size-100 {
-  min-width: 100px;
+	min-width: 100px;
 }
 
 .ext-adiutor-options .top-message {
-  margin-top: 10px;
+	margin-top: 10px;
 }
 </style>

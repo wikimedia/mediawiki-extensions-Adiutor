@@ -27,7 +27,7 @@
             {{ rationale.label }}
           </cdx-radio>
         </cdx-field>
-        <cdx-field style="margin-top:10px">
+        <cdx-field style="margin-top: 10px;">
           <template #label>
             {{ $i18n( "adiutor-comment" ) }}
           </template>
@@ -163,33 +163,33 @@ module.exports = defineComponent( {
 
 <style lang="css">
 .revision-reporting-dialog {
-  max-width: 40em !important;
+	max-width: 40em !important;
 }
 
 .revision-reporting-dialog .adiutor-dialog-header {
-  display: block;
-  align-items: baseline;
-  justify-content: space-between;
-  height: 10em;
-  background-image: url(../../ext.adiutor.images/revision-icon-ltr.svg);
-  background-position: 100% -4px;
-  background-repeat: no-repeat;
-  background-size: 140px;
+	display: block;
+	align-items: baseline;
+	justify-content: space-between;
+	height: 10em;
+	background-image: url( ../../ext.adiutor.images/revision-icon-ltr.svg );
+	background-position: 100% -4px;
+	background-repeat: no-repeat;
+	background-size: 140px;
 }
 
 .revision-reporting-dialog .adiutor-dialog-header p {
-  width: 70%;
+	width: 70%;
 }
 
 /* Media query for mobile view */
-@media only screen and (max-width: 767px) {
-  .revision-reporting-dialog .adiutor-dialog-header {
-    background: none; /* Hide background */
-    margin-bottom: 10px !important;
-  }
-  .revision-reporting-dialog .adiutor-dialog-header p {
-    width: 100% !important;
-  }
-}
+@media only screen and ( max-width: 767px ) {
+	.revision-reporting-dialog .adiutor-dialog-header {
+		background: none; /* Hide background */
+		margin-bottom: 10px !important;
+	}
 
+	.revision-reporting-dialog .adiutor-dialog-header p {
+		width: 100% !important;
+	}
+}
 </style>

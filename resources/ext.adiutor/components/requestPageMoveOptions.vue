@@ -256,17 +256,16 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="less">
-
 .ext-adiutor-options .cdx-field {
-  margin-top: 10px;
-  display: block;
+	margin-top: 10px;
+	display: block;
 }
 
 .ext-adiutor-options .top-message {
-  margin-top: 10px;
+	margin-top: 10px;
 }
 
 .ext-adiutor-options .save-button {
-  float: right;
+	float: right;
 }
 </style>

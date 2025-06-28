@@ -213,58 +213,60 @@ module.exports = defineComponent( {
 
 <style lang="css">
 .csd-dialog {
-  max-width: 50em !important;
+	max-width: 50em !important;
 }
 
 .csd-dialog .csd-reason-field {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
 }
 
 .csd-dialog .adiutor-dialog-header {
-  display: block;
-  align-items: baseline;
-  justify-content: space-between;
-  height: 10em;
-  background-image: url(../../ext.adiutor.images/csd-icon-ltr.svg);
-  background-position: 100% -4px;
-  background-repeat: no-repeat;
-  background-size: 140px;
+	display: block;
+	align-items: baseline;
+	justify-content: space-between;
+	height: 10em;
+	background-image: url( ../../ext.adiutor.images/csd-icon-ltr.svg );
+	background-position: 100% -4px;
+	background-repeat: no-repeat;
+	background-size: 140px;
 }
 
 .csd-reasons-body {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
 }
 
 .csd-dialog .adiutor-dialog-header p {
-  width: 70%;
+	width: 70%;
 }
 
 .csd-deletion-log-message {
-  margin-left: 20px;
-  margin-top: 20px;
+	margin-left: 20px;
+	margin-top: 20px;
 }
 
 /* Media query for mobile view */
-@media only screen and (max-width: 767px) {
-  .csd-dialog .adiutor-dialog-header {
-    background: none; /* Hide background */
-    margin-bottom: 10px !important;
-  }
-  .csd-dialog .adiutor-dialog-header p {
-    width: 100% !important;
-  }
-  .csd-dialog .csd-reasons-body {
-    flex-direction: column;
-  }
-  .csd-dialog .csd-reason-field {
-    display: contents;
-    flex-direction: column;
-    width: 100%;
-  }
-}
+@media only screen and ( max-width: 767px ) {
+	.csd-dialog .adiutor-dialog-header {
+		background: none; /* Hide background */
+		margin-bottom: 10px !important;
+	}
 
+	.csd-dialog .adiutor-dialog-header p {
+		width: 100% !important;
+	}
+
+	.csd-dialog .csd-reasons-body {
+		flex-direction: column;
+	}
+
+	.csd-dialog .csd-reason-field {
+		display: contents;
+		flex-direction: column;
+		width: 100%;
+	}
+}
 </style>

@@ -29,7 +29,7 @@
         </template>
       </cdx-radio>
     </cdx-field>
-    <cdx-field style="margin-top:20px">
+    <cdx-field style="margin-top: 20px;">
       <template #label>
         <strong>{{ $i18n( "adiutor-rationale" ) }}</strong>
       </template>
@@ -222,31 +222,30 @@ module.exports = defineComponent( {
 </script>
 
 <style lang="css">
-
 .prd-dialog .adiutor-dialog-header {
-  display: block;
-  align-items: baseline;
-  justify-content: space-between;
-  height: 10em;
-  background-image: url(../../ext.adiutor.images/prod-icon-ltr.svg);
-  background-position: 100% -4px;
-  background-repeat: no-repeat;
-  background-size: 140px;
+	display: block;
+	align-items: baseline;
+	justify-content: space-between;
+	height: 10em;
+	background-image: url( ../../ext.adiutor.images/prod-icon-ltr.svg );
+	background-position: 100% -4px;
+	background-repeat: no-repeat;
+	background-size: 140px;
 }
 
 .prd-dialog .adiutor-dialog-header p {
-  width: 70%;
+	width: 70%;
 }
 
 /* Media query for mobile view */
-@media only screen and (max-width: 767px) {
-  .prd-dialog .adiutor-dialog-header {
-    background: none; /* Hide background */
-    margin-bottom: 10px !important;
-  }
-  .prd-dialog .adiutor-dialog-header p {
-    width: 100% !important;
-  }
-}
+@media only screen and ( max-width: 767px ) {
+	.prd-dialog .adiutor-dialog-header {
+		background: none; /* Hide background */
+		margin-bottom: 10px !important;
+	}
 
+	.prd-dialog .adiutor-dialog-header p {
+		width: 100% !important;
+	}
+}
 </style>
