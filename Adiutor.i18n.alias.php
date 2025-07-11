@@ -421,7 +421,7 @@ $specialPageAliases['vi'] = [
 
 /* Chinese */
 $specialPageAliases['zh'] = [
-	'AdiutorSettings' => [ 'Adiutor设置' ],
+	'AdiutorSettings' => [ 'AdiutorSettings' ],
 ];
 
 /* Chinese (Simplified) */
@@ -431,10 +431,5 @@ $specialPageAliases['zh-hans'] = [
 
 /* Chinese (Traditional) */
 $specialPageAliases['zh-hant'] = [
-	'AdiutorSettings' => [ 'Adiutor設定' ],
-];
-
-/* Chinese (Hong Kong) */
-$specialPageAliases['zh-hk'] = [
 	'AdiutorSettings' => [ 'Adiutor設定' ],
 ];
