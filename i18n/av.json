@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Augustus A C"
+		]
+	},
+	"adiutor-toggle-adiutor": "ХӀалтӀизабе Adiutor контенталъул масъалабазул модерациялъеги, рекъезабиялъеги",
+	"adiutor-beta-feature-enabled": "Adiutor гьанже биччан буго бета-функциялъул куцалда.",
+	"adiutor-create": "ГӀуцӀизе",
+	"adiutor-request": "ТӀалаб",
+	"adiutor-protection-policy": "ЦӀунул политика",
+	"adiutor-speedy-deletion-policy": "Хехаб гилдул политика",
+	"adiutor-delete": "Гилдизе",
+	"adiutor-other-options": "Цогидал опцияби",
+	"adiutor-propose": "Цебелъезе",
+	"adiutor-continue": "Хадугьизе",
+	"adiutor-options": "Опцияби",
+	"adiutor-protect-against-rebuilding": "ЦӀидасан гьабиялдаса цӀунизе тӀалаб",
+	"adiutor-afd-special-page-title": "Гилдизесел макъалаби",
+	"adiutor-create-request": "ТӀалаб гӀуцӀизе",
+	"adiutor-protection-type": "ЦӀунул тайпа",
+	"adiutor-new-name": "ЦӀияб цӀар",
+	"adiutor-pmr-header-title": "Гьумералъул цӀар хисизе тӀалаб",
+	"adiutor-and": "гин",
+	"adiutor-delete-button": "Гилдизе",
+	"adiutor-parameters-page-name": "гьумералъул цӀар",
+	"adiutor-parameters-new-page-name": "гьумералъул цӀияб цӀар",
+	"adiutor-parameters-day": "къо",
+	"adiutor-parameters-month": "моцӀ",
+	"adiutor-parameters-year": "сон",
+	"adiutor-close": "Къазе",
+	"adiutor-help": "Квеки",
+	"adiutor-type": "Тайпа",
+	"adiutor-new-name-placeholder": "ЦӀияб цӀар"
+}
