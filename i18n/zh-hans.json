@@ -6,7 +6,8 @@
 			"Key0121",
 			"Kichin",
 			"McDutchie",
-			"Yining Chen"
+			"Yining Chen",
+			"Peterxy12"
 		]
 	},
 	"adiutor-toggle-adiutor": "使用Adiutor来审核、分类和维护内容任务",
@@ -180,6 +181,8 @@
 	"adiutor-try-again": "重试",
 	"adiutor-csd-use-reason-value": "使用原因值",
 	"adiutor-csd-use-reason-data": "使用原因数据",
+	"adiutor-csd-use-reason-value-description": "啟用後，僅會插入理由值。請求模板中必須使用$3參數。",
+	"adiutor-csd-use-reason-data-description": "啟用後，僅會插入理由資料。請求模板中必須使用$2參數。",
 	"adiutor-csd-use-vertical-bar": "使用管道符",
 	"adiutor-csd-use-vertical-bar-description": "激活后，快速删除模板中的理由会用竖线（|）分隔。",
 	"adiutor-csd-default": "默认",
@@ -203,6 +206,7 @@
 	"adiutor-proposed-deletion-policy-shortcut": "建议性删除方针快捷方式",
 	"adiutor-proposed-deletion-blpprod-policy": "对未注明来源生者传记的建议性删除方针",
 	"adiutor-proposed-deletion-blpprod-policy-shortcut": "对未注明来源生者传记的建议性删除方针快捷方式",
+	"adiutor-copy-vio-reason-value-description": "输入触发显示侵犯版权页面输入的原因值。",
 	"adiutor-copy-vio-reason-value-help-text": "请记住，模板应该有一个“url=”参数。",
 	"adiutor-this-page-deleted-before": "此页面之前已被删除了$1次！",
 	"adiutor-deletion-log": "删除日志",
@@ -232,12 +236,14 @@
 	"adiutor-protection-policy-title": "保护方针",
 	"adiutor-protection-policy-title-help": "这是保护方针页面标题。",
 	"adiutor-report-revision-configuration": "举报修订版本配置",
+	"adiutor-report-revision-configuration-description": "此页面为您提供了自定义Adiutor建议删除模块设置的功能。当您在此处进行调整时，它会直接为您更新存储在MediaWiki:AdiutorDeletionPropose.json页面中的配置。您可以在该页面上轻松跟踪和查看您的修改历史记录。",
 	"adiutor-rationales": "理由",
 	"adiutor-report-revision": "举报修订版本",
 	"adiutor-parameters-revision-number": "修订版本号",
 	"adiutor-parameters-comment": "评论",
 	"adiutor-revision-deletion-policy-title": "修订版本删除方针",
 	"adiutor-revision-deletion-policy-title-help": "这是修订版本删除方针页面标题。",
+	"adiutor-revision-reporting-warning": "在使用此工具提出请求之前，应告知用户维基百科相关规则。如果涉及冒犯性编辑或威胁，则可以不遵循通知程序提出请求。",
 	"adiutor-rev-enable-label": "启用举报修订版本",
 	"adiutor-rev-enable-help": "激活后，将启用修订版本举报模块。",
 	"adiutor-revision-reporting-header-title": "举报修订版本",
@@ -263,5 +269,6 @@
 	"adiutor-type-value": "类型值",
 	"adiutor-type-label": "类型标签",
 	"adiutor-type-data": "类型帮助",
-	"adiutor-search": "搜索"
+	"adiutor-search": "搜索",
+	"adiutor-create-localization-initial-content": "Adiutor本地化文件的初始内容"
 }
