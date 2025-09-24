@@ -81,7 +81,7 @@
 
 	portletLinks.forEach( ( link ) => {
 		const linkNamespaces = link.namespaces.map( ( nsObj ) => parseInt( nsObj.value, 10 ) );
-		if ( linkNamespaces.indexOf( currentNamespace ) !== -1 ) {
+		if ( linkNamespaces.includes( currentNamespace ) ) {
 			mw.util.addPortletLink( 'p-adiutor', '#', link.label, link.id, link.action, link.key );
 		}
 	} );
@@ -89,7 +89,7 @@
 	if ( mw.config.get( 'skin' ) === 'minerva' ) {
 		portletLinks.forEach( ( link ) => {
 			const linkNamespaces = link.namespaces.map( ( nsObj ) => parseInt( nsObj.value, 10 ) );
-			if ( linkNamespaces.indexOf( currentNamespace ) !== -1 ) {
+			if ( linkNamespaces.includes( currentNamespace ) ) {
 				mw.util.addPortletLink( 'p-tb', '#', link.label, link.id, link.action, link.key );
 			}
 		} );
