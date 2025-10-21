@@ -4,7 +4,8 @@
 			"Ebrahim",
 			"Ebraminio",
 			"Emads2",
-			"Jeeputer"
+			"Jeeputer",
+			"LordProfo"
 		]
 	},
 	"adiutor-create": "ایجاد",
@@ -16,7 +17,7 @@
 	"adiutor-propose": "پیشنهاد",
 	"adiutor-continue": "ادامه",
 	"adiutor-options": "گزینه‌ها",
-	"adiutor-protect-against-rebuilding": "درخواست محافظت در برابر ایجاد مجدد",
+	"adiutor-protect-against-rebuilding": "درخواست محافظت در برابر ایجاد دوباره",
 	"adiutor-rationale": "معیار",
 	"adiutor-rationale-placeholder": "چرا {{GENDER:|شما}} این صفحه را برای حذف نامزد می‌کنید؟",
 	"adiutor-inform-creator": "آگاه‌سازی کاربر ایجادکنندهٔ این صفحه.",
@@ -44,6 +45,7 @@
 	"adiutor-article-tagging-configuration-title": "ُساختار برچسب‌زنی مقاله",
 	"adiutor-settings-label": "تنظیمات",
 	"adiutor-csd-template-start-multiple-reason": "الگوی «دلیل چندگانه»",
+	"adiutor-namespaces": "فضاهای نام",
 	"adiutor-cancel": "لغو",
 	"adiutor-please-read-the-x-policy": "لطفاً سیاست $1 را مطالعه کنید.",
 	"adiutor-speedy-deletion-policy-name-lowercase": "حذف سریع"
