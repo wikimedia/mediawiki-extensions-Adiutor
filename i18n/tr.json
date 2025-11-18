@@ -4,6 +4,7 @@
 			"Hedda",
 			"Leo",
 			"RuzDD",
+			"SaldırganSincap",
 			"Vikipolimer"
 		]
 	},
@@ -53,7 +54,7 @@
 	"adiutor-page-protection-request": "Sayfa koruma talebi",
 	"adiutor-tag-page": "Sayfayı etiketle",
 	"adiutor-settings": "Adiutor ayarları",
-	"adiutor-localization-settings-has-been-updated": "Adiutor yerelleştirme ayarları başarıyla güncellendi.",
+	"adiutor-localization-settings-has-been-updated": "Adiutor yerelleştirme ayarları güncellendi.",
 	"adiutor-copyright-infringing-page": "Telif hakkını ihlal eden sayfa",
 	"adiutor-operation-completed": "İşlem tamam!",
 	"adiutor-operation-failed": "İşlem başarısız!",
@@ -155,7 +156,7 @@
 	"adiutor-csd-use-vertical-bar": "Dikey çubuğu kullan",
 	"adiutor-csd-use-vertical-bar-description": "Etkinleştirildiğinde hızlı silme şablonundaki nedenler dikey (|) bir çubukla ayrılır.",
 	"adiutor-csd-default": "Varsayılan",
-	"adiutor-csd-default-description": "Etkinleştirildiğinde hızlı silme şablonundaki nedenler ve ile ayrılır.",
+	"adiutor-csd-default-description": "Hızlı silme şablonu aktifleştirildiğinde, nedenler \"and\" kelimesiyle ayrılır.",
 	"adiutor-append-text-on-the-page": "Sayfaya metin ekleyin.",
 	"adiutor-module-enabled": "Modül etkin",
 	"adiutor-module-enabled-description": "Açıldığında modül etkinleştirilecektir.",
