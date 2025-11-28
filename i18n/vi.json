@@ -8,6 +8,7 @@
 	"adiutor-beta-feature-title": "Adiutor",
 	"adiutor-toggle-adiutor": "Sử dụng Adiutor để hỗ trợ công tác quản lý, phân loại và bảo trì nội dung.",
 	"adiutor-desc": "Adiutor là một phần mở rộng của MediaWiki được thiết kế để hỗ trợ công tác quản lý, phân loại và bảo trì nội dung trên Wikipedia. Công cụ này cho phép triển khai các phương pháp phân loại và xác định thứ tự ưu tiên dựa trên mức độ khẩn cấp và tầm quan trọng của từng tác vụ. Nhờ giao diện người dùng được tối ưu hóa, các quy trình phức tạp được đơn giản hóa, giúp nâng cao hiệu quả bảo trì và mở rộng khả năng tiếp cận cho người dùng ở mọi trình độ.",
+	"adiutor-beta-feature-description": "Adiutor là một phần mở rộng của MediaWiki được thiết kế để hỗ trợ công tác quản lý, phân loại và bảo trì nội dung trên Wikipedia. Công cụ này cho phép triển khai các phương pháp phân loại và xác định thứ tự ưu tiên dựa trên mức độ khẩn cấp và tầm quan trọng của từng tác vụ. Nhờ giao diện người dùng được tối ưu hóa, các quy trình phức tạp được đơn giản hóa, giúp nâng cao hiệu quả bảo trì và mở rộng khả năng tiếp cận cho người dùng ở mọi trình độ.",
 	"adiutor-beta-feature-enabled": "Adiutor hiện đã được bật dưới dạng tính năng beta.",
 	"adiutor-create": "Tạo",
 	"adiutor-request": "Yêu cầu",
