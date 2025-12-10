@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pyscowicz"
+			"Pyscowicz",
+			"Yupik"
 		]
 	},
 	"adiutor-create": "Luo",
@@ -10,5 +11,6 @@
 	"adiutor-options": "Asetukset",
 	"adiutor-and": "ja",
 	"adiutor-warning": "Varoitus",
-	"adiutor-settings-label": "Asetukset"
+	"adiutor-settings-label": "Asetukset",
+	"adiutor-configurations-saving": "Tallennetaan..."
 }
