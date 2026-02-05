@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Ucukor"
 		]
 	},
 	"adiutor-parameters-month": "месяц",
 	"adiutor-parameters-year": "год",
-	"adiutor-help": "Даведка"
+	"adiutor-help": "Даведка",
+	"adiutor-cancel": "Скасаваць"
 }
