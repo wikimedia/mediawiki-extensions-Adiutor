@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Keneris"
+			"Keneris",
+			"Vlad5250"
 		]
 	},
 	"adiutor-toggle-adiutor": "Використовуйте Adiutor для модерації, сортування та підтримки завдань із вмістом",
@@ -17,6 +18,9 @@
 	"adiutor-propose": "Пропонує",
 	"adiutor-continue": "Продовжити",
 	"adiutor-options": "Налаштування",
+	"adiutor-afd-special-page-title": "Статті на вилучення",
+	"adiutor-create-request": "Створити запит",
+	"adiutor-protection-type": "Тип захисту",
 	"adiutor-use-exist-section-description": "Після активації, вміст буде додано до розділу, вказаного в ідентифікаторі розділу",
 	"adiutor-section-id": "Ідентифікатор розділу:"
 }
