@@ -3,7 +3,8 @@
 		"authors": [
 			"Ykhwong",
 			"밥풀떼기",
-			"YeBoy371"
+			"YeBoy371",
+			"Tensama0415"
 		]
 	},
 	"adiutor-create": "만들기",
@@ -60,7 +61,7 @@
 	"adiutor-action-column": "동작",
 	"adiutor-delete-button": "삭제",
 	"adiutor-create-speedy-deletion-configuration-title": "빠른 삭제 구성 만들기",
-	"adiutor-parameters": "변수",
+	"adiutor-parameters": "매개변수",
 	"adiutor-parameters-page-name": "문서 이름",
 	"adiutor-parameters-new-page-name": "새 문서 이름",
 	"adiutor-parameters-protection-duration": "보호 기간",
@@ -103,7 +104,7 @@
 	"adiutor-tag-description": "설명",
 	"adiutor-add-sub-item": "하위 항목 추가",
 	"adiutor-required": "필수",
-	"adiutor-parameter": "변수",
+	"adiutor-parameter": "매개변수",
 	"adiutor-type": "유형",
 	"adiutor-noticeboard": "공지:",
 	"adiutor-content-pattern": "내용 패턴:",
