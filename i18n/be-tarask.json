@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Red Winged Duck",
 			"Ucukor"
 		]
 	},
 	"adiutor-data": "Зьвесткі",
-	"adiutor-tag-labels": "Меткі тэґаў",
+	"adiutor-tag-labels": "Меткі тэгаў",
 	"adiutor-module-enabled": "Модуль увамкнёны",
 	"adiutor-cancel": "Скасаваць"
 }
