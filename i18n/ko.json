@@ -47,7 +47,7 @@
 	"adiutor-csd-header-title": "빠른 삭제 요청",
 	"adiutor-tag-header-title": "문서 태그 지정",
 	"adiutor-csd-header-description": "아래 옵션에서 이 문서의 삭제 사유를 선택해 주세요. 빠른 삭제 요청 사유가 빠른 삭제 기준에 부합하지 않을 경우 문서가 삭제되지 않을 수 있습니다.",
-	"adiutor-rpp-header-description": "이 모듈은 문서, 파일 또는 템플릿에 대한 보호 요청을 위한 것입니다. 보호 정책을 자세히 읽어보시기 바랍니다.",
+	"adiutor-rpp-header-description": "이 모듈은 문서, 파일 또는 틀에 대한 보호 요청을 위한 것입니다. 보호 정책을 자세히 읽어보시기 바랍니다.",
 	"adiutor-prd-header-description": "이 제안은 해당 문서가 빠른 삭제에 필요한 더 엄격하고 까다로운 기준을 충족하지 못하더라도 논란 없이 삭제될 수 있음을 시사합니다.",
 	"adiutor-new-name": "새 이름",
 	"adiutor-pmr-header-title": "문서 이동 요청",
