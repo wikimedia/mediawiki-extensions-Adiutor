@@ -73,7 +73,7 @@
 	"adiutor-article-tagging-description": "이 문서에서는 오디터의 문서 태그 지정 모듈 설정을 사용자 지정할 수 있습니다. 여기서 설정을 변경하면 MediaWiki:AdiutorArticleTagging.json 문서에 저장된 구성이 자동으로 업데이트됩니다. 해당 문서에서 변경 내역을 쉽게 추적하고 검토할 수 있습니다.",
 	"adiutor-settings-label": "설정",
 	"adiutor-use-multiple-issues-template-label": "\"여러 문제 사용\" 틀:",
-	"adiutor-multiple-issues-template-description": "활성화하면 문서에 태그가 두 개 이상 추가된 경우 해당 태그들을 다중 이슈 틀에 넣습니다.",
+	"adiutor-multiple-issues-template-description": "활성화하면 문서에 태그가 두 개 이상 추가된 경우 해당 태그들을 여러 문제 틀에 넣습니다.",
 	"adiutor-multiple-issues-template-label": "\"여러 문제\" 틀:",
 	"adiutor-multiple-issues-template-help-text": "이 틀은 여러 문제가 있는 요청의 대한 다른 틀들에 추가됩니다.",
 	"adiutor-uncategorized-template-label": "\"분류되지 않은\" 틀:",
