@@ -208,7 +208,7 @@ module.exports = defineComponent( {
 
       if ( useMultipleIssuesTemplate && preparedTemplates.length > 0 ) {
         const pageContent = await AdiutorUtility.getPageContent( pageName );
-        // eslint-disable-next-line es-x/no-regexp-s-flag,security/detect-non-literal-regexp
+        // eslint-disable-next-line security/detect-non-literal-regexp
         const matches = pageContent.match( new RegExp( `{{${ multipleIssuesTemplate }\\s*\\|\\s*((?:{{[^{}]*}}(?:\\n|\\s*))*?)}}`, 's' ) );
         let currentTagsContent = matches ? matches[ 1 ] : '';
         let currentTags = currentTagsContent.match( /{{[\s\S]*?}}/g ) || [];
