@@ -437,7 +437,7 @@
 			"services": [
 				"UserFactory",
 				"RevisionLookup",
-				"MainConfig"
+				"NotificationService"
 			]
 		}
 	],

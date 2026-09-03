@@ -21,8 +21,6 @@
 
 namespace MediaWiki\Extension\Adiutor\HookHandlers;
 
-use EchoAttributeManager;
-use EchoUserLocator;
 use MediaWiki\Extension\Adiutor\Presentations\EchoNotifyCreatorPresentationModel;
 use MediaWiki\Extension\Notifications\Hooks\BeforeCreateEchoEventHook;
 
@@ -54,12 +52,6 @@ class CreateEchoEventHandler implements BeforeCreateEchoEventHook {
 				'web' => true,
 				'email' => true,
 				'expandable' => true,
-			],
-			EchoAttributeManager::ATTR_LOCATORS => [
-				[
-					[ EchoUserLocator::class, 'locateFromEventExtra' ],
-					[ 'author' ],
-				],
 			],
 		];
 

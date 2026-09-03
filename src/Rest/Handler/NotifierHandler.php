@@ -21,9 +21,10 @@
 
 namespace MediaWiki\Extension\Adiutor\Rest\Handler;
 
-use ExtensionRegistry;
 use HttpError;
-use MediaWiki\Extension\Notifications\Model\Event;
+use MediaWiki\Notification\NotificationService;
+use MediaWiki\Notification\RecipientSet;
+use MediaWiki\Notification\Types\WikiNotification;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Revision\RevisionLookup;
@@ -40,14 +41,21 @@ class NotifierHandler extends SimpleHandler {
 
 	private UserFactory $userFactory;
 	private RevisionLookup $revisionLookup;
+	private NotificationService $notifications;
 
 	/**
 	 * @param UserFactory $userFactory
 	 * @param RevisionLookup $revisionLookup
+	 * @param NotificationService $notifications
 	 */
-	public function __construct( UserFactory $userFactory, RevisionLookup $revisionLookup ) {
+	public function __construct(
+		UserFactory $userFactory,
+		RevisionLookup $revisionLookup,
+		NotificationService $notifications
+	) {
 		$this->userFactory = $userFactory;
 		$this->revisionLookup = $revisionLookup;
+		$this->notifications = $notifications;
 	}
 
 	/**
@@ -69,9 +77,9 @@ class NotifierHandler extends SimpleHandler {
 
 		$this->preconditionsCheck( $agent, $content[ 'title' ] );
 
-		$event = $this->createNotificationEvent( $content, $author, $agent );
+		$this->sendNotification( $content, $author, $agent );
 
-		return $this->getResponseFactory()->createJson( [ 'result' => 'success', 'event' => $event ] );
+		return $this->getResponseFactory()->createJson( [ 'result' => 'success' ] );
 	}
 
 	/**
@@ -123,36 +131,27 @@ class NotifierHandler extends SimpleHandler {
 	}
 
 	/**
-	 * Create a notification event if Echo extension is loaded
+	 * Send a notification to the author of the page about the speedy deletion request.
 	 *
 	 * @since 0.1.0
 	 * @param array $content The content array containing 'title' and 'reason'.
 	 * @param User $author The author user object.
 	 * @param User $agent The user object representing the agent.
-	 * @return Event The notification event.
-	 * @throws HttpError
 	 */
-	private function createNotificationEvent( array $content, User $author, User $agent ): Event {
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			$event = Event::create( [
-				'type' => 'adiutor-csd-notification',
-				'title' => Title::newFromText( $content[ 'title' ] ),
-				'extra' => [
-					'author' => $author,
+	private function sendNotification( array $content, User $author, User $agent ): void {
+		$this->notifications->notify(
+			new WikiNotification(
+				'adiutor-csd-notification',
+				Title::newFromText( $content[ 'title' ] ),
+				$agent,
+				[
+					'author' => $author->getName(),
 					'reason' => $content[ 'reason' ],
 					'title' => $content[ 'title' ],
-				],
-				'agent' => $agent,
-			] );
-
-			if ( $event === false ) {
-				throw new HttpError( 500, 'Failed to create notification event' );
-			}
-
-			return $event;
-		} else {
-			throw new HttpError( 404, 'Echo extension is not available' );
-		}
+				]
+			),
+			new RecipientSet( $author )
+		);
 	}
 
 	/**

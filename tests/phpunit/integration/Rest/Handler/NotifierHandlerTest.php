@@ -25,6 +25,7 @@ use Exception;
 use HttpError;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Extension\Adiutor\Rest\Handler\NotifierHandler;
+use MediaWiki\Notification\NotificationService;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
@@ -43,6 +44,7 @@ class NotifierHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private UserFactory $userFactory;
 	private RevisionLookup $revisionLookup;
+	private NotificationService $notifications;
 
 	public function provideRunTestData(): array {
 		return [
@@ -52,7 +54,6 @@ class NotifierHandlerTest extends MediaWikiIntegrationTestCase {
 				'some_reason',
 				false,
 				false,
-				true,
 				true,
 			],
 		];
@@ -69,10 +70,8 @@ class NotifierHandlerTest extends MediaWikiIntegrationTestCase {
 		string $reason,
 		bool $isBlocked,
 		bool $hasPageChanged,
-		bool $expectsException,
-		bool $echoLoaded
+		bool $expectsException
 	) {
-		$this->overrideConfigValue( 'EnableEcho', $echoLoaded );
 		$mockUser = $this->createMock( User::class );
 		$mockUser->method( 'getName' )
 			->willReturn( $authorName );
@@ -110,12 +109,11 @@ class NotifierHandlerTest extends MediaWikiIntegrationTestCase {
 			throw new Exception( "JSON error: $jsonError" );
 		}
 		$this->assertEquals( 'success', $data[ 'result' ] );
-		$this->assertArrayHasKey( 'event', $data );
 	}
 
 	private function getHandler(): NotifierHandler {
 		$handler = $this->getMockBuilder( NotifierHandler::class )
-			->setConstructorArgs( [ $this->userFactory, $this->revisionLookup ] )
+			->setConstructorArgs( [ $this->userFactory, $this->revisionLookup, $this->notifications ] )
 			->onlyMethods( [ 'getValidatedBody' ] )
 			->getMock();
 
@@ -135,6 +133,7 @@ class NotifierHandlerTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 		$this->userFactory = $this->createMock( UserFactory::class );
 		$this->revisionLookup = $this->createMock( RevisionLookup::class );
+		$this->notifications = $this->createMock( NotificationService::class );
 		$mockBlockManager = $this->getMockBuilder( BlockManager::class )->disableOriginalConstructor()->getMock();
 		$this->setService( 'BlockManager', $mockBlockManager );
 	}
