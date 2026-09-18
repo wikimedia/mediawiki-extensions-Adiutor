@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bjankuloski06"
+			"Bjankuloski06",
+			"Vlad5250"
 		]
 	},
 	"adiutor-toggle-adiutor": "Користете го Adiutor за модерирање, тријажа и одржување на содржински задачи",
@@ -36,9 +37,21 @@
 	"adiutor-prd-deletion-type-1-help": "Предложено бришење согласно $1",
 	"adiutor-prd-deletion-type-2-help": "Предложено бришење на биографии на живи личности без никакви извори, следејќи ги упатствата наведени во $1.",
 	"adiutor-rpp-header-title": "Барање за заштита на страница",
+	"adiutor-prd-header-title": "Предложено бришење",
+	"adiutor-csd-header-title": "Барање за брзо бришење",
+	"adiutor-pmr-header-title": "Барање за преместување на страница",
+	"adiutor-page-move-request": "Барање за преместување на страница",
+	"adiutor-page-protection-request": "Барање за заштита на страница",
+	"adiutor-operation-completed": "Постапката заврши!",
+	"adiutor-operation-failed": "Постапката не успеа!",
 	"adiutor-and": "и",
+	"adiutor-select-speedy-deletion-reason": "Мора да изберете барем една причина за брзо бришење.",
 	"adiutor-warning": "Предупредување",
 	"adiutor-select-a-tag": "Изберете ознака.",
+	"adiutor-label-column": "Натпис",
+	"adiutor-action-column": "Дејство",
+	"adiutor-delete-button": "Избриши",
+	"adiutor-parameters": "Параметри",
 	"adiutor-parameters-page-name": "име на страницата",
 	"adiutor-parameters-new-page-name": "ново име на страницата",
 	"adiutor-parameters-protection-duration": "траење на заштитата",
@@ -53,6 +66,15 @@
 	"adiutor-parameters-reason-value": "вредност на причината",
 	"adiutor-speedy-deletion-policy-link": "Правила за брзо бришење",
 	"adiutor-speedy-deletion-policy-page-shortcut": "Кратенка на Правилата за брзо бришење",
+	"adiutor-name-space": "Именски простор",
+	"adiutor-close": "Затвори",
+	"adiutor-protection-types": "Видови на заштита",
+	"adiutor-save-configurations": "Зачувај поставеност",
+	"adiutor-speedy-deletion-reasons": "Причини за брзо бришење",
 	"adiutor-type": "Вид",
+	"adiutor-deletion-log": "Дневник на бришења",
+	"adiutor-comment": "Коментар",
+	"adiutor-revision-reporting-comment-placeholder": "Напишете коментар",
+	"adiutor-update": "Поднови",
 	"adiutor-create-localization-initial-content": "Првична содржина за податотека со превод на Adiutor"
 }
