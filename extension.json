@@ -114,18 +114,14 @@
 				"CdxField",
 				"CdxChipInput",
 				"CdxSelect",
-				"CdxLabel",
 				"CdxRadio",
 				"CdxTab",
 				"CdxTextArea",
 				"CdxTextInput",
-				"CdxLookup",
 				"CdxTabs",
-				"CdxCard",
 				"CdxMessage",
 				"CdxToggleSwitch",
 				"CdxButton",
-				"CdxAccordion",
 				"CdxTable"
 			],
 			"dependencies": [
