@@ -136,7 +136,6 @@ class NotifierHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->userFactory = $this->createMock( UserFactory::class );
 		$this->revisionLookup = $this->createMock( RevisionLookup::class );
 		$mockBlockManager = $this->getMockBuilder( BlockManager::class )->disableOriginalConstructor()->getMock();
-		$mockBlockManager->method( 'getUserBlock' )->willReturn( null );
 		$this->setService( 'BlockManager', $mockBlockManager );
 	}
 }
